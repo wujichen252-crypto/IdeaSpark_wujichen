@@ -1,0 +1,107 @@
+:root {
+  font-family: Inter, "HarmonyOS Sans", "Source Han Sans SC", "Noto Sans SC", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+
+  /* 全局变量定义 */
+  --header-height: 56px;
+  --scrollbar-width: 0px;
+  --scrollbar-overlay-gap: 0px;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+/* 移除默认的居中布局，改为正常的流式布局 */
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden; /* 防止水平滚动条 */
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.card {
+  padding: 2em;
+}
+
+/* 移除 #app 的宽度限制和内边距，使其能全屏显示 */
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* 全局 UI 交互元素防选中优化 */
+html,
+body,
+#app {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* 恢复输入框、文本域和可编辑区域的文本选择功能 */
+input,
+textarea,
+[contenteditable] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* 恢复代码块等需要复制内容的区域选择功能 */
+code,
+pre,
+.selectable-text {
+  -webkit-user-select: text;
+  user-select: text;
+}

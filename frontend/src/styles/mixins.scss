@@ -1,0 +1,225 @@
+/* ============================================================
+   Nexus Design System — SCSS Mixins
+   ============================================================ */
+
+/* ── Glassmorphism Card ── */
+@mixin nexus-glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: var(--nexus-radius-2xl);
+  box-shadow: var(--nexus-shadow-md);
+}
+
+@mixin nexus-glass-dark {
+  background: rgba(17, 24, 39, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--nexus-radius-2xl);
+  box-shadow: var(--nexus-shadow-lg);
+}
+
+/* ── Hover Lift ── */
+@mixin nexus-hover-lift {
+  transition: transform var(--nexus-duration-normal) var(--nexus-ease),
+              box-shadow var(--nexus-duration-normal) var(--nexus-ease);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--nexus-shadow-xl);
+  }
+}
+
+/* ── Button Primary (Nexus) ── */
+@mixin nexus-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--nexus-space-2);
+  padding: 10px 24px;
+  background-color: var(--nexus-accent);
+  color: var(--nexus-text-inverse);
+  font-family: var(--nexus-font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: var(--nexus-letter-spacing);
+  border-radius: var(--nexus-radius-full);
+  border: none;
+  cursor: pointer;
+  transition: all var(--nexus-duration-fast) var(--nexus-ease);
+
+  &:hover {
+    background-color: var(--nexus-accent-hover);
+    transform: scale(1.02);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+/* ── Button Secondary (Nexus) ── */
+@mixin nexus-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--nexus-space-2);
+  padding: 10px 24px;
+  background-color: transparent;
+  color: var(--nexus-text-primary);
+  font-family: var(--nexus-font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: var(--nexus-radius-full);
+  border: 1px solid var(--nexus-border);
+  cursor: pointer;
+  transition: all var(--nexus-duration-fast) var(--nexus-ease);
+
+  &:hover {
+    background-color: var(--nexus-divider);
+    border-color: var(--nexus-text-tertiary);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+/* ── Icon Button ── */
+@mixin nexus-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: transparent;
+  color: var(--nexus-text-secondary);
+  border-radius: var(--nexus-radius-full);
+  border: none;
+  cursor: pointer;
+  transition: all var(--nexus-duration-fast) var(--nexus-ease);
+
+  &:hover {
+    background-color: var(--nexus-divider);
+    color: var(--nexus-text-primary);
+  }
+
+  &:active {
+    transform: scale(0.92);
+  }
+}
+
+/* ── Input (Nexus) ── */
+@mixin nexus-input {
+  width: 100%;
+  padding: 10px 18px;
+  background: var(--nexus-bg-elevated);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-full);
+  font-family: var(--nexus-font-ui);
+  font-size: 14px;
+  color: var(--nexus-text-primary);
+  transition: border-color var(--nexus-duration-fast) var(--nexus-ease);
+
+  &::placeholder {
+    color: var(--nexus-text-tertiary);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--nexus-accent);
+  }
+}
+
+/* ── Slide Up Animation ── */
+@mixin nexus-slide-up($delay: 0s) {
+  animation: nexusSlideUp var(--nexus-duration-slow) var(--nexus-ease) $delay both;
+}
+
+@keyframes nexusSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Fade In ── */
+@mixin nexus-fade-in($delay: 0s) {
+  animation: nexusFadeIn var(--nexus-duration-normal) var(--nexus-ease) $delay both;
+}
+
+@keyframes nexusFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ── Pulse Subtle ── */
+@mixin nexus-pulse {
+  animation: nexusPulse 2s ease-in-out infinite;
+}
+
+@keyframes nexusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ── Scrollbar (Nexus) ── */
+@mixin nexus-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: var(--nexus-radius-full);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* ── Tag / Pill ── */
+@mixin nexus-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  background: var(--nexus-divider);
+  color: var(--nexus-text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: var(--nexus-radius-full);
+  border: none;
+  white-space: nowrap;
+}
+
+/* ── Sticky Header Glass ── */
+@mixin nexus-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  @include nexus-glass;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}

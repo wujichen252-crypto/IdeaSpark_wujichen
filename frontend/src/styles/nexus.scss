@@ -1,0 +1,263 @@
+/* ============================================================
+   Nexus Design System — Global Styles
+   ============================================================ */
+
+@import './variables.scss';
+@import './mixins.scss';
+
+/* ── Noise Texture Overlay ── */
+.nexus-noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ── Page Container ── */
+.nexus-page {
+  min-height: 100vh;
+  background-color: var(--nexus-bg);
+  font-family: var(--nexus-font-ui);
+  letter-spacing: var(--nexus-letter-spacing);
+}
+
+/* ── Glass Cards ── */
+.nexus-card {
+  @include nexus-glass;
+  padding: var(--nexus-space-6);
+}
+
+.nexus-card-lg {
+  @include nexus-glass;
+  padding: var(--nexus-space-8);
+  border-radius: var(--nexus-radius-xl);
+}
+
+.nexus-card-flat {
+  background: var(--nexus-bg-elevated);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-lg);
+  padding: var(--nexus-space-6);
+  box-shadow: var(--nexus-shadow-sm);
+}
+
+/* ── Buttons ── */
+.nexus-btn {
+  @include nexus-btn-primary;
+}
+
+.nexus-btn-secondary {
+  @include nexus-btn-secondary;
+}
+
+.nexus-btn-icon {
+  @include nexus-btn-icon;
+}
+
+/* ── Inputs ── */
+.nexus-input {
+  @include nexus-input;
+}
+
+/* ── Tags ── */
+.nexus-tag {
+  @include nexus-tag;
+}
+
+.nexus-tag-primary {
+  @include nexus-tag;
+  background: var(--nexus-accent);
+  color: var(--nexus-text-inverse);
+}
+
+.nexus-tag-success {
+  @include nexus-tag;
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--nexus-success);
+}
+
+.nexus-tag-warning {
+  @include nexus-tag;
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--nexus-warning);
+}
+
+.nexus-tag-error {
+  @include nexus-tag;
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--nexus-error);
+}
+
+/* ── Editor Layout System ── */
+.nexus-editor-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--nexus-bg);
+  overflow: hidden;
+}
+
+.nexus-editor-header {
+  @include nexus-sticky-header;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  height: var(--header-height);
+  flex-shrink: 0;
+}
+
+.nexus-editor-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.nexus-editor-canvas {
+  flex: 1;
+  overflow: auto;
+  @include nexus-scrollbar;
+  padding: var(--nexus-space-6);
+}
+
+.nexus-editor-sidebar {
+  width: 380px;
+  min-width: 380px;
+  background: var(--nexus-bg-elevated);
+  border-left: 1px solid var(--nexus-border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Toolbar (Nexus) ── */
+.nexus-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--nexus-space-1);
+  padding: var(--nexus-space-2) var(--nexus-space-4);
+  background: var(--nexus-bg-elevated);
+  border-bottom: 1px solid var(--nexus-border);
+  flex-shrink: 0;
+}
+
+.nexus-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: var(--nexus-space-1);
+  padding: 0 var(--nexus-space-2);
+  border-right: 1px solid var(--nexus-divider);
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.nexus-toolbar-btn {
+  @include nexus-btn-icon;
+  width: 32px;
+  height: 32px;
+
+  &.active {
+    background-color: var(--nexus-text-primary);
+    color: var(--nexus-text-inverse);
+  }
+}
+
+/* ── AI Sidebar (Nexus) ── */
+.nexus-ai-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--nexus-bg-elevated);
+}
+
+.nexus-ai-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--nexus-space-4) var(--nexus-space-5);
+  border-bottom: 1px solid var(--nexus-border);
+  flex-shrink: 0;
+}
+
+.nexus-ai-title {
+  display: flex;
+  align-items: center;
+  gap: var(--nexus-space-2);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--nexus-text-primary);
+}
+
+.nexus-ai-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--nexus-success);
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--nexus-success);
+    @include nexus-pulse;
+  }
+}
+
+.nexus-ai-content {
+  flex: 1;
+  overflow-y: auto;
+  @include nexus-scrollbar;
+  padding: var(--nexus-space-4);
+}
+
+.nexus-ai-input-area {
+  padding: var(--nexus-space-4);
+  border-top: 1px solid var(--nexus-border);
+  background: var(--nexus-bg-elevated);
+  flex-shrink: 0;
+}
+
+/* ── Scrollbar Global ── */
+.nexus-scroll {
+  @include nexus-scrollbar;
+}
+
+/* ── Animation Utilities ── */
+.nexus-slide-up {
+  @include nexus-slide-up;
+}
+
+.nexus-fade-in {
+  @include nexus-fade-in;
+}
+
+/* ── Stagger children ── */
+.nexus-stagger > * {
+  @include nexus-slide-up;
+
+  @for $i from 1 through 12 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.05}s;
+    }
+  }
+}
+
+/* ── Decor Font Utility ── */
+.nexus-font-decor {
+  font-family: var(--nexus-font-decor);
+  font-style: italic;
+}
+
+/* ── Tabular Numbers ── */
+.nexus-tabular {
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  ideaspark-frontend:
+    # build context is the frontend root (parent of deploy/)
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: ideaspark-frontend
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    networks:
+      - ideaspark-network
+
+networks:
+  ideaspark-network:
+    driver: bridge

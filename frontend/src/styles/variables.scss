@@ -1,0 +1,89 @@
+/* ============================================================
+   Nexus Design System — Global Variables
+   ============================================================ */
+
+:root {
+  /* ── Color Palette ── */
+  --nexus-bg: #fafafa;
+  --nexus-bg-elevated: #ffffff;
+  --nexus-bg-glass: rgba(255, 255, 255, 0.72);
+
+  --nexus-text-primary: #111827;
+  --nexus-text-secondary: #6b7280;
+  --nexus-text-tertiary: #9ca3af;
+  --nexus-text-inverse: #ffffff;
+
+  --nexus-border: #e5e7eb;
+  --nexus-border-light: rgba(255, 255, 255, 0.4);
+  --nexus-divider: #f3f4f6;
+
+  --nexus-accent: #000000;
+  --nexus-accent-hover: #374151;
+
+  /* Functional colors (extremely restrained) */
+  --nexus-success: #10b981;
+  --nexus-warning: #f59e0b;
+  --nexus-error: #ef4444;
+  --nexus-link: #2563eb;
+
+  /* ── Typography ── */
+  --nexus-font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --nexus-font-decor: 'Playfair Display', Georgia, serif;
+  --nexus-font-mono: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+
+  --nexus-letter-spacing: -0.01em;
+
+  /* ── Spacing (4px grid) ── */
+  --nexus-space-1: 4px;
+  --nexus-space-2: 8px;
+  --nexus-space-3: 12px;
+  --nexus-space-4: 16px;
+  --nexus-space-5: 20px;
+  --nexus-space-6: 24px;
+  --nexus-space-8: 32px;
+  --nexus-space-10: 40px;
+  --nexus-space-12: 48px;
+
+  /* ── Radius ── */
+  --nexus-radius-sm: 8px;
+  --nexus-radius-md: 12px;
+  --nexus-radius-lg: 16px;
+  --nexus-radius-xl: 20px;
+  --nexus-radius-2xl: 24px;
+  --nexus-radius-full: 9999px;
+
+  /* ── Shadows ── */
+  --nexus-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --nexus-shadow-md: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
+  --nexus-shadow-lg: 0 12px 40px -12px rgba(0, 0, 0, 0.08);
+  --nexus-shadow-xl: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+
+  /* ── Animation ── */
+  --nexus-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --nexus-duration-fast: 200ms;
+  --nexus-duration-normal: 400ms;
+  --nexus-duration-slow: 600ms;
+
+  /* ─egacy overrides for Naive UI integration ── */
+  --primary-color: #000000;
+  --header-height: 64px;
+}
+
+/* ── Global base styles ── */
+html {
+  font-family: var(--nexus-font-ui);
+  letter-spacing: var(--nexus-letter-spacing);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--nexus-bg);
+  color: var(--nexus-text-primary);
+}
+
+/* Selection style */
+::selection {
+  background-color: #000000;
+  color: #ffffff;
+}
