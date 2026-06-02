@@ -128,7 +128,6 @@ const isHeaderHidden = computed(() => {
     'DocumentEditor',
     'ProjectWorkspace',
     'ProjectFileEditor',
-    'GoogleSlidesEditor',
     'ExcelEditor',
     'SlideEditor'
   ]

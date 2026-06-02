@@ -45,3 +45,8 @@ class OptionalAuthBearer(HttpBearer):
             request.user_id = int(payload['sub'])
             request.user_role = payload.get('role', 'USER')
         return True
+
+
+def get_user_id(request: HttpRequest) -> int:
+    """Get user ID from authenticated request, defaulting to 0 for anonymous."""
+    return getattr(request, 'user_id', 0) or 0

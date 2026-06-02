@@ -7,7 +7,7 @@ import logging
 from django.http import HttpRequest
 from ninja import Body, Router
 
-from apps.accounts.auth import AuthBearer, OptionalAuthBearer
+from apps.accounts.auth import AuthBearer, OptionalAuthBearer, get_user_id
 from apps.projects.schemas import (
     CreateProjectIn, UpdateProjectIn,
     CreateFileIn, UpdateFileIn,
@@ -67,7 +67,7 @@ def create_project(request: HttpRequest, payload: CreateProjectIn):
 @router.get('/api/projects/{project_id}', auth=OptionalAuthBearer())
 def get_project_detail(request: HttpRequest, project_id: str):
     """获取项目详情"""
-    user_id = getattr(request, 'user_id', 0) or 0
+    user_id = get_user_id(request)
     detail = services.get_project_detail(user_id, project_id)
     return ApiResponseData.ok(data=detail)
 
@@ -95,7 +95,7 @@ def delete_project(request: HttpRequest, project_id: str):
 @router.get('/api/projects/{project_id}/members', auth=OptionalAuthBearer())
 def get_project_members(request: HttpRequest, project_id: str):
     """获取项目成员列表"""
-    user_id = getattr(request, 'user_id', 0) or 0
+    user_id = get_user_id(request)
     members = services.get_project_members(user_id, project_id)
     return ApiResponseData.ok(data=members)
 
