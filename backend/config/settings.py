@@ -74,11 +74,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # ── Database (MySQL) ──────────────────────────────────────
 # Match Spring Boot DB config from application.yml
-DB_HOST = os.getenv('DB_HOST', 'localhost')
+# Override via backend/.env or environment variables
+DB_HOST = os.getenv('DB_HOST', '47.108.232.238')
 DB_PORT = os.getenv('DB_PORT', '3306')
 DB_NAME = os.getenv('DB_NAME', 'ideaspark')
-DB_USER = os.getenv('DB_USERNAME', 'root')
-DB_PASSWORD = os.getenv('DB_PASSWORD', 'root')
+DB_USER = os.getenv('DB_USERNAME', 'ideaspark')
+DB_PASSWORD = os.getenv('DB_PASSWORD', '')
 
 # ── Monkey-patch: support MySQL 5.7 (Django 4.2+ requires MySQL 8) ──
 import django.db.backends.base.base as django_base_base
@@ -107,6 +108,15 @@ DATABASES = {
         'CONN_MAX_AGE': int(os.getenv('DB_CONN_MAX_AGE', '600')),
     }
 }
+
+# ── Email (SMTP) ──────────────────────────────────────────
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.qq.com')
+EMAIL_PORT = int(os.getenv('EMAIL_PORT', '465'))
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', 'true').lower() == 'true'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
 
 # ── Password validation ───────────────────────────────────
 AUTH_PASSWORD_VALIDATORS = [

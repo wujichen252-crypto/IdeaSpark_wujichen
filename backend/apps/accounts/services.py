@@ -6,6 +6,8 @@ import logging
 from datetime import datetime, timezone, timedelta
 
 from django.db import transaction
+from django.conf import settings
+from django.core.mail import send_mail
 from django.contrib.auth.hashers import check_password, make_password
 
 from apps.accounts.models import User, RefreshToken, PasswordResetToken, UserPlugin
@@ -297,6 +299,28 @@ def _user_to_public_dict(user: User) -> dict:
 # ══════════════════════════════════════════════════════════
 
 
+def _send_password_reset_email(email: str, token: str) -> None:
+    """Send password reset email with token link."""
+    reset_url = f"{settings.FRONTEND_URL}/reset-password?token={token}"
+    subject = '重置您的 IdeaSpark 密码'
+    message = f"""您好，
+
+我们收到了您重置密码的请求。请点击以下链接重置密码：
+
+{reset_url}
+
+该链接有效期为一小时。如果您没有请求重置密码，请忽略此邮件。
+
+IdeaSpark 团队
+"""
+    try:
+        send_mail(subject, message, None, [email], fail_silently=False)
+        logger.info(f'Password reset email sent to {email}')
+    except Exception as e:
+        logger.error(f'Failed to send password reset email to {email}: {e}')
+        raise BusinessException('邮件发送失败，请稍后重试')
+
+
 @transaction.atomic
 def forgot_password(email: str) -> None:
     """POST /api/user/forgot-password"""
@@ -318,7 +342,7 @@ def forgot_password(email: str) -> None:
         expiry_date=datetime.now(timezone.utc) + timedelta(hours=1),
         used=False,
     )
-    logger.info(f'Password reset token created for {email}')
+    _send_password_reset_email(email.strip(), token_value)
 
 
 def validate_reset_token(token: str) -> str:
