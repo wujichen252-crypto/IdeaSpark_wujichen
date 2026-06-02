@@ -15,6 +15,11 @@ IdeaSpark is an AI-driven project incubator. Users describe an idea and the plat
 
 ## Key Commands
 
+### One-click dev (root)
+```bash
+powershell -File dev.ps1    # Windows — starts both servers in separate windows
+```
+
 ### Frontend (d:\大学就业指导\项目相关\项目落地（全栈）\IdeaSpark\frontend\)
 ```bash
 npm run dev          # Start Vite dev server (port 5173)
