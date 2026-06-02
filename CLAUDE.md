@@ -9,7 +9,8 @@ IdeaSpark is an AI-driven project incubator. Users describe an idea and the plat
 ## Tech Stack
 
 - **Frontend**: Vue 3 + TypeScript + Vite, Pinia (state management with persist plugin), Vue Router, Naive UI, Axios, ECharts, GSAP
-- **Backend**: Django 4.2 + Django Ninja (REST API), MySQL, JWT auth, DeepSeek AI (OpenAI-compatible client), Aliyun OSS
+- **Backend**: Django 4.2 + Django Ninja (REST API), MySQL, JWT auth, DeepSeek AI (OpenAI-compatible SDK), Aliyun OSS
+- **Package Manager**: pnpm (frontend), uv (backend)
 - **Testing**: Vitest (frontend unit), Playwright (E2E), Django built-in test framework (backend)
 
 ## Key Commands
@@ -30,9 +31,12 @@ npm run test:e2e     # Playwright E2E
 
 ### Backend (d:\大学就业指导\项目相关\项目落地（全栈）\IdeaSpark\backend\)
 ```bash
-python manage.py runserver 8081   # Dev server (port 8081)
-python manage.py test             # Run Django tests
-gunicorn config.wsgi:application  # Production server via gunicorn.conf.py
+uv run python manage.py runserver 8081   # Dev server (port 8081) — auto-activates .venv
+uv run python manage.py test             # Run Django tests
+uv run gunicorn config.wsgi:application  # Production server via gunicorn.conf.py
+uv sync                                   # Install/sync dependencies from pyproject.toml
+uv sync --group dev                       # Include dev dependencies (ruff, etc.)
+uv run ruff check .                       # Lint backend code
 ```
 
 ## Architecture
