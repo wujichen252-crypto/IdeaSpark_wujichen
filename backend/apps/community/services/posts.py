@@ -149,27 +149,7 @@ def delete_post(post_id: str, user_id: int):
     post.save(update_fields=['visibility'])
 
 
-@transaction.atomic
-def update_post_likes_count(post_id: str, count: int):
-    """PUT /api/community/posts/{postId}/likes"""
-    try:
-        post = CommunityPost.objects.get(id=post_id)
-    except CommunityPost.DoesNotExist:
-        raise NotFoundException('帖子不存在')
-    post.likes_count = count
-    post.save(update_fields=['likes_count'])
 
-
-@transaction.atomic
-def update_post_comments_count(post_id: str, count: int) -> dict:
-    """PUT /api/community/posts/{postId}/comments"""
-    try:
-        post = CommunityPost.objects.get(id=post_id)
-    except CommunityPost.DoesNotExist:
-        raise NotFoundException('帖子不存在')
-    post.comments_count = count
-    post.save(update_fields=['comments_count'])
-    return {'id': post.id, 'commentsCount': post.comments_count}
 
 
 # ── Helpers ──

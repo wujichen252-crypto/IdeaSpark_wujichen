@@ -137,18 +137,43 @@ def edit_content(file_type: str, content: str, action: str, selected_text: Optio
 
 # ── Quota (simplified in-memory, replace with Redis in production) ──
 
+from threading import Lock
 _quota_store: dict = {}  # key: f"{user_id}:{category}", value: list of timestamps
+_quota_lock = Lock()
 
 
 def check_quota(user_id: int, category: str, limit: int):
     """Check if user has exceeded hourly quota. Raises exception if exceeded."""
     from common.exceptions import BusinessException
-    key = f'{user_id}:{category}'
-    now = time.time()
-    timestamps = _quota_store.get(key, [])
-    # Keep only timestamps within the last hour
-    timestamps = [t for t in timestamps if now - t < 3600]
-    if len(timestamps) >= limit:
-        raise BusinessException(f'请求过于频繁，请稍后再试（每小时限制{limit}次）')
-    timestamps.append(now)
-    _quota_store[key] = timestamps
+    global _quota_store
+
+    # 添加线程锁防止竞态条件
+    with _quota_lock:
+        key = f'{user_id}:{category}'
+        now = time.time()
+        timestamps = _quota_store.get(key, [])
+        # Keep only timestamps within the last hour
+        timestamps = [t for t in timestamps if now - t < 3600]
+        if len(timestamps) >= limit:
+            raise BusinessException(f'请求过于频繁，请稍后再试（每小时限制{limit}次）')
+        timestamps.append(now)
+        _quota_store[key] = timestamps
+
+        # 定期清理旧数据，防止内存泄漏
+        if now % 300 < 1:  # 每5分钟左右清理一次
+            _cleanup_quota_store(now)
+
+
+def _cleanup_quota_store(now: float):
+    """Cleanup old entries from quota store."""
+    global _quota_store
+    keys_to_delete = []
+    for key, timestamps in _quota_store.items():
+        # 清理超过1小时的记录
+        timestamps = [t for t in timestamps if now - t < 3600]
+        if not timestamps:
+            keys_to_delete.append(key)
+        else:
+            _quota_store[key] = timestamps
+    for key in keys_to_delete:
+        del _quota_store[key]
