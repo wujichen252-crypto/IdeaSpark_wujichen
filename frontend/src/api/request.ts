@@ -63,16 +63,21 @@ function requestErrorInterceptor(error: unknown) {
 service.interceptors.request.use(requestInterceptor, requestErrorInterceptor)
 
 // Response interceptor
-let isRefreshing = false
+let refreshPromise: Promise<string> | null = null
 let refreshSubscribers: Array<(token: string) => void> = []
 
 function onTokenRefreshed(newToken: string) {
-  refreshSubscribers.forEach(callback => callback(newToken))
-  refreshSubscribers = []
+    refreshSubscribers.forEach(callback => {
+        try {
+            callback(newToken)
+        } catch {
+        }
+    })
+    refreshSubscribers = []
 }
 
 function addRefreshSubscriber(callback: (token: string) => void) {
-  refreshSubscribers.push(callback)
+    refreshSubscribers.push(callback)
 }
 
 function responseSuccessInterceptor(response: AxiosResponse) {
@@ -152,56 +157,65 @@ function responseErrorInterceptor(error: any): Promise<AxiosResponse> {
 
     originalRequest._retry = true
 
-    if (isRefreshing) {
-      return new Promise<AxiosResponse>((resolve) => {
+    if (refreshPromise) {
+      return new Promise<AxiosResponse>((resolve, reject) => {
         addRefreshSubscriber((newToken: string) => {
-          originalRequest.headers.Authorization = `Bearer ${newToken}`
-          resolve(service(originalRequest))
+          if (newToken) {
+            originalRequest.headers.Authorization = `Bearer ${newToken}`
+            resolve(service(originalRequest))
+          } else {
+            reject(error)
+          }
         })
       })
     }
 
-    isRefreshing = true
-
-    return refreshTokenApi(refreshTokenValue)
-      .then((res) => {
-        const data = res.data.data
-        if (data && data.token && data.refreshToken) {
-          localStorage.setItem('token', data.token)
-          localStorage.setItem('refreshToken', data.refreshToken)
-          try {
-            const userStore = useUserStore()
-            userStore.updateToken(data.token, data.refreshToken)
-          } catch {
-            // ignore
+    refreshPromise = new Promise<string>((resolve, reject) => {
+      refreshTokenApi(refreshTokenValue)
+        .then((res) => {
+          const data = res.data.data
+          if (data && data.token && data.refreshToken) {
+            localStorage.setItem('token', data.token)
+            localStorage.setItem('refreshToken', data.refreshToken)
+            try {
+              const userStore = useUserStore()
+              userStore.updateToken(data.token, data.refreshToken)
+            } catch {
+            }
+            onTokenRefreshed(data.token)
+            resolve(data.token)
+          } else {
+            reject(new Error('刷新响应格式异常'))
           }
-          onTokenRefreshed(data.token)
-          originalRequest.headers.Authorization = `Bearer ${data.token}`
-          return service(originalRequest)
-        }
-        throw new Error('刷新响应格式异常')
-      })
-      .catch((err) => {
-        // 刷新失败时通知所有等待的订阅者，避免永久挂起
-        const subscribers = refreshSubscribers
-        refreshSubscribers = []
-        subscribers.forEach(callback => {
-          try { callback('') } catch { /* ignore */ }
         })
+        .catch((err) => {
+          refreshSubscribers.forEach(callback => {
+            try {
+              callback('')
+            } catch {
+            }
+          })
+          refreshSubscribers = []
 
-        if (!isWhiteList) {
-          message.error('登录已过期，请重新登录')
-          clearAuthState()
-          const currentName = router.currentRoute.value.name
-          if (currentName !== 'Login') {
-            router.push('/login')
+          if (!isWhiteList) {
+            message.error('登录已过期，请重新登录')
+            clearAuthState()
+            const currentName = router.currentRoute.value.name
+            if (currentName !== 'Login') {
+              router.push('/login')
+            }
           }
-        }
-        return Promise.reject(err)
-      })
-      .finally(() => {
-        isRefreshing = false
-      })
+          reject(err)
+        })
+        .finally(() => {
+          refreshPromise = null
+        })
+    })
+
+    return refreshPromise.then((newToken) => {
+      originalRequest.headers.Authorization = `Bearer ${newToken}`
+      return service(originalRequest)
+    })
   }
 
   // 开发环境错误日志（401 已在上面静默处理）
@@ -235,11 +249,18 @@ function responseErrorInterceptor(error: any): Promise<AxiosResponse> {
     userMessage = '请求超时，请检查网络连接'
   }
 
-  // 优先使用服务器返回的错误信息
+  // 安全地处理服务器返回的错误信息，避免暴露内部细节
   const serverMessage =
     (axiosError.response?.data as { message?: string } | undefined)?.message
   if (serverMessage) {
-    userMessage = serverMessage
+    // 只允许显示业务级错误信息，过滤包含技术细节的内容
+    const sensitiveKeywords = ['error', 'exception', 'trace', 'stack', 'sql', 'database']
+    const isSensitive = sensitiveKeywords.some(keyword =>
+      serverMessage.toLowerCase().includes(keyword)
+    )
+    if (!isSensitive && serverMessage.length < 100) {
+      userMessage = serverMessage
+    }
   }
 
   message.error(userMessage)

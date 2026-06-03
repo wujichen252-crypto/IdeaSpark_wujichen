@@ -73,15 +73,4 @@ def delete_post(request: HttpRequest, post_id: str):
     return {'status': 200, 'message': '删除成功', 'data': None}
 
 
-@router.put('/api/community/posts/{post_id}/likes', auth=OptionalAuthBearer())
-def update_post_likes(request: HttpRequest, post_id: str, count: int):
-    """更新帖子点赞数"""
-    svc.update_post_likes_count(post_id, count)
-    return {'status': 200, 'message': '更新成功', 'data': None}
 
-
-@router.put('/api/community/posts/{post_id}/comments', auth=OptionalAuthBearer())
-def update_post_comments(request: HttpRequest, post_id: str, count: int):
-    """更新帖子评论数"""
-    result = svc.update_post_comments_count(post_id, count)
-    return {'status': 200, 'message': '更新成功', 'data': result}

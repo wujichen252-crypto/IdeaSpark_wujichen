@@ -3,6 +3,8 @@ IdeaSpark Django backend settings.
 Maps to ideaspark_backend/src/main/resources/application.yml
 """
 import os
+import sys
+import secrets
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -11,9 +13,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / '.env')
 
 # ── Security ──────────────────────────────────────────────
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'ideaspark-dev-secret-key-change-in-production')
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+if not SECRET_KEY:
+    if 'runserver' in sys.argv:
+        # 开发环境自动生成临时密钥
+        SECRET_KEY = secrets.token_urlsafe(50)
+    else:
+        raise ValueError('DJANGO_SECRET_KEY environment variable is required in production')
+
 DEBUG = os.getenv('DJANGO_DEBUG', 'false').lower() == 'true'
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,47.108.232.238').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 # ── Application ───────────────────────────────────────────
 INSTALLED_APPS = [
@@ -196,7 +205,12 @@ LOGGING = {
 }
 
 # ── JWT (matches Spring Boot jwt.* config) ────────────────
-JWT_SECRET = os.getenv('JWT_SECRET', 'ideaspark_secret_key_default_for_dev_12345678901234567890')
+JWT_SECRET = os.getenv('JWT_SECRET')
+if not JWT_SECRET:
+    if 'runserver' in sys.argv:
+        JWT_SECRET = secrets.token_urlsafe(50)
+    else:
+        raise ValueError('JWT_SECRET environment variable is required in production')
 JWT_EXPIRE_SECONDS = int(os.getenv('JWT_EXPIRE_SECONDS', '604800'))  # 7 days
 JWT_REFRESH_EXPIRE_SECONDS = int(os.getenv('JWT_REFRESH_EXPIRE_SECONDS', '2592000'))  # 30 days
 JWT_ISSUER = os.getenv('JWT_ISSUER', 'ideaspark')
