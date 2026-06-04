@@ -325,24 +325,30 @@ IdeaSpark 团队
 def forgot_password(email: str) -> None:
     """POST /api/user/forgot-password"""
     import uuid as _uuid
+    import time
     from datetime import timedelta
 
     if not email or not email.strip():
         raise BusinessException('邮箱不能为空')
 
-    user_exists = User.objects.filter(email=email.strip()).exists()
-    if not user_exists:
-        return  # Don't reveal whether email exists
+    email = email.strip()
+    user_exists = User.objects.filter(email=email).exists()
 
-    PasswordResetToken.objects.filter(email=email).delete()
-    token_value = _uuid.uuid4().hex
-    PasswordResetToken.objects.create(
-        email=email,
-        token=token_value,
-        expiry_date=datetime.now(timezone.utc) + timedelta(hours=1),
-        used=False,
-    )
-    _send_password_reset_email(email.strip(), token_value)
+    # 始终执行相同的时间开销，避免用户枚举
+    fake_sleep = 0.1 + (hash(email) % 100) / 1000
+    time.sleep(fake_sleep)
+
+    if user_exists:
+        PasswordResetToken.objects.filter(email=email).delete()
+        token_value = _uuid.uuid4().hex
+        PasswordResetToken.objects.create(
+            email=email,
+            token=token_value,
+            expiry_date=datetime.now(timezone.utc) + timedelta(hours=1),
+            used=False,
+        )
+        _send_password_reset_email(email, token_value)
+    # 如果用户不存在，也不返回任何提示，保持行为一致
 
 
 def validate_reset_token(token: str) -> str:
@@ -483,9 +489,16 @@ def acquire_free_plugin(user_id: int, plugin_key: str) -> bool:
     except Plugin.DoesNotExist:
         raise BusinessException('插件不存在')
 
-    existing = UserPlugin.objects.filter(user_id=user_id, plugin_key=plugin_key).first()
+    # 使用 select_for_update 防止并发创建
+    existing = UserPlugin.objects.select_for_update().filter(
+        user_id=user_id, plugin_key=plugin_key
+    ).first()
     if existing:
         return True  # Already owned, no-op
+
+    # 再次检查以确保在锁期间没有其他事务创建
+    if UserPlugin.objects.filter(user_id=user_id, plugin_key=plugin_key).exists():
+        return True
 
     import uuid
     UserPlugin.objects.create(
@@ -509,7 +522,11 @@ def purchase_plugin(user_id: int, plugin_key: str, months: int = 1) -> bool:
 
     from datetime import timedelta
     now = datetime.now(timezone.utc)
-    existing = UserPlugin.objects.filter(user_id=user_id, plugin_key=plugin_key).first()
+    
+    # 使用 select_for_update 防止并发创建
+    existing = UserPlugin.objects.select_for_update().filter(
+        user_id=user_id, plugin_key=plugin_key
+    ).first()
 
     if existing:
         if existing.expired_at and existing.expired_at.replace(tzinfo=timezone.utc) > now:
@@ -518,6 +535,9 @@ def purchase_plugin(user_id: int, plugin_key: str, months: int = 1) -> bool:
             existing.expired_at = now + timedelta(days=30 * months)
         existing.save(update_fields=['expired_at'])
     else:
+        # 再次检查
+        if UserPlugin.objects.filter(user_id=user_id, plugin_key=plugin_key).exists():
+            return True
         import uuid
         UserPlugin.objects.create(
             id=str(uuid.uuid4()),
