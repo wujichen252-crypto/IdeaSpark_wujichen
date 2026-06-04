@@ -11,6 +11,6 @@ const store = createPinia()
 store.use(piniaPluginPersistedstate)
 
 export default store
-export * from './user'
+export * from './modules/user'
+export * from './modules/chat'
 export * from './modules/aiWorkshop'
-export * from './chat'

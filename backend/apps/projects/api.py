@@ -33,12 +33,12 @@ def my_projects(request: HttpRequest,
     """获取我的项目列表"""
     user_id = request.user_id
     result = services.get_my_projects(user_id, keyword, status, page, size)
-    return ApiResponseData.paginated(
-        items=result.items,
-        total=result.total,
-        page=result.page,
-        size=result.size,
-    )
+    return ApiResponseData.ok(data={
+        'projects': result.items,
+        'total': result.total,
+        'page': result.page,
+        'size': result.size,
+    })
 
 
 @router.get('/api/projects/user/{target_user_id}', auth=OptionalAuthBearer())
@@ -48,12 +48,12 @@ def user_public_projects(request: HttpRequest,
                          size: int = 20):
     """获取用户公开项目列表"""
     result = services.get_user_public_projects(target_user_id, page, size)
-    return ApiResponseData.paginated(
-        items=result.items,
-        total=result.total,
-        page=result.page,
-        size=result.size,
-    )
+    return ApiResponseData.ok(data={
+        'projects': result.items,
+        'total': result.total,
+        'page': result.page,
+        'size': result.size,
+    })
 
 
 @router.post('/api/projects', auth=AuthBearer())
@@ -171,12 +171,12 @@ def get_favorite_projects(request: HttpRequest,
     """获取我收藏的项目列表"""
     user_id = request.user_id
     result = services.get_favorite_projects(user_id, page, size)
-    return ApiResponseData.paginated(
-        items=result.items,
-        total=result.total,
-        page=result.page,
-        size=result.size,
-    )
+    return ApiResponseData.ok(data={
+        'projects': result.items,
+        'total': result.total,
+        'page': result.page,
+        'size': result.size,
+    })
 
 
 # ═══════════════════════════════════════════════════════════
@@ -214,12 +214,12 @@ def get_liked_projects(request: HttpRequest,
     """获取我点赞的项目列表"""
     user_id = request.user_id
     result = services.get_liked_projects(user_id, page, size)
-    return ApiResponseData.paginated(
-        items=result.items,
-        total=result.total,
-        page=result.page,
-        size=result.size,
-    )
+    return ApiResponseData.ok(data={
+        'projects': result.items,
+        'total': result.total,
+        'page': result.page,
+        'size': result.size,
+    })
 
 
 # ═══════════════════════════════════════════════════════════
