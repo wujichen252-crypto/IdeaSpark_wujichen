@@ -13,6 +13,7 @@ class CreatePostIn(Schema):
     channel: Optional[str] = None
     visibility: Optional[str] = None
     projectId: Optional[str] = None
+    groupId: Optional[str] = None
 
 
 class UpdatePostIn(Schema):
