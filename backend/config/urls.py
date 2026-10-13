@@ -16,7 +16,13 @@ from apps.notifications.api import router as notifications_router
 from apps.projects.api import router as projects_router
 from apps.security_logs.api import router as security_logs_router
 from apps.teams.api import router as teams_router
-from common.exceptions import BusinessException, ForbiddenException, NotFoundException, UnauthorizedException
+from common.exceptions import (
+    BusinessException,
+    ConflictException,
+    ForbiddenException,
+    NotFoundException,
+    UnauthorizedException,
+)
 from common.response import ApiResponseData
 
 api = NinjaAPI(
@@ -60,6 +66,15 @@ def handle_unauthorized(request, exc):
         request,
         {"status": 401, "message": str(exc), "data": None},
         status=401,
+    )
+
+
+@api.exception_handler(ConflictException)
+def handle_conflict(request, exc):
+    return api.create_response(
+        request,
+        {"status": 409, "message": str(exc), "data": None},
+        status=409,
     )
 
 

@@ -24,7 +24,7 @@ export interface StageChecklistItem {
   assignee?: string
   tags?: string[]
 }
-export type ProjectFileType = 'document' | 'sheet' | 'slide' | 'image' | 'other'
+export type ProjectFileType = 'document' | 'sheet' | 'slide' | 'image' | 'other' | 'whiteboard' | 'mindmap' | 'flow'
 export interface ProjectFile {
   id: string
   name: string

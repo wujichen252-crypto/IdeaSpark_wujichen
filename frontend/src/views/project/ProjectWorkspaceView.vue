@@ -1167,6 +1167,9 @@ function fileTypeLabel(type: ProjectFileType) {
     sheet: '表格',
     slide: '演示',
     image: '图片',
+    whiteboard: '白板',
+    mindmap: '思维导图',
+    flow: '流程图',
     other: '其他'
   }
   return map[type]

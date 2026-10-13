@@ -55,6 +55,28 @@ class UpdateFileIn(Schema):
     size: Optional[int] = None
 
 
+class ArtifactContentIn(Schema):
+    """统一项目资产内容写入信封（嵌入式编辑器数据总线）。
+
+    payload 为编辑器吐出的任意 JSON（白板场景 / 导图 JSON / 流程图 graphData 等），
+    后端不解析其内部结构，只负责按 type + schema_version 存取，保证跨工具可编排。
+    """
+    type: str
+    schema_version: int = 1
+    payload: Optional[dict] = None
+    base_version: Optional[str] = None  # 乐观锁：客户端读取时的版本令牌
+
+
+class ArtifactContentOut(Schema):
+    """统一项目资产内容读取信封。"""
+    file_id: str
+    type: str
+    schema_version: int
+    payload: Optional[dict] = None
+    version: str  # 供下次写入携带的乐观锁令牌
+    updated_at: Optional[str] = None
+
+
 # ── Response Schemas ─────────────────────────────────────
 
 class ProjectItemOut(Schema):

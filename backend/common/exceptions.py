@@ -26,3 +26,10 @@ class UnauthorizedException(BusinessException):
 class ForbiddenException(BusinessException):
     def __init__(self, message: str = "没有权限执行此操作"):
         super().__init__(message, status_code=403)
+
+
+class ConflictException(BusinessException):
+    """资源冲突（409）— 用于乐观锁版本不一致等场景。"""
+
+    def __init__(self, message: str = "资源冲突，请刷新后重试"):
+        super().__init__(message, status_code=409)

@@ -25,6 +25,9 @@ export * from './market'
 // 文件上传
 export * from './file'
 
+// 统一项目资产（嵌入式编辑器数据总线）
+export * from './artifact'
+
 // 邀请管理
 export * from './invitation'
 

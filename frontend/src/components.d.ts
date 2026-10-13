@@ -15,12 +15,15 @@ declare module 'vue' {
     DoubleScrollSection: typeof import('./components/DoubleScrollSection.vue')['default']
     DraftBox: typeof import('./components/ai/DraftBox.vue')['default']
     EditableText: typeof import('./components/EditableText.vue')['default']
+    EmbeddedEditor: typeof import('./components/embedded/EmbeddedEditor.vue')['default']
+    FlowEditor: typeof import('./components/embedded/editors/FlowEditor.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     HeroSection: typeof import('./components/home/HeroSection.vue')['default']
     HorizontalScrollSection: typeof import('./components/HorizontalScrollSection.vue')['default']
     IdeaSparkSection: typeof import('./components/IdeaSparkSection.vue')['default']
     ImpactSection: typeof import('./components/ImpactSection.vue')['default']
     MarkdownEditor: typeof import('./components/markdown/MarkdownEditor.vue')['default']
+    MindmapEditor: typeof import('./components/embedded/editors/MindmapEditor.vue')['default']
     NAlert: typeof import('naive-ui')['NAlert']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NAvatarGroup: typeof import('naive-ui')['NAvatarGroup']
@@ -90,6 +93,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     ShootingStars: typeof import('./components/home/ShootingStars.vue')['default']
     UserListPanel: typeof import('./components/UserListPanel.vue')['default']
+    WhiteboardEditor: typeof import('./components/embedded/editors/WhiteboardEditor.vue')['default']
     WordRibbonToolbar: typeof import('./components/editor/WordRibbonToolbar.vue')['default']
   }
 }

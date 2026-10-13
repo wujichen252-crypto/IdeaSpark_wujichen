@@ -43,6 +43,15 @@ const projectRoutes: RouteRecordRaw[] = [
       title: 'Excel编辑器',
       requiresAuth: true
     }
+  },
+  {
+    path: '/project/artifact/:id/:fileId/:type',
+    name: 'EmbeddedArtifact',
+    component: () => import('@/views/project/EmbeddedArtifactView.vue'),
+    meta: {
+      title: '嵌入式编辑器',
+      requiresAuth: true
+    }
   }
 ]
 

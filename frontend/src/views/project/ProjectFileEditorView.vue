@@ -219,12 +219,17 @@ const fileId = route.params.fileId as string
 const file = computed<ProjectFile | undefined>(() => store.getProjectFileById(projectId, fileId))
 const editorKind = computed<EditorKind>(() => resolveEditorKind(file.value))
 
-// 对于 sheet 类型的文件，自动跳转到 Excel 编辑器
+// 对于 sheet 类型的文件，自动跳转到 Excel 编辑器；
+// 嵌入资产类型（白板/导图/流程图）自动跳转到统一嵌入式编辑器路由
+const ARTIFACT_TYPES = ['whiteboard', 'mindmap', 'flow']
+
 watch(
   () => file.value?.type,
   (type) => {
     if (type === 'sheet') {
       router.replace(`/project/excel/${projectId}/${fileId}`)
+    } else if (type && ARTIFACT_TYPES.includes(type)) {
+      router.replace(`/project/artifact/${projectId}/${fileId}/${type}?name=${encodeURIComponent(file.value?.name || '')}`)
     }
   },
   { immediate: true }

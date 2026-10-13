@@ -10,6 +10,7 @@ from ninja import Body, Router
 from apps.accounts.auth import AuthBearer, OptionalAuthBearer, get_user_id
 from apps.projects import services
 from apps.projects.schemas import (
+    ArtifactContentIn,
     CreateFileIn,
     CreateProjectIn,
     UpdateFileIn,
@@ -136,6 +137,27 @@ def delete_file(request: HttpRequest, project_id: str, file_id: str):
     user_id = request.user_id
     services.delete_file(user_id, project_id, file_id)
     return ApiResponseData.ok(message='删除成功')
+
+
+# ═══════════════════════════════════════════════════════════
+#  统一项目资产（嵌入式编辑器数据总线）
+# ═══════════════════════════════════════════════════════════
+
+@router.get('/api/projects/{project_id}/files/{file_id}/content', auth=AuthBearer())
+def get_artifact_content(request: HttpRequest, project_id: str, file_id: str):
+    """读取统一资产内容信封（白板/导图/流程图等嵌入编辑器的 JSON 负载）"""
+    user_id = request.user_id
+    data = services.get_artifact_content(user_id, project_id, file_id)
+    return ApiResponseData.ok(data=data)
+
+
+@router.put('/api/projects/{project_id}/files/{file_id}/content', auth=AuthBearer())
+def save_artifact_content(request: HttpRequest, project_id: str, file_id: str,
+                          body: ArtifactContentIn):
+    """写入统一资产内容信封（乐观锁：base_version 不一致返回 409）"""
+    user_id = request.user_id
+    data = services.save_artifact_content(user_id, project_id, file_id, body)
+    return ApiResponseData.ok(data=data, message='保存成功')
 
 
 # ═══════════════════════════════════════════════════════════

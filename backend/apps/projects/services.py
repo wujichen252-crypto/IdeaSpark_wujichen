@@ -1,4 +1,5 @@
 """Project business logic service."""
+import json
 import logging
 import uuid
 from typing import List, Optional
@@ -18,13 +19,19 @@ from apps.projects.models import (
     ProjectPlugin,
 )
 from apps.projects.schemas import (
+    ArtifactContentIn,
     CreateFileIn,
     CreateProjectIn,
     UpdateFileIn,
     UpdateProjectIn,
 )
 from apps.teams.models import Team
-from common.exceptions import BusinessException, ForbiddenException, NotFoundException
+from common.exceptions import (
+    BusinessException,
+    ConflictException,
+    ForbiddenException,
+    NotFoundException,
+)
 from common.pagination import Page, paginate_queryset, validate_pagination
 
 logger = logging.getLogger(__name__)
@@ -278,6 +285,86 @@ def get_file_detail(user_id: int, project_id: str, file_id: str) -> dict:
     except ProjectFile.DoesNotExist:
         raise NotFoundException('文件不存在')
     return _file_to_dict(file)
+
+
+# ═══════════════════════════════════════════════════════════
+#  统一项目资产（嵌入式编辑器数据总线）
+# ═══════════════════════════════════════════════════════════
+
+ARTIFACT_SCHEMA_VERSION = 1
+
+
+def _file_version_token(file: ProjectFile) -> str:
+    """以 updated_at 作为乐观锁版本令牌（表 managed=False，不加新列）。"""
+    return file.updated_at.strftime('%Y-%m-%dT%H:%M:%S.%f') if file.updated_at else ''
+
+
+def _parse_artifact_envelope(raw: str):
+    """解析 content 字段中的资产信封 JSON，返回 (schema_version, payload)。"""
+    if not raw:
+        return ARTIFACT_SCHEMA_VERSION, None
+    try:
+        envelope = json.loads(raw)
+        if isinstance(envelope, dict) and 'payload' in envelope:
+            version = int(envelope.get('schema_version', ARTIFACT_SCHEMA_VERSION))
+            return version, envelope.get('payload')
+    except (ValueError, TypeError):
+        pass
+    # 旧版编辑器保存的原始内容：包装为 legacy 负载，保证向后兼容
+    return 0, {'legacy_content': raw}
+
+
+def _artifact_to_dict(file: ProjectFile) -> dict:
+    """构造资产内容响应信封。"""
+    schema_version, payload = _parse_artifact_envelope(file.content or '')
+    return {
+        'file_id': file.id,
+        'type': file.type or '',
+        'schema_version': schema_version,
+        'payload': payload,
+        'version': _file_version_token(file),
+        'updated_at': _dt(file.updated_at),
+    }
+
+
+def get_artifact_content(user_id: int, project_id: str, file_id: str) -> dict:
+    """GET /api/projects/{projectId}/files/{fileId}/content"""
+    project = _get_project(project_id)
+    _check_member(project, user_id)
+
+    try:
+        file = ProjectFile.objects.get(id=file_id, project=project)
+    except ProjectFile.DoesNotExist:
+        raise NotFoundException('文件不存在')
+    return _artifact_to_dict(file)
+
+
+def save_artifact_content(user_id: int, project_id: str, file_id: str,
+                          body: ArtifactContentIn) -> dict:
+    """PUT /api/projects/{projectId}/files/{fileId}/content（乐观锁写入）"""
+    project = _get_project(project_id)
+    _check_member(project, user_id)
+
+    try:
+        file = ProjectFile.objects.get(id=file_id, project=project)
+    except ProjectFile.DoesNotExist:
+        raise NotFoundException('文件不存在')
+
+    # 乐观锁：客户端携带读取时的版本令牌，不一致则拒绝覆盖
+    if body.base_version is not None and body.base_version != _file_version_token(file):
+        raise ConflictException('资产已被他人修改，请重新加载最新内容')
+
+    envelope = json.dumps(
+        {'schema_version': body.schema_version, 'payload': body.payload},
+        ensure_ascii=False,
+    )
+    file.type = body.type or file.type
+    file.content = envelope
+    file.size = len(envelope.encode('utf-8'))
+    file.updated_by_id = user_id
+    file.save(update_fields=['type', 'content', 'size', 'updated_by'])
+    file.refresh_from_db()
+    return _artifact_to_dict(file)
 
 
 # ═══════════════════════════════════════════════════════════
