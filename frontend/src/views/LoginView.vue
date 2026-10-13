@@ -348,7 +348,7 @@ async function handleLogin(): Promise<void> {
         id: String(user.id),
         username: user.username,
         email: user.email,
-        avatar: user.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user.username}`,
+        avatar: user.avatar || `https://api.dicebear.com/7.x/adventurer/svg?seed=${user.username}`,
         role: user.role || '用户',
         stats: { likes: 0, followers: 0, following: 0 }
       },

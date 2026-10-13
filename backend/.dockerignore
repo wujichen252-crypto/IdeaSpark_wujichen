@@ -1,0 +1,44 @@
+# =============================================================================
+# IdeaSpark Docker build context — ignore list
+# =============================================================================
+
+# Environment (sensitive secrets)
+.env
+.env.*
+!env.example
+
+# Virtual env (not needed in container)
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Logs
+logs/
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Git
+.git/
+.gitignore
+
+# Static files (will be collected at runtime)
+staticfiles/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Testing
+test_*.py

@@ -88,7 +88,7 @@ DB_HOST = os.getenv('DB_HOST', '47.108.232.238')
 DB_PORT = os.getenv('DB_PORT', '3306')
 DB_NAME = os.getenv('DB_NAME', 'ideaspark')
 DB_USER = os.getenv('DB_USERNAME', 'ideaspark')
-DB_PASSWORD = os.getenv('DB_PASSWORD', '')
+DB_PASSWORD = os.getenv('DB_PASSWORD', 'JxLREWfMcBNG8bNP')
 
 # ── Monkey-patch: support MySQL 5.7 (Django 4.2+ requires MySQL 8) ──
 import django.db.backends.base.base as django_base_base

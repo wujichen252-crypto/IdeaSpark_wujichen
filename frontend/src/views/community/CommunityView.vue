@@ -339,9 +339,14 @@
                   @error="handleImageError"
                 />
                 <div class="group-info">
-                  <span class="group-name">{{ group.group?.name }}</span>
-                  <span class="group-count">{{ group.role === 'admin' ? '管理员' : '成员' }}</span>
-                </div>
+                <span 
+                  class="group-name"
+                  :title="group.group?.name"
+                >
+                  {{ group.group?.name }}
+                </span>
+                <span class="group-count">{{ group.role === 'admin' ? '管理员' : '成员' }}</span>
+              </div>
               </div>
               <button
                 v-if="group.group?.id"
@@ -1026,7 +1031,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   margin: 0 auto;
   padding: 80px 32px 48px;
   display: grid;
-  grid-template-columns: 220px 1fr 220px;
+  grid-template-columns: 240px 1fr 260px;
   gap: 32px;
   align-items: start;
 
@@ -1108,9 +1113,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
 }
 
-// 圈子卡片
+// 圈子卡片（右侧边栏）
 .groups-card {
   padding: 20px;
+  
+  .card-title {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
 }
 
 // 圈子网格视图
@@ -1309,7 +1319,6 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 .group-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
   padding: 10px;
   border-radius: 12px;
@@ -1324,6 +1333,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     align-items: center;
     gap: 12px;
     flex-grow: 1;
+    min-width: 0;
     cursor: pointer;
   }
 
@@ -1332,22 +1342,42 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     height: 40px;
     border-radius: 10px;
     object-fit: cover;
+    flex-shrink: 0;
   }
 
   .group-info {
     display: flex;
     flex-direction: column;
     gap: 2px;
+    flex-grow: 1;
+    min-width: 0;
 
     .group-name {
       font-size: 14px;
       font-weight: 500;
       color: $color-gray-900;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 140px;  // 限制最大宽度，确保按钮不被挤压
+      
+      // 悬停时显示完整文本（可选）
+      &:hover {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        max-width: none;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        word-break: break-all;
+      }
     }
 
     .group-count {
       font-size: 12px;
       color: $color-gray-500;
+      white-space: nowrap;
     }
   }
 
@@ -1362,6 +1392,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
     transition: all 0.2s ease;
     white-space: nowrap;
+    flex-shrink: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 
     &:hover {

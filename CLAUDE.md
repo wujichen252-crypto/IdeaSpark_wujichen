@@ -113,3 +113,35 @@ Each Django app follows a consistent pattern: `models.py` → `schemas.py` → `
 - DeepSeek API via OpenAI-compatible SDK
 - Rate limiting per user per category (chat, edit, generate, etc.)
 - Features: chat, project generation, tech stack advice, content editing (rewrite, polish, expand, summarize, translate, etc.), document/slide/excel AI assistants
+
+---
+
+## Rules
+
+- **Investigate first:** Never speculate about code you have not read. Read files and `rg` for usages before making claims
+- **Scope to the request:** Do what is asked; nothing more
+- **Verify before done:** Re-check each requirement. Run tests and lint
+- **File discipline:** Edit existing files in place. Do not create new files unless required
+- **Safety:** Ask before destructive actions (deleting files/branches, force pushes)
+- **Efficiency:** Parallelize independent tool calls; serialize dependent ones
+
+---
+
+## Memory Bank
+
+This project uses CLAUDE-*.md files + `memory/` directory to retain context across sessions:
+
+| File | Read When |
+|------|-----------|
+| `CLAUDE-activeContext.md` | Session start — current state and goals |
+| `CLAUDE-patterns.md` | Before implementing — code patterns |
+| `CLAUDE-decisions.md` | Before design choices — architecture ADRs |
+| `CLAUDE-troubleshooting.md` | When debugging — known issues and fixes |
+
+## Context Layers
+
+| Layer | Location | Loads |
+|-------|----------|-------|
+| Core rules | `CLAUDE.md` | Always |
+| Auto memory | `memory/MEMORY.md` | Always (first 200 lines) |
+| Memory bank | CLAUDE-*.md | On demand |
