@@ -71,6 +71,7 @@ function onTokenRefreshed(newToken: string) {
         try {
             callback(newToken)
         } catch {
+            // 单个订阅者刷新失败不影响其他订阅回调
         }
     })
     refreshSubscribers = []
@@ -181,6 +182,7 @@ function responseErrorInterceptor(error: any): Promise<AxiosResponse> {
               const userStore = useUserStore()
               userStore.updateToken(data.token, data.refreshToken)
             } catch {
+              // store 未初始化时仅依赖 localStorage，忽略
             }
             onTokenRefreshed(data.token)
             resolve(data.token)
@@ -193,6 +195,7 @@ function responseErrorInterceptor(error: any): Promise<AxiosResponse> {
             try {
               callback('')
             } catch {
+              // 通知订阅者刷新失败，忽略单个回调异常
             }
           })
           refreshSubscribers = []

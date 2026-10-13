@@ -8,11 +8,14 @@ from django.http import HttpRequest
 from ninja import Router
 
 from apps.accounts.auth import AuthBearer
-from apps.teams.schemas import (
-    CreateTeamIn, UpdateTeamIn,
-    TeamMemberRoleUpdateIn, TeamTransferOwnershipIn, TeamInvitationSendIn,
-)
 from apps.teams import services
+from apps.teams.schemas import (
+    CreateTeamIn,
+    TeamInvitationSendIn,
+    TeamMemberRoleUpdateIn,
+    TeamTransferOwnershipIn,
+    UpdateTeamIn,
+)
 from common.response import ApiResponseData
 
 logger = logging.getLogger(__name__)

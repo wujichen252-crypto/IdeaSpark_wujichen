@@ -3,17 +3,17 @@ User business logic service.
 Maps Java: com.ideaspark.project.service.UserService
 """
 import logging
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta, timezone
 
-from django.db import transaction
 from django.conf import settings
-from django.core.mail import send_mail
 from django.contrib.auth.hashers import check_password, make_password
+from django.core.mail import send_mail
+from django.db import transaction
 
-from apps.accounts.models import User, RefreshToken, PasswordResetToken, UserPlugin
-from apps.accounts.schemas import RegisterIn, LoginIn, UserUpdateIn, UserInfoOut
+from apps.accounts.models import PasswordResetToken, RefreshToken, User, UserPlugin
+from apps.accounts.schemas import LoginIn, RegisterIn, UserUpdateIn
+from common.auth import generate_access_token, generate_refresh_token
 from common.exceptions import BusinessException, NotFoundException
-from common.auth import generate_access_token, generate_refresh_token, decode_access_token
 
 logger = logging.getLogger(__name__)
 
@@ -228,6 +228,7 @@ def _save_refresh_token(user_id: int, token_value: str) -> None:
 def _create_personal_team(user: User) -> None:
     """Create personal team for new user (maps to UserService.createPersonalTeam)."""
     import uuid
+
     from apps.teams.models import Team, TeamMember
 
     team = Team.objects.create(
@@ -324,8 +325,8 @@ IdeaSpark 团队
 @transaction.atomic
 def forgot_password(email: str) -> None:
     """POST /api/user/forgot-password"""
-    import uuid as _uuid
     import time
+    import uuid as _uuid
     from datetime import timedelta
 
     if not email or not email.strip():
@@ -522,7 +523,7 @@ def purchase_plugin(user_id: int, plugin_key: str, months: int = 1) -> bool:
 
     from datetime import timedelta
     now = datetime.now(timezone.utc)
-    
+
     # 使用 select_for_update 防止并发创建
     existing = UserPlugin.objects.select_for_update().filter(
         user_id=user_id, plugin_key=plugin_key

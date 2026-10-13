@@ -8,8 +8,8 @@ from django.http import HttpRequest
 from ninja import Router
 
 from apps.accounts.auth import AuthBearer
-from apps.notifications.schemas import CreateNotificationIn
 from apps.notifications import services
+from apps.notifications.schemas import CreateNotificationIn
 from common.response import ApiResponseData
 
 logger = logging.getLogger(__name__)

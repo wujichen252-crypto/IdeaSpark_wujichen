@@ -3,9 +3,10 @@ IdeaSpark Django backend settings.
 Maps to ideaspark_backend/src/main/resources/application.yml
 """
 import os
-import sys
 import secrets
+import sys
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -91,8 +92,10 @@ DB_USER = os.getenv('DB_USERNAME', 'ideaspark')
 DB_PASSWORD = os.getenv('DB_PASSWORD', 'JxLREWfMcBNG8bNP')
 
 # ── Monkey-patch: support MySQL 5.7 (Django 4.2+ requires MySQL 8) ──
-import django.db.backends.base.base as django_base_base
-from django.db.utils import NotSupportedError
+# 必须在 DATABASES 配置前打补丁，导入位置为有意为之
+import django.db.backends.base.base as django_base_base  # noqa: E402
+from django.db.utils import NotSupportedError  # noqa: E402
+
 _original_check = django_base_base.BaseDatabaseWrapper.check_database_version_supported
 def _patched_check(self):
     try:

@@ -3,7 +3,7 @@ Pagination utilities.
 Mimics Spring Data Pageable semantics (page=1-based, size).
 """
 from dataclasses import dataclass
-from typing import Generic, TypeVar, List, Optional
+from typing import Generic, List, Optional, TypeVar
 
 T = TypeVar('T')
 

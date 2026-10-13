@@ -5,10 +5,8 @@ from typing import Optional
 
 from django.db import transaction
 
-from apps.accounts.models import User
 from apps.notifications.models import Notification
 from apps.notifications.schemas import CreateNotificationIn
-from common.exceptions import NotFoundException
 
 
 def get_user_notifications(user_id: int, type_filter: Optional[str] = None,

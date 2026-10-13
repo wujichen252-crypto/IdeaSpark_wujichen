@@ -204,7 +204,7 @@ import { getPostDetail } from '@/api/community/post'
 import { getAllPostComments, createComment } from '@/api/community/comment'
 import { likePost, unlikePost, likeComment, unlikeComment } from '@/api/community/like'
 import type { PostDetail, Comment, CommentDetail } from '@/api/types'
-import { useUserStore } from '@/store/user'
+import { useUserStore } from '@/store'
 
 const route = useRoute()
 const router = useRouter()

@@ -3,8 +3,8 @@ Pydantic schemas for user API.
 Maps Java DTOs: UserRegisterRequest, UserLoginRequest, UserUpdateRequest, UserResponse, LoginResponse.
 """
 from typing import Optional
-from ninja import Schema
 
+from ninja import Schema
 
 # ── Request Schemas ──────────────────────────────────────
 

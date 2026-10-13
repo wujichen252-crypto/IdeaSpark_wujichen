@@ -1,21 +1,23 @@
 """Team business logic service."""
-import uuid
 import logging
+import uuid
 from datetime import datetime
-from typing import Optional, List
+from typing import Optional
 
 from django.db import transaction
-from django.db.models import Q
 
 from apps.accounts.models import User
-from apps.teams.models import Team, TeamMember, TeamInvitation
 from apps.projects.models import Project
+from apps.teams.models import Team, TeamInvitation, TeamMember
 from apps.teams.schemas import (
-    CreateTeamIn, UpdateTeamIn,
-    TeamMemberRoleUpdateIn, TeamTransferOwnershipIn, TeamInvitationSendIn,
+    CreateTeamIn,
+    TeamInvitationSendIn,
+    TeamMemberRoleUpdateIn,
+    TeamTransferOwnershipIn,
+    UpdateTeamIn,
 )
-from common.exceptions import BusinessException, NotFoundException, ForbiddenException
-from common.pagination import paginate_queryset, validate_pagination, Page
+from common.exceptions import BusinessException, ForbiddenException, NotFoundException
+from common.pagination import validate_pagination
 
 logger = logging.getLogger(__name__)
 

@@ -7,13 +7,17 @@ import logging
 from django.http import HttpRequest
 from ninja import Router
 
+from apps.accounts import services
 from apps.accounts.auth import AuthBearer
 from apps.accounts.schemas import (
-    RegisterIn, LoginIn, RefreshTokenIn, UserUpdateIn,
-    PasswordChangeIn, ForgotPasswordIn, ResetPasswordIn,
-    UserInfoOut, LoginOut, UserStatsOut,
+    ForgotPasswordIn,
+    LoginIn,
+    PasswordChangeIn,
+    RefreshTokenIn,
+    RegisterIn,
+    ResetPasswordIn,
+    UserUpdateIn,
 )
-from apps.accounts import services
 from common.exceptions import ForbiddenException
 from common.response import ApiResponseData
 

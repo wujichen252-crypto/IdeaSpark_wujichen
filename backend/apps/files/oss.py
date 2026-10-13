@@ -4,7 +4,6 @@ Replaces Java: com.ideaspark.project.service.OssService
 """
 import logging
 import uuid
-from typing import Optional
 
 from django.conf import settings
 

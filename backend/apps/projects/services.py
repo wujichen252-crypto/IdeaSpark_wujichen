@@ -1,23 +1,31 @@
 """Project business logic service."""
-import uuid
 import logging
-from datetime import datetime
-from typing import Optional, List
+import uuid
+from typing import List, Optional
 
 from django.db import transaction
 from django.db.models import Q
 
 from apps.accounts.models import User
 from apps.projects.models import (
-    Project, ProjectMember, ProjectFile, Plugin, ProjectPlugin,
-    ProjectFavorite, ProjectLike, ProjectComment,
+    Plugin,
+    Project,
+    ProjectComment,
+    ProjectFavorite,
+    ProjectFile,
+    ProjectLike,
+    ProjectMember,
+    ProjectPlugin,
 )
 from apps.projects.schemas import (
-    CreateProjectIn, UpdateProjectIn, CreateFileIn, UpdateFileIn,
+    CreateFileIn,
+    CreateProjectIn,
+    UpdateFileIn,
+    UpdateProjectIn,
 )
 from apps.teams.models import Team
-from common.exceptions import BusinessException, NotFoundException, ForbiddenException
-from common.pagination import paginate_queryset, validate_pagination, Page
+from common.exceptions import BusinessException, ForbiddenException, NotFoundException
+from common.pagination import Page, paginate_queryset, validate_pagination
 
 logger = logging.getLogger(__name__)
 
@@ -548,7 +556,7 @@ def get_market_project_detail(project_id: str) -> dict:
 
 def _aggregate_like_counts(project_ids: list) -> dict:
     """Aggregate likes from ProjectLike + CommunityPost likesCount."""
-    from django.db.models import Count, Sum, Value
+    from django.db.models import Count, Sum
     direct = {r['project_id']: r['count']
               for r in ProjectLike.objects.filter(project_id__in=project_ids)
               .values('project_id').annotate(count=Count('id'))}

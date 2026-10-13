@@ -1,7 +1,7 @@
 """Pydantic schemas for Team API."""
-from typing import Optional, List
-from ninja import Schema
+from typing import List, Optional
 
+from ninja import Schema
 
 # ── Request Schemas ──────────────────────────────────────
 

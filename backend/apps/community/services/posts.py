@@ -1,15 +1,19 @@
 """Post business logic."""
 import json
 import uuid
-from typing import Optional, List
+from typing import List, Optional
+
 from django.db import transaction
+
 from apps.accounts.models import User
 from apps.community.models import (
-    CommunityPost, CommunityPostLike, CommunityCommentLike,
+    CommunityPost,
+    CommunityPostLike,
 )
-from apps.projects.models import Project
 from apps.community.schemas import CreatePostIn, UpdatePostIn
-from common.exceptions import BusinessException, NotFoundException, ForbiddenException
+from apps.projects.models import Project
+from common.exceptions import BusinessException, ForbiddenException, NotFoundException
+
 from . import _dt
 
 

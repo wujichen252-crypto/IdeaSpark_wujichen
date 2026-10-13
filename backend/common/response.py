@@ -4,6 +4,7 @@ Maps to the Spring Boot { "status": 200, "message": "...", "data": {...} } contr
 Frontend Axios expects this exact shape.
 """
 from typing import Any
+
 from ninja import Schema
 
 

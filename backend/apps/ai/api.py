@@ -8,11 +8,14 @@ from django.http import HttpRequest
 from ninja import Router
 
 from apps.accounts.auth import AuthBearer
-from apps.ai.schemas import (
-    ChatRequestIn, SimpleChatIn,
-    GenerateProjectIn, TechAdviceIn, AiEditIn,
-)
 from apps.ai import services
+from apps.ai.schemas import (
+    AiEditIn,
+    ChatRequestIn,
+    GenerateProjectIn,
+    SimpleChatIn,
+    TechAdviceIn,
+)
 from common.response import ApiResponseData
 
 logger = logging.getLogger(__name__)

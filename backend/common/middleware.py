@@ -3,8 +3,8 @@ Request logging middleware.
 Replaces Spring Boot's log pattern with trace ID support.
 """
 import logging
-import uuid
 import time
+import uuid
 
 from django.utils.deprecation import MiddlewareMixin
 

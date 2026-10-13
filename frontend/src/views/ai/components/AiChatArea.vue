@@ -67,7 +67,7 @@ bordered>已连接</n-tag>
 
 <script setup lang="ts">
 import { ref, computed, nextTick, watch } from 'vue'
-import { useChatStore } from '@/store/chat'
+import { useChatStore } from '@/store'
 import { SettingsOutline, Sparkles } from '@vicons/ionicons5'
 import { sendChatMessage } from '@/api/ai'
 import type { ChatMessage } from '@/api/ai'

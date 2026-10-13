@@ -1,7 +1,7 @@
 """Pydantic schemas for Community API."""
-from typing import Optional, List
-from ninja import Schema
+from typing import Optional
 
+from ninja import Schema
 
 # ── Post Schemas ───────────────────────────────────────────
 

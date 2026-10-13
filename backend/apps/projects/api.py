@@ -8,11 +8,13 @@ from django.http import HttpRequest
 from ninja import Body, Router
 
 from apps.accounts.auth import AuthBearer, OptionalAuthBearer, get_user_id
-from apps.projects.schemas import (
-    CreateProjectIn, UpdateProjectIn,
-    CreateFileIn, UpdateFileIn,
-)
 from apps.projects import services
+from apps.projects.schemas import (
+    CreateFileIn,
+    CreateProjectIn,
+    UpdateFileIn,
+    UpdateProjectIn,
+)
 from common.response import ApiResponseData
 
 logger = logging.getLogger(__name__)

@@ -1,6 +1,19 @@
-import type { ProjectModule, StageChecklistItem, Artifact, ModuleData } from '@/store/modules/aiWorkshop'
+import type { StageChecklistItem, Artifact } from '@/store/modules/aiWorkshop'
 
-export type { ProjectModule, StageChecklistItem, Artifact, ModuleData }
+export type { StageChecklistItem, Artifact }
+
+/** 项目模块标识（唯一定义处） */
+export type ProjectModule = 'home' | 'idea' | 'product' | 'brand' | 'ui' | 'feasibility' | 'docs'
+
+/** 单个模块的数据结构（唯一定义处） */
+export interface ModuleData {
+  key: ProjectModule
+  label: string
+  description: string
+  checklist: StageChecklistItem[]
+  artifacts: Artifact[]
+  data?: Record<string, unknown>
+}
 
 export const MODULE_ORDER: ProjectModule[] = ['home', 'idea', 'product', 'brand', 'ui', 'feasibility', 'docs']
 

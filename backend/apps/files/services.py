@@ -14,10 +14,10 @@ def upload(file_obj) -> dict:
 
 def export_docx(html_content: str, file_name: str = 'document.docx') -> bytes:
     """Export HTML content to DOCX."""
-    from docx import Document
-    from docx.shared import Inches, Pt
-    from docx.oxml.ns import qn
     import re
+
+    from docx import Document
+    from docx.oxml.ns import qn
 
     doc = Document()
 
@@ -77,7 +77,6 @@ def export_xlsx(data: list, file_name: str = 'workbook.xlsx', sheet_name: str = 
 def export_pptx(slides: list, file_name: str = 'presentation.pptx') -> bytes:
     """Export slides data to PPTX."""
     from pptx import Presentation
-    from pptx.util import Inches
 
     prs = Presentation()
 

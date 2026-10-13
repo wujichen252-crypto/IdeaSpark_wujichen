@@ -1,8 +1,8 @@
 """AI business logic service."""
 import time
 
-from common.exceptions import BusinessException
 from apps.ai import deepseek as ds
+from common.exceptions import BusinessException
 
 
 def chat(messages: list, model: str = None, temperature: float = None) -> dict:

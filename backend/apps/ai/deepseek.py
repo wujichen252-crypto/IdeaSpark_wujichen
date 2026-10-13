@@ -4,7 +4,8 @@ Replaces Java: com.ideaspark.project.service.DeepSeekService
 """
 import logging
 import time
-from typing import Optional, List
+from threading import Lock
+from typing import List, Optional
 
 from django.conf import settings
 from openai import OpenAI
@@ -137,7 +138,6 @@ def edit_content(file_type: str, content: str, action: str, selected_text: Optio
 
 # ── Quota (simplified in-memory, replace with Redis in production) ──
 
-from threading import Lock
 _quota_store: dict = {}  # key: f"{user_id}:{category}", value: list of timestamps
 _quota_lock = Lock()
 

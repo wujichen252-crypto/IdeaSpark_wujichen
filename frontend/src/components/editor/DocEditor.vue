@@ -266,11 +266,12 @@ function handleFormat(type: string, value?: any) {
     case 'numbered-list':
       document.execCommand('insertOrderedList')
       break
-    case 'task-list':
+    case 'task-list': {
       const li = document.createElement('li')
       li.innerHTML = '<input type="checkbox" /> Task item'
       document.execCommand('insertHTML', false, li.outerHTML)
       break
+    }
     case 'align-left':
       document.execCommand('justifyLeft')
       break
@@ -286,14 +287,16 @@ function handleFormat(type: string, value?: any) {
     case 'code':
       document.execCommand('formatBlock', false, '<pre>')
       break
-    case 'link':
+    case 'link': {
       const url = prompt('Enter URL:')
       if (url) document.execCommand('createLink', false, url)
       break
-    case 'image':
+    }
+    case 'image': {
       const imgUrl = prompt('Enter image URL:')
       if (imgUrl) document.execCommand('insertImage', false, imgUrl)
       break
+    }
     case 'paste':
       navigator.clipboard.readText().then((text) => {
         document.execCommand('insertText', false, text)
@@ -313,14 +316,16 @@ function handleFormat(type: string, value?: any) {
 function handleInsert(type: string, value?: any) {
   if (!editorRef.value) return
   switch (type) {
-    case 'link':
+    case 'link': {
       const url = prompt('Enter URL:')
       if (url) document.execCommand('createLink', false, url)
       break
-    case 'image':
+    }
+    case 'image': {
       const imgUrl = prompt('Enter image URL:')
       if (imgUrl) document.execCommand('insertImage', false, imgUrl)
       break
+    }
     case 'special-char':
       document.execCommand('insertText', false, value)
       break

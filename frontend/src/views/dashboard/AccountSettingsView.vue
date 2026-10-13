@@ -138,7 +138,7 @@ placeholder="https://example.com" />
 import { ref, onMounted } from 'vue'
 import { useMessage } from 'naive-ui'
 import { getCurrentUser, updateUser } from '@/api/user'
-import { useUserStore } from '@/store/user'
+import { useUserStore } from '@/store'
 import type { User } from '@/api/types'
 
 const userStore = useUserStore()

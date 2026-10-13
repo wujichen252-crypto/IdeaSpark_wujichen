@@ -53,7 +53,7 @@ class="new-chat-btn"
 </template>
 
 <script setup lang="ts">
-import { useChatStore } from '@/store/chat'
+import { useChatStore } from '@/store'
 import { useUserStore } from '@/store'
 import { Add, ChatbubbleEllipsesOutline, TrashOutline } from '@vicons/ionicons5'
 

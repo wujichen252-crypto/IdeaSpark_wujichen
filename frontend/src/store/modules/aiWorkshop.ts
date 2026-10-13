@@ -167,8 +167,9 @@ export const useAiWorkshopStore = defineStore('aiWorkshop', () => {
   // --- Module navigation ---
   function nextModule() {
     const idx = MODULE_ORDER.indexOf(currentModule.value)
-    if (idx < MODULE_ORDER.length - 1) {
-      currentModule.value = MODULE_ORDER[idx + 1]
+    const next = idx < MODULE_ORDER.length - 1 ? MODULE_ORDER[idx + 1] : undefined
+    if (next) {
+      currentModule.value = next
       saveProject()
     }
   }
@@ -267,6 +268,7 @@ export const useAiWorkshopStore = defineStore('aiWorkshop', () => {
 
   return {
     projectList, currentProjectId, currentModule, projectInfo, modules,
+    moduleOrder: MODULE_ORDER,
     currentModuleData, isCurrentModuleComplete,
     addProject, getProjectById, getProjectFileById, updateProject, updateProjectFile,
     deleteProject, saveProject, activateProject, setProjectInfo,

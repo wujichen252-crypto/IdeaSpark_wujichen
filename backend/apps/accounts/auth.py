@@ -2,8 +2,8 @@
 JWT Authentication backend for Django Ninja.
 Maps Java: com.ideaspark.project.config.JwtAuthenticationInterceptor
 """
-from ninja.security import HttpBearer
 from django.http import HttpRequest
+from ninja.security import HttpBearer
 
 from common.auth import decode_access_token
 from common.exceptions import UnauthorizedException

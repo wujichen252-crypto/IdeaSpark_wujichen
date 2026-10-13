@@ -3,20 +3,20 @@ IdeaSpark URL configuration.
 Django Ninja API router — maps all /api/ endpoints.
 """
 from django.contrib import admin
+from django.http import HttpResponse
 from django.urls import path
 from ninja import NinjaAPI
-from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
-from django.http import HttpResponse
+from prometheus_client import CONTENT_TYPE_LATEST, generate_latest
 
 from apps.accounts.api import router as accounts_router
-from apps.projects.api import router as projects_router
-from apps.teams.api import router as teams_router
-from apps.community.api import router as community_router
 from apps.ai.api import router as ai_router
-from apps.notifications.api import router as notifications_router
+from apps.community.api import router as community_router
 from apps.files.api import router as files_router
+from apps.notifications.api import router as notifications_router
+from apps.projects.api import router as projects_router
 from apps.security_logs.api import router as security_logs_router
-from common.exceptions import BusinessException, NotFoundException, ForbiddenException, UnauthorizedException
+from apps.teams.api import router as teams_router
+from common.exceptions import BusinessException, ForbiddenException, NotFoundException, UnauthorizedException
 from common.response import ApiResponseData
 
 api = NinjaAPI(

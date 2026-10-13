@@ -20,7 +20,7 @@ export function useDocAi(fileName: string) {
 
   async function callDocAi(
     content: string,
-    action: string,
+    action: AiEditRequest['action'],
     selectedText?: string
   ): Promise<string> {
     loading.value = true

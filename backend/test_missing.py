@@ -2,7 +2,9 @@
 Comprehensive test for all missing endpoints.
 Run against the running dev server.
 """
-import httpx, sys, time
+import time
+
+import httpx
 
 BASE = "http://localhost:9001"
 
@@ -12,7 +14,8 @@ def wait_for_server():
             r = httpx.get(f"{BASE}/ping", timeout=3)
             if r.status_code == 200:
                 return True
-        except: pass
+        except Exception:
+            pass
         time.sleep(1)
     return False
 
@@ -33,7 +36,8 @@ def test(name, func):
         print(f"  ✅ {name}")
     except Exception as e:
         print(f"  ❌ {name}: {e}")
-        import traceback; traceback.print_exc()
+        import traceback
+        traceback.print_exc()
 
 assert wait_for_server(), "Server not ready"
 print("Server ready\n")

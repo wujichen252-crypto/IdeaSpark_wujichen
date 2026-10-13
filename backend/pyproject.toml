@@ -34,6 +34,16 @@ target-version = "py311"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "W", "UP"]
+ignore = [
+    "N815", # Pydantic schema 字段必须保持 camelCase，与前端 API 契约一致
+    "N803", # 查询参数名与前端契约一致（如 pluginKey）
+    "N818", # 异常类名沿用历史契约 BusinessException 等，改动收益低
+    "UP045",# Optional[X] 写法保留，兼容 Pydantic v1 风格
+    "UP006",# List/Dict 旧写法保留，避免与 Pydantic 序列化行为耦合
+    "UP017",# datetime.timezone.utc 统一为常量写法，避免行为差异
+    "UP035",# 部分 deprecated import 由第三方库类型提示依赖
+    "E501", # 中文注释/长 URL 超行不强制折行
+]
 
 [tool.ruff.format]
 quote-style = "single"

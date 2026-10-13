@@ -1,5 +1,6 @@
 """Pydantic schemas for AI module."""
-from typing import Optional, List
+from typing import List, Optional
+
 from ninja import Schema
 
 

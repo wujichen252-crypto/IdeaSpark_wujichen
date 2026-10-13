@@ -2,7 +2,10 @@
 Smoke test for ALL modules — quick pass/fail per endpoint category.
 Run against running dev server at localhost:9001.
 """
-import httpx, time, sys
+import sys
+import time
+
+import httpx
 
 BASE = "http://localhost:9001"
 
@@ -12,7 +15,8 @@ def wait_for_server():
             r = httpx.get(f"{BASE}/ping", timeout=3)
             if r.status_code == 200:
                 return True
-        except: pass
+        except Exception:
+            pass
         time.sleep(1)
     return False
 
