@@ -1,5 +1,4 @@
 import type { RouteRecordRaw } from 'vue-router'
-import WorkbenchView from '@/views/WorkbenchView.vue'
 
 /**
  * 工作台子路由配置
@@ -9,7 +8,7 @@ const workbenchRoutes: RouteRecordRaw[] = [
   {
     path: '/workbench',
     name: 'Workbench',
-    component: WorkbenchView,
+    component: () => import('@/views/WorkbenchView.vue'),
     meta: {
       title: '工作台',
       requiresAuth: true

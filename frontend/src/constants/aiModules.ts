@@ -1,6 +1,28 @@
-import type { StageChecklistItem, Artifact } from '@/store/modules/aiWorkshop'
-
-export type { StageChecklistItem, Artifact }
+/**
+ * AI 工作坊领域类型
+ * @description 集中定义于常量层，避免与 store 形成双向依赖（constants ↔ store 类型环）。
+ *              store 改为从本文件 import 这些类型，依赖单向化。
+ */
+export type ArtifactType = 'document' | 'image' | 'code' | 'link' | 'other'
+export interface Artifact {
+  id: string
+  name: string
+  type: ArtifactType
+  createdAt: number
+  updatedAt?: number
+  url?: string
+  content?: string
+}
+export interface StageChecklistItem {
+  id: string
+  label: string
+  completed: boolean
+  description?: string
+  priority?: 'low' | 'medium' | 'high'
+  dueDate?: number
+  assignee?: string
+  tags?: string[]
+}
 
 /** 项目模块标识（唯一定义处） */
 export type ProjectModule = 'home' | 'idea' | 'product' | 'brand' | 'ui' | 'feasibility' | 'docs'

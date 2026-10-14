@@ -120,8 +120,20 @@ export default defineConfig(({ mode }) => {
               if (id.includes('naive-ui')) {
                 return 'naive-ui'
               }
-              if (id.includes('echarts')) {
+              if (id.includes('echarts') || id.includes('zrender')) {
                 return 'echarts'
+              }
+              // 白板（Excalidraw React 孤岛）：将 React 全家桶与 Excalidraw 强制隔离到独立 vendor chunk，
+              // 仅当打开"白板"资产时才加载，避免思维导图/流程图资产无辜承担 React 体积
+              if (
+                id.includes('@excalidraw') ||
+                id.includes('@radix-ui') ||
+                id.includes('/react-dom/') ||
+                id.includes('/react/') ||
+                id.includes('react-reconciler') ||
+                id.includes('/scheduler/')
+              ) {
+                return 'whiteboard-vendor'
               }
             }
             // 将 store 相关代码打包到独立的 chunk，避免循环依赖
@@ -159,7 +171,12 @@ export default defineConfig(({ mode }) => {
         'vue-router',
         'pinia',
         'naive-ui',
-        'axios'
+        'axios',
+        // 白板（Excalidraw React 孤岛）：预构建 React 与 Excalidraw，避免 dev 首次加载巨慢
+        'react',
+        'react-dom',
+        'react-dom/client',
+        '@excalidraw/excalidraw'
       ],
       exclude: []
     },

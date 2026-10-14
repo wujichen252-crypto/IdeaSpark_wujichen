@@ -1,41 +1,26 @@
 import { defineStore } from 'pinia'
 import { ref, computed, watch } from 'vue'
 import { createDefaultModules, MODULE_ORDER, TEMPLATES } from '@/constants/aiModules'
-import type { ProjectModule, ModuleData } from '@/constants/aiModules'
+import type {
+  ProjectModule,
+  ModuleData,
+  ArtifactType,
+  Artifact,
+  StageChecklistItem
+} from '@/constants/aiModules'
+import type { ProjectFile, ProjectFileType } from '@/api/types'
 
-export type { ProjectModule, ModuleData }
-export type ArtifactType = 'document' | 'image' | 'code' | 'link' | 'other'
-export interface Artifact {
-  id: string
-  name: string
-  type: ArtifactType
-  createdAt: number
-  updatedAt?: number
-  url?: string
-  content?: string
+// 类型集中下沉到常量层 / api 契约层，本 store 仅做中转 re-export，保持依赖单向
+export type {
+  ProjectModule,
+  ModuleData,
+  ArtifactType,
+  Artifact,
+  StageChecklistItem,
+  ProjectFile,
+  ProjectFileType
 }
-export interface StageChecklistItem {
-  id: string
-  label: string
-  completed: boolean
-  description?: string
-  priority?: 'low' | 'medium' | 'high'
-  dueDate?: number
-  assignee?: string
-  tags?: string[]
-}
-export type ProjectFileType = 'document' | 'sheet' | 'slide' | 'image' | 'other' | 'whiteboard' | 'mindmap' | 'flow'
-export interface ProjectFile {
-  id: string
-  name: string
-  type: ProjectFileType
-  ext?: string
-  size?: number
-  updatedAt: number
-  source?: 'plugin' | 'upload' | 'system'
-  pluginId?: string
-  content?: string
-}
+
 export interface ProjectSummary {
   id: string
   name: string

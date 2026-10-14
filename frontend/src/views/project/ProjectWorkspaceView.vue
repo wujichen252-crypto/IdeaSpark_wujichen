@@ -300,6 +300,9 @@ v-model:value="fileSearch"
 placeholder="搜索文件..."
 clearable
 class="files-search" />
+              <n-dropdown :options="artifactCreateOptions" @select="handleArtifactCreateSelect">
+                <n-button>新建资产</n-button>
+              </n-dropdown>
               <n-button type="primary" @click="openAddFileModal">新增文件</n-button>
             </div>
             <n-card size="small" title="文件列表" class="section-card">
@@ -556,6 +559,8 @@ import { getProjectDetail, getProjectMembers, updateProject } from '@/api/projec
 import { sendSimpleChat } from '@/api/ai'
 import { uploadFile } from '@/api/file'
 import { createProjectFile, deleteProjectFile } from '@/api/projectFile'
+import { findEditorByType } from '@/constants/embeddedEditors'
+import type { ArtifactType } from '@/components/embedded/types'
 import { toggleProjectPlugin, getProjectPluginIds } from '@/api/projectPlugin'
 import { getMyPlugins } from '@/api/userPlugin'
 import type { Project as ApiProject, ProjectMember } from '@/api/types'
@@ -1293,6 +1298,60 @@ function cancelAddFile() {
   newFileTitle.value = ''
   createFilePluginId.value = null
   useAiGenerate.value = false
+}
+
+/**
+ * 新建嵌入式资产（白板 / 思维导图 / 流程图）
+ * @description 直接调 createProjectFile 写入空信封 JSON，随后跳转统一编辑器路由。
+ * 后端 /content 接口会解析 content 字段中的 { schema_version, payload } 信封。
+ */
+const artifactCreateOptions = [
+  { label: '新建白板', key: 'whiteboard' },
+  { label: '新建思维导图', key: 'mindmap' },
+  { label: '新建流程图', key: 'flow' }
+]
+
+function handleArtifactCreateSelect(key: string) {
+  void createArtifact(key as ArtifactType)
+}
+
+async function createArtifact(type: ArtifactType): Promise<void> {
+  if (!project.value) return
+  const def = findEditorByType(type)
+  if (!def) {
+    message.warning('未知的资产类型')
+    return
+  }
+  const name = `未命名${def.name}`
+  const payload = def.emptyPayload()
+  const envelope = { schema_version: 1, payload }
+  const content = JSON.stringify(envelope)
+  const size = new Blob([content]).size
+  try {
+    const res = await createProjectFile(projectId, {
+      name,
+      type,
+      ext: '',
+      size,
+      source: 'system',
+      content
+    })
+    const data = res.data as any
+    const isSuccess = data.code === 200 || data.status === 200
+    if (isSuccess && data.data) {
+      const createdFile = data.data as ProjectFile
+      const current = project.value.files ?? []
+      store.updateProject(projectId, { files: [createdFile, ...current] })
+      router.push(
+        `/project/artifact/${projectId}/${createdFile.id}/${type}?name=${encodeURIComponent(name)}`
+      )
+    } else {
+      message.error(data.message || '创建失败')
+    }
+  } catch (e: any) {
+    console.error('创建嵌入式资产失败:', e)
+    message.error(e?.response?.data?.message || '创建失败，请检查网络连接')
+  }
 }
 
 /**

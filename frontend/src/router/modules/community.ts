@@ -1,11 +1,10 @@
 import type { RouteRecordRaw } from 'vue-router'
-import CommunityView from '@/views/community/CommunityView.vue'
 
 const communityRoutes: RouteRecordRaw[] = [
   {
     path: '/community',
     name: 'Community',
-    component: CommunityView
+    component: () => import('@/views/community/CommunityView.vue')
   },
   {
     path: '/community/create',

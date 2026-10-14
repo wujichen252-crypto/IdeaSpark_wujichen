@@ -9,7 +9,8 @@ import type { EmbeddedEditorDefinition, ArtifactType } from '@/components/embedd
 /** 各类型的空白初始负载 */
 const emptyPayloads: Record<ArtifactType, () => Record<string, unknown>> = {
   whiteboard: () => ({ elements: [], appState: {}, files: {} }),
-  mindmap: () => ({ data: { text: '中心主题', children: [] } }),
+  // simple-mind-map 根节点结构：{ data: { text }, children: [] }
+  mindmap: () => ({ data: { text: '中心主题' }, children: [] }),
   flow: () => ({ nodes: [], edges: [] }),
 }
 

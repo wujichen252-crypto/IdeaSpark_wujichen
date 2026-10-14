@@ -1,4 +1,5 @@
 """Project business logic service."""
+import hashlib
 import json
 import logging
 import uuid
@@ -258,6 +259,8 @@ def update_file(user_id: int, project_id: str, file_id: str, payload: UpdateFile
         update_fields.append('size')
     file.updated_by_id = user_id
     update_fields.append('updated_by')
+    # 显式带上 updated_at，否则指定 update_fields 时该字段不会落库
+    update_fields.append('updated_at')
 
     if update_fields:
         file.save(update_fields=update_fields)
@@ -295,8 +298,15 @@ ARTIFACT_SCHEMA_VERSION = 1
 
 
 def _file_version_token(file: ProjectFile) -> str:
-    """以 updated_at 作为乐观锁版本令牌（表 managed=False，不加新列）。"""
-    return file.updated_at.strftime('%Y-%m-%dT%H:%M:%S.%f') if file.updated_at else ''
+    """乐观锁版本令牌 = 更新时间 + 内容指纹。
+
+    注意：project_files.updated_at 在 MySQL 中为 timestamp(0)，不含小数秒，
+    纯时间戳无法区分同一秒内的并发写入，会导致覆盖静默发生。
+    因此拼接内容指纹，保证「他人改动过内容」时令牌必定变化。
+    """
+    ts = file.updated_at.strftime('%Y-%m-%dT%H:%M:%S') if file.updated_at else ''
+    digest = hashlib.sha256((file.content or '').encode('utf-8')).hexdigest()[:12]
+    return f'{ts}.{digest}'
 
 
 def _parse_artifact_envelope(raw: str):
@@ -362,7 +372,9 @@ def save_artifact_content(user_id: int, project_id: str, file_id: str,
     file.content = envelope
     file.size = len(envelope.encode('utf-8'))
     file.updated_by_id = user_id
-    file.save(update_fields=['type', 'content', 'size', 'updated_by'])
+    # 必须显式带上 updated_at：Django 指定了 update_fields 时只会写入列出的字段，
+    # auto_now 不会自动落库，遗漏会让 updated_at 永久停留在创建时间。
+    file.save(update_fields=['type', 'content', 'size', 'updated_by', 'updated_at'])
     file.refresh_from_db()
     return _artifact_to_dict(file)
 

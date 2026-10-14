@@ -5,6 +5,7 @@ import '@/styles/nexus.scss'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import { setRouter } from '@/api/request'
 import { setupLazyload } from './plugins/lazyload'
 
 /**
@@ -37,6 +38,8 @@ const app = createApp(App)
 app.use(store)
 // 注册 Vue Router
 app.use(router)
+// 将路由实例注入 api 持有器，避免 api 层静态依赖 router（消除 api↔router↔view 循环依赖）
+setRouter(router)
 // 注册图片懒加载插件
 setupLazyload(app)
 

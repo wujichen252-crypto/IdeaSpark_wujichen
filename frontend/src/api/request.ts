@@ -1,9 +1,21 @@
 import axios from 'axios'
 import type { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
+import type { Router } from 'vue-router'
 import { createDiscreteApi } from 'naive-ui'
-import router from '@/router'
 import { useUserStore } from '@/store'
-import { refreshToken as refreshTokenApi } from './user'
+import type { ApiResponse, LoginResult } from './types'
+
+/**
+ * 延迟绑定的路由实例
+ * @description 用持有器替代 `import router from '@/router'` 的静态导入，
+ *              彻底切断 api 层 → router 层的反向依赖（避免 api↔router↔view 循环依赖）。
+ *              实例在应用启动（main.ts）后通过 setRouter 注入。
+ */
+let routerInstance: Router | null = null
+
+export function setRouter(router: Router): void {
+  routerInstance = router
+}
 
 // Define response structure (matches backend: { status, message, data })
 export interface Result<T = unknown> {
@@ -149,9 +161,9 @@ function responseErrorInterceptor(error: any): Promise<AxiosResponse> {
       }
       message.error('登录已过期，请重新登录')
       clearAuthState()
-      const currentName = router.currentRoute.value.name
+      const currentName = routerInstance?.currentRoute.value.name
       if (currentName !== 'Login') {
-        router.push('/login')
+        routerInstance?.push('/login')
       }
       return Promise.reject(error)
     }
@@ -172,7 +184,11 @@ function responseErrorInterceptor(error: any): Promise<AxiosResponse> {
     }
 
     refreshPromise = new Promise<string>((resolve, reject) => {
-      refreshTokenApi(refreshTokenValue)
+      // 内联刷新令牌请求，避免 api/user.ts ↔ api/request.ts 形成循环依赖
+      service
+        .post<ApiResponse<LoginResult>>('/api/user/refresh-token', {
+          refreshToken: refreshTokenValue
+        })
         .then((res) => {
           const data = res.data.data
           if (data && data.token && data.refreshToken) {
@@ -203,9 +219,9 @@ function responseErrorInterceptor(error: any): Promise<AxiosResponse> {
           if (!isWhiteList) {
             message.error('登录已过期，请重新登录')
             clearAuthState()
-            const currentName = router.currentRoute.value.name
+            const currentName = routerInstance?.currentRoute.value.name
             if (currentName !== 'Login') {
-              router.push('/login')
+              routerInstance?.push('/login')
             }
           }
           reject(err)

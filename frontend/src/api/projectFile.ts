@@ -1,6 +1,5 @@
 import service from './request'
-import type { ApiResponse } from './types'
-import type { ProjectFile } from '@/store/modules/aiWorkshop'
+import type { ApiResponse, ProjectFile } from './types'
 
 /**
  * 创建项目文件

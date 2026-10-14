@@ -287,6 +287,34 @@ export interface ProjectMember {
 }
 
 /**
+ * 项目文件类型
+ */
+export type ProjectFileType =
+  | 'document'
+  | 'sheet'
+  | 'slide'
+  | 'image'
+  | 'other'
+  | 'whiteboard'
+  | 'mindmap'
+  | 'flow'
+
+/**
+ * 项目文件（与后端 ProjectFile 对齐）
+ */
+export interface ProjectFile {
+  id: string
+  name: string
+  type: ProjectFileType
+  ext?: string
+  size?: number
+  updatedAt: number
+  source?: 'plugin' | 'upload' | 'system'
+  pluginId?: string
+  content?: string
+}
+
+/**
  * 项目列表响应
  */
 export interface ProjectListResult {
