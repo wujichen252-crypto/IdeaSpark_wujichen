@@ -580,7 +580,6 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="scss">
-@import '@/styles/nexus.scss';
 
 .doc-editor {
   display: flex;

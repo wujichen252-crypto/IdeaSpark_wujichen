@@ -9,7 +9,7 @@ import { imagetools } from 'vite-imagetools'
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
-  const apiBaseUrl = env.VITE_API_BASE_URL || 'http://localhost:8000'
+  const apiBaseUrl = env.VITE_API_BASE_URL || 'http://localhost:8081'
   const isProduction = mode === 'production'
 
   return {
@@ -67,7 +67,10 @@ export default defineConfig(({ mode }) => {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@use "@/styles/variables.scss" as *;\n@use "@/styles/mixins.scss" as *;\n`
+          // 仅注入 mixins（@mixin/@keyframes 不产生 CSS 输出，可安全复用）；
+      // 设计令牌（:root/html/body/::selection 等带实际输出的 CSS）改由 main.ts 全局只引一次，
+      // 避免 additionalData 把令牌重复打进每个组件 chunk。
+      additionalData: `@use "@/styles/mixins.scss" as *;\n`
         }
       },
       // 开发环境启用sourcemap，生产环境禁用
@@ -93,23 +96,21 @@ export default defineConfig(({ mode }) => {
       cssCodeSplit: true,
       // 启用sourcemap（仅开发环境）
       sourcemap: !isProduction,
-      // 压缩选项 - 临时禁用压缩以定位 TDZ 问题
-      minify: false,
-      // minify: 'terser',
-      // terserOptions: {
-      //   compress: {
-      //     // 生产环境移除console和debugger
-      //     drop_console: isProduction,
-      //     drop_debugger: isProduction
-      //   },
-      //   mangle: {
-      //     // 禁用变量名压缩以避免 TDZ 错误
-      //     // 参考: https://github.com/terser/terser/issues/943
-      //     safari10: true,
-      //     keep_classnames: true,
-      //     keep_fnames: true
-      //   }
-      // } as any,
+      // 压缩选项 - 恢复 terser 压缩（以 safari10/keep_classnames/keep_fnames 规避历史 TDZ 问题）
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          // 生产环境移除 console 和 debugger
+          drop_console: isProduction,
+          drop_debugger: isProduction
+        },
+        mangle: {
+          // 规避 terser 在 let/class 作用域变换时引入的 TDZ 误报（terser#943）
+          safari10: true,
+          keep_classnames: true,
+          keep_fnames: true
+        }
+      },
       rollupOptions: {
         output: {
           // 暂时禁用 manualChunks 来避免循环依赖问题

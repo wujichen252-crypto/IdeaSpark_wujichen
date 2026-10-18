@@ -404,7 +404,6 @@ defineExpose({
 </script>
 
 <style scoped lang="scss">
-@import '@/styles/mixins.scss';
 
 .nexus-ai-sidebar {
   width: 380px;

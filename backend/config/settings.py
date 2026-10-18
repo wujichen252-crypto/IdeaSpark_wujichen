@@ -23,7 +23,18 @@ if not SECRET_KEY:
         raise ValueError('DJANGO_SECRET_KEY environment variable is required in production')
 
 DEBUG = os.getenv('DJANGO_DEBUG', 'false').lower() == 'true'
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = os.getenv(
+    'ALLOWED_HOSTS',
+    'localhost,127.0.0.1,162.14.111.9,ideaspark.wujichen.online'
+).split(',')
+
+# CSRF 可信来源：通过域名/反向代理访问时，浏览器 Origin 头必须在此列表内
+# 多个来源用逗号分隔，可通过环境变量覆盖
+CSRF_TRUSTED_ORIGINS = os.getenv(
+    'CSRF_TRUSTED_ORIGINS',
+    'http://ideaspark.wujichen.online,https://ideaspark.wujichen.online,'
+    'http://162.14.111.9,http://162.14.111.9:9201'
+).split(',')
 
 # ── Application ───────────────────────────────────────────
 INSTALLED_APPS = [

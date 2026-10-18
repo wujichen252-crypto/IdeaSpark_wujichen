@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import './style.css'
 import '@/styles/reset.scss'
+import '@/styles/variables.scss'
 import '@/styles/nexus.scss'
 import App from './App.vue'
 import router from './router'

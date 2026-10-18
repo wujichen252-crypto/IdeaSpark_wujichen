@@ -52,6 +52,47 @@ const routes: RouteRecordRaw[] = [
   }
 ]
 
+/**
+ * 布局调度表（单一可信源）
+ * @description 替代原 App.vue 中硬编码的 hiddenRouteNames / hiddenPaths / shouldPadMain。
+ * editor = 全屏无顶栏（各类编辑器，并补上此前遗漏的 EmbeddedArtifact，避免双重顶栏）；
+ * auth = 登录类；blank = 错误页；其余 default（带顶栏 + 避让 padding）。
+ */
+const LAYOUT_BY_NAME: Record<string, 'default' | 'editor' | 'auth' | 'blank'> = {
+  // 全屏编辑器
+  AiProjectWorkbench: 'editor',
+  AiProjectSettings: 'editor',
+  AiProjectCreate: 'editor',
+  AiProjectManagement: 'editor',
+  DocumentEditor: 'editor',
+  ProjectWorkspace: 'editor',
+  ProjectFileEditor: 'editor',
+  ExcelEditor: 'editor',
+  SlideEditor: 'editor',
+  EmbeddedArtifact: 'editor',
+  // 认证页
+  Login: 'auth',
+  ForgotPassword: 'auth',
+  ResetPassword: 'auth',
+  // 错误页（无 chrome）
+  Forbidden: 'blank',
+  NotFound: 'blank'
+}
+
+function assignRouteLayout(routes: RouteRecordRaw[]): void {
+  for (const route of routes) {
+    route.meta = route.meta ?? {}
+    if (route.name && LAYOUT_BY_NAME[route.name as string]) {
+      route.meta.layout = LAYOUT_BY_NAME[route.name as string]
+    } else if (!route.meta.layout) {
+      route.meta.layout = 'default'
+    }
+    if (route.name === 'Home') route.meta.headerPad = false
+    if (route.children?.length) assignRouteLayout(route.children)
+  }
+}
+assignRouteLayout(routes)
+
 const router = createRouter({
   history: createWebHistory(),
   routes,

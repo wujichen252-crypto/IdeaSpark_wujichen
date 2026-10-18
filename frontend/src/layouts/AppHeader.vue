@@ -160,7 +160,7 @@ onUnmounted(() => {
               { label: '退出登录', key: 'logout' }
             ]"
             @select="
-              (key) => {
+              (key: string | number) => {
                 if (key === 'profile') router.push('/profile')
                 if (key === 'logout') {
                   userStore.logout()

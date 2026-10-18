@@ -2,8 +2,8 @@
    Nexus Design System — Global Styles
    ============================================================ */
 
-@import './variables.scss';
-@import './mixins.scss';
+// Variables & mixins are injected globally via Vite `additionalData` (see vite.config.ts),
+// so no explicit @import is needed here. This avoids the deprecated Sass @import warning.
 
 /* ── Noise Texture Overlay ── */
 .nexus-noise {

@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import { onMounted, computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import type { Component } from 'vue'
 
-const route = useRoute()
 import { zhCN, dateZhCN } from 'naive-ui'
 import type { GlobalThemeOverrides } from 'naive-ui'
-import AppHeader from '@/layouts/AppHeader.vue'
 import NexusNoise from '@/components/NexusNoise.vue'
 import { useUserStore } from '@/store'
 
+import DefaultLayout from '@/layouts/DefaultLayout.vue'
+import EditorLayout from '@/layouts/EditorLayout.vue'
+import AuthLayout from '@/layouts/AuthLayout.vue'
+import BlankLayout from '@/layouts/BlankLayout.vue'
+
+const route = useRoute()
 const userStore = useUserStore()
 
 /**
@@ -118,29 +123,17 @@ const themeOverrides: GlobalThemeOverrides = {
   }
 }
 
-// Determine if the header should be hidden
-const isHeaderHidden = computed(() => {
-  const hiddenRouteNames = [
-    'AiProjectWorkbench',
-    'AiProjectSettings',
-    'AiProjectCreate',
-    'AiProjectManagement',
-    'DocumentEditor',
-    'ProjectWorkspace',
-    'ProjectFileEditor',
-    'ExcelEditor',
-    'SlideEditor'
-  ]
-  const hiddenPaths = ['/login', '/forgot-password', '/reset-password']
-  return hiddenRouteNames.includes(route.name as string) || hiddenPaths.includes(route.path)
-})
-
-// 全屏页面（不需要顶部 padding 来避让 Header）
-const shouldPadMain = computed(() => {
-  if (isHeaderHidden.value) return false
-  const fullScreenPaths = ['/', '/login', '/forgot-password', '/reset-password']
-  return !fullScreenPaths.includes(route.path)
-})
+// 布局调度：按 route.meta.layout 选择骨架，默认 default。
+// 硬编码的 hiddenRouteNames / hiddenPaths / shouldPadMain 已移除（映射见 router/index.ts）。
+const LAYOUTS: Record<string, Component> = {
+  default: DefaultLayout,
+  editor: EditorLayout,
+  auth: AuthLayout,
+  blank: BlankLayout
+}
+const layoutComponent = computed<Component>(
+  () => LAYOUTS[(route.meta.layout as string) || 'default'] || DefaultLayout
+)
 
 onMounted(() => {
   userStore.init()
@@ -153,10 +146,9 @@ onMounted(() => {
       <n-notification-provider>
         <n-dialog-provider>
           <NexusNoise />
-          <AppHeader v-if="!isHeaderHidden" />
-          <main :class="['app-main', { 'app-main--with-header': shouldPadMain }]">
+          <component :is="layoutComponent">
             <router-view />
-          </main>
+          </component>
         </n-dialog-provider>
       </n-notification-provider>
     </n-message-provider>
@@ -192,9 +184,8 @@ html {
   background-color: #000000;
   color: #ffffff;
 }
-</style>
 
-<style scoped>
+/* 布局骨架共享的内容容器（各 layout 渲染 <main class="app-main">） */
 .app-main {
   min-height: 100vh;
   position: relative;

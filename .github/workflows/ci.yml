@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Lint (0 warnings)
+        run: pnpm run lint
+
+      - name: Unit tests
+        run: pnpm run test:run
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Coupling check (frontend)
+        run: python .workbuddy/analysis/coupling.py
+
+      # 以下两项需可用后端（默认 localhost:8081），CI 暂无后端实例，
+      # 暂以 warning 运行（continue-on-error）。待接入后端服务或契约快照后可改为硬门禁。
+      - name: Contract check (frontend vs backend)
+        continue-on-error: true
+        run: python .workbuddy/analysis/contract_check.py
+
+      - name: API smoke (against dev backend)
+        continue-on-error: true
+        env:
+          API_BASE: http://localhost:8081
+        run: python .workbuddy/analysis/api_smoke.py

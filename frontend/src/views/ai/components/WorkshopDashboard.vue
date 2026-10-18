@@ -106,7 +106,7 @@ class="search-input">
             </div>
             
             <div class="card-actions" @click.stop>
-              <n-dropdown trigger="click" :options="projectOptions" @select="(key) => handleAction(key, project)">
+              <n-dropdown trigger="click" :options="projectOptions" @select="(key: string | number) => handleAction(key as ProjectActionKey, project)">
                 <n-button text class="action-btn">
                   <n-icon size="20"><EllipsisVertical /></n-icon>
                 </n-button>
