@@ -44,8 +44,8 @@ class="create-btn"
         <div class="stat-card">
           <div class="icon-box green"><n-icon><TimeOutline /></n-icon></div>
           <div class="info">
-            <div class="value">{{ totalDuration }}</div>
-            <div class="label">本周协作时长</div>
+            <div class="value">{{ completedProjects }}</div>
+            <div class="label">已完成项目</div>
           </div>
         </div>
       </div>
@@ -244,16 +244,14 @@ const paginatedProjects = computed(() => {
 
 const totalProjects = computed(() => processedProjects.value.length)
 
-// 统计数据
-const totalDuration = computed(() => {
-  // 模拟计算：每个项目假设投入了一定时间，或者从 store 获取真实数据
-  return (store.projectList.length * 2.5).toFixed(1) + 'h'
-})
+// 统计数据（均来自真实项目数据，无估算）
+const totalArtifacts = computed(() =>
+  store.projectList.reduce((acc, curr) => acc + (curr.files?.length || 0), 0)
+)
 
-const totalArtifacts = computed(() => {
-  // 模拟计算：每个项目产生的产物数量
-  return store.projectList.reduce((acc, curr) => acc + (curr.status === 'active' ? 5 : 2), 0)
-})
+const completedProjects = computed(() =>
+  store.projectList.filter(p => p.status === 'completed').length
+)
 
 const handlePageChange = (p: number) => {
   page.value = p

@@ -23,3 +23,6 @@ sign/
 *.njsproj
 *.sln
 *.sw?
+
+# OSS 部署凭据
+scripts/.env

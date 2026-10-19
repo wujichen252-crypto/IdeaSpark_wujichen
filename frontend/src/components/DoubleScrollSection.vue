@@ -1,5 +1,5 @@
 <template>
-  <section ref="sectionRef" class="double-scroll-section">
+  <section v-if="topRowData.length" ref="sectionRef" class="double-scroll-section">
     <div class="section-header">
       <h2 class="section-title">社区回响</h2>
       <p class="section-subtitle">倾听来自全球开发者的灵感与洞见，汇聚科技与人文的思考</p>
@@ -127,6 +127,8 @@ fetchpriority="low" />
 
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { getRecommendPosts, getLatestPosts } from '@/api/community/post'
+import type { Post } from '@/api/types'
 
 // 生成随机渐变色
 const getAvatarStyle = (name: string) => {
@@ -162,90 +164,52 @@ const getAvatarStyle = (name: string) => {
   }
 }
 
-// 模拟数据：14条
-const allData = [
-  {
-    quote: 'IdeaSpark 的 AI PPT 功能简直是救星，帮我节省了数小时的排版时间！',
-    author: 'Alex Chen',
-    avatar: 'https://i.pravatar.cc/150?u=Alex'
-  },
-  {
-    quote: '捕捉灵感从未如此简单，碎片化的想法终于有了归宿。',
-    author: 'Sarah Wang',
-    avatar: 'https://i.pravatar.cc/150?u=Sarah'
-  },
-  {
-    quote: '在这里我找到了志同道合的创意伙伴，社区氛围非常棒。',
-    author: 'Jason Lee',
-    avatar: 'https://i.pravatar.cc/150?u=Jason'
-  },
-  {
-    quote: '智能编辑器的润色功能让我的技术文档看起来更专业了。',
-    author: 'Emily Zhang',
-    avatar: 'https://i.pravatar.cc/150?u=Emily'
-  },
-  {
-    quote: '项目协同空间的设计非常直观，团队配合效率提升了 50%。',
-    author: 'David Liu',
-    avatar: 'https://i.pravatar.cc/150?u=David'
-  },
-  {
-    quote: '每一个闪现的火花都值得被认真对待，这就是 IdeaSpark 的魅力。',
-    author: 'Linda Smith',
-    avatar: 'https://i.pravatar.cc/150?u=Linda'
-  },
-  {
-    quote: '从想法到方案，AI 辅助的每一个步骤都充满了惊喜。',
-    author: 'Kevin Ho',
-    avatar: 'https://i.pravatar.cc/150?u=Kevin'
-  },
-  {
-    quote: '简洁而不简单，这就是我一直在寻找的创意孵化器。',
-    author: 'Rachel Sun',
-    avatar: 'https://i.pravatar.cc/150?u=Rachel'
-  },
-  {
-    quote: '在广场上看到了很多惊艳的作品，这里真的是灵感的源泉。',
-    author: 'Michael Tan',
-    avatar: 'https://i.pravatar.cc/150?u=Michael'
-  },
-  {
-    quote: 'API 接口非常丰富，扩展性极强，开发者必备。',
-    author: 'Thomas Brown',
-    avatar: 'https://i.pravatar.cc/150?u=Thomas'
-  },
-  {
-    quote: '沉浸式的创作体验，让我能专注于内容本身。',
-    author: 'Sophie Green',
-    avatar: 'https://i.pravatar.cc/150?u=Sophie'
-  },
-  {
-    quote: 'IdeaSpark 重新定义了灵感管理，推荐给所有内容创作者。',
-    author: 'Chris Miller',
-    avatar: 'https://i.pravatar.cc/150?u=Chris'
-  },
-  {
-    quote: '多端同步非常流畅，随时随地记录灵感。',
-    author: 'Anna White',
-    avatar: 'https://i.pravatar.cc/150?u=Anna'
-  },
-  {
-    quote: '用 AI 赋予创意生命，让每个人都能成为创造者。',
-    author: 'IdeaSpark 团队',
-    avatar: 'https://i.pravatar.cc/150?u=Team'
-  }
-]
+// ============================================================
+// 数据源：社区真实帖子（优先推荐/热帖，空则回退最新帖）
+// 无数据时整个区块隐藏，不再展示任何写死的演示内容。
+// ============================================================
+interface EchoItem {
+  quote: string
+  author: string
+  avatar?: string
+}
 
-// 将数据分为两组
-const mid = Math.ceil(allData.length / 2)
-const topRowData = ref(allData.slice(0, mid))
-const bottomRowData = ref(allData.slice(mid))
+const topRowData = ref<EchoItem[]>([])
+const bottomRowData = ref<EchoItem[]>([])
+
+/** 将社区帖子映射为回响卡片数据 */
+const mapPosts = (posts: Post[]): EchoItem[] =>
+  posts.slice(0, 14).map(post => ({
+    quote: post.title || post.content.slice(0, 60),
+    author: post.author?.name || post.author?.username || '社区用户',
+    avatar: post.author?.avatar
+  }))
+
+/** 拉取社区帖子并分为上下两行 */
+const loadEchoData = async () => {
+  try {
+    let res = await getRecommendPosts()
+    let posts = res.data?.data ?? []
+    if (posts.length === 0) {
+      res = await getLatestPosts()
+      posts = res.data?.data ?? []
+    }
+    const items = mapPosts(posts)
+    const mid = Math.ceil(items.length / 2)
+    topRowData.value = items.slice(0, mid)
+    bottomRowData.value = items.slice(mid)
+  } catch {
+    // 接口异常时保持为空，区块自动隐藏
+  }
+}
 
 const sectionRef = ref<HTMLElement | null>(null)
 const isInView = ref(false)
 let observer: IntersectionObserver | null = null
 
 onMounted(() => {
+  loadEchoData()
+
   if (!('IntersectionObserver' in window)) {
     isInView.value = true
     return

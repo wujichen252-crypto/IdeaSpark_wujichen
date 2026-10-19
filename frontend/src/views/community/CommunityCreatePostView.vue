@@ -41,10 +41,9 @@ class="editor-card">
           <n-form-item label="图片/视频" path="images">
             <n-upload
               v-model:file-list="fileList"
-              action="https://www.mocky.io/v2/5e4bafc63100007100d8b70f"
               list-type="image-card"
               :max="9"
-              @finish="handleUploadFinish"
+              :custom-request="handleCustomUpload"
             >
               点击上传
             </n-upload>
@@ -94,10 +93,11 @@ size="large"
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
-import { useMessage, type UploadFileInfo } from 'naive-ui'
+import { useMessage, type UploadFileInfo, type UploadCustomRequestOptions } from 'naive-ui'
 import { CloseOutline } from '@vicons/ionicons5'
 import { COMMUNITY_TOPIC_OPTIONS } from '@/constants/community'
 import { createPost } from '@/api/community/post'
+import { uploadFile } from '@/api/file'
 import type { PostVisibility } from '@/api/types'
 
 const router = useRouter()
@@ -124,12 +124,28 @@ const rules = {
 const topicOptions = COMMUNITY_TOPIC_OPTIONS
 
 /**
- * 处理上传结束事件（Mock）
- * @param payload - 上传完成的文件信息
+ * 自定义上传：走真实文件上传接口（阿里云 OSS），成功后把 URL 写回文件项
+ * @param options - naive-ui 自定义上传回调参数
  */
-const handleUploadFinish = ({ file }: { file: UploadFileInfo; event?: ProgressEvent }) => {
-  message.success('上传成功 (Mock)')
-  return file
+const handleCustomUpload = async ({ file, onFinish, onError }: UploadCustomRequestOptions) => {
+  if (!file.file) {
+    onError()
+    return
+  }
+  try {
+    const res = await uploadFile(file.file)
+    const url = res.data?.data?.url
+    if (url) {
+      file.url = url
+      onFinish()
+    } else {
+      message.error('上传失败：接口未返回文件地址')
+      onError()
+    }
+  } catch {
+    message.error('图片上传失败，请重试')
+    onError()
+  }
 }
 
 /**
@@ -149,8 +165,13 @@ const handleSubmit = async () => {
       content: formValue.content,
       // 将 topics 数组转为 JSON 字符串存储在 tags 字段
       tags: formValue.topics.length > 0 ? JSON.stringify(formValue.topics) : undefined,
-      // 将文件列表转为图片 URL 数组（当前为 mock，实际需要上传后获取 URL）
-      images: fileList.value.length > 0 ? JSON.stringify(fileList.value.map(f => f.url || f.thumbnailUrl || '')) : undefined,
+      // 仅收集上传成功且已拿到真实 OSS 地址的图片
+      images: (() => {
+        const urls = fileList.value
+          .filter(f => f.status === 'finished' && f.url)
+          .map(f => f.url as string)
+        return urls.length > 0 ? JSON.stringify(urls) : undefined
+      })(),
       visibility: formValue.visibility.toUpperCase() as PostVisibility,
       channel: '动态' // 默认频道
     }

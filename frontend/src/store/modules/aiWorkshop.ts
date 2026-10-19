@@ -85,7 +85,7 @@ export const useAiWorkshopStore = defineStore('aiWorkshop', () => {
       category: project.category || '未分类', type: project.type || 'app',
       currentModule: 'idea', updatedAt: Date.now(), status: project.status || 'active',
       progress: project.progress || 0,
-      team: project.team || [{ id: 'u1', name: 'User', avatar: '', role: 'owner' }],
+      team: project.team || [],
       visibility: project.visibility || 'private', plugins: project.plugins || [],
       files: project.files || [], content: project.content || '',
       cover: project.cover, tags: project.tags || [], ...project
@@ -193,18 +193,9 @@ export const useAiWorkshopStore = defineStore('aiWorkshop', () => {
       projectInfo.value = {
         id, name: '', description: '', category: '',
         currentModule: 'home', updatedAt: Date.now(),
-        cover: `https://picsum.photos/seed/newproject/800/400`,
         tags: [], techStack: [], status: 'draft', progress: 0,
-        team: [
-          { id: 'me', name: 'Me', avatar: '', role: 'owner' },
-          { id: 'ai', name: 'AI Assistant', avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=ai', role: 'member' }
-        ],
-        detailedDescription: '<p>暂无详细描述...</p>',
-        visibility: 'private', allowFork: false,
-        developerMessage: '欢迎开启新的项目旅程！\n请随时更新项目进度，保持团队信息同步。',
-        announcements: [
-          { id: 'a1', title: '项目已创建', content: '项目初始化完成，请开始规划您的第一个版本。', date: Date.now() }
-        ]
+        team: [],
+        visibility: 'private', allowFork: false
       }
       Object.values(modules.value).forEach(m => {
         m.checklist = m.checklist.map(i => ({ ...i, completed: false }))

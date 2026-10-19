@@ -12,6 +12,13 @@ export default defineConfig(({ mode }) => {
   const apiBaseUrl = env.VITE_API_BASE_URL || 'http://localhost:8081'
   const isProduction = mode === 'production'
 
+  // CDN 基础路径（生产构建时给静态资源加前缀，开发/无配置时回退原始路径）
+  // 阿里云 bucket 绑定自定义域名后，此处填 //你的CDN域名（用协议相对 URL，让浏览器自动匹配主站 http/https）
+  const cdnBaseRaw = (env.VITE_CDN_BASE || '').trim().replace(/\/$/, '')
+  // https://cdn.example.com 或 http://cdn.example.com → //cdn.example.com
+  // 协议相对 URL：浏览器会自动用和当前页面一致的协议加载资源
+  const cdnBase = cdnBaseRaw.replace(/^https?:/, '')
+
   return {
     // 资源基础路径 - 使用绝对路径确保子路由下资源加载正确
     base: '/',
@@ -183,10 +190,35 @@ export default defineConfig(({ mode }) => {
     },
     // 实验性功能
     experimental: {
-      // 渲染优化：保持资源路径不变
+      /**
+       * 渲染时给所有 import 进来的静态资源加 CDN 前缀
+       * - 生产 + 配置了 VITE_CDN_BASE → 相对路径 xxx → https://cdn.example.com/xxx
+       * - 开发/无配置 → 保持原始路径
+       * - 绝对 URL（http://、data:、//）原样保留
+       */
       renderBuiltUrl(filename) {
-        return filename
+        if (!isProduction || !cdnBase) return filename
+        // 已经是绝对 URL 或 data URI 不处理
+        if (/^(https?:|data:|\/\/)/.test(filename)) return filename
+        // 相对路径一律加 CDN 前缀（import 进来的产物都是相对路径）
+        const normalized = filename.startsWith('/') ? filename : '/' + filename
+        return cdnBase + normalized
       }
+    },
+    /**
+     * 给 index.html 里的 modulepreload / script / link 也加 CDN 前缀
+     * renderBuiltUrl 不覆盖 HTML 里 vite 自动注入的标签路径
+     */
+    transformIndexHtml(html: string): string {
+      if (!isProduction || !cdnBase) return html
+      // 匹配所有不以 http / data / // 开头的 src/href 属性
+      return html.replace(
+        /(href|src)="((?!(https?:|data:|\/\/))[^"]+)"/g,
+        (_m: string, attr: string, path: string) => {
+          const normalized = path.startsWith('/') ? path : '/' + path
+          return `${attr}="${cdnBase}${normalized}"`
+        }
+      )
     }
   }
 })
