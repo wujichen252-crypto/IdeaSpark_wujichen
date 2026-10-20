@@ -361,7 +361,7 @@ const formatTime = (timestamp: number) => {
     transition: all 0.3s;
     
     &.active {
-      color: #18a058;
+      color: var(--nexus-success);
       
       &::after {
         content: '';
@@ -370,13 +370,13 @@ const formatTime = (timestamp: number) => {
         left: 0;
         width: 100%;
         height: 3px;
-        background: #18a058;
+        background: var(--nexus-success);
         border-radius: 2px;
       }
     }
     
     &:hover {
-      color: #18a058;
+      color: var(--nexus-success);
     }
   }
 }
@@ -506,7 +506,7 @@ const formatTime = (timestamp: number) => {
     &:hover {
       transform: translateY(-4px);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
-      border-color: #18a058;
+      border-color: var(--nexus-success);
 
       .card-actions {
         opacity: 1;
@@ -622,7 +622,7 @@ const formatTime = (timestamp: number) => {
           background: #eee;
           
           &.active {
-            background: #18a058;
+            background: var(--nexus-success);
           }
         }
       }

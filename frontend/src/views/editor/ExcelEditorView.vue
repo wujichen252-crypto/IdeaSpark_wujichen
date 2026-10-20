@@ -1563,7 +1563,6 @@ onUnmounted(() => {
   color: var(--nexus-text-primary);
   background: transparent;
   border: none;
-  outline: none;
   padding: 4px 8px;
   border-radius: var(--nexus-radius-md);
   transition: background 200ms var(--nexus-ease);
@@ -1892,7 +1891,6 @@ onUnmounted(() => {
   color: var(--nexus-text-primary);
   font-size: 12px;
   font-family: var(--nexus-font-ui);
-  outline: none;
   cursor: pointer;
   width: 120px;
 }
@@ -1905,7 +1903,6 @@ onUnmounted(() => {
   color: var(--nexus-text-primary);
   font-size: 12px;
   font-family: var(--nexus-font-ui);
-  outline: none;
   cursor: pointer;
   width: 60px;
 }
@@ -2000,7 +1997,6 @@ onUnmounted(() => {
   color: var(--nexus-text-primary);
   background: transparent;
   border: none;
-  outline: none;
 
   &::placeholder {
     color: var(--nexus-text-tertiary);
@@ -2150,7 +2146,6 @@ onUnmounted(() => {
   color: var(--nexus-text-primary);
   background: var(--nexus-bg-elevated);
   border: none;
-  outline: none;
   padding: 0 4px;
 }
 

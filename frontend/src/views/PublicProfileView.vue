@@ -494,7 +494,7 @@ watch(() => route.params.id, () => {
           cursor: pointer;
           &:hover {
             .count, .label {
-              color: #3b82f6;
+              color: var(--nexus-link);
             }
           }
         }
@@ -624,7 +624,7 @@ watch(() => route.params.id, () => {
     }
 
     a {
-      color: #3b82f6;
+      color: var(--nexus-link);
       text-decoration: none;
       &:hover {
         text-decoration: underline;

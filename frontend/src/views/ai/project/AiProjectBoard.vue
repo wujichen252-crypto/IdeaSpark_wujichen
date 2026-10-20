@@ -191,7 +191,7 @@ const getStageColor = (module: string) => {
     brand: '#8a2be2',
     ui: '#ff69b4',
     feasibility: '#d03050',
-    docs: '#18a058'
+    docs: 'var(--nexus-success)'
   }
   return map[module] || '#999'
 }

@@ -23,7 +23,7 @@ class="message-item"
             <div class="avatar">
               <n-avatar
 :src="msg.role === 'ai' ? 'https://api.dicebear.com/7.x/bottts/svg?seed=ai' : undefined" 
-                       :color="msg.role === 'user' ? '#18a058' : undefined">
+                       :color="msg.role === 'user' ? 'var(--nexus-success)' : undefined">
                 {{ msg.role === 'user' ? '我' : 'AI' }}
               </n-avatar>
             </div>

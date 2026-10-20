@@ -445,7 +445,6 @@ $color-gray-100: #f3f4f6;
   color: $color-gray-900;
 
   &:focus {
-    outline: none;
     border-color: #000;
   }
 

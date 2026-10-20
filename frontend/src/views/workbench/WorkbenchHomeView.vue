@@ -657,7 +657,7 @@ $color-gray-50: #f9fafb;
 $color-success: #10b981;
 $color-warning: #f59e0b;
 $color-danger: #ef4444;
-$color-blue: #3b82f6;
+$color-blue: var(--nexus-link);
 $color-purple: #a855f7;
 
 $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);

@@ -8,29 +8,38 @@
   --nexus-bg-elevated: #ffffff;
   --nexus-bg-glass: rgba(255, 255, 255, 0.72);
 
-  --nexus-text-primary: #111827;
-  --nexus-text-secondary: #6b7280;
-  --nexus-text-tertiary: #9ca3af;
+  /* 文字三级：全部通过 WCAG AA（正文 ≥4.5:1，白底） */
+  --nexus-text-primary: #111827; /* 16.4:1 */
+  --nexus-text-secondary: #4b5563; /* 7.6:1 */
+  --nexus-text-tertiary: #6b7280; /* 4.8:1 */
   --nexus-text-inverse: #ffffff;
 
   --nexus-border: #e5e7eb;
-  --nexus-border-light: rgba(255, 255, 255, 0.4);
+  --nexus-border-light: rgba(0, 0, 0, 0.06); /* 浅底可见的轻边框 */
   --nexus-divider: #f3f4f6;
 
   --nexus-accent: #000000;
   --nexus-accent-hover: #374151;
 
-  /* Functional colors (extremely restrained) */
+  /* Functional colors — 填色（底色/图形，非正文文字） */
   --nexus-success: #10b981;
   --nexus-warning: #f59e0b;
   --nexus-error: #ef4444;
-  --nexus-link: #2563eb;
+  --nexus-link: #2563eb; /* 5.2:1 */
+
+  /* Functional colors — 文字色（浅底上承载语义文字，全部 ≥4.5:1） */
+  --nexus-success-text: #047857; /* 5.5:1 */
+  --nexus-warning-text: #b45309; /* 5.0:1 */
+  --nexus-error-text: #b91c1c; /* 6.5:1 */
 
   /* ── Typography ── */
-  --nexus-font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --nexus-font-decor: 'Playfair Display', Georgia, serif;
+  /* 单一字体栈：外链字体已移除，改用系统字体 + 中文字体回退，保证国内外/断网环境字面一致 */
+  --nexus-font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'HarmonyOS Sans SC',
+    'Source Han Sans SC', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+  --nexus-font-decor: Georgia, 'Songti SC', 'SimSun', serif;
   --nexus-font-mono: 'SF Mono', Monaco, 'Cascadia Code', monospace;
 
+  /* 仅用于拉丁文/装饰性文字，不再全局作用于中文（避免中文挤字） */
   --nexus-letter-spacing: -0.01em;
 
   /* ── Spacing (4px grid) ── */
@@ -53,26 +62,30 @@
   --nexus-radius-full: 9999px;
 
   /* ── Shadows ── */
-  --nexus-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --nexus-shadow-md: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
+  --nexus-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --nexus-shadow-md: 0 4px 24px -4px rgba(0, 0, 0, 0.06);
   --nexus-shadow-lg: 0 12px 40px -12px rgba(0, 0, 0, 0.08);
   --nexus-shadow-xl: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
 
   /* ── Animation ── */
   --nexus-ease: cubic-bezier(0.16, 1, 0.3, 1);
-  --nexus-duration-fast: 200ms;
-  --nexus-duration-normal: 400ms;
-  --nexus-duration-slow: 600ms;
+  /* 动效时长统一 3 档：交互反馈 / 常规过渡 / 强调过渡 */
+  --nexus-duration-fast: 120ms;
+  --nexus-duration-normal: 200ms;
+  --nexus-duration-slow: 320ms;
 
-  /* ─egacy overrides for Naive UI integration ── */
+  /* ─legacy overrides for Naive UI integration ── */
   --primary-color: #000000;
-  --header-height: 64px;
+  /* 页头唯一高度来源：与 AppHeader 实际高度一致，全站不得另写其它页头高度 */
+  --header-height: 56px;
+  /* 由 main.ts 运行时写入实际滚动条宽度 */
+  --scrollbar-width: 0px;
+  --scrollbar-overlay-gap: 0px;
 }
 
 /* ── Global base styles ── */
 html {
   font-family: var(--nexus-font-ui);
-  letter-spacing: var(--nexus-letter-spacing);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

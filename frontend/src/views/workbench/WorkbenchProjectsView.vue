@@ -54,7 +54,7 @@ size="32" />
                 <n-icon
 v-else-if="project.category && project.category.includes('代码')"
 :component="CodeSlashOutline"
-color="#3b82f6"
+color="var(--nexus-link)"
 size="32" />
                 <n-icon
 v-else

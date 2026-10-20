@@ -508,7 +508,6 @@ defineExpose({
   font-family: var(--nexus-font-ui);
   background: var(--nexus-bg);
   color: var(--nexus-text-primary);
-  outline: none;
   transition: border-color 200ms var(--nexus-ease);
 
   &:focus {
@@ -772,7 +771,6 @@ defineExpose({
   flex: 1;
   background: transparent;
   border: none;
-  outline: none;
   font-family: var(--nexus-font-ui);
   font-size: 13px;
   color: var(--nexus-text-primary);

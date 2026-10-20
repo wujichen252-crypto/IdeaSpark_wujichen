@@ -81,7 +81,7 @@ defineExpose({ setMousePosition })
   left: -10%;
   width: 60vw;
   height: 60vw;
-  background: radial-gradient(circle, #4ade80 0%, transparent 60%);
+  background: radial-gradient(circle, var(--nexus-success) 0%, transparent 60%);
   animation-delay: 0s;
 }
 
@@ -90,7 +90,7 @@ defineExpose({ setMousePosition })
   right: -10%;
   width: 70vw;
   height: 70vw;
-  background: radial-gradient(circle, #3b82f6 0%, transparent 60%);
+  background: radial-gradient(circle, var(--nexus-link) 0%, transparent 60%);
   animation-delay: -3s;
 }
 

@@ -634,7 +634,7 @@ onUnmounted(() => {
   border-radius: 50%;
   box-shadow:
     0 0 20px 2px #fff,
-    0 0 40px 4px #4ade80;
+    0 0 40px 4px var(--nexus-success);
   animation: spark-pulse 2s infinite ease-in-out;
   position: absolute;
   top: 50%;
@@ -757,7 +757,7 @@ onUnmounted(() => {
     opacity: 1;
     box-shadow:
       0 0 30px 4px #fff,
-      0 0 60px 8px #4ade80;
+      0 0 60px 8px var(--nexus-success);
   }
 }
 @keyframes neural-float {

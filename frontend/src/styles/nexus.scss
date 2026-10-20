@@ -78,19 +78,19 @@
 .nexus-tag-success {
   @include nexus-tag;
   background: rgba(16, 185, 129, 0.1);
-  color: var(--nexus-success);
+  color: var(--nexus-success-text);
 }
 
 .nexus-tag-warning {
   @include nexus-tag;
   background: rgba(245, 158, 11, 0.1);
-  color: var(--nexus-warning);
+  color: var(--nexus-warning-text);
 }
 
 .nexus-tag-error {
   @include nexus-tag;
   background: rgba(239, 68, 68, 0.1);
-  color: var(--nexus-error);
+  color: var(--nexus-error-text);
 }
 
 /* ── Editor Layout System ── */
@@ -260,4 +260,30 @@
 /* ── Tabular Numbers ── */
 .nexus-tabular {
   font-variant-numeric: tabular-nums;
+}
+
+/* ── Base: Links ── */
+/* 链接外观交由各自类控制，避免浏览器默认蓝污染黑白灰体系 */
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/* ── Accessibility: 统一焦点环 ── */
+/* 全站唯一的焦点可见性来源，替代散落的 outline: none */
+:focus-visible {
+  outline: 2px solid var(--nexus-accent);
+  outline-offset: 2px;
+}
+
+/* ── Accessibility: 尊重系统"减弱动效"设置 ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

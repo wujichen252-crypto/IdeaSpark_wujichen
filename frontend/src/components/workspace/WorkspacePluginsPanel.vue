@@ -36,7 +36,7 @@
             class="plugin-card"
           >
             <div class="plugin-card-body">
-              <div class="plugin-icon" :style="{ background: p.color || '#3b82f6' }">
+              <div class="plugin-icon" :style="{ background: p.color || 'var(--nexus-link)' }">
                 <n-icon :component="ws.getPluginIcon(p.icon)" size="20" color="#fff" />
               </div>
               <div class="plugin-info">
@@ -78,7 +78,7 @@ type="success">
             class="plugin-card"
           >
             <div class="plugin-card-body">
-              <div class="plugin-icon" :style="{ background: p.color || '#3b82f6' }">
+              <div class="plugin-icon" :style="{ background: p.color || 'var(--nexus-link)' }">
                 <n-icon :component="ws.getPluginIcon(p.icon)" size="20" color="#fff" />
               </div>
               <div class="plugin-info">

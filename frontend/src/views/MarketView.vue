@@ -830,7 +830,6 @@ watch(() => route.path, (newPath) => {
     }
 
     &:focus {
-      outline: none;
       border-color: #000000;
     }
   }

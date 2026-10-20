@@ -318,7 +318,7 @@ $color-danger: #ef4444;
 
   &.comment {
     background: rgba(59, 130, 246, 0.1);
-    color: #3b82f6;
+    color: var(--nexus-link);
   }
 
   &.team {

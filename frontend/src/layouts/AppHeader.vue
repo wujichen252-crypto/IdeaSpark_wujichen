@@ -206,16 +206,16 @@ class="login-btn"
   left: 0;
   right: 0;
   z-index: 1000;
-  height: 56px;
+  height: var(--header-height);
   display: flex;
   align-items: center;
   background: transparent;
   border-bottom: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-bottom-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* 滚动状态 / 内部页面状态 */
   &.is-scrolled {
-    height: 56px; /* 保持高度，与页面 padding-top 对齐 */
+    height: var(--header-height); /* 保持高度，与页面 padding-top 对齐 */
     background: transparent;
     backdrop-filter: none;
     border-bottom: none;
@@ -233,14 +233,14 @@ class="login-btn"
       visibility: hidden;
       pointer-events: none;
       transform: translateY(-10px);
-      transition: all 0.4s ease-out;
+      transition: opacity 0.4s ease-out, visibility 0.4s ease-out, transform 0.4s ease-out;
     }
 
     .scrolled-logo-container {
       opacity: 1;
       visibility: visible;
       transform: scale(1) rotate(0deg);
-      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .app-header__content {
@@ -250,16 +250,16 @@ class="login-btn"
 
     /* Logo 适配 */
     .logo-title {
-      color: #111; /* 深色文字 */
+      color: var(--nexus-text-primary); /* 深色文字 */
     }
 
     /* 菜单适配 */
     :deep(.custom-menu) {
-      --n-item-text-color: #111111 !important;
-      --n-item-text-color-hover: #111111 !important;
-      --n-item-text-color-active: #111111 !important;
-      --n-item-text-color-child-active: #111111 !important;
-      --n-item-text-color-child-active-hover: #111111 !important;
+      --n-item-text-color: var(--nexus-text-primary) !important;
+      --n-item-text-color-hover: var(--nexus-text-primary) !important;
+      --n-item-text-color-active: var(--nexus-text-primary) !important;
+      --n-item-text-color-child-active: var(--nexus-text-primary) !important;
+      --n-item-text-color-child-active-hover: var(--nexus-text-primary) !important;
 
       .n-menu-item {
         margin: 0 8px;
@@ -270,13 +270,13 @@ class="login-btn"
       }
 
       .n-menu-item-content-header {
-        color: #111111 !important;
+        color: var(--nexus-text-primary) !important;
         font-weight: 800 !important;
         font-size: 16px !important;
       }
       .n-menu-item-content:hover .n-menu-item-content-header,
       .n-menu-item-content--selected .n-menu-item-content-header {
-        color: #111111 !important;
+        color: var(--nexus-text-primary) !important;
         opacity: 0.9;
       }
 
@@ -288,16 +288,16 @@ class="login-btn"
 
     /* 右侧图标/文字适配 */
     .icon-btn {
-      color: #111111 !important;
+      color: var(--nexus-text-primary) !important;
       &:hover {
         background-color: rgba(0, 0, 0, 0.06) !important;
       }
     }
 
     .login-btn {
-      color: #111111 !important;
+      color: var(--nexus-text-primary) !important;
       &:hover {
-        color: #111111 !important;
+        color: var(--nexus-text-primary) !important;
         opacity: 0.8;
       }
     }
@@ -315,7 +315,7 @@ class="login-btn"
       }
 
       .username {
-        color: #111111 !important;
+        color: var(--nexus-text-primary) !important;
       }
     }
   }
@@ -331,7 +331,7 @@ class="login-btn"
   justify-content: space-between;
   height: 100%;
   position: relative;
-  transition: all 0.3s ease;
+  transition: padding 0.3s ease, max-width 0.3s ease;
 }
 
 /* 使用百分比布局，确保各区域有足够空间 */
@@ -393,7 +393,7 @@ class="login-btn"
   transform: translateY(-50%);
   transform-origin: left center;
   width: 100%;
-  transition: all 0.4s ease-out; /* Add default transition */
+  transition: opacity 0.4s ease-out, visibility 0.4s ease-out, transform 0.4s ease-out; /* Add default transition */
 }
 
 .scrolled-logo-container {
@@ -410,7 +410,7 @@ class="login-btn"
   justify-content: center;
   transform-origin: center center;
   z-index: 20; /* 确保层级高于 initial-logo */
-  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); /* Add default transition */
+  transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); /* Add default transition */
 
   .art-pattern {
     width: 100%;
@@ -435,7 +435,7 @@ class="login-btn"
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: #4ade80;
+  background-color: var(--nexus-text-inverse);
   opacity: 0;
 }
 
@@ -461,7 +461,7 @@ class="login-btn"
 .logo-spark {
   width: 12px;
   height: 12px;
-  background: #4ade80;
+  background: var(--nexus-text-inverse);
   transform: rotate(45deg);
   border-radius: 1px;
   position: relative;
@@ -491,7 +491,7 @@ class="login-btn"
 
 .logo-subtitle {
   font-size: 9px;
-  color: #4ade80;
+  color: var(--nexus-text-inverse);
   text-transform: uppercase;
   letter-spacing: 3px;
   margin-top: 3px;
@@ -502,12 +502,12 @@ class="login-btn"
 
 /* ... Menu Styles ... */
 :deep(.custom-menu) {
-  --n-item-text-color-active: #4ade80 !important;
-  --n-item-text-color-active-hover: #4ade80 !important;
+  --n-item-text-color-active: var(--nexus-text-inverse) !important;
+  --n-item-text-color-active-hover: var(--nexus-text-inverse) !important;
   --n-item-icon-color: #ffffff !important;
-  --n-item-icon-color-hover: #4ade80 !important;
-  --n-item-icon-color-active: #4ade80 !important;
-  --n-item-icon-color-active-hover: #4ade80 !important;
+  --n-item-icon-color-hover: var(--nexus-text-inverse) !important;
+  --n-item-icon-color-active: var(--nexus-text-inverse) !important;
+  --n-item-icon-color-active-hover: var(--nexus-text-inverse) !important;
   --menu-gap: 160px;
 
   background-color: transparent !important;
@@ -537,7 +537,7 @@ class="login-btn"
     height: 36px;
     display: flex;
     align-items: center;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 
     &:hover::before {
       background-color: rgba(255, 255, 255, 0.08) !important;
@@ -579,7 +579,7 @@ class="login-btn"
     font-weight: 600 !important;
     letter-spacing: 0.3px;
     font-size: 15px !important;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease, opacity 0.3s ease;
     color: #ffffff !important;
     font-family:
       'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial,
@@ -604,7 +604,7 @@ class="login-btn"
   padding: 4px 8px 4px 4px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 30px;
-  transition: all 0.3s;
+  transition: background-color 0.3s ease;
   cursor: pointer;
   max-width: 180px;
 
@@ -734,7 +734,7 @@ class="login-btn"
   transition: color 0.3s;
 
   &:hover {
-    color: #4ade80 !important;
+    color: var(--nexus-text-inverse) !important;
   }
 }
 

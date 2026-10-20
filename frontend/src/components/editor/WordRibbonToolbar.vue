@@ -714,7 +714,6 @@ onUnmounted(() => {
   color: var(--nexus-text-primary);
   background: transparent;
   border: none;
-  outline: none;
   width: 100%;
   padding: 4px 12px;
   border-radius: var(--nexus-radius-md);

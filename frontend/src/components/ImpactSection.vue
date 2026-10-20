@@ -14,7 +14,7 @@
   left: 0;
   right: calc(var(--scrollbar-width, 0px) + var(--scrollbar-overlay-gap, 0px));
   height: 50vh; /* 调低高度 */
-  background-color: #4ADE80;
+  background-color: var(--nexus-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,7 +28,7 @@
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 15vw;
   font-weight: 800;
-  color: #000;
+  color: var(--nexus-text-inverse);
   line-height: 1;
   letter-spacing: 0.05em; /* 调整字间距 */
   white-space: nowrap;

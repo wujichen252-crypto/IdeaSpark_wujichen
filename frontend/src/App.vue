@@ -52,7 +52,7 @@ const themeOverrides: GlobalThemeOverrides = {
     tableHeaderColor: '#fafafa',
     inputColor: '#ffffff',
     inputColorDisabled: '#f9fafb',
-    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'HarmonyOS Sans SC', 'Source Han Sans SC', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif",
     fontFamilyMono: "'SF Mono', Monaco, 'Cascadia Code', monospace",
     fontWeight: '400',
     fontWeightStrong: '600',
@@ -193,6 +193,7 @@ html {
 }
 
 .app-main--with-header {
-  padding-top: 64px;
+  /* 与 AppHeader 实际高度统一为同一令牌，避免顶部 8px 死区 */
+  padding-top: var(--header-height);
 }
 </style>

@@ -124,7 +124,7 @@ class="ml-2">
                     <n-progress
 type="dashboard"
 :percentage="85"
-color="#18a058"
+color="var(--nexus-success)"
 :size="100">
                       <template #default>
                         <div class="score">8.5</div>
@@ -223,7 +223,7 @@ circle
         <div class="assistant-panel" :style="{ width: `${assistantWidth}px` }">
           <div class="panel-header">
             <div class="flex items-center gap-2">
-              <n-icon color="#18a058"><Sparkles /></n-icon>
+              <n-icon color="var(--nexus-success)"><Sparkles /></n-icon>
               <span>AI 团队</span>
               <n-tag
 size="small"
@@ -653,10 +653,10 @@ const handleExport = () => {
   transition: background 0.2s;
   
   &:hover, &:active {
-    background: #18a058;
+    background: var(--nexus-success);
     
     .resizer-handle {
-      background: #18a058;
+      background: var(--nexus-success);
       border-color: #fff;
     }
   }

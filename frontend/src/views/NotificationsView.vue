@@ -261,8 +261,8 @@ onMounted(() => {
 <style scoped lang="scss">
 .notifications-page {
   min-height: 100vh;
-  background-color: #ffffff;
-  padding-top: 64px;
+  background-color: var(--nexus-bg-elevated);
+  padding-top: var(--header-height);
   padding-bottom: 40px;
 }
 

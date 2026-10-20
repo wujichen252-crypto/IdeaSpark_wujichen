@@ -117,7 +117,7 @@ round
                 <n-card size="medium" class="message-card mb-4">
                   <template #header>
                     <div class="flex items-center gap-2">
-                      <n-icon color="#18a058"><ChatbubbleEllipsesOutline /></n-icon>
+                      <n-icon color="var(--nexus-success-text)"><ChatbubbleEllipsesOutline /></n-icon>
                       <span>开发者寄语</span>
                     </div>
                   </template>
@@ -355,7 +355,7 @@ const pendingTasksCount = computed(() => {
     .back-btn {
       color: #666;
       &:hover {
-        color: #18a058;
+        color: var(--nexus-success-text);
       }
     }
   }

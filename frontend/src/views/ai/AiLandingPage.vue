@@ -87,7 +87,7 @@ class="secondary-button"
       </div>
       
       <div class="solution-banner">
-        <n-icon size="32" color="#18a058"><CheckmarkCircle /></n-icon>
+        <n-icon size="32" color="var(--nexus-success-text)"><CheckmarkCircle /></n-icon>
         <span>AI 工坊，正是为解决这些问题而生。</span>
       </div>
     </div>
@@ -316,7 +316,7 @@ function scrollToWhy() {
       color: #111827;
 
       .highlight {
-        color: #18a058;
+        color: var(--nexus-success-text);
         position: relative;
         
         &::after {
@@ -396,7 +396,7 @@ function scrollToWhy() {
         .property { color: #e2e8f0; }
         .comment { color: #94a3b8; font-style: italic; }
         .indent { padding-left: 20px; }
-        .success { color: #4ade80; font-weight: bold; margin-top: 12px; }
+        .success { color: var(--nexus-success); font-weight: bold; margin-top: 12px; }
       }
     }
   }
@@ -510,7 +510,7 @@ function scrollToWhy() {
             content: '•';
             position: absolute;
             left: 0;
-            color: #18a058;
+            color: var(--nexus-success-text);
             font-weight: bold;
           }
         }
@@ -518,7 +518,7 @@ function scrollToWhy() {
 
       .feature-highlight {
         font-size: 18px;
-        color: #18a058;
+        color: var(--nexus-success-text);
         background: #f0fdf4;
         padding: 12px;
         border-radius: 8px;

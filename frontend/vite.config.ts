@@ -9,7 +9,9 @@ import { imagetools } from 'vite-imagetools'
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
-  const apiBaseUrl = env.VITE_API_BASE_URL || 'http://localhost:8081'
+  // 显式使用 127.0.0.1：Windows 下 localhost 可能优先解析为 IPv6 ::1，
+  // 而 Django dev server 仅监听 IPv4 127.0.0.1，会导致代理 502
+  const apiBaseUrl = env.VITE_API_BASE_URL || 'http://127.0.0.1:8081'
   const isProduction = mode === 'production'
 
   // CDN 基础路径（生产构建时给静态资源加前缀，开发/无配置时回退原始路径）

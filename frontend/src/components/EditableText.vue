@@ -102,7 +102,6 @@ onMounted(() => {
 <style scoped>
 .editable-text {
   width: 100%;
-  outline: none;
   white-space: pre-wrap;
   word-break: break-word;
 }

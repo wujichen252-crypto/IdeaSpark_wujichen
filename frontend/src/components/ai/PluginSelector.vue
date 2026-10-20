@@ -217,7 +217,7 @@ function nameById(id: string) {
   transition: all .2s ease;
   
   &.active {
-    border-color: #18a058;
+    border-color: var(--nexus-success);
     box-shadow: 0 0 0 2px rgba(24,160,88,.15);
   }
   

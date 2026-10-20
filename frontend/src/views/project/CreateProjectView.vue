@@ -784,7 +784,6 @@ function getCategoryLabel(value: string): string {
   }
 
   &:focus {
-    outline: none;
     border-color: var(--color-black);
     box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
   }
@@ -929,7 +928,6 @@ function getCategoryLabel(value: string): string {
       }
 
       &:focus {
-        outline: none;
         border-color: var(--color-black);
       }
     }

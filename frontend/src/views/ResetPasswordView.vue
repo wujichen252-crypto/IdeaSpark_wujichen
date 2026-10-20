@@ -314,7 +314,6 @@ h1 {
     box-sizing: border-box;
     border-radius: 0;
     color: $text-color;
-    outline: none;
     transition: all 0.3s;
 
     &::placeholder {
@@ -367,7 +366,6 @@ h1 {
   }
 
   &:focus {
-    outline: none;
     box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
   }
 

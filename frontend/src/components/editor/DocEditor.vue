@@ -602,7 +602,6 @@ onUnmounted(() => {
   line-height: 1.8;
   font-family: var(--nexus-font-body);
   color: var(--nexus-text-primary);
-  outline: none;
 
   :deep(h1) { font-size: 2em; margin: 0.67em 0; }
   :deep(h2) { font-size: 1.5em; margin: 0.75em 0; }

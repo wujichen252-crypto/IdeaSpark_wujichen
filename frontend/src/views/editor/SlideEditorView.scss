@@ -265,7 +265,6 @@
   }
 
   &:focus {
-    outline: none;
     background: var(--nexus-surface);
     box-shadow: 0 0 0 2px var(--nexus-text-primary);
   }
@@ -793,7 +792,6 @@
   font-weight: 600;
   color: var(--nexus-text-primary);
   text-align: center;
-  outline: none;
   width: 100%;
   line-height: 1.2;
   border: 1px dashed transparent;
@@ -821,7 +819,6 @@
   font-weight: 400;
   color: var(--nexus-text-secondary);
   text-align: center;
-  outline: none;
   width: 100%;
   border: 1px dashed transparent;
   border-radius: 4px;
@@ -847,7 +844,6 @@
   flex: 1;
   font-size: 18px;
   color: var(--nexus-text-primary);
-  outline: none;
   width: 100%;
   line-height: 1.6;
   white-space: pre-wrap;
@@ -910,7 +906,6 @@
   padding: 8px;
   font-size: 14px;
   color: var(--nexus-text-primary);
-  outline: none;
   overflow: auto;
   word-break: break-word;
   white-space: pre-wrap;
@@ -1333,7 +1328,6 @@
   line-height: 1.4;
 
   &:focus {
-    outline: none;
     border-color: var(--nexus-text-primary);
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
   }
@@ -1391,10 +1385,6 @@
   color: var(--nexus-text-primary);
   background: transparent;
   font-family: var(--nexus-font-ui);
-
-  &:focus {
-    outline: none;
-  }
 
   &::placeholder {
     color: var(--nexus-text-tertiary);

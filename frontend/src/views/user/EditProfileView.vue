@@ -591,7 +591,6 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   &:focus {
-    outline: none;
     border-color: #000000;
   }
 }

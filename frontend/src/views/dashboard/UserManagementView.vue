@@ -373,7 +373,6 @@ $color-danger: #ef4444;
     }
 
     &:focus {
-      outline: none;
       border-color: $color-black;
     }
   }

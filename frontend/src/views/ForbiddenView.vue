@@ -48,7 +48,7 @@
 .home-link {
   display: inline-block;
   padding: 8px 24px;
-  background-color: #18a058;
+  background-color: var(--nexus-success);
   color: #fff;
   border-radius: 4px;
   text-decoration: none;

@@ -342,10 +342,10 @@ $color-danger: #ef4444;
   border-right: 1px solid $color-gray-200;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 56px);
+  height: calc(100vh - var(--header-height));
   position: fixed;
   left: 0;
-  top: 56px;
+  top: var(--header-height);
   z-index: 10;
   overflow-y: auto;
 
@@ -503,7 +503,7 @@ $color-danger: #ef4444;
 .main-content {
   flex: 1;
   margin-left: 240px;
-  min-height: calc(100vh - 56px);
+  min-height: calc(100vh - var(--header-height));
   overflow-y: auto;
   background: $color-bg;
 

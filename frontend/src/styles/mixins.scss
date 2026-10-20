@@ -7,7 +7,7 @@
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid var(--nexus-border-light);
   border-radius: var(--nexus-radius-2xl);
   box-shadow: var(--nexus-shadow-md);
 }
@@ -48,11 +48,12 @@
   border-radius: var(--nexus-radius-full);
   border: none;
   cursor: pointer;
-  transition: all var(--nexus-duration-fast) var(--nexus-ease);
+  transition: background-color var(--nexus-duration-fast) var(--nexus-ease),
+    border-color var(--nexus-duration-fast) var(--nexus-ease),
+    color var(--nexus-duration-fast) var(--nexus-ease);
 
   &:hover {
     background-color: var(--nexus-accent-hover);
-    transform: scale(1.02);
   }
 
   &:active {
@@ -81,7 +82,9 @@
   border-radius: var(--nexus-radius-full);
   border: 1px solid var(--nexus-border);
   cursor: pointer;
-  transition: all var(--nexus-duration-fast) var(--nexus-ease);
+  transition: background-color var(--nexus-duration-fast) var(--nexus-ease),
+    border-color var(--nexus-duration-fast) var(--nexus-ease),
+    color var(--nexus-duration-fast) var(--nexus-ease);
 
   &:hover {
     background-color: var(--nexus-divider);
@@ -106,7 +109,8 @@
   border-radius: var(--nexus-radius-full);
   border: none;
   cursor: pointer;
-  transition: all var(--nexus-duration-fast) var(--nexus-ease);
+  transition: background-color var(--nexus-duration-fast) var(--nexus-ease),
+    color var(--nexus-duration-fast) var(--nexus-ease);
 
   &:hover {
     background-color: var(--nexus-divider);
@@ -135,7 +139,7 @@
   }
 
   &:focus {
-    outline: none;
+    /* 焦点可见性由全局 :focus-visible 统一提供，此处只负责边框反馈 */
     border-color: var(--nexus-accent);
   }
 }

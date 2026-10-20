@@ -3,21 +3,22 @@
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  background: #fafafa;
+  background: var(--nexus-bg);
   position: absolute;
   top: 0;
   left: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--nexus-font-ui);
 }
 
 /* Nexus 风格头部 */
 .nexus-editor-header {
-  height: 60px;
+  /* 统一为全站页头高度令牌，消除第三个页头高度值 */
+  height: var(--header-height);
   padding: 0 20px;
   background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid var(--nexus-border-light);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -37,7 +38,7 @@
 .nexus-header-btn {
   width: 36px;
   height: 36px;
-  border-radius: 9999px;
+  border-radius: var(--nexus-radius-full);
   transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -46,7 +47,7 @@
 }
 
 .nexus-header-btn-active {
-  background: #111827 !important;
+  background: var(--nexus-text-primary) !important;
   color: #fff !important;
 }
 
@@ -62,7 +63,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   font-weight: 600;
-  color: #111827;
+  color: var(--nexus-text-primary);
   font-size: 15px;
   letter-spacing: -0.01em;
 }
@@ -74,7 +75,7 @@
   font-size: 12px;
   font-weight: 500;
   padding: 4px 10px;
-  border-radius: 9999px;
+  border-radius: var(--nexus-radius-full);
   transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -118,19 +119,19 @@
 .nexus-save-btn {
   height: 34px;
   padding: 0 18px;
-  border-radius: 9999px;
-  background: #111827;
+  border-radius: var(--nexus-radius-full);
+  background: var(--nexus-text-primary);
   color: #fff;
   font-size: 13px;
   font-weight: 600;
   border: none;
   cursor: pointer;
   transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--nexus-font-ui);
 }
 
 .nexus-save-btn:hover {
-  background: #374151;
+  background: var(--nexus-accent-hover);
 }
 
 .nexus-save-btn:disabled {
@@ -243,8 +244,8 @@
 .slides-sider-header {
   padding: 14px 16px;
   font-weight: 600;
-  color: #111827;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--nexus-text-primary);
+  border-bottom: 1px solid var(--nexus-border-light);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -259,7 +260,7 @@
 }
 
 .nexus-pill-btn {
-  border-radius: 9999px !important;
+  border-radius: var(--nexus-radius-full) !important;
 }
 
 .slides-list {
@@ -273,7 +274,7 @@
 .slide-item {
   padding: 10px;
   border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--nexus-border-light);
   background: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -285,13 +286,13 @@
 }
 
 .slide-item.active {
-  border-color: #111827;
+  border-color: var(--nexus-text-primary);
   background: rgba(0, 0, 0, 0.04);
 }
 
 .slide-item-title {
   font-weight: 600;
-  color: #111827;
+  color: var(--nexus-text-primary);
   font-size: 13px;
 }
 

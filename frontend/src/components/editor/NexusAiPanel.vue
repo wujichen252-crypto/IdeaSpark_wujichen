@@ -460,7 +460,6 @@ function addContext() {
   font-family: var(--nexus-font-ui);
   line-height: 1.5;
   resize: none;
-  outline: none;
   transition: border-color 200ms var(--nexus-ease);
 
   &::placeholder {

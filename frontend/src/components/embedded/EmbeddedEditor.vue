@@ -285,7 +285,6 @@ onBeforeUnmount(() => {
   font-size: 14px;
   font-weight: 500;
   color: var(--nexus-text-primary);
-  outline: none;
   width: 200px;
 
   &:focus {

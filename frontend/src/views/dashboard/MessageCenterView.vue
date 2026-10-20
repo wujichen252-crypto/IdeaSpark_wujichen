@@ -246,7 +246,7 @@ $color-gray-400: #9ca3af;
 $color-gray-200: #e5e7eb;
 $color-gray-100: #f3f4f6;
 $color-gray-50: #f9fafb;
-$color-blue: #3b82f6;
+$color-blue: var(--nexus-link);
 $color-green: #10b981;
 $color-red: #ef4444;
 $color-purple: #a855f7;

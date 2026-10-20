@@ -1152,7 +1152,6 @@ onMounted(() => {
         font-family: inherit;
 
         &:focus {
-          outline: none;
           border-color: #000000;
         }
 
@@ -1339,7 +1338,6 @@ onMounted(() => {
             font-family: inherit;
 
             &:focus {
-              outline: none;
               border-color: #000000;
             }
           }

@@ -1,5 +1,4 @@
 import { createApp } from 'vue'
-import './style.css'
 import '@/styles/reset.scss'
 import '@/styles/variables.scss'
 import '@/styles/nexus.scss'

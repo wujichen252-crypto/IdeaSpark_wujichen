@@ -752,7 +752,6 @@ p {
     padding: 12px 4px;
     background: transparent;
     color: $text-primary;
-    outline: none;
     transition: border-color 0.3s;
     font-size: 14px;
 
@@ -826,7 +825,6 @@ p {
   }
 
   &:focus {
-    outline: none;
     box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
   }
 
@@ -1019,7 +1017,6 @@ p {
 :deep(.n-button) {
   &:not(.n-button--disabled):focus,
   &:not(.n-button--disabled):focus-visible {
-    outline: none;
     box-shadow: none !important;
   }
 

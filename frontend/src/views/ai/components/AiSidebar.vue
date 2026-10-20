@@ -138,7 +138,7 @@ function formatDate(timestamp: number) {
         box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         
         .item-icon {
-          color: #4ade80;
+          color: var(--nexus-success);
         }
         
         .item-title {
