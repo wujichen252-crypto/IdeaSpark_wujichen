@@ -2,7 +2,7 @@
   height: 100vh;
   width: 100%;
   box-sizing: border-box;
-  background-color: #fafafa;
+  background-color: var(--nexus-bg);
 
 
 
@@ -43,8 +43,8 @@
 
 .project-name {
   font-weight: 700;
-  font-size: 14px;
-  color: #111827;
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -52,9 +52,9 @@
 
 .project-desc {
   margin-top: 4px;
-  color: #6b7280;
-  font-size: 12px;
-  line-height: 1.4;
+  color: var(--nexus-text-tertiary);
+  font-size: var(--nexus-font-size-xs);
+  line-height: var(--nexus-leading-compact);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -74,8 +74,8 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
-  height: 56px;
+  z-index: var(--nexus-z-sticky);
+  height: var(--header-height);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -100,9 +100,9 @@
 }
 
 .content-title {
-  font-size: 16px;
+  font-size: var(--nexus-font-size-md);
   font-weight: 700;
-  color: #111827;
+  color: var(--nexus-text-primary);
 }
 
 .content-body {
@@ -153,9 +153,9 @@
 .home-hero {
   position: relative;
   height: 200px;
-  border-radius: 1rem;
+  border-radius: var(--nexus-radius-lg);
   overflow: hidden;
-  background: #111827;
+  background: var(--nexus-text-primary);
   background-size: cover;
   background-position: center;
   margin-bottom: 24px;
@@ -176,18 +176,18 @@
   flex-direction: column;
   justify-content: flex-end;
   gap: 8px;
-  color: #fff;
+  color: var(--nexus-white);
 }
 
 .home-hero-title {
-  font-size: 24px;
+  font-size: var(--nexus-font-size-xl);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: var(--nexus-leading-display);
   letter-spacing: -0.01em;
 }
 
 .home-hero-subtitle {
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   color: rgba(255, 255, 255, 0.86);
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -201,7 +201,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 10px 16px;
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: rgba(255, 255, 255, 0.86);
 }
 
@@ -230,14 +230,14 @@
 }
 
 .info-row .label {
-  color: #6b7280;
-  font-size: 13px;
+  color: var(--nexus-text-tertiary);
+  font-size: var(--nexus-font-size-sm);
 }
 
 .info-row .value {
-  color: #111827;
-  font-size: 13px;
-  line-height: 1.6;
+  color: var(--nexus-text-primary);
+  font-size: var(--nexus-font-size-sm);
+  line-height: var(--nexus-leading-normal);
   word-break: break-word;
 }
 
@@ -253,22 +253,22 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 1rem;
+  border-radius: var(--nexus-radius-lg);
   box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
   padding: 16px;
 }
 
 .stat-value {
-  font-size: 24px;
+  font-size: var(--nexus-font-size-xl);
   font-weight: 700;
-  color: #111827;
+  color: var(--nexus-text-primary);
   font-variant-numeric: tabular-nums;
 }
 
 .stat-label {
   margin-top: 4px;
-  font-size: 12px;
-  color: #6b7280;
+  font-size: var(--nexus-font-size-xs);
+  color: var(--nexus-text-tertiary);
 }
 
 .file-header {
@@ -279,9 +279,9 @@
 }
 
 .file-title {
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   font-weight: 700;
-  color: #111827;
+  color: var(--nexus-text-primary);
 }
 
 .file-item {
@@ -289,20 +289,19 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .file-name {
   font-weight: 600;
-  color: #111827;
+  color: var(--nexus-text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .file-meta {
-  color: #6b7280;
-  font-size: 12px;
+  color: var(--nexus-text-tertiary);
+  font-size: var(--nexus-font-size-xs);
 }
 
 .file-badge {
@@ -312,7 +311,7 @@
 }
 
 .file-document {
-  background: #2563eb;
+  background: var(--nexus-link);
 }
 
 .file-sheet {
@@ -359,7 +358,7 @@
 }
 
 .member-name {
-  color: #111827;
+  color: var(--nexus-text-primary);
   font-weight: 600;
 }
 
@@ -386,7 +385,7 @@
 }
 
 .section-card {
-  border-radius: 1rem;
+  border-radius: var(--nexus-radius-lg);
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -401,22 +400,22 @@
 }
 
 .plugin-card {
-  border-radius: 1rem;
+  border-radius: var(--nexus-radius-lg);
   cursor: pointer;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
   }
 
-  .n-card__content {
-    padding: 16px;
+  :deep(.n-card__content) {
+    padding: var(--nexus-space-4);
   }
 }
 
@@ -429,7 +428,7 @@
 .plugin-icon {
   width: 40px;
   height: 40px;
-  border-radius: 10px;
+  border-radius: var(--nexus-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -442,7 +441,7 @@
 
 .plugin-name {
   font-weight: 600;
-  color: #111827;
+  color: var(--nexus-text-primary);
   margin-bottom: 4px;
   white-space: nowrap;
   overflow: hidden;
@@ -450,9 +449,9 @@
 }
 
 .plugin-desc {
-  color: #6b7280;
-  font-size: 12px;
-  line-height: 1.5;
+  color: var(--nexus-text-tertiary);
+  font-size: var(--nexus-font-size-xs);
+  line-height: var(--nexus-leading-compact);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -480,7 +479,7 @@
 
 .ppt-sider {
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 1rem;
+  border-radius: var(--nexus-radius-lg);
   overflow: hidden;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);
@@ -501,9 +500,9 @@
 }
 
 .ppt-sider-title {
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 700;
-  color: #111827;
+  color: var(--nexus-text-primary);
 }
 
 .ppt-slides {
@@ -516,28 +515,28 @@
 
 .ppt-slide-item {
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 0.75rem;
+  border-radius: var(--nexus-radius-md);
   padding: 10px;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.5);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .ppt-slide-item.active {
-  border-color: #000;
+  border-color: var(--nexus-accent);
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
 }
 
 .ppt-slide-item-title {
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 700;
-  color: #111827;
+  color: var(--nexus-text-primary);
   margin-bottom: 4px;
 }
 
 .ppt-slide-item-sub {
-  font-size: 12px;
-  color: #6b7280;
+  font-size: var(--nexus-font-size-xs);
+  color: var(--nexus-text-tertiary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -549,7 +548,7 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 1rem;
+  border-radius: var(--nexus-radius-lg);
   box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
   padding: 16px;
 }
@@ -564,12 +563,12 @@
   max-width: 400px;
   min-height: 140px;
   border: 2px dashed #d9d9d9;
-  border-radius: 8px;
+  border-radius: var(--nexus-radius-sm);
   overflow: hidden;
   position: relative;
   cursor: pointer;
-  transition: all 0.3s ease;
-  background: #fafafa;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  background: var(--nexus-bg);
 }
 
 .cover-upload-trigger:hover {
@@ -625,8 +624,8 @@
 .file-row .file-delete-btn {
   opacity: 0;
   visibility: hidden;
-  transition: all 0.2s ease;
-  color: #9ca3af;
+  transition: opacity 0.2s ease, visibility 0.2s ease, color 0.2s ease;
+  color: var(--nexus-text-quaternary);
 }
 
 .file-row:hover .file-delete-btn {
@@ -635,6 +634,6 @@
 }
 
 .file-row .file-delete-btn:hover {
-  color: #ef4444 !important;
+  color: var(--nexus-error) !important;
 }
 }

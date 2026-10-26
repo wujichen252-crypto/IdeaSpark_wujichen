@@ -13,7 +13,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
   pointer-events: none;
   overflow: hidden;
 }
@@ -24,7 +24,7 @@
   left: 50%;
   width: 4px;
   height: 4px;
-  background: #fff;
+  background: var(--nexus-white);
   border-radius: 50%;
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 8px rgba(255, 255, 255, 0.1),
     0 0 20px rgba(255, 255, 255, 1);
@@ -38,7 +38,7 @@
   transform: translateY(-50%);
   width: 300px;
   height: 1px;
-  background: linear-gradient(90deg, #fff, transparent);
+  background: linear-gradient(90deg, var(--nexus-white), transparent);
 }
 
 @keyframes animate-star {

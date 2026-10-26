@@ -66,12 +66,12 @@
   width: 100vw; /* 强制全屏宽度，覆盖滚动条区域 */
   margin-left: calc(50% - 50vw); /* 破框居中，确保背景色延伸到屏幕边缘 */
   padding: 100px 0 0; /* Remove bottom padding */
-  background-color: #000; /* Consistent dark theme */
+  background-color: var(--nexus-accent); /* Consistent dark theme */
   display: flex;
   justify-content: center;
-  color: #fff;
+  color: var(--nexus-white);
   position: relative;
-  z-index: 10; /* 确保盖住底部的 ImpactSection */
+  z-index: var(--nexus-z-sticky); /* 确保盖住底部的 ImpactSection */
 }
 
 .content-wrapper {
@@ -89,32 +89,32 @@
 }
 
 .main-title {
-  font-size: 5rem;
+  font-size: var(--nexus-font-size-3xl);
   font-weight: 800;
-  color: #fff;
+  color: var(--nexus-white);
   margin: 0 0 16px;
   line-height: 1;
   letter-spacing: -2px;
   text-transform: uppercase;
-  background: linear-gradient(to right, #fff, #666);
+  background: linear-gradient(to right, var(--nexus-white), var(--nexus-text-tertiary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .sub-title {
-  font-size: 1.5rem;
-  color: #666;
+  font-size: var(--nexus-font-size-xl);
+  color: var(--nexus-text-tertiary);
   font-weight: 400;
   max-width: 600px;
   margin: 0;
-  line-height: 1.6;
+  line-height: var(--nexus-leading-normal);
 }
 
 /* Divider */
 .divider {
   width: 100%;
   height: 1px;
-  background-color: #333;
+  background-color: var(--nexus-gray-800);
   margin-bottom: 60px;
 }
 
@@ -145,19 +145,19 @@
 .logo-placeholder {
   width: 32px;
   height: 32px;
-  background-color: #fff;
-  border-radius: 4px; /* Simple placeholder shape */
+  background-color: var(--nexus-white);
+  border-radius: var(--nexus-radius-sm); /* Simple placeholder shape */
 }
 
 .logo-text {
-  font-size: 1.2rem;
+  font-size: var(--nexus-font-size-lg);
   font-weight: 700;
   letter-spacing: 1px;
 }
 
 .copyright {
-  font-size: 0.875rem;
-  color: #666;
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-text-tertiary);
   margin: 0;
 }
 
@@ -175,9 +175,9 @@
 }
 
 .column-title {
-  font-size: 1rem;
+  font-size: var(--nexus-font-size-md);
   font-weight: 700;
-  color: #fff;
+  color: var(--nexus-white);
   margin: 0;
 }
 
@@ -191,14 +191,14 @@
 }
 
 .link-list li {
-  font-size: 0.9rem;
+  font-size: var(--nexus-font-size-base);
   color: #888;
   cursor: pointer;
   transition: color 0.2s;
 }
 
 .link-list li:hover {
-  color: #fff;
+  color: var(--nexus-white);
 }
 
 /* Mobile Adaptation */
@@ -208,11 +208,11 @@
   }
 
   .main-title {
-    font-size: 3rem;
+    font-size: var(--nexus-font-size-3xl);
   }
 
   .sub-title {
-    font-size: 1.1rem;
+    font-size: var(--nexus-font-size-md);
   }
 
   .footer-content {

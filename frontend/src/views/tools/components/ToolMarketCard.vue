@@ -151,8 +151,8 @@ function formatUsageCount(count?: number): string {
 
 <style scoped lang="scss">
 .tool-card {
-  border-radius: 16px;
-  transition: all 0.3s ease;
+  border-radius: var(--nexus-radius-lg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
     transform: translateY(-4px);
@@ -177,7 +177,7 @@ function formatUsageCount(count?: number): string {
 .tool-icon {
   width: 56px;
   height: 56px;
-  border-radius: 14px;
+  border-radius: var(--nexus-radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -186,7 +186,7 @@ function formatUsageCount(count?: number): string {
   .icon-svg {
     width: 28px;
     height: 28px;
-    color: #fff;
+    color: var(--nexus-white);
   }
 }
 
@@ -203,16 +203,16 @@ function formatUsageCount(count?: number): string {
 }
 
 .tool-name {
-  font-size: 16px;
+  font-size: var(--nexus-font-size-md);
   font-weight: 600;
   color: #1a1a2e;
   margin: 0;
 }
 
 .tool-desc {
-  font-size: 13px;
-  color: #6b7280;
-  line-height: 1.5;
+  font-size: var(--nexus-font-size-sm);
+  color: var(--nexus-text-tertiary);
+  line-height: var(--nexus-leading-compact);
   margin: 0 0 10px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -224,8 +224,8 @@ function formatUsageCount(count?: number): string {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 12px;
-  color: #9ca3af;
+  font-size: var(--nexus-font-size-xs);
+  color: var(--nexus-text-quaternary);
   margin-bottom: 8px;
 
   .meta-item {
@@ -235,7 +235,7 @@ function formatUsageCount(count?: number): string {
   }
 
   .price {
-    color: #ef4444;
+    color: var(--nexus-error);
     font-weight: 600;
   }
 }
@@ -246,8 +246,8 @@ function formatUsageCount(count?: number): string {
   gap: 6px;
 
   .tag-item {
-    background: #f3f4f6;
-    color: #6b7280;
+    background: var(--nexus-divider);
+    color: var(--nexus-text-tertiary);
   }
 }
 

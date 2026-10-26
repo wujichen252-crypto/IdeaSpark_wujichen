@@ -301,11 +301,11 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-$color-gray-900: #111827;
-$color-gray-600: #6b7280;
-$color-gray-400: #9ca3af;
-$color-gray-200: #e5e7eb;
-$color-gray-100: #f3f4f6;
+$color-gray-900: var(--nexus-text-primary);
+$color-gray-600: var(--nexus-text-tertiary);
+$color-gray-400: var(--nexus-text-quaternary);
+$color-gray-200: var(--nexus-border);
+$color-gray-100: var(--nexus-divider);
 
 .account-settings-view {
   min-height: 100vh;
@@ -314,7 +314,7 @@ $color-gray-100: #f3f4f6;
 .page-header {
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: var(--nexus-z-header);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -331,14 +331,14 @@ $color-gray-100: #f3f4f6;
 }
 
 .page-title {
-  font-size: 20px;
+  font-size: var(--nexus-font-size-lg);
   font-weight: 600;
   color: $color-gray-900;
   margin: 0;
 }
 
 .page-subtitle {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-400;
 }
 
@@ -383,12 +383,12 @@ $color-gray-100: #f3f4f6;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   padding: 24px;
 }
 
 .card-title {
-  font-size: 16px;
+  font-size: var(--nexus-font-size-md);
   font-weight: 600;
   color: $color-gray-900;
   margin-bottom: 20px;
@@ -412,14 +412,14 @@ $color-gray-100: #f3f4f6;
   padding: 8px 16px;
   background: transparent;
   border: 1px solid $color-gray-200;
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-600;
   cursor: pointer;
 
   &:hover {
-    border-color: #000;
-    color: #000;
+    border-color: var(--nexus-accent);
+    color: var(--nexus-accent);
   }
 }
 
@@ -428,7 +428,7 @@ $color-gray-100: #f3f4f6;
 
   label {
     display: block;
-    font-size: 13px;
+    font-size: var(--nexus-font-size-sm);
     color: $color-gray-600;
     margin-bottom: 8px;
   }
@@ -438,14 +438,14 @@ $color-gray-100: #f3f4f6;
 .form-textarea {
   width: 100%;
   padding: 10px 16px;
-  background: #fff;
+  background: var(--nexus-white);
   border: 1px solid $color-gray-200;
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-900;
 
   &:focus {
-    border-color: #000;
+    border-color: var(--nexus-accent);
   }
 
   &:disabled {
@@ -461,11 +461,11 @@ $color-gray-100: #f3f4f6;
 
 .save-btn {
   padding: 10px 24px;
-  background: #000;
+  background: var(--nexus-accent);
   border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  color: #fff;
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-white);
   cursor: pointer;
   margin-top: 8px;
 
@@ -498,12 +498,12 @@ $color-gray-100: #f3f4f6;
 }
 
 .toggle-label {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-900;
 }
 
 .toggle-desc {
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-400;
 }
 
@@ -518,7 +518,7 @@ $color-gray-100: #f3f4f6;
     height: 0;
 
     &:checked + .toggle-slider {
-      background: #000;
+      background: var(--nexus-accent);
     }
 
     &:checked + .toggle-slider:before {
@@ -535,7 +535,7 @@ $color-gray-100: #f3f4f6;
   right: 0;
   bottom: 0;
   background: $color-gray-200;
-  border-radius: 24px;
+  border-radius: var(--nexus-radius-xl);
   transition: 0.3s;
 
   &:before {
@@ -545,7 +545,7 @@ $color-gray-100: #f3f4f6;
     width: 18px;
     left: 3px;
     bottom: 3px;
-    background: #fff;
+    background: var(--nexus-white);
     border-radius: 50%;
     transition: 0.3s;
   }

@@ -4,20 +4,20 @@
 
 /* ── Glassmorphism Card ── */
 @mixin nexus-glass {
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--nexus-bg-glass);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--nexus-border-light);
-  border-radius: var(--nexus-radius-2xl);
+  border-radius: var(--nexus-radius-xl);
   box-shadow: var(--nexus-shadow-md);
 }
 
 @mixin nexus-glass-dark {
-  background: rgba(17, 24, 39, 0.72);
+  background: var(--nexus-bg-glass-dark);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--nexus-radius-2xl);
+  border-radius: var(--nexus-radius-xl);
   box-shadow: var(--nexus-shadow-lg);
 }
 
@@ -42,7 +42,7 @@
   background-color: var(--nexus-accent);
   color: var(--nexus-text-inverse);
   font-family: var(--nexus-font-ui);
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   letter-spacing: var(--nexus-letter-spacing);
   border-radius: var(--nexus-radius-full);
@@ -77,7 +77,7 @@
   background-color: transparent;
   color: var(--nexus-text-primary);
   font-family: var(--nexus-font-ui);
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   border-radius: var(--nexus-radius-full);
   border: 1px solid var(--nexus-border);
@@ -130,7 +130,7 @@
   border: 1px solid var(--nexus-border);
   border-radius: var(--nexus-radius-full);
   font-family: var(--nexus-font-ui);
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: var(--nexus-text-primary);
   transition: border-color var(--nexus-duration-fast) var(--nexus-ease);
 
@@ -212,7 +212,7 @@
   padding: 4px 12px;
   background: var(--nexus-divider);
   color: var(--nexus-text-secondary);
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
   border-radius: var(--nexus-radius-full);
   border: none;
@@ -223,7 +223,7 @@
 @mixin nexus-sticky-header {
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: var(--nexus-z-header);
   @include nexus-glass;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid var(--nexus-border-light);
 }

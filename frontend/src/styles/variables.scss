@@ -6,7 +6,8 @@
   /* ── Color Palette ── */
   --nexus-bg: #fafafa;
   --nexus-bg-elevated: #ffffff;
-  --nexus-bg-glass: rgba(255, 255, 255, 0.72);
+  --nexus-bg-glass: rgba(255, 255, 255, 0.72); /* 浅色玻璃底 */
+  --nexus-bg-glass-dark: rgba(17, 24, 39, 0.72); /* 深色玻璃底 */
 
   /* 文字三级：全部通过 WCAG AA（正文 ≥4.5:1，白底） */
   --nexus-text-primary: #111827; /* 16.4:1 */
@@ -32,6 +33,26 @@
   --nexus-warning-text: #b45309; /* 5.0:1 */
   --nexus-error-text: #b91c1c; /* 6.5:1 */
 
+  /* ── Neutrals ── 中性灰原语：全站灰阶的唯一来源；业务样式请引用下方语义令牌 */
+  --nexus-white: #ffffff;
+  --nexus-gray-50: #f9fafb;
+  --nexus-gray-100: #f3f4f6;
+  --nexus-gray-200: #e5e7eb;
+  --nexus-gray-300: #d1d5db;
+  --nexus-gray-400: #9ca3af;
+  --nexus-gray-600: #6b7280;
+  --nexus-gray-700: #374151;
+  --nexus-gray-800: #1f2937;
+  --nexus-gray-900: #111827;
+
+  /* ── Surfaces & Lines ── （语义层级） */
+  --nexus-bg-subtle: #f9fafb; /* 次级底色：分区背景 / 斑马纹 */
+  --nexus-bg-sunken: #f3f4f6; /* 凹陷底色：代码块 / 内嵌区域 */
+  --nexus-border-strong: #d1d5db; /* 强边框：需要明确分界的容器 */
+
+  /* 第四级文字：仅用于占位符、禁用文字与纯装饰性图标；对比度不足，禁止承载正文 */
+  --nexus-text-quaternary: #9ca3af;
+
   /* ── Typography ── */
   /* 单一字体栈：外链字体已移除，改用系统字体 + 中文字体回退，保证国内外/断网环境字面一致 */
   --nexus-font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'HarmonyOS Sans SC',
@@ -41,6 +62,22 @@
 
   /* 仅用于拉丁文/装饰性文字，不再全局作用于中文（避免中文挤字） */
   --nexus-letter-spacing: -0.01em;
+
+  /* 字号刻度：8 档，全站只允许取这些值（最小 12px，保证可读性） */
+  --nexus-font-size-xs: 12px; /* 辅助说明 / 标签 */
+  --nexus-font-size-sm: 13px; /* 密集列表 / 元信息 */
+  --nexus-font-size-base: 14px; /* 正文默认 */
+  --nexus-font-size-md: 16px; /* 小标题 */
+  --nexus-font-size-lg: 20px; /* 区块标题 */
+  --nexus-font-size-xl: 24px; /* 页面标题 */
+  --nexus-font-size-2xl: 32px; /* 展示级标题 */
+  --nexus-font-size-3xl: 40px; /* 首屏主标题 */
+
+  /* 行高刻度：4 档（中文正文用 1.6，长文/富文本用 1.75） */
+  --nexus-leading-display: 1.3; /* 大标题 */
+  --nexus-leading-compact: 1.5; /* 紧凑列表 */
+  --nexus-leading-normal: 1.6; /* 正文默认 */
+  --nexus-leading-prose: 1.75; /* 长文 / 富文本 */
 
   /* ── Spacing (4px grid) ── */
   --nexus-space-1: 4px;
@@ -66,6 +103,21 @@
   --nexus-shadow-md: 0 4px 24px -4px rgba(0, 0, 0, 0.06);
   --nexus-shadow-lg: 0 12px 40px -12px rgba(0, 0, 0, 0.08);
   --nexus-shadow-xl: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+
+  /* ── Elevation / z-index ── 层级刻度：全站 z-index 只允许取这些值（单调递增，每级语义唯一） */
+  --nexus-z-below: -1; /* 装饰性背景：置于父级之下 */
+  --nexus-z-base: 0; /* 普通文档流 */
+  --nexus-z-raised: 1; /* 局部浮起：自身内容高于同层兄弟 */
+  --nexus-z-raised-2: 2; /* 浮起加强：同层内需压过 raised */
+  --nexus-z-lift: 5; /* 浮起最强：仍属组件内部层级 */
+  --nexus-z-sticky: 10; /* 组件内吸顶 / 吸底栏 */
+  --nexus-z-popover: 20; /* 组件内气泡 / 悬浮说明 */
+  --nexus-z-header: 30; /* 页面级固定栏 */
+  --nexus-z-nav: 50; /* 页面级导航 / 侧栏 */
+  --nexus-z-dropdown: 100; /* 下拉面板 / 全局浮层 */
+  --nexus-z-overlay: 1000; /* 遮罩层 */
+  --nexus-z-modal: 2000; /* 弹窗 / 抽屉 */
+  --nexus-z-toast: 9999; /* 全局提示（message / notification） */
 
   /* ── Animation ── */
   --nexus-ease: cubic-bezier(0.16, 1, 0.3, 1);

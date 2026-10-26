@@ -49,15 +49,15 @@ defineEmits<{
 
 <style scoped lang="scss">
 .plugin-card {
-  border-radius: 12px;
-  border: 1px solid #f3f4f6;
-  transition: all 0.2s ease;
+  border-radius: var(--nexus-radius-md);
+  border: 1px solid var(--nexus-divider);
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   height: 100%;
   cursor: pointer;
   
   &:hover {
-    border-color: #d1d5db;
-    background-color: #f9fafb;
+    border-color: var(--nexus-border-strong);
+    background-color: var(--nexus-bg-subtle);
     transform: translateY(-2px);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
@@ -70,7 +70,7 @@ defineEmits<{
     .plugin-icon {
       width: 48px;
       height: 48px;
-      border-radius: 10px;
+      border-radius: var(--nexus-radius-md);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -85,16 +85,16 @@ defineEmits<{
       
       .plugin-name {
         font-weight: 600;
-        color: #1f2937;
-        font-size: 15px;
+        color: var(--nexus-gray-800);
+        font-size: var(--nexus-font-size-base);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
       
       .plugin-author {
-        font-size: 12px;
-        color: #6b7280;
+        font-size: var(--nexus-font-size-xs);
+        color: var(--nexus-text-tertiary);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -103,9 +103,9 @@ defineEmits<{
   }
   
   .plugin-desc {
-    font-size: 13px;
-    color: #4b5563;
-    line-height: 1.5;
+    font-size: var(--nexus-font-size-sm);
+    color: var(--nexus-text-secondary);
+    line-height: var(--nexus-leading-compact);
     margin-bottom: 16px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -121,8 +121,8 @@ defineEmits<{
     margin-top: auto;
     
     .plugin-users {
-      font-size: 12px;
-      color: #9ca3af;
+      font-size: var(--nexus-font-size-xs);
+      color: var(--nexus-text-quaternary);
       display: flex;
       align-items: center;
       gap: 4px;

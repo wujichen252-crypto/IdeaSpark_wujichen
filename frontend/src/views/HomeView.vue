@@ -396,8 +396,8 @@ onBeforeUnmount(() => {
 .main-scroll-container {
   --home-module-gap: 88px;
   position: relative;
-  z-index: 10;
-  background-color: #000;
+  z-index: var(--nexus-z-sticky);
+  background-color: var(--nexus-accent);
   width: 100%;
   contain: paint;
 }
@@ -421,13 +421,13 @@ onBeforeUnmount(() => {
   height: var(--home-reveal-spacer-height);
   background: transparent;
   position: relative;
-  z-index: -1;
+  z-index: var(--nexus-z-below);
   pointer-events: none;
 }
 
 .section-content {
   min-height: var(--home-section-min-height);
-  background-color: #000;
+  background-color: var(--nexus-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -450,7 +450,7 @@ onBeforeUnmount(() => {
 .showcase-card {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   height: 100%;
 }
 
@@ -470,15 +470,15 @@ onBeforeUnmount(() => {
 }
 
 .card-title {
-  font-size: 1.25rem;
+  font-size: var(--nexus-font-size-lg);
   font-weight: 700;
   color: rgba(255, 255, 255, 0.95);
 }
 
 .card-subtitle {
   color: rgba(255, 255, 255, 0.7);
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: var(--nexus-font-size-base);
+  line-height: var(--nexus-leading-compact);
 }
 
 .principles {
@@ -488,14 +488,14 @@ onBeforeUnmount(() => {
 
 .principle {
   padding: 12px 12px;
-  border-radius: 14px;
+  border-radius: var(--nexus-radius-lg);
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   text-align: left;
 }
 
 .principle__title {
-  font-size: 0.98rem;
+  font-size: var(--nexus-font-size-md);
   font-weight: 700;
   color: rgba(255, 255, 255, 0.92);
   margin-bottom: 6px;
@@ -503,8 +503,8 @@ onBeforeUnmount(() => {
 
 .principle__desc {
   color: rgba(255, 255, 255, 0.72);
-  font-size: 0.92rem;
-  line-height: 1.6;
+  font-size: var(--nexus-font-size-base);
+  line-height: var(--nexus-leading-normal);
 }
 
 .pill-row {
@@ -524,7 +524,7 @@ onBeforeUnmount(() => {
 
 .feature-item {
   padding: 12px 12px;
-  border-radius: 14px;
+  border-radius: var(--nexus-radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.02);
   transition:
@@ -538,7 +538,7 @@ onBeforeUnmount(() => {
 }
 
 .feature-item__title {
-  font-size: 1rem;
+  font-size: var(--nexus-font-size-md);
   font-weight: 700;
   color: rgba(255, 255, 255, 0.95);
   margin-bottom: 6px;
@@ -546,8 +546,8 @@ onBeforeUnmount(() => {
 
 .feature-item__desc {
   color: rgba(255, 255, 255, 0.75);
-  font-size: 0.9rem;
-  line-height: 1.4;
+  font-size: var(--nexus-font-size-base);
+  line-height: var(--nexus-leading-compact);
   margin-bottom: 10px;
 }
 
@@ -561,25 +561,25 @@ onBeforeUnmount(() => {
   display: inline-flex;
   align-items: center;
   padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 0.82rem;
+  border-radius: var(--nexus-radius-full);
+  font-size: var(--nexus-font-size-sm);
   color: rgba(255, 255, 255, 0.88);
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-size: var(--nexus-font-size-3xl);
   font-weight: 600;
-  color: #fff;
+  color: var(--nexus-white);
   margin: 0;
 }
 
 .section-desc {
-  font-size: 1.125rem;
+  font-size: var(--nexus-font-size-md);
   color: #ccc;
   max-width: 600px;
-  line-height: 1.6;
+  line-height: var(--nexus-leading-normal);
   margin: 12px auto 0;
 }
 
@@ -589,7 +589,7 @@ onBeforeUnmount(() => {
   }
 
   .section-title {
-    font-size: 1.8rem;
+    font-size: var(--nexus-font-size-xl);
   }
 
   .section-content {

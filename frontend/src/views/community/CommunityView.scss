@@ -1,20 +1,20 @@
 // ==================== 设计令牌 ====================
-$color-bg: #fafafa;
-$color-white: #ffffff;
-$color-black: #000000;
-$color-gray-900: #111827;
-$color-gray-800: #1f2937;
-$color-gray-700: #374151;
-$color-gray-600: #6b7280;
-$color-gray-500: #6b7280;
-$color-gray-400: #9ca3af;
-$color-gray-300: #d1d5db;
-$color-gray-200: #e5e7eb;
-$color-gray-100: #f3f4f6;
-$color-gray-50: #f9fafb;
-$color-success: #10b981;
-$color-warning: #f59e0b;
-$color-danger: #ef4444;
+$color-bg: var(--nexus-bg);
+$color-white: var(--nexus-white);
+$color-black: var(--nexus-accent);
+$color-gray-900: var(--nexus-text-primary);
+$color-gray-800: var(--nexus-gray-800);
+$color-gray-700: var(--nexus-gray-700);
+$color-gray-600: var(--nexus-text-tertiary);
+$color-gray-500: var(--nexus-text-tertiary);
+$color-gray-400: var(--nexus-text-quaternary);
+$color-gray-300: var(--nexus-border-strong);
+$color-gray-200: var(--nexus-border);
+$color-gray-100: var(--nexus-divider);
+$color-gray-50: var(--nexus-bg-subtle);
+$color-success: var(--nexus-success);
+$color-warning: var(--nexus-warning);
+$color-danger: var(--nexus-error);
 $color-blue: var(--nexus-link);
 $color-purple: #a855f7;
 
@@ -36,7 +36,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 50;
+  z-index: var(--nexus-z-nav);
   opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
@@ -63,7 +63,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 24px;
+  border-radius: var(--nexus-radius-xl);
   box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
   animation: slideUp 0.7s $ease-out-expo forwards;
   opacity: 0;
@@ -94,7 +94,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   animation: slideUp 0.7s $ease-out-expo forwards;
   opacity: 0;
   background: $color-white;
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   padding: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 
@@ -108,12 +108,12 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     padding: 10px 24px;
     background: transparent;
     border: none;
-    border-radius: 12px;
-    font-size: 14px;
+    border-radius: var(--nexus-radius-md);
+    font-size: var(--nexus-font-size-base);
     font-weight: 500;
     color: $color-gray-600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     text-align: center;
     flex: 1;
 
@@ -188,34 +188,34 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     .group-card-icon {
       width: 64px;
       height: 64px;
-      border-radius: 16px;
+      border-radius: var(--nexus-radius-lg);
       border: 4px solid $color-white;
       object-fit: cover;
       margin-top: -32px;
       position: relative;
-      z-index: 2;
+      z-index: var(--nexus-z-raised-2);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .group-card-info {
       .group-card-name {
-        font-size: 18px;
+        font-size: var(--nexus-font-size-md);
         font-weight: 600;
         color: $color-gray-900;
         margin-bottom: 2px;
       }
 
       .group-card-keyword {
-        font-size: 13px;
+        font-size: var(--nexus-font-size-sm);
         color: $color-success;
         font-weight: 500;
       }
     }
 
     .group-card-desc {
-      font-size: 14px;
+      font-size: var(--nexus-font-size-base);
       color: $color-gray-600;
-      line-height: 1.5;
+      line-height: var(--nexus-leading-compact);
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -235,7 +235,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
         display: flex;
         align-items: center;
         gap: 6px;
-        font-size: 13px;
+        font-size: var(--nexus-font-size-sm);
         color: $color-gray-500;
 
         .count-icon {
@@ -249,15 +249,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
         background: $color-black;
         color: $color-white;
         border: none;
-        border-radius: 10px;
-        font-size: 13px;
+        border-radius: var(--nexus-radius-md);
+        font-size: var(--nexus-font-size-sm);
         font-weight: 500;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.3s ease;
 
         &:hover {
-          background: #333;
-          transform: scale(1.05);
+          background: var(--nexus-gray-800);
         }
       }
 
@@ -266,15 +265,15 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
         background: $color-black;
         color: $color-white;
         border: none;
-        border-radius: 10px;
-        font-size: 13px;
+        border-radius: var(--nexus-radius-md);
+        font-size: var(--nexus-font-size-sm);
         font-weight: 600;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 
         &:hover {
-          background: #333;
+          background: var(--nexus-gray-800);
           transform: translateY(-1px);
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
@@ -300,14 +299,13 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
         justify-content: center;
         background: $color-white;
         border: 1.5px solid $color-gray-400;
-        border-radius: 10px;
+        border-radius: var(--nexus-radius-md);
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 
         &:hover {
           background: $color-danger;
           border-color: $color-danger;
-          transform: scale(1.05);
         }
 
         .quit-icon {
@@ -337,8 +335,8 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   align-items: center;
   gap: 12px;
   padding: 10px;
-  border-radius: 12px;
-  transition: all 0.3s ease;
+  border-radius: var(--nexus-radius-md);
+  transition: background-color 0.3s ease;
 
   &:hover {
     background: $color-gray-100;
@@ -356,7 +354,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   .group-icon {
     width: 40px;
     height: 40px;
-    border-radius: 10px;
+    border-radius: var(--nexus-radius-md);
     object-fit: cover;
     flex-shrink: 0;
   }
@@ -369,7 +367,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     min-width: 0;
 
     .group-name {
-      font-size: 14px;
+      font-size: var(--nexus-font-size-base);
       font-weight: 500;
       color: $color-gray-900;
       white-space: nowrap;
@@ -391,7 +389,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .group-count {
-      font-size: 12px;
+      font-size: var(--nexus-font-size-xs);
       color: $color-gray-500;
       white-space: nowrap;
     }
@@ -399,20 +397,20 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
   .enter-group-btn {
     padding: 6px 14px;
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     font-weight: 600;
     color: $color-white;
     background: $color-black;
     border: none;
-    border-radius: 8px;
+    border-radius: var(--nexus-radius-sm);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     white-space: nowrap;
     flex-shrink: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 
     &:hover {
-      background: #333;
+      background: var(--nexus-gray-800);
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
@@ -429,7 +427,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   padding: 20px 0;
 
   p {
-    font-size: 13px;
+    font-size: var(--nexus-font-size-sm);
     color: $color-gray-500;
     margin-bottom: 12px;
   }
@@ -438,9 +436,9 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     padding: 8px 16px;
     background: $color-black;
     border: none;
-    border-radius: 8px;
+    border-radius: var(--nexus-radius-sm);
     color: $color-white;
-    font-size: 13px;
+    font-size: var(--nexus-font-size-sm);
     font-weight: 500;
     cursor: pointer;
     transition: background 0.3s ease;
@@ -468,7 +466,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .story-ring {
-  background: linear-gradient(135deg, #fbbf24 0%, #ef4444 50%, #ec4899 100%);
+  background: linear-gradient(135deg, #fbbf24 0%, var(--nexus-error) 50%, #ec4899 100%);
   padding: 3px;
   border-radius: 50%;
 }
@@ -496,14 +494,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   margin-bottom: 20px;
 
   .user-name {
-    font-size: 18px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 600;
     color: $color-gray-900;
     margin-bottom: 4px;
   }
 
   .user-role {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     color: $color-gray-500;
   }
 }
@@ -519,13 +517,13 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     flex-direction: column;
 
     .stat-value {
-      font-size: 20px;
+      font-size: var(--nexus-font-size-lg);
       font-weight: 600;
       color: $color-gray-900;
     }
 
     .stat-label {
-      font-size: 12px;
+      font-size: var(--nexus-font-size-xs);
       color: $color-gray-500;
     }
   }
@@ -536,9 +534,9 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   padding: 10px;
   background: $color-black;
   border: none;
-  border-radius: 12px;
+  border-radius: var(--nexus-radius-md);
   color: $color-white;
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   cursor: pointer;
   transition: background 0.3s ease;
@@ -556,7 +554,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 16px;
+  font-size: var(--nexus-font-size-md);
   font-weight: 600;
   color: $color-gray-900;
   margin-bottom: 16px;
@@ -568,7 +566,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
   .view-all-btn {
     margin-left: auto;
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     font-weight: 400;
     color: $color-gray-500;
     background: none;
@@ -587,14 +585,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     align-items: center;
     gap: 4px;
     padding: 6px 12px;
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     font-weight: 500;
     color: $color-gray-600;
     background: $color-gray-100;
     border: none;
-    border-radius: 8px;
+    border-radius: var(--nexus-radius-sm);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 
     .explore-icon-sm {
       width: 14px;
@@ -627,13 +625,13 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .topic-name {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     font-weight: 500;
     color: $color-gray-900;
   }
 
   .topic-count {
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     color: $color-gray-400;
   }
 }
@@ -670,17 +668,16 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     padding: 12px 16px 12px 48px;
     background: $color-white;
     border: 1px solid $color-gray-200;
-    border-radius: 16px;
-    font-size: 14px;
+    border-radius: var(--nexus-radius-lg);
+    font-size: var(--nexus-font-size-base);
     color: $color-gray-900;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 
     &::placeholder {
       color: $color-gray-400;
     }
 
     &:focus {
-      outline: none;
       border-color: $color-black;
       box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
     }
@@ -716,7 +713,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .story-ring-sm {
-  background: linear-gradient(135deg, #fbbf24 0%, #ef4444 50%, #ec4899 100%);
+  background: linear-gradient(135deg, #fbbf24 0%, var(--nexus-error) 50%, #ec4899 100%);
   padding: 2px;
   border-radius: 50%;
 
@@ -760,7 +757,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .story-name {
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-600;
 }
 
@@ -791,9 +788,9 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   background: transparent;
   border: none;
   resize: none;
-  font-size: 15px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-900;
-  line-height: 1.6;
+  line-height: var(--nexus-leading-normal);
   min-height: 60px;
   margin-bottom: 16px;
 
@@ -801,9 +798,6 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     color: $color-gray-400;
   }
 
-  &:focus {
-    outline: none;
-  }
 }
 
 .create-actions {
@@ -818,12 +812,12 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   padding: 8px 24px;
   background: $color-gray-200;
   border: none;
-  border-radius: 9999px;
+  border-radius: var(--nexus-radius-full);
   color: $color-gray-400;
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   cursor: not-allowed;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 
   &.active {
     background: $color-black;
@@ -876,14 +870,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 .author-meta {
   .author-name {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     font-weight: 600;
     color: $color-gray-900;
     margin-bottom: 2px;
   }
 
   .post-time {
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     color: $color-gray-500;
   }
 }
@@ -916,9 +910,9 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .post-text {
-  font-size: 15px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-800;
-  line-height: 1.7;
+  line-height: var(--nexus-leading-prose);
   margin-bottom: 16px;
 }
 
@@ -926,7 +920,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 .image-grid {
   display: grid;
   gap: 8px;
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   overflow: hidden;
   margin-bottom: 16px;
 
@@ -978,7 +972,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     align-items: center;
     justify-content: center;
     color: $color-white;
-    font-size: 18px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 500;
     cursor: pointer;
 
@@ -996,7 +990,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 .tag-link {
   color: $color-blue;
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   cursor: pointer;
 
   &:hover {
@@ -1027,11 +1021,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   padding: 8px 12px;
   background: transparent;
   border: none;
-  border-radius: 9999px;
+  border-radius: var(--nexus-radius-full);
   color: $color-gray-500;
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 
   .action-icon {
     width: 20px;
@@ -1057,7 +1051,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   margin-top: 16px;
   padding: 16px;
   background: $color-gray-50;
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
 }
 
 .comment-item {
@@ -1084,20 +1078,20 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 .comment-bubble {
   background: $color-white;
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   border-top-left-radius: 4px;
   padding: 12px 16px;
   margin-bottom: 4px;
 
   .comment-author {
-    font-size: 13px;
+    font-size: var(--nexus-font-size-sm);
     font-weight: 500;
     color: $color-gray-900;
     margin-right: 8px;
   }
 
   .comment-text {
-    font-size: 13px;
+    font-size: var(--nexus-font-size-sm);
     color: $color-gray-600;
   }
 }
@@ -1109,7 +1103,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   margin-left: 8px;
 
   .meta-btn {
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     color: $color-gray-500;
     background: none;
     border: none;
@@ -1121,7 +1115,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .meta-time {
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     color: $color-gray-400;
   }
 
@@ -1150,7 +1144,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   gap: 8px;
   background: $color-white;
   border: 1px solid $color-gray-200;
-  border-radius: 9999px;
+  border-radius: var(--nexus-radius-full);
   padding: 8px 16px;
 }
 
@@ -1158,16 +1152,13 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   flex: 1;
   background: transparent;
   border: none;
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-900;
 
   &::placeholder {
     color: $color-gray-400;
   }
 
-  &:focus {
-    outline: none;
-  }
 }
 
 .send-btn {
@@ -1200,12 +1191,12 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   padding: 12px 32px;
   background: transparent;
   border: 1px solid $color-gray-200;
-  border-radius: 9999px;
-  font-size: 14px;
+  border-radius: var(--nexus-radius-full);
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   color: $color-gray-600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 
   &:hover {
     border-color: $color-black;
@@ -1266,14 +1257,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 .suggest-info {
   .suggest-name {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     font-weight: 500;
     color: $color-gray-900;
     margin-bottom: 2px;
   }
 
   .suggest-desc {
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     color: $color-gray-500;
   }
 }
@@ -1315,7 +1306,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .footer-link {
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-400;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -1326,7 +1317,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .copyright {
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-300;
 }
 
@@ -1345,11 +1336,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s $ease-out-expo;
-  z-index: 50;
+  transition: transform 0.3s $ease-out-expo, box-shadow 0.3s $ease-out-expo;
+  z-index: var(--nexus-z-nav);
 
   &:hover {
-    transform: scale(1.05) rotate(90deg);
+    transform: rotate(90deg);
     box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.3);
   }
 
@@ -1368,7 +1359,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 .image-modal {
   position: fixed;
   inset: 0;
-  z-index: 100;
+  z-index: var(--nexus-z-dropdown);
   background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(8px);
   display: flex;
@@ -1388,7 +1379,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   border-radius: 50%;
   cursor: pointer;
   transition: background 0.3s ease;
-  z-index: 10;
+  z-index: var(--nexus-z-sticky);
 
   &:hover {
     background: rgba(255, 255, 255, 0.2);

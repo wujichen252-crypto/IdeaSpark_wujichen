@@ -267,7 +267,7 @@ onMounted(() => {
 }
 
 .page-header {
-  background-color: #ffffff;
+  background-color: var(--nexus-white);
   padding: 40px 0 24px;
   margin-bottom: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -289,15 +289,15 @@ onMounted(() => {
   }
 
   h1 {
-    font-size: 32px;
+    font-size: var(--nexus-font-size-2xl);
     font-weight: 800;
     margin: 0 0 8px;
-    color: #000000;
+    color: var(--nexus-accent);
     letter-spacing: -0.5px;
   }
 
   .subtitle {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     color: rgba(0, 0, 0, 0.5);
     margin: 0;
   }
@@ -319,7 +319,7 @@ onMounted(() => {
 }
 
 .notifications-card {
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -330,7 +330,7 @@ onMounted(() => {
   justify-content: center;
   padding: 60px 0;
   gap: 16px;
-  color: #999;
+  color: var(--nexus-text-quaternary);
 }
 
 .notification-list {
@@ -352,13 +352,13 @@ onMounted(() => {
   &.unread {
     .title {
       font-weight: 700;
-      color: #000;
+      color: var(--nexus-accent);
       &::after {
         content: '';
         display: inline-block;
         width: 6px;
         height: 6px;
-        background-color: #000;
+        background-color: var(--nexus-accent);
         border-radius: 50%;
         margin-left: 8px;
         vertical-align: middle;
@@ -369,20 +369,20 @@ onMounted(() => {
   .icon-wrapper {
     width: 48px;
     height: 48px;
-    border-radius: 12px;
+    border-radius: var(--nexus-radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    font-size: 22px;
+    font-size: var(--nexus-font-size-lg);
     background-color: #f5f5f5;
-    color: #000;
-    transition: all 0.3s ease;
+    color: var(--nexus-accent);
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   
   &:hover .icon-wrapper {
-    background-color: #000;
-    color: #fff;
+    background-color: var(--nexus-accent);
+    color: var(--nexus-white);
   }
 
   .content {
@@ -398,22 +398,22 @@ onMounted(() => {
   }
 
   .title {
-    font-size: 16px;
+    font-size: var(--nexus-font-size-md);
     color: #111;
     font-weight: 600;
   }
 
   .time {
-    font-size: 12px;
-    color: #999;
+    font-size: var(--nexus-font-size-xs);
+    color: var(--nexus-text-quaternary);
     white-space: nowrap;
     margin-left: 12px;
   }
 
   .description {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.6;
+    font-size: var(--nexus-font-size-base);
+    color: var(--nexus-text-tertiary);
+    line-height: var(--nexus-leading-normal);
     margin: 0;
   }
 
@@ -433,15 +433,15 @@ onMounted(() => {
 }
 
 :deep(.n-button.n-button--primary-type) {
-  --n-color: #000 !important;
-  --n-color-hover: #333 !important;
-  --n-color-pressed: #000 !important;
-  --n-border: 1px solid #000 !important;
-  --n-border-hover: 1px solid #333 !important;
-  --n-border-pressed: 1px solid #000 !important;
-  --n-text-color: #fff !important;
-  --n-text-color-hover: #fff !important;
-  --n-text-color-pressed: #fff !important;
-  --n-text-color-focus: #fff !important;
+  --n-color: var(--nexus-accent) !important;
+  --n-color-hover: var(--nexus-gray-800) !important;
+  --n-color-pressed: var(--nexus-accent) !important;
+  --n-border: 1px solid var(--nexus-accent) !important;
+  --n-border-hover: 1px solid var(--nexus-gray-800) !important;
+  --n-border-pressed: 1px solid var(--nexus-accent) !important;
+  --n-text-color: var(--nexus-white) !important;
+  --n-text-color-hover: var(--nexus-white) !important;
+  --n-text-color-pressed: var(--nexus-white) !important;
+  --n-text-color-focus: var(--nexus-white) !important;
 }
 </style>

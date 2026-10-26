@@ -641,22 +641,22 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 // ==================== 设计令牌 ====================
-$color-bg: #fafafa;
-$color-white: #ffffff;
-$color-black: #000000;
-$color-gray-900: #111827;
-$color-gray-800: #1f2937;
-$color-gray-700: #374151;
-$color-gray-600: #6b7280;
-$color-gray-500: #6b7280;
-$color-gray-400: #9ca3af;
-$color-gray-300: #d1d5db;
-$color-gray-200: #e5e7eb;
-$color-gray-100: #f3f4f6;
-$color-gray-50: #f9fafb;
-$color-success: #10b981;
-$color-warning: #f59e0b;
-$color-danger: #ef4444;
+$color-bg: var(--nexus-bg);
+$color-white: var(--nexus-white);
+$color-black: var(--nexus-accent);
+$color-gray-900: var(--nexus-text-primary);
+$color-gray-800: var(--nexus-gray-800);
+$color-gray-700: var(--nexus-gray-700);
+$color-gray-600: var(--nexus-text-tertiary);
+$color-gray-500: var(--nexus-text-tertiary);
+$color-gray-400: var(--nexus-text-quaternary);
+$color-gray-300: var(--nexus-border-strong);
+$color-gray-200: var(--nexus-border);
+$color-gray-100: var(--nexus-divider);
+$color-gray-50: var(--nexus-bg-subtle);
+$color-success: var(--nexus-success);
+$color-warning: var(--nexus-warning);
+$color-danger: var(--nexus-error);
 $color-blue: var(--nexus-link);
 $color-purple: #a855f7;
 
@@ -668,7 +668,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 24px;
+  border-radius: var(--nexus-radius-xl);
   box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
   animation: slideUp 0.7s $ease-out-expo forwards;
   opacity: 0;
@@ -677,8 +677,8 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 // ==================== 页头 ====================
 .sticky-header {
   position: sticky;
-  top: 56px;
-  z-index: 30;
+  top: var(--header-height);
+  z-index: var(--nexus-z-header);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -691,7 +691,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 .header-left {
   .header-date {
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     color: $color-gray-400;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -699,7 +699,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .header-greeting {
-    font-size: 24px;
+    font-size: var(--nexus-font-size-xl);
     font-weight: 600;
     color: $color-gray-900;
     margin: 0;
@@ -719,7 +719,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   padding: 8px 16px;
   background: $color-white;
   border: 1px solid $color-gray-200;
-  border-radius: 9999px;
+  border-radius: var(--nexus-radius-full);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 
   .focus-icon {
@@ -729,7 +729,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .focus-label {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     font-weight: 500;
     color: $color-gray-700;
   }
@@ -763,7 +763,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     right: 0;
     bottom: 0;
     background-color: $color-gray-200;
-    border-radius: 20px;
+    border-radius: var(--nexus-radius-xl);
     transition: 0.3s;
 
     &::before {
@@ -855,12 +855,12 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 .timer-content {
   position: relative;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
   text-align: center;
 }
 
 .timer-label {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-500;
   margin-bottom: 24px;
 }
@@ -891,14 +891,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   justify-content: center;
 
   .timer-time {
-    font-size: 36px;
+    font-size: var(--nexus-font-size-2xl);
     font-weight: 600;
     color: $color-gray-900;
     font-variant-numeric: tabular-nums;
   }
 
   .timer-unit {
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     color: $color-gray-400;
     margin-top: 4px;
   }
@@ -921,7 +921,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 
   &:hover {
     background: $color-gray-50;
@@ -933,10 +933,6 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
     .control-icon {
       color: $color-white;
-    }
-
-    &:hover {
-      transform: scale(1.05);
     }
   }
 
@@ -964,14 +960,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .overview-title {
-  font-size: 20px;
+  font-size: var(--nexus-font-size-lg);
   font-weight: 600;
   color: $color-gray-900;
   margin-bottom: 4px;
 }
 
 .overview-subtitle {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-500;
 }
 
@@ -979,14 +975,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   text-align: right;
 
   .percent-value {
-    font-size: 30px;
+    font-size: var(--nexus-font-size-2xl);
     font-weight: 600;
     color: $color-gray-900;
   }
 
   .percent-label {
     display: block;
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     color: $color-gray-400;
   }
 }
@@ -1006,12 +1002,12 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .progress-label {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     color: $color-gray-600;
   }
 
   .progress-value {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     font-weight: 500;
     color: $color-gray-900;
   }
@@ -1020,13 +1016,13 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 .progress-bar {
   height: 8px;
   background: $color-gray-100;
-  border-radius: 4px;
+  border-radius: var(--nexus-radius-sm);
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
-  border-radius: 4px;
+  border-radius: var(--nexus-radius-sm);
   transition: width 1s ease;
 
   &.black {
@@ -1071,7 +1067,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: var(--nexus-font-size-xs);
       color: $color-gray-600;
     }
   }
@@ -1083,7 +1079,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   gap: 4px;
   background: none;
   border: none;
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-500;
   cursor: pointer;
   transition: color 0.3s ease;
@@ -1126,7 +1122,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .section-title {
-  font-size: 18px;
+  font-size: var(--nexus-font-size-md);
   font-weight: 600;
   color: $color-gray-900;
 }
@@ -1140,11 +1136,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   padding: 6px 12px;
   background: transparent;
   border: none;
-  border-radius: 9999px;
-  font-size: 14px;
+  border-radius: var(--nexus-radius-full);
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 
   &:hover {
     background: $color-gray-100;
@@ -1165,7 +1161,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 .task-card {
   padding: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
 
   &:hover {
     background: rgba(255, 255, 255, 0.9);
@@ -1203,13 +1199,13 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   width: 20px;
   height: 20px;
   border: 2px solid $color-gray-300;
-  border-radius: 6px;
+  border-radius: var(--nexus-radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   margin-top: 2px;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 
   &.checked {
     background: $color-black;
@@ -1236,15 +1232,15 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .task-title {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   color: $color-gray-900;
 }
 
 .priority-badge {
   padding: 2px 8px;
-  border-radius: 9999px;
-  font-size: 12px;
+  border-radius: var(--nexus-radius-full);
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
   flex-shrink: 0;
 
@@ -1265,7 +1261,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .task-desc {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-500;
   margin-bottom: 12px;
 }
@@ -1280,7 +1276,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-400;
 
   .meta-icon {
@@ -1320,15 +1316,15 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   padding: 12px;
   background: transparent;
   border: 2px dashed $color-gray-300;
-  border-radius: 16px;
-  font-size: 14px;
+  border-radius: var(--nexus-radius-lg);
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-500;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease, color 0.3s ease;
   animation: slideUp 0.7s $ease-out-expo forwards;
   opacity: 0;
 
@@ -1356,7 +1352,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .calendar-title {
-  font-size: 16px;
+  font-size: var(--nexus-font-size-md);
   font-weight: 600;
   color: $color-gray-900;
 }
@@ -1374,7 +1370,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   justify-content: center;
   background: transparent;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--nexus-radius-sm);
   cursor: pointer;
   transition: background 0.3s ease;
 
@@ -1398,7 +1394,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .weekday {
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-400;
 }
 
@@ -1416,12 +1412,12 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   background: transparent;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 
   &:hover:not(:disabled):not(.active) {
     background: rgba(0, 0, 0, 0.03);
@@ -1460,7 +1456,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .events-title {
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-400;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -1480,7 +1476,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 .event-time {
   width: 48px;
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-500;
   padding-top: 4px;
 }
@@ -1489,7 +1485,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   flex: 1;
   padding: 12px;
   background: $color-gray-50;
-  border-radius: 12px;
+  border-radius: var(--nexus-radius-md);
   border-left: 2px solid $color-black;
 
   &.secondary {
@@ -1498,13 +1494,13 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .event-name {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   color: $color-gray-900;
 }
 
 .event-info {
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-500;
   margin-top: 4px;
 }
@@ -1534,7 +1530,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-title {
-  font-size: 16px;
+  font-size: var(--nexus-font-size-md);
   font-weight: 600;
   color: $color-gray-900;
 }
@@ -1542,7 +1538,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 .view-all {
   background: none;
   border: none;
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-500;
   cursor: pointer;
   transition: color 0.3s ease;
@@ -1560,7 +1556,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   justify-content: center;
   background: transparent;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--nexus-radius-sm);
   cursor: pointer;
   transition: background 0.3s ease;
 
@@ -1587,9 +1583,9 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   align-items: center;
   gap: 12px;
   padding: 12px;
-  border-radius: 12px;
+  border-radius: var(--nexus-radius-md);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 
   &:hover {
     background: $color-white;
@@ -1600,7 +1596,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 .file-icon {
   width: 40px;
   height: 40px;
-  border-radius: 10px;
+  border-radius: var(--nexus-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1641,7 +1637,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .file-name {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   color: $color-gray-900;
   white-space: nowrap;
@@ -1650,7 +1646,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .file-time {
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-500;
 }
 
@@ -1660,7 +1656,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   color: $color-gray-400;
   opacity: 0;
   transform: translateX(-4px);
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 
   .file-item:hover & {
     opacity: 1;
@@ -1675,17 +1671,13 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     linear-gradient(90deg, transparent 19px, #eab308 19px, #eab308 20px, transparent 20px),
     linear-gradient(#eab308 1px, transparent 1px);
   background-size: 100% 1.5rem;
-  line-height: 1.5rem;
-  border-radius: 12px;
+  line-height: var(--nexus-leading-compact);
+  border-radius: var(--nexus-radius-md);
   padding: 16px;
   height: 160px;
   overflow-y: auto;
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-700;
-
-  &:focus {
-    outline: none;
-  }
 
   &::-webkit-scrollbar {
     width: 4px;
@@ -1693,7 +1685,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
   &::-webkit-scrollbar-thumb {
     background: rgba(0, 0, 0, 0.1);
-    border-radius: 2px;
+    border-radius: var(--nexus-radius-sm);
   }
 }
 
@@ -1718,7 +1710,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 10px;
+      font-size: var(--nexus-font-size-xs);
       color: $color-gray-600;
     }
   }
@@ -1748,7 +1740,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .activity-text {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-600;
 
   .user-name {
@@ -1762,7 +1754,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .activity-time {
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-400;
   margin-top: 2px;
 }
@@ -1782,11 +1774,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s $ease-out-expo;
-  z-index: 50;
+  transition: transform 0.3s $ease-out-expo, box-shadow 0.3s $ease-out-expo;
+  z-index: var(--nexus-z-nav);
 
   &:hover {
-    transform: scale(1.1) rotate(90deg);
+    transform: rotate(90deg);
     box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.3);
   }
 

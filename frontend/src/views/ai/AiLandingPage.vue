@@ -257,10 +257,10 @@ function scrollToWhy() {
 
 <style scoped lang="scss">
 .ai-landing-page {
-  background-color: #ffffff;
+  background-color: var(--nexus-white);
   min-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: #1f2937;
+  color: var(--nexus-gray-800);
 }
 
 .section {
@@ -270,16 +270,16 @@ function scrollToWhy() {
 }
 
 .section-title {
-  font-size: 36px;
+  font-size: var(--nexus-font-size-2xl);
   font-weight: 800;
   text-align: center;
   margin-bottom: 16px;
-  color: #111827;
+  color: var(--nexus-text-primary);
 }
 
 .section-subtitle {
-  font-size: 18px;
-  color: #6b7280;
+  font-size: var(--nexus-font-size-md);
+  color: var(--nexus-text-tertiary);
   text-align: center;
   margin-bottom: 48px;
 }
@@ -309,11 +309,11 @@ function scrollToWhy() {
     }
 
     .hero-title {
-      font-size: 48px;
+      font-size: var(--nexus-font-size-3xl);
       font-weight: 900;
-      line-height: 1.2;
+      line-height: var(--nexus-leading-display);
       margin-bottom: 24px;
-      color: #111827;
+      color: var(--nexus-text-primary);
 
       .highlight {
         color: var(--nexus-success-text);
@@ -327,15 +327,15 @@ function scrollToWhy() {
           width: 100%;
           height: 8px;
           background-color: rgba(24, 160, 88, 0.2);
-          z-index: -1;
+          z-index: var(--nexus-z-below);
         }
       }
     }
 
     .hero-subtitle {
-      font-size: 18px;
-      line-height: 1.6;
-      color: #4b5563;
+      font-size: var(--nexus-font-size-md);
+      line-height: var(--nexus-leading-normal);
+      color: var(--nexus-text-secondary);
       margin-bottom: 24px;
     }
 
@@ -361,13 +361,13 @@ function scrollToWhy() {
 
     .code-window {
       background: #1e293b;
-      border-radius: 12px;
+      border-radius: var(--nexus-radius-md);
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
       padding: 24px;
       width: 100%;
       max-width: 480px;
       font-family: 'Fira Code', monospace;
-      font-size: 14px;
+      font-size: var(--nexus-font-size-base);
       color: #e2e8f0;
 
       .window-header {
@@ -380,14 +380,14 @@ function scrollToWhy() {
           height: 12px;
           border-radius: 50%;
           
-          &.red { background-color: #ef4444; }
-          &.yellow { background-color: #f59e0b; }
+          &.red { background-color: var(--nexus-error); }
+          &.yellow { background-color: var(--nexus-warning); }
           &.green { background-color: #22c55e; }
         }
       }
 
       .window-content {
-        line-height: 1.6;
+        line-height: var(--nexus-leading-normal);
 
         .keyword { color: #c084fc; }
         .variable { color: #60a5fa; }
@@ -404,7 +404,7 @@ function scrollToWhy() {
 
 /* Why Section */
 .why-section {
-  background-color: #f9fafb;
+  background-color: var(--nexus-bg-subtle);
 }
 
 .pain-points-grid {
@@ -414,9 +414,9 @@ function scrollToWhy() {
   margin-bottom: 40px;
 
   .pain-point-card {
-    background: #fff;
+    background: var(--nexus-white);
     padding: 24px;
-    border-radius: 12px;
+    border-radius: var(--nexus-radius-md);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     text-align: center;
     transition: transform 0.2s;
@@ -426,19 +426,19 @@ function scrollToWhy() {
     }
 
     .icon-box {
-      font-size: 32px;
+      font-size: var(--nexus-font-size-2xl);
       margin-bottom: 16px;
     }
 
     h3 {
-      font-size: 18px;
+      font-size: var(--nexus-font-size-md);
       font-weight: 700;
       margin-bottom: 8px;
-      color: #1f2937;
+      color: var(--nexus-gray-800);
     }
 
     p {
-      color: #6b7280;
+      color: var(--nexus-text-tertiary);
     }
   }
 }
@@ -446,7 +446,7 @@ function scrollToWhy() {
 .solution-banner {
   background: #f0fdf4;
   border: 1px solid #bbf7d0;
-  border-radius: 12px;
+  border-radius: var(--nexus-radius-md);
   padding: 16px;
   display: flex;
   align-items: center;
@@ -454,7 +454,7 @@ function scrollToWhy() {
   gap: 12px;
   color: #166534;
   font-weight: 600;
-  font-size: 18px;
+  font-size: var(--nexus-font-size-md);
 }
 
 /* Features Section */
@@ -482,16 +482,16 @@ function scrollToWhy() {
       flex: 1;
 
       h3 {
-        font-size: 28px;
+        font-size: var(--nexus-font-size-xl);
         font-weight: 800;
         margin-bottom: 24px;
-        color: #111827;
+        color: var(--nexus-text-primary);
       }
 
       p {
-        font-size: 16px;
-        line-height: 1.6;
-        color: #4b5563;
+        font-size: var(--nexus-font-size-md);
+        line-height: var(--nexus-leading-normal);
+        color: var(--nexus-text-secondary);
         margin-bottom: 16px;
       }
 
@@ -504,7 +504,7 @@ function scrollToWhy() {
           position: relative;
           padding-left: 24px;
           margin-bottom: 12px;
-          color: #4b5563;
+          color: var(--nexus-text-secondary);
 
           &::before {
             content: '•';
@@ -517,11 +517,11 @@ function scrollToWhy() {
       }
 
       .feature-highlight {
-        font-size: 18px;
+        font-size: var(--nexus-font-size-md);
         color: var(--nexus-success-text);
         background: #f0fdf4;
         padding: 12px;
-        border-radius: 8px;
+        border-radius: var(--nexus-radius-sm);
         display: inline-block;
       }
     }
@@ -532,15 +532,15 @@ function scrollToWhy() {
       justify-content: center;
       align-items: center;
       height: 300px;
-      background: #f9fafb;
-      border-radius: 24px;
+      background: var(--nexus-bg-subtle);
+      border-radius: var(--nexus-radius-xl);
     }
   }
 }
 
 /* Audience Section */
 .audience-section {
-  background-color: #f9fafb;
+  background-color: var(--nexus-bg-subtle);
 
   .audience-grid {
     display: grid;
@@ -548,21 +548,21 @@ function scrollToWhy() {
     gap: 32px;
 
     .audience-card {
-      background: #fff;
+      background: var(--nexus-white);
       padding: 32px;
-      border-radius: 16px;
+      border-radius: var(--nexus-radius-lg);
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 
       .card-icon {
-        font-size: 48px;
+        font-size: var(--nexus-font-size-3xl);
         margin-bottom: 24px;
       }
 
       h3 {
-        font-size: 24px;
+        font-size: var(--nexus-font-size-xl);
         font-weight: 700;
         margin-bottom: 24px;
-        color: #1f2937;
+        color: var(--nexus-gray-800);
       }
 
       ul {
@@ -571,8 +571,8 @@ function scrollToWhy() {
 
         li {
           padding: 8px 0;
-          border-bottom: 1px solid #f3f4f6;
-          color: #4b5563;
+          border-bottom: 1px solid var(--nexus-divider);
+          color: var(--nexus-text-secondary);
 
           &:last-child {
             border-bottom: none;
@@ -590,7 +590,7 @@ function scrollToWhy() {
   .comparison-table-wrapper {
     max-width: 800px;
     margin: 0 auto 32px;
-    border-radius: 12px;
+    border-radius: var(--nexus-radius-md);
     overflow: hidden;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   }
@@ -598,19 +598,19 @@ function scrollToWhy() {
   .comparison-table {
     width: 100%;
     border-collapse: collapse;
-    background: #fff;
+    background: var(--nexus-white);
 
     th, td {
       padding: 20px;
       text-align: center;
-      border-bottom: 1px solid #e5e7eb;
+      border-bottom: 1px solid var(--nexus-border);
     }
 
     th {
-      background: #f9fafb;
+      background: var(--nexus-bg-subtle);
       font-weight: 700;
-      color: #374151;
-      font-size: 18px;
+      color: var(--nexus-gray-700);
+      font-size: var(--nexus-font-size-md);
     }
 
     .highlight-th {
@@ -630,31 +630,31 @@ function scrollToWhy() {
   }
 
   .comparison-summary {
-    font-size: 20px;
+    font-size: var(--nexus-font-size-lg);
     font-weight: 700;
-    color: #1f2937;
+    color: var(--nexus-gray-800);
   }
 }
 
 /* CTA Section */
 .cta-section {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: #fff;
+  background: linear-gradient(135deg, var(--nexus-success) 0%, #059669 100%);
+  color: var(--nexus-white);
   text-align: center;
   padding: 100px 24px;
-  border-radius: 24px;
+  border-radius: var(--nexus-radius-xl);
   margin: 40px 24px 80px;
   max-width: 1200px;
 
   .cta-title {
-    font-size: 48px;
+    font-size: var(--nexus-font-size-3xl);
     font-weight: 900;
     margin-bottom: 24px;
   }
 
   .cta-subtitle {
-    font-size: 20px;
-    line-height: 1.6;
+    font-size: var(--nexus-font-size-lg);
+    line-height: var(--nexus-leading-normal);
     margin-bottom: 48px;
     opacity: 0.9;
   }
@@ -669,29 +669,28 @@ function scrollToWhy() {
     .step {
       background: rgba(255, 255, 255, 0.2);
       padding: 12px 24px;
-      border-radius: 50px;
+      border-radius: var(--nexus-radius-full);
       font-weight: 600;
     }
   }
 
   .final-cta-button {
-    background: #fff;
+    background: var(--nexus-white);
     color: #059669;
     font-weight: 800;
-    font-size: 18px;
+    font-size: var(--nexus-font-size-md);
     padding: 24px 48px;
-    border-radius: 50px;
+    border-radius: var(--nexus-radius-full);
     border: none;
     margin-bottom: 24px;
     
     &:hover {
-      transform: scale(1.05);
       background: #f0fdf4;
     }
   }
 
   .final-note {
-    font-size: 16px;
+    font-size: var(--nexus-font-size-md);
     opacity: 0.8;
   }
 }

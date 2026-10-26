@@ -298,18 +298,18 @@ function isTeamActive(uuid: string): boolean {
 </script>
 
 <style scoped lang="scss">
-$color-bg: #fafafa;
-$color-white: #ffffff;
-$color-black: #000000;
-$color-gray-900: #111827;
-$color-gray-700: #374151;
-$color-gray-600: #6b7280;
-$color-gray-500: #6b7280;
-$color-gray-400: #9ca3af;
-$color-gray-200: #e5e7eb;
-$color-gray-100: #f3f4f6;
-$color-gray-50: #f9fafb;
-$color-danger: #ef4444;
+$color-bg: var(--nexus-bg);
+$color-white: var(--nexus-white);
+$color-black: var(--nexus-accent);
+$color-gray-900: var(--nexus-text-primary);
+$color-gray-700: var(--nexus-gray-700);
+$color-gray-600: var(--nexus-text-tertiary);
+$color-gray-500: var(--nexus-text-tertiary);
+$color-gray-400: var(--nexus-text-quaternary);
+$color-gray-200: var(--nexus-border);
+$color-gray-100: var(--nexus-divider);
+$color-gray-50: var(--nexus-bg-subtle);
+$color-danger: var(--nexus-error);
 
 .workbench-view {
   height: 100vh;
@@ -325,7 +325,7 @@ $color-danger: #ef4444;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
   opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
@@ -346,7 +346,7 @@ $color-danger: #ef4444;
   position: fixed;
   left: 0;
   top: var(--header-height);
-  z-index: 10;
+  z-index: var(--nexus-z-sticky);
   overflow-y: auto;
 
   &::-webkit-scrollbar {
@@ -355,7 +355,7 @@ $color-danger: #ef4444;
 
   &::-webkit-scrollbar-thumb {
     background: $color-gray-200;
-    border-radius: 2px;
+    border-radius: var(--nexus-radius-sm);
   }
 }
 
@@ -380,7 +380,7 @@ $color-danger: #ef4444;
   min-width: 0;
 
   .user-name {
-    font-size: 16px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 600;
     color: $color-gray-900;
     margin-bottom: 4px;
@@ -390,7 +390,7 @@ $color-danger: #ef4444;
     display: flex;
     align-items: center;
     gap: 4px;
-    font-size: 13px;
+    font-size: var(--nexus-font-size-sm);
     color: $color-gray-400;
     cursor: pointer;
     transition: color 0.3s ease;
@@ -423,7 +423,7 @@ $color-danger: #ef4444;
 .nav-group-title {
   padding: 0 12px;
   margin-bottom: 8px;
-  font-size: 11px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
   color: $color-gray-400;
   text-transform: uppercase;
@@ -435,11 +435,11 @@ $color-danger: #ef4444;
   align-items: center;
   gap: 12px;
   padding: 10px 12px;
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-600;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease, background-color 0.3s ease;
   margin-bottom: 4px;
   position: relative;
   cursor: pointer;
@@ -456,8 +456,8 @@ $color-danger: #ef4444;
 
   .nav-badge {
     padding: 2px 8px;
-    border-radius: 9999px;
-    font-size: 11px;
+    border-radius: var(--nexus-radius-full);
+    font-size: var(--nexus-font-size-xs);
     font-weight: 500;
 
     &.red {
@@ -469,7 +469,7 @@ $color-danger: #ef4444;
   .team-avatar-sm {
     width: 20px;
     height: 20px;
-    border-radius: 6px;
+    border-radius: var(--nexus-radius-sm);
     object-fit: cover;
     flex-shrink: 0;
   }
@@ -513,7 +513,7 @@ $color-danger: #ef4444;
 
   &::-webkit-scrollbar-thumb {
     background: $color-gray-200;
-    border-radius: 3px;
+    border-radius: var(--nexus-radius-sm);
   }
 }
 </style>

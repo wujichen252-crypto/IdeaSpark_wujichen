@@ -223,7 +223,7 @@ circle
         <div class="assistant-panel" :style="{ width: `${assistantWidth}px` }">
           <div class="panel-header">
             <div class="flex items-center gap-2">
-              <n-icon color="var(--nexus-success)"><Sparkles /></n-icon>
+              <n-icon color="var(--nexus-success-text)"><Sparkles /></n-icon>
               <span>AI 团队</span>
               <n-tag
 size="small"
@@ -518,7 +518,7 @@ const handleExport = () => {
 /* 左侧侧边栏 */
 .nav-sidebar {
   width: 220px;
-  background: #fff;
+  background: var(--nexus-white);
   border-right: 1px solid #eef0f5;
   display: flex;
   flex-direction: column;
@@ -538,7 +538,7 @@ const handleExport = () => {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
+    z-index: var(--nexus-z-sticky);
     height: 60px;
     display: flex;
     align-items: center;
@@ -550,8 +550,8 @@ const handleExport = () => {
     
     .project-title {
       font-weight: 600;
-      font-size: 14px;
-      color: #333;
+      font-size: var(--nexus-font-size-base);
+      color: var(--nexus-gray-800);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -594,7 +594,7 @@ const handleExport = () => {
 .main-panel {
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: var(--nexus-white);
   min-width: 300px;
   position: relative; /* 为绝对定位的 header 提供锚点 */
   
@@ -603,7 +603,7 @@ const handleExport = () => {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
+    z-index: var(--nexus-z-sticky);
     height: 60px;
     padding: 0 24px;
     display: flex;
@@ -616,13 +616,13 @@ const handleExport = () => {
     .module-info {
       h3 {
         margin: 0;
-        font-size: 16px;
-        color: #333;
+        font-size: var(--nexus-font-size-md);
+        color: var(--nexus-gray-800);
         margin-bottom: 4px;
       }
       .desc {
-        font-size: 12px;
-        color: #666;
+        font-size: var(--nexus-font-size-xs);
+        color: var(--nexus-text-tertiary);
       }
     }
   }
@@ -649,7 +649,7 @@ const handleExport = () => {
   background: #eef0f5;
   cursor: col-resize;
   position: relative;
-  z-index: 10;
+  z-index: var(--nexus-z-sticky);
   transition: background 0.2s;
   
   &:hover, &:active {
@@ -657,7 +657,7 @@ const handleExport = () => {
     
     .resizer-handle {
       background: var(--nexus-success);
-      border-color: #fff;
+      border-color: var(--nexus-white);
     }
   }
   
@@ -668,7 +668,7 @@ const handleExport = () => {
     transform: translate(-50%, -50%);
     width: 24px;
     height: 24px;
-    background: #fff;
+    background: var(--nexus-white);
     border: 1px solid #eef0f5;
     border-radius: 50%;
     display: flex;
@@ -689,7 +689,7 @@ const handleExport = () => {
 
 /* AI 助手面板 */
 .assistant-panel {
-  background: #fff;
+  background: var(--nexus-white);
   display: flex;
   flex-direction: column;
   border-left: 1px solid #eef0f5;
@@ -701,7 +701,7 @@ const handleExport = () => {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
+    z-index: var(--nexus-z-sticky);
     height: 60px;
     padding: 0 16px;
     display: flex;
@@ -727,7 +727,7 @@ const handleExport = () => {
   
   .project-header-card {
     background: white;
-    border-radius: 8px;
+    border-radius: var(--nexus-radius-sm);
     padding: 24px;
     border: 1px solid #eef0f5;
     margin-bottom: 24px;
@@ -738,29 +738,29 @@ const handleExport = () => {
     
     .ph-title {
       margin: 0 0 8px 0;
-      font-size: 24px;
+      font-size: var(--nexus-font-size-xl);
       font-weight: 600;
       color: #1f2225;
     }
     
     .ph-desc {
       margin: 0;
-      color: #666;
-      font-size: 14px;
-      line-height: 1.6;
+      color: var(--nexus-text-tertiary);
+      font-size: var(--nexus-font-size-base);
+      line-height: var(--nexus-leading-normal);
     }
   }
 
   .section {
-    background: #fff;
+    background: var(--nexus-white);
     padding: 20px;
-    border-radius: 8px;
+    border-radius: var(--nexus-radius-sm);
     border: 1px solid #eef0f5;
     
     h4 {
       margin: 0 0 16px 0;
-      font-size: 16px;
-      color: #333;
+      font-size: var(--nexus-font-size-md);
+      color: var(--nexus-gray-800);
     }
   }
   
@@ -775,24 +775,24 @@ const handleExport = () => {
       align-items: center;
       padding: 16px;
       background: #fafbfc;
-      border-radius: 8px;
+      border-radius: var(--nexus-radius-sm);
       
       .label {
-        font-size: 14px;
-        color: #666;
+        font-size: var(--nexus-font-size-base);
+        color: var(--nexus-text-tertiary);
         margin-bottom: 12px;
       }
       
       .score {
-        font-size: 20px;
+        font-size: var(--nexus-font-size-lg);
         font-weight: bold;
-        color: #333;
+        color: var(--nexus-gray-800);
       }
       
       .tips {
         margin-top: 12px;
-        font-size: 12px;
-        color: #999;
+        font-size: var(--nexus-font-size-xs);
+        color: var(--nexus-text-quaternary);
         text-align: center;
       }
     }
@@ -806,8 +806,8 @@ const handleExport = () => {
   gap: 20px;
   
   .checklist-section {
-    background: #fff;
-    border-radius: 8px;
+    background: var(--nexus-white);
+    border-radius: var(--nexus-radius-sm);
     padding: 16px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     
@@ -819,7 +819,7 @@ const handleExport = () => {
       
       h4 {
         margin: 0;
-        font-size: 14px;
+        font-size: var(--nexus-font-size-base);
       }
     }
     
@@ -831,8 +831,8 @@ const handleExport = () => {
   
   .content-editor-section {
     flex: 1;
-    background: #fff;
-    border-radius: 8px;
+    background: var(--nexus-white);
+    border-radius: var(--nexus-radius-sm);
     padding: 16px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     display: flex;
@@ -842,7 +842,7 @@ const handleExport = () => {
       margin-bottom: 12px;
       h4 {
         margin: 0;
-        font-size: 14px;
+        font-size: var(--nexus-font-size-base);
       }
     }
     
@@ -864,7 +864,7 @@ const handleExport = () => {
 @media (max-width: 768px) {
   .nav-sidebar {
     position: absolute;
-    z-index: 100;
+    z-index: var(--nexus-z-dropdown);
     height: 100%;
     box-shadow: 2px 0 8px rgba(0,0,0,0.1);
     

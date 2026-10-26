@@ -42,7 +42,7 @@ const privacyData = [
 .privacy-section {
   width: 100%;
   padding: 80px 0;
-  background-color: #000;
+  background-color: var(--nexus-accent);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,16 +55,16 @@ const privacyData = [
 }
 
 .section-title {
-  font-size: 2.5rem;
-  color: #fff;
+  font-size: var(--nexus-font-size-3xl);
+  color: var(--nexus-white);
   margin: 0 0 16px;
   font-weight: 600;
   letter-spacing: 1px;
 }
 
 .section-subtitle {
-  font-size: 1.1rem;
-  color: #999;
+  font-size: var(--nexus-font-size-md);
+  color: var(--nexus-text-quaternary);
   margin: 0;
   font-weight: 400;
   max-width: 800px;
@@ -86,9 +86,9 @@ const privacyData = [
   min-height: 240px;
   border-radius: 0; /* 长方形，无圆角 */
   background-color: #1a1a1a;
-  border: 1px solid #333;
+  border: 1px solid var(--nexus-gray-800);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: default;
 
   /* Naive UI 卡片内容 */
@@ -99,7 +99,7 @@ const privacyData = [
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
-    border-color: var(--n-color-target, #fff);
+    border-color: var(--n-color-target, var(--nexus-white));
   }
 }
 
@@ -111,17 +111,17 @@ const privacyData = [
 }
 
 .card-title {
-  font-size: 1.25rem;
-  color: #fff;
+  font-size: var(--nexus-font-size-lg);
+  color: var(--nexus-white);
   font-weight: 700; /* 加粗体 */
   margin: 0;
-  line-height: 1.4;
+  line-height: var(--nexus-leading-compact);
 }
 
 .card-desc {
-  font-size: 1rem;
+  font-size: var(--nexus-font-size-md);
   color: #ccc; /* 略浅于标题 */
-  line-height: 1.7;
+  line-height: var(--nexus-leading-prose);
   margin: 0;
   font-weight: 400;
 }

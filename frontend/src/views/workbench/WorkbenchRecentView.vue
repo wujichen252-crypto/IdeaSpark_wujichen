@@ -272,7 +272,7 @@ const formatTime = (timestamp: number) => {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #f9fafb;
+  background-color: var(--nexus-bg-subtle);
   padding: 24px 32px;
   padding-top: calc(56px + 24px);
   width: 100%;
@@ -287,15 +287,15 @@ const formatTime = (timestamp: number) => {
   
   .header-left {
     .view-title {
-      font-size: 20px; /* 减小标题字体 */
+      font-size: var(--nexus-font-size-lg); /* 减小标题字体 */
       font-weight: 700;
-      color: #111827;
+      color: var(--nexus-text-primary);
       margin: 0 0 4px 0;
     }
     
     .view-subtitle {
-      color: #6b7280;
-      font-size: 13px;
+      color: var(--nexus-text-tertiary);
+      font-size: var(--nexus-font-size-sm);
     }
   }
 
@@ -328,9 +328,9 @@ const formatTime = (timestamp: number) => {
   margin-bottom: 24px; /* 减少组间距 */
   
   .group-title {
-    font-size: 13px;
+    font-size: var(--nexus-font-size-sm);
     font-weight: 600;
-    color: #9ca3af;
+    color: var(--nexus-text-quaternary);
     margin-bottom: 12px;
     padding-left: 2px;
   }
@@ -343,11 +343,11 @@ const formatTime = (timestamp: number) => {
 }
 
 .project-card {
-  background: #fff;
-  border-radius: 8px; /* 减小圆角 */
-  border: 1px solid #e5e7eb;
+  background: var(--nexus-white);
+  border-radius: var(--nexus-radius-sm); /* 减小圆角 */
+  border: 1px solid var(--nexus-border);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -356,7 +356,7 @@ const formatTime = (timestamp: number) => {
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    border-color: #d1d5db;
+    border-color: var(--nexus-border-strong);
     
     .card-cover {
       .card-overlay {
@@ -367,7 +367,7 @@ const formatTime = (timestamp: number) => {
   
   .card-cover {
     height: 100px; /* 减小封面高度 */
-    background-color: #f3f4f6;
+    background-color: var(--nexus-divider);
     background-size: cover;
     background-position: center;
     position: relative;
@@ -378,7 +378,7 @@ const formatTime = (timestamp: number) => {
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+      background: linear-gradient(135deg, var(--nexus-divider) 0%, var(--nexus-border) 100%);
     }
     
     .card-overlay {
@@ -408,9 +408,9 @@ const formatTime = (timestamp: number) => {
       
       .card-title {
         font-weight: 600;
-        color: #1f2937;
-        font-size: 14px; /* 减小标题字体 */
-        line-height: 1.3;
+        color: var(--nexus-gray-800);
+        font-size: var(--nexus-font-size-base); /* 减小标题字体 */
+        line-height: var(--nexus-leading-display);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -420,19 +420,19 @@ const formatTime = (timestamp: number) => {
       
       .more-btn {
         padding: 0 2px;
-        color: #9ca3af;
-        font-size: 16px;
+        color: var(--nexus-text-quaternary);
+        font-size: var(--nexus-font-size-md);
         
         &:hover {
-          color: #4b5563;
+          color: var(--nexus-text-secondary);
         }
       }
     }
     
     .card-desc {
-      font-size: 12px;
-      color: #6b7280;
-      line-height: 1.4;
+      font-size: var(--nexus-font-size-xs);
+      color: var(--nexus-text-tertiary);
+      line-height: var(--nexus-leading-compact);
       margin: 0 0 auto 0;
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -449,15 +449,15 @@ const formatTime = (timestamp: number) => {
       align-items: center;
       
       .category-tag {
-        background-color: #f3f4f6;
-        color: #4b5563;
-        font-size: 11px;
+        background-color: var(--nexus-divider);
+        color: var(--nexus-text-secondary);
+        font-size: var(--nexus-font-size-xs);
         padding: 0 6px;
       }
       
       .time-text {
-        font-size: 11px;
-        color: #9ca3af;
+        font-size: var(--nexus-font-size-xs);
+        color: var(--nexus-text-quaternary);
       }
     }
   }

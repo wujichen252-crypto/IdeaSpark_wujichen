@@ -223,14 +223,14 @@ defineExpose({ handleSend })
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: var(--nexus-white);
   position: relative;
   height: 100%;
   overflow: hidden;
 
   /* Sidebar mode */
   &.is-sidebar {
-    background-color: #fff;
+    background-color: var(--nexus-white);
     border-left: 1px solid #e2e8f0;
     
     .messages-scroll-area .messages-content {
@@ -240,8 +240,8 @@ defineExpose({ handleSend })
       overflow-x: hidden;
       
       .empty-state {
-        h3 { font-size: 16px; }
-        .empty-desc { font-size: 13px; }
+        h3 { font-size: var(--nexus-font-size-md); }
+        .empty-desc { font-size: var(--nexus-font-size-sm); }
         .quick-prompts { display: none; }
       }
     }
@@ -262,8 +262,8 @@ defineExpose({ handleSend })
         
         .bubble {
           padding: 8px 12px;
-          font-size: 13px;
-          border-radius: 12px;
+          font-size: var(--nexus-font-size-sm);
+          border-radius: var(--nexus-radius-md);
           
           .code-block-wrapper {
             max-width: 100%;
@@ -276,7 +276,7 @@ defineExpose({ handleSend })
               code {
                 white-space: pre-wrap;
                 word-break: break-all;
-                font-size: 12px;
+                font-size: var(--nexus-font-size-xs);
               }
             }
           }
@@ -298,7 +298,7 @@ defineExpose({ handleSend })
   }
 
   .chat-header {
-    height: 56px;
+    height: var(--header-height);
     padding: 0 20px;
     display: flex;
     justify-content: space-between;
@@ -313,7 +313,7 @@ defineExpose({ handleSend })
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 14px;
+      font-size: var(--nexus-font-size-base);
       
       .label {
         color: #0f172a;
@@ -326,7 +326,7 @@ defineExpose({ handleSend })
     flex: 1;
     overflow-y: auto;
     scroll-behavior: smooth;
-    background: #fafafa;
+    background: var(--nexus-bg);
     
     .messages-content {
       max-width: 900px;
@@ -346,21 +346,21 @@ defineExpose({ handleSend })
           width: 64px;
           height: 64px;
           background: #dcfce7;
-          border-radius: 16px;
+          border-radius: var(--nexus-radius-lg);
           display: inline-flex;
           align-items: center;
           justify-content: center;
         }
         
         h3 {
-          font-size: 18px;
+          font-size: var(--nexus-font-size-md);
           color: #0f172a;
           margin-bottom: 8px;
           font-weight: 600;
         }
         
         .empty-desc {
-          font-size: 14px;
+          font-size: var(--nexus-font-size-base);
           color: #94a3b8;
           margin-bottom: 24px;
         }
@@ -372,8 +372,8 @@ defineExpose({ handleSend })
           flex-wrap: wrap;
           
           .prompt-btn {
-            border-radius: 20px;
-            font-size: 13px;
+            border-radius: var(--nexus-radius-xl);
+            font-size: var(--nexus-font-size-sm);
           }
         }
       }
@@ -389,7 +389,7 @@ defineExpose({ handleSend })
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-top: 1px solid rgba(255, 255, 255, 0.4);
-    z-index: 20;
+    z-index: var(--nexus-z-popover);
     padding: 12px 16px 16px;
   }
 }

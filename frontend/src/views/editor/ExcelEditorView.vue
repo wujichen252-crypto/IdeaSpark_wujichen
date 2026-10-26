@@ -1557,7 +1557,7 @@ onUnmounted(() => {
 }
 
 .filename-input {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   font-family: var(--nexus-font-ui);
   color: var(--nexus-text-primary);
@@ -1585,7 +1585,7 @@ onUnmounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 11px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
   padding: 2px 8px;
   border-radius: var(--nexus-radius-full);
@@ -1624,7 +1624,7 @@ onUnmounted(() => {
   background: transparent;
   color: var(--nexus-text-secondary);
   cursor: pointer;
-  transition: all 200ms var(--nexus-ease);
+  transition: background-color 200ms var(--nexus-ease), color 200ms var(--nexus-ease);
   flex-shrink: 0;
 
   &:hover {
@@ -1650,11 +1650,11 @@ onUnmounted(() => {
   border: 1px solid var(--nexus-border);
   background: var(--nexus-bg-elevated);
   color: var(--nexus-text-secondary);
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   font-weight: 500;
   font-family: var(--nexus-font-ui);
   cursor: pointer;
-  transition: all 200ms var(--nexus-ease);
+  transition: background-color 200ms var(--nexus-ease), color 200ms var(--nexus-ease), border-color 200ms var(--nexus-ease), transform 200ms var(--nexus-ease);
   flex-shrink: 0;
 
   &:hover {
@@ -1688,11 +1688,11 @@ onUnmounted(() => {
   border: 1px solid var(--nexus-border);
   background: var(--nexus-bg-elevated);
   color: var(--nexus-text-primary);
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
   font-family: var(--nexus-font-ui);
   cursor: pointer;
-  transition: all 200ms var(--nexus-ease);
+  transition: background-color 200ms var(--nexus-ease), color 200ms var(--nexus-ease), border-color 200ms var(--nexus-ease);
   white-space: nowrap;
 
   &:hover {
@@ -1716,11 +1716,11 @@ onUnmounted(() => {
   border: none;
   background: var(--nexus-divider);
   color: var(--nexus-text-secondary);
-  font-size: 11px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
   font-family: var(--nexus-font-ui);
   cursor: pointer;
-  transition: all 200ms var(--nexus-ease);
+  transition: background-color 200ms var(--nexus-ease), color 200ms var(--nexus-ease);
 
   &:hover {
     background: var(--nexus-text-primary);
@@ -1737,11 +1737,11 @@ onUnmounted(() => {
   border: none;
   background: transparent;
   color: var(--nexus-text-secondary);
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
   font-family: var(--nexus-font-ui);
   cursor: pointer;
-  transition: all 200ms var(--nexus-ease);
+  transition: background-color 200ms var(--nexus-ease), color 200ms var(--nexus-ease);
 
   &:hover {
     background: var(--nexus-divider);
@@ -1760,7 +1760,7 @@ onUnmounted(() => {
   background: transparent;
   color: var(--nexus-text-secondary);
   cursor: pointer;
-  transition: all 200ms var(--nexus-ease);
+  transition: background-color 200ms var(--nexus-ease), color 200ms var(--nexus-ease);
 
   &:hover {
     background: var(--nexus-divider);
@@ -1795,13 +1795,13 @@ onUnmounted(() => {
 
 .ribbon-tab {
   padding: 8px 18px;
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   font-weight: 500;
   font-family: var(--nexus-font-ui);
   color: var(--nexus-text-secondary);
   cursor: pointer;
   border-bottom: 2px solid transparent;
-  transition: all 200ms var(--nexus-ease);
+  transition: color 200ms var(--nexus-ease), border-bottom-color 200ms var(--nexus-ease);
   user-select: none;
 
   &:hover {
@@ -1836,7 +1836,7 @@ onUnmounted(() => {
 }
 
 .group-title {
-  font-size: 10px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 600;
   font-family: var(--nexus-font-ui);
   color: var(--nexus-text-tertiary);
@@ -1889,7 +1889,7 @@ onUnmounted(() => {
   border: 1px solid var(--nexus-border);
   background: var(--nexus-bg-elevated);
   color: var(--nexus-text-primary);
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   font-family: var(--nexus-font-ui);
   cursor: pointer;
   width: 120px;
@@ -1901,7 +1901,7 @@ onUnmounted(() => {
   border: 1px solid var(--nexus-border);
   background: var(--nexus-bg-elevated);
   color: var(--nexus-text-primary);
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   font-family: var(--nexus-font-ui);
   cursor: pointer;
   width: 60px;
@@ -1932,7 +1932,7 @@ onUnmounted(() => {
 .color-bar {
   width: 18px;
   height: 3px;
-  border-radius: 2px;
+  border-radius: var(--nexus-radius-sm);
   cursor: pointer;
 }
 
@@ -1960,7 +1960,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 600;
   font-family: var(--nexus-font-mono);
   color: var(--nexus-text-primary);
@@ -1992,7 +1992,7 @@ onUnmounted(() => {
 .formula-input {
   flex: 1;
   height: 100%;
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   font-family: var(--nexus-font-mono);
   color: var(--nexus-text-primary);
   background: transparent;
@@ -2049,7 +2049,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 600;
   font-family: var(--nexus-font-ui);
   color: var(--nexus-text-secondary);
@@ -2076,7 +2076,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
   font-family: var(--nexus-font-ui);
   color: var(--nexus-text-secondary);
@@ -2103,7 +2103,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   padding: 0 4px;
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   font-family: var(--nexus-font-ui);
   color: var(--nexus-text-primary);
   background: var(--nexus-bg);
@@ -2122,7 +2122,7 @@ onUnmounted(() => {
   &.selected {
     outline: 2px solid var(--nexus-text-primary);
     outline-offset: -1px;
-    z-index: 1;
+    z-index: var(--nexus-z-raised);
   }
 
   &.in-range {
@@ -2141,7 +2141,7 @@ onUnmounted(() => {
 .cell-editor {
   width: 100%;
   height: 100%;
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   font-family: var(--nexus-font-ui);
   color: var(--nexus-text-primary);
   background: var(--nexus-bg-elevated);
@@ -2180,7 +2180,7 @@ onUnmounted(() => {
 
 .sheet-tab {
   padding: 4px 12px;
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
   font-family: var(--nexus-font-ui);
   color: var(--nexus-text-secondary);
@@ -2189,7 +2189,7 @@ onUnmounted(() => {
   border-radius: var(--nexus-radius-md);
   cursor: pointer;
   white-space: nowrap;
-  transition: all 200ms var(--nexus-ease);
+  transition: background-color 200ms var(--nexus-ease), color 200ms var(--nexus-ease), border-color 200ms var(--nexus-ease);
 
   &:hover {
     background: var(--nexus-divider);
@@ -2204,7 +2204,7 @@ onUnmounted(() => {
 }
 
 .status-text {
-  font-size: 11px;
+  font-size: var(--nexus-font-size-xs);
   color: var(--nexus-text-tertiary);
   font-family: var(--nexus-font-mono);
   white-space: nowrap;

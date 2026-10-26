@@ -524,15 +524,15 @@ onMounted(() => {
   }
 
   .page-title {
-    font-size: 32px;
+    font-size: var(--nexus-font-size-2xl);
     font-weight: 700;
     color: #1a1a2e;
     margin: 0 0 8px;
   }
 
   .page-subtitle {
-    font-size: 16px;
-    color: #6b7280;
+    font-size: var(--nexus-font-size-md);
+    color: var(--nexus-text-tertiary);
     margin: 0;
   }
 
@@ -557,23 +557,23 @@ onMounted(() => {
 
   .filter-tab {
     padding: 8px 18px;
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 9999px;
-    font-size: 14px;
-    color: #6b7280;
+    background: var(--nexus-white);
+    border: 1px solid var(--nexus-border);
+    border-radius: var(--nexus-radius-full);
+    font-size: var(--nexus-font-size-base);
+    color: var(--nexus-text-tertiary);
     cursor: pointer;
-    transition: all 0.25s ease;
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 
     &:hover {
-      border-color: #111827;
-      color: #111827;
+      border-color: var(--nexus-text-primary);
+      color: var(--nexus-text-primary);
     }
 
     &.active {
-      background: #111827;
-      border-color: #111827;
-      color: #ffffff;
+      background: var(--nexus-text-primary);
+      border-color: var(--nexus-text-primary);
+      color: var(--nexus-white);
     }
   }
 }
@@ -609,15 +609,15 @@ onMounted(() => {
   flex-wrap: wrap;
 
   .section-title {
-    font-size: 18px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 600;
     color: #1a1a2e;
     margin: 0;
   }
 
   .section-subtitle {
-    font-size: 13px;
-    color: #9ca3af;
+    font-size: var(--nexus-font-size-sm);
+    color: var(--nexus-text-quaternary);
     margin: 0;
     width: 100%;
     padding-left: 0;
@@ -636,7 +636,7 @@ onMounted(() => {
   .detail-icon {
     width: 64px;
     height: 64px;
-    border-radius: 16px;
+    border-radius: var(--nexus-radius-lg);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -644,13 +644,13 @@ onMounted(() => {
     .detail-icon-svg {
       width: 32px;
       height: 32px;
-      color: #fff;
+      color: var(--nexus-white);
     }
   }
 
   .detail-meta {
     .detail-name {
-      font-size: 20px;
+      font-size: var(--nexus-font-size-lg);
       font-weight: 700;
       color: #1a1a2e;
       margin: 0 0 8px;
@@ -663,16 +663,16 @@ onMounted(() => {
     }
 
     .detail-price {
-      font-size: 18px;
+      font-size: var(--nexus-font-size-md);
       font-weight: 700;
-      color: #ef4444;
+      color: var(--nexus-error);
     }
   }
 
   .detail-desc {
-    font-size: 14px;
-    color: #6b7280;
-    line-height: 1.7;
+    font-size: var(--nexus-font-size-base);
+    color: var(--nexus-text-tertiary);
+    line-height: var(--nexus-leading-prose);
     margin-bottom: 16px;
   }
 
@@ -680,7 +680,7 @@ onMounted(() => {
     margin-bottom: 16px;
 
     h4 {
-      font-size: 14px;
+      font-size: var(--nexus-font-size-base);
       font-weight: 600;
       color: #1a1a2e;
       margin-bottom: 10px;
@@ -695,8 +695,8 @@ onMounted(() => {
       gap: 8px;
 
       li {
-        font-size: 13px;
-        color: #6b7280;
+        font-size: var(--nexus-font-size-sm);
+        color: var(--nexus-text-tertiary);
         padding-left: 18px;
         position: relative;
 
@@ -708,7 +708,7 @@ onMounted(() => {
           width: 6px;
           height: 6px;
           border-radius: 50%;
-          background: #9ca3af;
+          background: var(--nexus-text-quaternary);
         }
       }
     }
@@ -738,7 +738,7 @@ onMounted(() => {
     .purchase-icon {
       width: 56px;
       height: 56px;
-      border-radius: 14px;
+      border-radius: var(--nexus-radius-lg);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -746,21 +746,21 @@ onMounted(() => {
       .purchase-icon-svg {
         width: 28px;
         height: 28px;
-        color: #fff;
+        color: var(--nexus-white);
       }
     }
 
     .purchase-info {
       .purchase-name {
-        font-size: 16px;
+        font-size: var(--nexus-font-size-md);
         font-weight: 600;
         color: #1a1a2e;
         margin: 0 0 4px;
       }
 
       .purchase-desc {
-        font-size: 13px;
-        color: #6b7280;
+        font-size: var(--nexus-font-size-sm);
+        color: var(--nexus-text-tertiary);
         margin: 0;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -790,20 +790,20 @@ onMounted(() => {
     }
 
     .plan-label {
-      font-size: 14px;
-      color: #6b7280;
+      font-size: var(--nexus-font-size-base);
+      color: var(--nexus-text-tertiary);
     }
 
     .plan-price {
-      color: #ef4444;
+      color: var(--nexus-error);
 
       .currency {
-        font-size: 14px;
+        font-size: var(--nexus-font-size-base);
         font-weight: 600;
       }
 
       .amount {
-        font-size: 28px;
+        font-size: var(--nexus-font-size-xl);
         font-weight: 700;
       }
     }
@@ -811,8 +811,8 @@ onMounted(() => {
 
   .purchase-pay {
     .pay-title {
-      font-size: 14px;
-      color: #6b7280;
+      font-size: var(--nexus-font-size-base);
+      color: var(--nexus-text-tertiary);
       margin-bottom: 12px;
     }
 
@@ -834,13 +834,13 @@ onMounted(() => {
       .pay-icon {
         width: 24px;
         height: 24px;
-        border-radius: 4px;
+        border-radius: var(--nexus-radius-sm);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 12px;
+        font-size: var(--nexus-font-size-xs);
         font-weight: 700;
-        color: #fff;
+        color: var(--nexus-white);
 
         &.alipay {
           background: #1677ff;

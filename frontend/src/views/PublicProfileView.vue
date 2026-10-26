@@ -428,7 +428,7 @@ watch(() => route.params.id, () => {
   margin-top: 24px;
   padding: 0 24px;
   position: relative;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
 }
 
 .profile-header {
@@ -438,7 +438,7 @@ watch(() => route.params.id, () => {
   margin-bottom: 24px;
   
   .user-avatar-wrapper {
-    background: #fff;
+    background: var(--nexus-white);
     padding: 4px;
     border-radius: 50%;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -457,17 +457,17 @@ watch(() => route.params.id, () => {
       
       .username {
         margin: 0;
-        font-size: 2.2rem;
+        font-size: var(--nexus-font-size-2xl);
         font-weight: 800;
-        color: #1f2937;
+        color: var(--nexus-gray-800);
         text-shadow: 0 2px 4px rgba(255,255,255,0.8);
       }
     }
     
     .bio {
-      color: #4b5563;
+      color: var(--nexus-text-secondary);
       margin-bottom: 16px;
-      font-size: 16px;
+      font-size: var(--nexus-font-size-md);
       max-width: 600px;
     }
     
@@ -481,13 +481,13 @@ watch(() => route.params.id, () => {
         align-items: flex-start;
         
         .count {
-          font-size: 1.4rem;
+          font-size: var(--nexus-font-size-lg);
           font-weight: 700;
-          color: #1f2937;
+          color: var(--nexus-gray-800);
         }
         .label {
-          font-size: 13px;
-          color: #6b7280;
+          font-size: var(--nexus-font-size-sm);
+          color: var(--nexus-text-tertiary);
         }
         
         &.clickable {
@@ -510,12 +510,12 @@ watch(() => route.params.id, () => {
 }
 
 .profile-tabs {
-  background: #fff;
+  background: var(--nexus-white);
   padding: 32px;
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   min-height: 400px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--nexus-border);
 }
 
 .projects-grid {
@@ -526,12 +526,12 @@ watch(() => route.params.id, () => {
 }
 
 .project-card {
-  background: #fff;
-  border-radius: 12px;
+  background: var(--nexus-white);
+  border-radius: var(--nexus-radius-md);
   overflow: hidden;
-  border: 1px solid #f3f4f6;
+  border: 1px solid var(--nexus-divider);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   
   &:hover {
     transform: translateY(-4px);
@@ -549,17 +549,17 @@ watch(() => route.params.id, () => {
     padding: 16px;
     
     .card-title {
-      font-size: 16px;
+      font-size: var(--nexus-font-size-md);
       font-weight: 600;
       margin-bottom: 8px;
-      color: #1f2937;
+      color: var(--nexus-gray-800);
     }
     
     .card-desc {
-      font-size: 13px;
-      color: #6b7280;
+      font-size: var(--nexus-font-size-sm);
+      color: var(--nexus-text-tertiary);
       margin-bottom: 12px;
-      line-height: 1.5;
+      line-height: var(--nexus-leading-compact);
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -569,8 +569,8 @@ watch(() => route.params.id, () => {
     .card-meta {
       display: flex;
       gap: 16px;
-      font-size: 12px;
-      color: #9ca3af;
+      font-size: var(--nexus-font-size-xs);
+      color: var(--nexus-text-quaternary);
       
       .meta-item {
         display: flex;
@@ -583,11 +583,11 @@ watch(() => route.params.id, () => {
 
 .meta-badge {
   padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 11px;
+  border-radius: var(--nexus-radius-md);
+  font-size: var(--nexus-font-size-xs);
   text-transform: uppercase;
-  background: #f3f4f6;
-  color: #6b7280;
+  background: var(--nexus-divider);
+  color: var(--nexus-text-tertiary);
 
   &.active {
     background: #dcfce7;
@@ -598,8 +598,8 @@ watch(() => route.params.id, () => {
     color: #92400e;
   }
   &.archived {
-    background: #e5e7eb;
-    color: #374151;
+    background: var(--nexus-border);
+    color: var(--nexus-gray-700);
   }
 }
 
@@ -610,17 +610,17 @@ watch(() => route.params.id, () => {
     margin-bottom: 32px;
     
     h3 {
-      font-size: 18px;
+      font-size: var(--nexus-font-size-md);
       font-weight: 600;
-      color: #1f2937;
+      color: var(--nexus-gray-800);
       margin-bottom: 12px;
       padding-bottom: 8px;
-      border-bottom: 1px solid #f3f4f6;
+      border-bottom: 1px solid var(--nexus-divider);
     }
     
     p {
-      color: #4b5563;
-      line-height: 1.6;
+      color: var(--nexus-text-secondary);
+      line-height: var(--nexus-leading-normal);
     }
 
     a {
@@ -647,15 +647,15 @@ watch(() => route.params.id, () => {
 }
 
 .post-card {
-  background: #fafafa;
-  border-radius: 12px;
+  background: var(--nexus-bg);
+  border-radius: var(--nexus-radius-md);
   padding: 16px;
-  border: 1px solid #f3f4f6;
+  border: 1px solid var(--nexus-divider);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    background: #fff;
+    background: var(--nexus-white);
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   }
 }
@@ -665,9 +665,9 @@ watch(() => route.params.id, () => {
 }
 
 .post-text {
-  font-size: 14px;
-  color: #374151;
-  line-height: 1.6;
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-gray-700);
+  line-height: var(--nexus-leading-normal);
   margin-bottom: 12px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -685,7 +685,7 @@ watch(() => route.params.id, () => {
   width: 80px;
   height: 80px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: var(--nexus-radius-sm);
 }
 
 .img-more {
@@ -694,18 +694,18 @@ watch(() => route.params.id, () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #e5e7eb;
-  border-radius: 8px;
-  font-size: 13px;
-  color: #6b7280;
+  background: var(--nexus-border);
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-sm);
+  color: var(--nexus-text-tertiary);
   font-weight: 500;
 }
 
 .post-footer-mini {
   display: flex;
   gap: 16px;
-  font-size: 13px;
-  color: #9ca3af;
+  font-size: var(--nexus-font-size-sm);
+  color: var(--nexus-text-quaternary);
   align-items: center;
 }
 
@@ -722,7 +722,7 @@ watch(() => route.params.id, () => {
 
 .post-time {
   margin-left: auto;
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
 }
 
 .follow-modal-content {

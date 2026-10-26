@@ -274,7 +274,7 @@ function addContext() {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 600;
   color: var(--nexus-text-primary);
 }
@@ -316,9 +316,9 @@ function addContext() {
 }
 
 .ai-welcome-text {
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   color: var(--nexus-text-secondary);
-  line-height: 1.6;
+  line-height: var(--nexus-leading-normal);
 
   p {
     margin: 0;
@@ -370,9 +370,9 @@ function addContext() {
 
 .message-bubble {
   padding: 10px 14px;
-  border-radius: 14px;
-  font-size: 13px;
-  line-height: 1.6;
+  border-radius: var(--nexus-radius-lg);
+  font-size: var(--nexus-font-size-sm);
+  line-height: var(--nexus-leading-normal);
   word-break: break-word;
 }
 
@@ -417,11 +417,11 @@ function addContext() {
   border: 1px solid var(--nexus-border);
   background: transparent;
   color: var(--nexus-text-tertiary);
-  font-size: 11px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
   font-family: var(--nexus-font-ui);
   cursor: pointer;
-  transition: all 200ms var(--nexus-ease);
+  transition: border-color 200ms var(--nexus-ease), color 200ms var(--nexus-ease), background-color 200ms var(--nexus-ease);
   
   &:hover {
     border-color: var(--nexus-text-primary);
@@ -456,9 +456,9 @@ function addContext() {
   border: 1px solid var(--nexus-border);
   background: var(--nexus-bg-elevated);
   color: var(--nexus-text-primary);
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   font-family: var(--nexus-font-ui);
-  line-height: 1.5;
+  line-height: var(--nexus-leading-compact);
   resize: none;
   transition: border-color 200ms var(--nexus-ease);
 
@@ -494,7 +494,7 @@ function addContext() {
   background: var(--nexus-text-primary);
   color: var(--nexus-text-inverse);
   cursor: pointer;
-  transition: all 200ms var(--nexus-ease);
+  transition: background-color 200ms var(--nexus-ease), opacity 200ms var(--nexus-ease);
 
   &:disabled {
     opacity: 0.4;
@@ -516,7 +516,7 @@ function addContext() {
   background: transparent;
   color: var(--nexus-text-secondary);
   cursor: pointer;
-  transition: all 200ms var(--nexus-ease);
+  transition: background-color 200ms var(--nexus-ease), color 200ms var(--nexus-ease);
 
   &:hover {
     background: var(--nexus-divider);
@@ -533,11 +533,11 @@ function addContext() {
   border: none;
   background: var(--nexus-divider);
   color: var(--nexus-text-secondary);
-  font-size: 11px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
   font-family: var(--nexus-font-ui);
   cursor: pointer;
-  transition: all 200ms var(--nexus-ease);
+  transition: background-color 200ms var(--nexus-ease), color 200ms var(--nexus-ease);
 
   &:hover {
     background: var(--nexus-text-primary);

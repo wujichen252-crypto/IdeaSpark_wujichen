@@ -138,12 +138,12 @@ function formatTime(ts: number) {
   .item-main {
     .title {
       font-weight: 600;
-      color: #1f2937;
+      color: var(--nexus-gray-800);
       margin-bottom: 6px;
     }
     .meta {
-      font-size: 12px;
-      color: #6b7280;
+      font-size: var(--nexus-font-size-xs);
+      color: var(--nexus-text-tertiary);
       display: flex;
       gap: 12px;
     }

@@ -141,14 +141,14 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-$color-gray-900: #111827;
-$color-gray-600: #6b7280;
-$color-gray-400: #9ca3af;
-$color-gray-200: #e5e7eb;
-$color-gray-100: #f3f4f6;
-$color-gray-50: #f9fafb;
-$color-success: #10b981;
-$color-danger: #ef4444;
+$color-gray-900: var(--nexus-text-primary);
+$color-gray-600: var(--nexus-text-tertiary);
+$color-gray-400: var(--nexus-text-quaternary);
+$color-gray-200: var(--nexus-border);
+$color-gray-100: var(--nexus-divider);
+$color-gray-50: var(--nexus-bg-subtle);
+$color-success: var(--nexus-success);
+$color-danger: var(--nexus-error);
 
 .notification-center-view {
   min-height: 100vh;
@@ -157,7 +157,7 @@ $color-danger: #ef4444;
 .page-header {
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: var(--nexus-z-header);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -174,14 +174,14 @@ $color-danger: #ef4444;
 }
 
 .page-title {
-  font-size: 20px;
+  font-size: var(--nexus-font-size-lg);
   font-weight: 600;
   color: $color-gray-900;
   margin: 0;
 }
 
 .page-subtitle {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-400;
 }
 
@@ -192,11 +192,11 @@ $color-danger: #ef4444;
   padding: 8px 16px;
   background: transparent;
   border: 1px solid $color-gray-200;
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
 
   .btn-icon {
     width: 16px;
@@ -263,14 +263,14 @@ $color-danger: #ef4444;
   }
 
   p {
-    font-size: 16px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 500;
     color: $color-gray-600;
     margin-bottom: 8px;
   }
 
   .empty-tip {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
   }
 }
 
@@ -288,12 +288,12 @@ $color-danger: #ef4444;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 12px;
-  transition: all 0.3s ease;
+  border-radius: var(--nexus-radius-md);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 
   &.unread {
     background: rgba(0, 0, 0, 0.02);
-    border-left: 3px solid #000;
+    border-left: 3px solid var(--nexus-accent);
   }
 }
 
@@ -328,7 +328,7 @@ $color-danger: #ef4444;
 
   &.system {
     background: rgba(245, 158, 11, 0.1);
-    color: #f59e0b;
+    color: var(--nexus-warning);
   }
 }
 
@@ -336,21 +336,21 @@ $color-danger: #ef4444;
   flex: 1;
 
   .notification-title {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     font-weight: 600;
     color: $color-gray-900;
     margin-bottom: 4px;
   }
 
   .notification-text {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     color: $color-gray-600;
     margin-bottom: 4px;
-    line-height: 1.5;
+    line-height: var(--nexus-leading-compact);
   }
 
   .notification-time {
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     color: $color-gray-400;
   }
 }
@@ -359,16 +359,16 @@ $color-danger: #ef4444;
   padding: 6px 12px;
   background: transparent;
   border: 1px solid $color-gray-200;
-  border-radius: 6px;
-  font-size: 12px;
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease, color 0.3s ease;
   flex-shrink: 0;
 
   &:hover {
-    border-color: #000;
-    color: #000;
+    border-color: var(--nexus-accent);
+    color: var(--nexus-accent);
   }
 }
 </style>

@@ -205,7 +205,7 @@ class="login-btn"
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: var(--nexus-z-overlay);
   height: var(--header-height);
   display: flex;
   align-items: center;
@@ -272,7 +272,7 @@ class="login-btn"
       .n-menu-item-content-header {
         color: var(--nexus-text-primary) !important;
         font-weight: 800 !important;
-        font-size: 16px !important;
+        font-size: var(--nexus-font-size-md) !important;
       }
       .n-menu-item-content:hover .n-menu-item-content-header,
       .n-menu-item-content--selected .n-menu-item-content-header {
@@ -311,7 +311,7 @@ class="login-btn"
       }
 
       .n-avatar {
-        border: 1px solid #fff !important;
+        border: 1px solid var(--nexus-white) !important;
       }
 
       .username {
@@ -375,7 +375,7 @@ class="login-btn"
 .brand-logo-icon {
   height: 36px;
   display: block;
-  border-radius: 8px;
+  border-radius: var(--nexus-radius-sm);
 }
 
 .brand-logo-image {
@@ -409,7 +409,7 @@ class="login-btn"
   align-items: center;
   justify-content: center;
   transform-origin: center center;
-  z-index: 20; /* 确保层级高于 initial-logo */
+  z-index: var(--nexus-z-popover); /* 确保层级高于 initial-logo */
   transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); /* Add default transition */
 
   .art-pattern {
@@ -427,7 +427,7 @@ class="login-btn"
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 10;
+  z-index: var(--nexus-z-sticky);
 }
 
 .energy-particle {
@@ -475,7 +475,7 @@ class="login-btn"
 }
 
 .logo-title {
-  font-size: 18px;
+  font-size: var(--nexus-font-size-md);
   font-weight: 900;
   color: #f0f0f0; /* Default dark mode / home page */
   letter-spacing: 2px;
@@ -490,7 +490,7 @@ class="login-btn"
 }
 
 .logo-subtitle {
-  font-size: 9px;
+  font-size: var(--nexus-font-size-xs);
   color: var(--nexus-text-inverse);
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -504,7 +504,7 @@ class="login-btn"
 :deep(.custom-menu) {
   --n-item-text-color-active: var(--nexus-text-inverse) !important;
   --n-item-text-color-active-hover: var(--nexus-text-inverse) !important;
-  --n-item-icon-color: #ffffff !important;
+  --n-item-icon-color: var(--nexus-white) !important;
   --n-item-icon-color-hover: var(--nexus-text-inverse) !important;
   --n-item-icon-color-active: var(--nexus-text-inverse) !important;
   --n-item-icon-color-active-hover: var(--nexus-text-inverse) !important;
@@ -528,7 +528,7 @@ class="login-btn"
     pointer-events: none;
     color: rgba(255, 255, 255, 0.55);
     font-weight: 300;
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
   }
 
   .n-menu-item-content {
@@ -541,7 +541,7 @@ class="login-btn"
 
     &:hover::before {
       background-color: rgba(255, 255, 255, 0.08) !important;
-      border-radius: 18px;
+      border-radius: var(--nexus-radius-lg);
     }
 
     &::before {
@@ -558,8 +558,8 @@ class="login-btn"
       right: 12px;
       bottom: 4px;
       height: 2px;
-      background-color: #ffffff;
-      border-radius: 2px;
+      background-color: var(--nexus-white);
+      border-radius: var(--nexus-radius-sm);
       transform: scaleX(0);
       transform-origin: center;
       transition: transform 0.2s ease;
@@ -578,22 +578,22 @@ class="login-btn"
   .n-menu-item-content-header {
     font-weight: 600 !important;
     letter-spacing: 0.3px;
-    font-size: 15px !important;
+    font-size: var(--nexus-font-size-base) !important;
     transition: color 0.3s ease, opacity 0.3s ease;
-    color: #ffffff !important;
+    color: var(--nexus-white) !important;
     font-family:
       'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial,
       sans-serif !important;
   }
 
   .n-menu-item-content--selected .n-menu-item-content-header {
-    color: #ffffff !important;
+    color: var(--nexus-white) !important;
     font-weight: 600 !important;
   }
 
   .n-menu-item-content:hover .n-menu-item-content-header,
   .n-menu-item-content--selected:hover .n-menu-item-content-header {
-    color: #ffffff !important;
+    color: var(--nexus-white) !important;
     opacity: 0.9;
   }
 }
@@ -603,7 +603,7 @@ class="login-btn"
   align-items: center;
   padding: 4px 8px 4px 4px;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 30px;
+  border-radius: var(--nexus-radius-full);
   transition: background-color 0.3s ease;
   cursor: pointer;
   max-width: 180px;
@@ -613,8 +613,8 @@ class="login-btn"
   }
 
   .username {
-    color: #fff;
-    font-size: 13px;
+    color: var(--nexus-white);
+    font-size: var(--nexus-font-size-sm);
     margin-right: 8px;
     max-width: 80px;
     overflow: hidden;
@@ -640,7 +640,7 @@ class="login-btn"
     --menu-gap: 120px;
 
     .n-menu-item-content-header {
-      font-size: 14px !important;
+      font-size: var(--nexus-font-size-base) !important;
     }
 
     .n-menu-item-content {
@@ -665,7 +665,7 @@ class="login-btn"
     --menu-gap: 80px;
 
     .n-menu-item-content-header {
-      font-size: 13px !important;
+      font-size: var(--nexus-font-size-sm) !important;
       font-weight: 500 !important;
     }
 
@@ -675,7 +675,7 @@ class="login-btn"
     }
 
     .n-menu-item:not(:last-child)::after {
-      font-size: 10px;
+      font-size: var(--nexus-font-size-xs);
     }
   }
 
@@ -683,7 +683,7 @@ class="login-btn"
     max-width: 140px;
 
     .username {
-      font-size: 12px;
+      font-size: var(--nexus-font-size-xs);
       max-width: 70px;
     }
   }
@@ -708,7 +708,7 @@ class="login-btn"
     --menu-gap: 50px;
 
     .n-menu-item-content-header {
-      font-size: 12px !important;
+      font-size: var(--nexus-font-size-xs) !important;
     }
 
     .n-menu-item-content {
@@ -729,7 +729,7 @@ class="login-btn"
 }
 
 .login-btn {
-  color: #fff !important;
+  color: var(--nexus-white) !important;
   font-weight: 500;
   transition: color 0.3s;
 
@@ -739,7 +739,7 @@ class="login-btn"
 }
 
 .icon-btn {
-  color: #fff; /* Default color */
+  color: var(--nexus-white); /* Default color */
   transition: color 0.3s;
   &:hover {
     background-color: rgba(255, 255, 255, 0.1) !important;

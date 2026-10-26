@@ -209,7 +209,7 @@ onUnmounted(() => {
 .hero__media {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: var(--nexus-z-base);
   pointer-events: none;
 }
 
@@ -236,7 +236,7 @@ onUnmounted(() => {
 .hero__overlay {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
   pointer-events: none;
   background: linear-gradient(
     180deg,
@@ -248,18 +248,18 @@ onUnmounted(() => {
 
 .hero__content {
   position: relative;
-  z-index: 2;
+  z-index: var(--nexus-z-raised-2);
   text-align: left;
-  color: #fff;
+  color: var(--nexus-white);
   max-width: 800px;
 }
 
 .hero__content h1 {
-  font-size: 5rem;
+  font-size: var(--nexus-font-size-3xl);
   margin-bottom: 24px;
   font-weight: 800;
   letter-spacing: -2px;
-  background: linear-gradient(135deg, #fff 0%, #b0c4de 100%);
+  background: linear-gradient(135deg, var(--nexus-white) 0%, #b0c4de 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
@@ -269,7 +269,7 @@ onUnmounted(() => {
 }
 
 .hero__content p {
-  font-size: 1.5rem;
+  font-size: var(--nexus-font-size-xl);
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 48px;
   font-weight: 300;
@@ -285,9 +285,9 @@ onUnmounted(() => {
   cursor: pointer;
   position: relative;
   padding-bottom: 4px;
-  font-size: 1.2rem;
+  font-size: var(--nexus-font-size-lg);
   font-weight: 500;
-  color: #fff;
+  color: var(--nexus-white);
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
@@ -301,7 +301,7 @@ onUnmounted(() => {
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #fff;
+  background-color: var(--nexus-white);
   transition: width 0.4s ease-out;
 }
 
@@ -357,11 +357,11 @@ onUnmounted(() => {
   }
 
   .hero__content h1 {
-    font-size: 2.5rem;
+    font-size: var(--nexus-font-size-3xl);
   }
 
   .hero__content p {
-    font-size: 1.1rem;
+    font-size: var(--nexus-font-size-md);
     margin-bottom: 32px;
   }
 }

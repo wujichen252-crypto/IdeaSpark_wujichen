@@ -292,7 +292,7 @@ const handleDelete = () => {
 
 .board-header {
   padding: 16px 24px;
-  background: #fff;
+  background: var(--nexus-white);
   border-bottom: 1px solid #eef0f5;
   display: flex;
   justify-content: space-between;
@@ -302,13 +302,13 @@ const handleDelete = () => {
   .header-left {
     h2 {
       margin: 0;
-      font-size: 18px;
+      font-size: var(--nexus-font-size-md);
       display: inline-block;
       margin-right: 12px;
     }
     .subtitle {
-      font-size: 13px;
-      color: #999;
+      font-size: var(--nexus-font-size-sm);
+      color: var(--nexus-text-quaternary);
     }
   }
 }
@@ -330,7 +330,7 @@ const handleDelete = () => {
     }
     &::-webkit-scrollbar-thumb {
       background: #ccc;
-      border-radius: 5px;
+      border-radius: var(--nexus-radius-sm);
     }
     &::-webkit-scrollbar-track {
       background: transparent;
@@ -342,7 +342,7 @@ const handleDelete = () => {
   width: 320px; /* Slightly wider columns */
   min-width: 320px;
   background: #f4f5f7; /* Softer background */
-  border-radius: 12px; /* Softer corners */
+  border-radius: var(--nexus-radius-md); /* Softer corners */
   display: flex;
   flex-direction: column;
   max-height: 100%;
@@ -360,7 +360,7 @@ const handleDelete = () => {
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 15px;
+      font-size: var(--nexus-font-size-base);
     }
   }
 
@@ -374,19 +374,19 @@ const handleDelete = () => {
     }
     &::-webkit-scrollbar-thumb {
       background: rgba(0,0,0,0.1);
-      border-radius: 3px;
+      border-radius: var(--nexus-radius-sm);
     }
   }
 }
 
 .kanban-card {
-  background: #fff;
-  border-radius: 8px; /* Softer corners */
+  background: var(--nexus-white);
+  border-radius: var(--nexus-radius-sm); /* Softer corners */
   box-shadow: 0 1px 2px rgba(9, 30, 66, 0.25);
   padding: 12px;
   margin-bottom: 12px; /* Increased spacing between cards */
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background-color 0.2s, box-shadow 0.2s, opacity 0.2s;
   border: 1px solid transparent;
 
   &:hover {
@@ -412,9 +412,9 @@ const handleDelete = () => {
   }
 
   .card-title {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     color: #172b4d;
-    line-height: 1.5;
+    line-height: var(--nexus-leading-compact);
     margin-bottom: 8px;
     font-weight: 500;
   }
@@ -426,7 +426,7 @@ const handleDelete = () => {
     margin-top: 8px;
     
     .due-date {
-      font-size: 12px;
+      font-size: var(--nexus-font-size-xs);
       color: #5e6c84;
     }
   }
@@ -434,13 +434,13 @@ const handleDelete = () => {
 
 .add-card-btn {
   padding: 8px;
-  border-radius: 4px;
+  border-radius: var(--nexus-radius-sm);
   color: #5e6c84;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   
   &:hover {
     background: rgba(9, 30, 66, 0.08);

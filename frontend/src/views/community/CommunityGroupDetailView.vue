@@ -543,22 +543,22 @@ watch(
 <style scoped lang="scss">
 @use '@/styles/mixins.scss';
 
-$color-bg: #fafafa;
-$color-white: #ffffff;
-$color-black: #000000;
-$color-gray-900: #111827;
-$color-gray-800: #1f2937;
-$color-gray-700: #374151;
-$color-gray-600: #6b7280;
-$color-gray-500: #6b7280;
-$color-gray-400: #9ca3af;
-$color-gray-300: #d1d5db;
-$color-gray-200: #e5e7eb;
-$color-gray-100: #f3f4f6;
-$color-gray-50: #f9fafb;
-$color-success: #10b981;
-$color-warning: #f59e0b;
-$color-danger: #ef4444;
+$color-bg: var(--nexus-bg);
+$color-white: var(--nexus-white);
+$color-black: var(--nexus-accent);
+$color-gray-900: var(--nexus-text-primary);
+$color-gray-800: var(--nexus-gray-800);
+$color-gray-700: var(--nexus-gray-700);
+$color-gray-600: var(--nexus-text-tertiary);
+$color-gray-500: var(--nexus-text-tertiary);
+$color-gray-400: var(--nexus-text-quaternary);
+$color-gray-300: var(--nexus-border-strong);
+$color-gray-200: var(--nexus-border);
+$color-gray-100: var(--nexus-divider);
+$color-gray-50: var(--nexus-bg-subtle);
+$color-success: var(--nexus-success);
+$color-warning: var(--nexus-warning);
+$color-danger: var(--nexus-error);
 $color-blue: var(--nexus-link);
 $color-purple: #a855f7;
 
@@ -578,7 +578,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 50;
+  z-index: var(--nexus-z-nav);
   opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
@@ -593,7 +593,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   margin-bottom: 30px;
   overflow: hidden;
   position: relative;
-  border-radius: 24px;
+  border-radius: var(--nexus-radius-xl);
   box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.08);
 }
 
@@ -610,18 +610,18 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   align-items: flex-end;
   gap: 20px;
   position: relative;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   margin-top: -80px;
-  border-radius: 0 0 24px 24px;
+  border-radius: 0 0 var(--nexus-radius-xl) var(--nexus-radius-xl);
 }
 
 .group-icon {
   width: 100px;
   height: 100px;
-  border-radius: 20px;
+  border-radius: var(--nexus-radius-xl);
   border: 5px solid $color-white;
   object-fit: cover;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -632,28 +632,28 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   flex-grow: 1;
 
   .group-name {
-    font-size: 32px;
+    font-size: var(--nexus-font-size-2xl);
     font-weight: 700;
     color: $color-gray-900;
     margin-bottom: 5px;
   }
 
   .group-keyword {
-    font-size: 16px;
+    font-size: var(--nexus-font-size-md);
     color: $color-success;
     font-weight: 600;
     margin-bottom: 10px;
   }
 
   .group-description {
-    font-size: 15px;
+    font-size: var(--nexus-font-size-base);
     color: $color-gray-700;
-    line-height: 1.6;
+    line-height: var(--nexus-leading-normal);
     margin-bottom: 15px;
   }
 
   .group-stats {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     color: $color-gray-600;
 
     span {
@@ -667,11 +667,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
   .join-btn, .joined-btn {
     padding: 12px 28px;
-    border-radius: 12px;
-    font-size: 16px;
+    border-radius: var(--nexus-radius-md);
+    font-size: var(--nexus-font-size-md);
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
   }
 
   .join-btn {
@@ -680,7 +680,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     border: none;
 
     &:hover {
-      background: #333;
+      background: var(--nexus-gray-800);
       transform: translateY(-2px);
     }
   }
@@ -721,11 +721,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 .members-card {
   padding: 25px;
-  border-radius: 24px;
+  border-radius: var(--nexus-radius-xl);
   box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
 
   .card-title {
-    font-size: 20px;
+    font-size: var(--nexus-font-size-lg);
     font-weight: 600;
     color: $color-gray-900;
     margin-bottom: 20px;
@@ -761,14 +761,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
       flex-grow: 1;
 
       .member-name {
-        font-size: 16px;
+        font-size: var(--nexus-font-size-md);
         font-weight: 500;
         color: $color-gray-900;
         margin-bottom: 2px;
       }
 
       .member-role {
-        font-size: 13px;
+        font-size: var(--nexus-font-size-sm);
         color: $color-gray-500;
       }
     }
@@ -778,7 +778,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 // 帖子发布框样式 (复用 CommunityView 的样式)
 .create-post {
   padding: 20px;
-  border-radius: 24px;
+  border-radius: var(--nexus-radius-xl);
   box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
 
   .create-inner {
@@ -806,15 +806,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     min-height: 60px;
     border: none;
     resize: none;
-    font-size: 15px;
+    font-size: var(--nexus-font-size-base);
     padding: 10px;
-    border-radius: 12px;
+    border-radius: var(--nexus-radius-md);
     background: $color-gray-50;
     color: $color-gray-900;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
     &:focus {
-      outline: none;
       background: $color-white;
       box-shadow: 0 0 0 2px $color-success;
     }
@@ -835,11 +834,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     background: $color-gray-300;
     color: $color-gray-600;
     border: none;
-    border-radius: 12px;
-    font-size: 15px;
+    border-radius: var(--nexus-radius-md);
+    font-size: var(--nexus-font-size-base);
     font-weight: 600;
     cursor: not-allowed;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 
     &.active {
       background: $color-black;
@@ -847,7 +846,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
 
       &:hover {
-        background: #333;
+        background: var(--nexus-gray-800);
       }
     }
   }
@@ -864,13 +863,13 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   padding: 40px;
   text-align: center;
   color: $color-gray-500;
-  font-size: 16px;
-  border-radius: 24px;
+  font-size: var(--nexus-font-size-md);
+  border-radius: var(--nexus-radius-xl);
 }
 
 .post-card {
   padding: 20px;
-  border-radius: 24px;
+  border-radius: var(--nexus-radius-xl);
   box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
@@ -895,7 +894,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .story-ring-sm {
-  background: linear-gradient(135deg, #fbbf24 0%, #ef4444 50%, #ec4899 100%);
+  background: linear-gradient(135deg, #fbbf24 0%, var(--nexus-error) 50%, #ec4899 100%);
   padding: 2px;
   border-radius: 50%;
 }
@@ -909,14 +908,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 .author-meta {
   .author-name {
-    font-size: 16px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 600;
     color: $color-gray-900;
     margin-bottom: 2px;
   }
 
   .post-time {
-    font-size: 13px;
+    font-size: var(--nexus-font-size-sm);
     color: $color-gray-500;
   }
 }
@@ -926,9 +925,9 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .post-text {
-  font-size: 15px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-800;
-  line-height: 1.6;
+  line-height: var(--nexus-leading-normal);
   margin-bottom: 15px;
 }
 
@@ -955,7 +954,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   padding-top: 100%; // 1:1 aspect ratio
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: var(--nexus-radius-md);
   cursor: zoom-in;
 
   img {
@@ -975,12 +974,12 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     color: $color-white;
-    font-size: 24px;
+    font-size: var(--nexus-font-size-xl);
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
+    border-radius: var(--nexus-radius-md);
   }
 }
 
@@ -994,8 +993,8 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   background: $color-gray-100;
   color: $color-gray-700;
   padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 13px;
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-sm);
   cursor: pointer;
   transition: background 0.3s ease;
 
@@ -1024,7 +1023,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   background: none;
   border: none;
   color: $color-gray-600;
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   cursor: pointer;
   transition: color 0.3s ease;
 
@@ -1050,7 +1049,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     background: none;
     border: none;
     color: $color-blue;
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     cursor: pointer;
 
     &:hover {
@@ -1069,7 +1068,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: var(--nexus-z-overlay);
 }
 
 .modal-close {
@@ -1079,7 +1078,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   background: none;
   border: none;
   color: $color-white;
-  font-size: 30px;
+  font-size: var(--nexus-font-size-2xl);
   cursor: pointer;
 }
 

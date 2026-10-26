@@ -45,13 +45,13 @@ const logs = ref([
 </script>
 
 <style scoped lang="scss">
-$color-gray-900: #111827;
-$color-gray-600: #6b7280;
-$color-gray-400: #9ca3af;
-$color-gray-200: #e5e7eb;
-$color-gray-100: #f3f4f6;
-$color-success: #10b981;
-$color-warning: #f59e0b;
+$color-gray-900: var(--nexus-text-primary);
+$color-gray-600: var(--nexus-text-tertiary);
+$color-gray-400: var(--nexus-text-quaternary);
+$color-gray-200: var(--nexus-border);
+$color-gray-100: var(--nexus-divider);
+$color-success: var(--nexus-success);
+$color-warning: var(--nexus-warning);
 
 .security-log-view {
   min-height: 100vh;
@@ -60,7 +60,7 @@ $color-warning: #f59e0b;
 .page-header {
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: var(--nexus-z-header);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -77,14 +77,14 @@ $color-warning: #f59e0b;
 }
 
 .page-title {
-  font-size: 20px;
+  font-size: var(--nexus-font-size-lg);
   font-weight: 600;
   color: $color-gray-900;
   margin: 0;
 }
 
 .page-subtitle {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-400;
 }
 
@@ -98,7 +98,7 @@ $color-warning: #f59e0b;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   padding: 24px;
 }
 
@@ -135,7 +135,7 @@ $color-warning: #f59e0b;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
 
   &.success {
     background: rgba(16, 185, 129, 0.1);
@@ -165,18 +165,18 @@ $color-warning: #f59e0b;
 }
 
 .log-title {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 600;
   color: $color-gray-900;
 }
 
 .log-time {
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-400;
 }
 
 .log-desc {
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   color: $color-gray-600;
   margin-bottom: 8px;
 }
@@ -184,7 +184,7 @@ $color-warning: #f59e0b;
 .log-meta {
   display: flex;
   gap: 16px;
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-400;
 }
 </style>

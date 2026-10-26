@@ -447,7 +447,7 @@ onUnmounted(() => {
   min-height: 100vh;
   position: relative;
   overflow: visible;
-  background-color: #000; /* 黑色背景 */
+  background-color: var(--nexus-accent); /* 黑色背景 */
 }
 
 /* Pin 包装器 */
@@ -456,7 +456,7 @@ onUnmounted(() => {
   height: 100vh; /* Force full viewport height */
   position: sticky; /* Use native sticky positioning */
   top: 0;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
   overflow: hidden;
 }
 
@@ -472,8 +472,8 @@ onUnmounted(() => {
   left: 0;
   width: 35vw; /* 固定宽度占比 */
   height: 100%;
-  z-index: 10; /* 位于滚动层上方 */
-  background-color: #000; /* 黑色背景，遮挡下方滑过的卡片 */
+  z-index: var(--nexus-z-sticky); /* 位于滚动层上方 */
+  background-color: var(--nexus-accent); /* 黑色背景，遮挡下方滑过的卡片 */
   display: flex;
   align-items: center;
   /* 动态计算 padding-left 以对齐 Header */
@@ -488,16 +488,16 @@ onUnmounted(() => {
 }
 
 .section-title {
-  font-size: 3rem;
-  line-height: 1.1;
+  font-size: var(--nexus-font-size-3xl);
+  line-height: var(--nexus-leading-display);
   font-weight: 700;
   margin-bottom: 24px;
-  color: #fff; /* 白色标题 */
+  color: var(--nexus-white); /* 白色标题 */
 }
 
 .section-subtitle {
-  font-size: 1.25rem;
-  line-height: 1.6;
+  font-size: var(--nexus-font-size-lg);
+  line-height: var(--nexus-leading-normal);
   color: #a1a1a6; /* 浅灰色副标题 */
 }
 
@@ -508,7 +508,7 @@ onUnmounted(() => {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -539,7 +539,7 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   /* background: #f5f5f7; */ /* 可选背景 */
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   /* padding: 24px; */
   /* transition: transform 0.3s ease; */
 }
@@ -552,24 +552,24 @@ onUnmounted(() => {
 }
 
 .card-index {
-  font-size: 0.9rem;
+  font-size: var(--nexus-font-size-base);
   font-weight: 600;
   color: #86868b; /* 保持深灰，或者改为更亮的灰色 #a1a1a6 */
   font-family: monospace;
 }
 
 .card-title {
-  font-size: 1.2rem;
+  font-size: var(--nexus-font-size-lg);
   font-weight: 600;
-  color: #fff; /* 白色标题 */
+  color: var(--nexus-white); /* 白色标题 */
 }
 
 /* 图片占位：4:5 比例 */
 .card-visual-placeholder {
   width: 100%;
   aspect-ratio: 4 / 5;
-  background-color: #333; /* 深色占位背景 */
-  border-radius: 12px;
+  background-color: var(--nexus-gray-800); /* 深色占位背景 */
+  border-radius: var(--nexus-radius-md);
   margin-bottom: 16px;
   position: relative;
   overflow: hidden;
@@ -625,15 +625,15 @@ onUnmounted(() => {
 
 /* 1. 起源：闪烁的星火 */
 .visual-spark {
-  background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+  background: radial-gradient(circle at center, #1a1a1a 0%, var(--nexus-accent) 100%);
 }
 .visual-spark .visual-inner {
   width: 4px;
   height: 4px;
-  background: #fff;
+  background: var(--nexus-white);
   border-radius: 50%;
   box-shadow:
-    0 0 20px 2px #fff,
+    0 0 20px 2px var(--nexus-white),
     0 0 40px 4px var(--nexus-success);
   animation: spark-pulse 2s infinite ease-in-out;
   position: absolute;
@@ -644,7 +644,7 @@ onUnmounted(() => {
 
 /* 2. 连接：神经网络 */
 .visual-neural {
-  background: #000;
+  background: var(--nexus-accent);
   overflow: hidden;
 }
 .visual-neural .visual-inner {
@@ -669,7 +669,7 @@ onUnmounted(() => {
 
 /* 3. 赋能：AI 核心 */
 .visual-ai-core {
-  background: #000;
+  background: var(--nexus-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -686,7 +686,7 @@ onUnmounted(() => {
 
 /* 4. 协作：和谐共振 */
 .visual-harmony {
-  background: #000;
+  background: var(--nexus-accent);
 }
 .visual-harmony .visual-inner {
   width: 100%;
@@ -711,7 +711,7 @@ onUnmounted(() => {
 
 /* 5. 落地：由虚入实 */
 .visual-manifest {
-  background: #000;
+  background: var(--nexus-accent);
   background-image:
     linear-gradient(rgba(74, 222, 128, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(74, 222, 128, 0.05) 1px, transparent 1px);
@@ -727,7 +727,7 @@ onUnmounted(() => {
 
 /* 6. 愿景：无限地平线 */
 .visual-horizon {
-  background: #000;
+  background: var(--nexus-accent);
   overflow: hidden;
 }
 .visual-horizon .visual-inner {
@@ -756,7 +756,7 @@ onUnmounted(() => {
     transform: translate(-50%, -50%) scale(2);
     opacity: 1;
     box-shadow:
-      0 0 30px 4px #fff,
+      0 0 30px 4px var(--nexus-white),
       0 0 60px 8px var(--nexus-success);
   }
 }
@@ -811,14 +811,14 @@ onUnmounted(() => {
 }
 
 .placeholder-text {
-  color: #666;
-  font-size: 0.9rem;
+  color: var(--nexus-text-tertiary);
+  font-size: var(--nexus-font-size-base);
 }
 
 .card-desc {
-  font-size: 1rem;
+  font-size: var(--nexus-font-size-md);
   color: #86868b; /* 浅灰色描述 */
-  line-height: 1.5;
+  line-height: var(--nexus-leading-compact);
 }
 
 /* 移动端适配 */

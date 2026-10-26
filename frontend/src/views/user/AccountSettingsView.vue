@@ -341,7 +341,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 50;
+  z-index: var(--nexus-z-nav);
   opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
@@ -352,7 +352,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 24px;
+  border-radius: var(--nexus-radius-xl);
   box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
   animation: slideUp 0.7s $ease-out-expo forwards;
   opacity: 0;
@@ -379,9 +379,9 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .page-title {
-    font-size: 1.5rem;
+    font-size: var(--nexus-font-size-xl);
     font-weight: 700;
-    color: #111827;
+    color: var(--nexus-text-primary);
     margin: 0;
     letter-spacing: -0.01em;
   }
@@ -395,11 +395,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   gap: 8px;
   padding: 10px 20px;
   border: none;
-  border-radius: 12px;
-  font-size: 14px;
+  border-radius: var(--nexus-radius-md);
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s $ease-out-expo;
+  transition: background-color 0.3s $ease-out-expo, color 0.3s $ease-out-expo, transform 0.3s $ease-out-expo, border-color 0.3s $ease-out-expo;
 
   .btn-icon {
     width: 16px;
@@ -407,39 +407,39 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   &.btn-primary {
-    background: #000000;
+    background: var(--nexus-accent);
     color: white;
-    border-radius: 9999px;
+    border-radius: var(--nexus-radius-full);
 
     &:hover {
-      background: #374151;
+      background: var(--nexus-gray-700);
       transform: translateY(-2px);
     }
   }
 
   &.btn-secondary {
     background: transparent;
-    color: #6b7280;
-    border: 1px solid #e5e7eb;
-    border-radius: 9999px;
+    color: var(--nexus-text-tertiary);
+    border: 1px solid var(--nexus-border);
+    border-radius: var(--nexus-radius-full);
 
     &:hover {
       background: rgba(0, 0, 0, 0.03);
-      color: #1f2937;
+      color: var(--nexus-gray-800);
     }
   }
 
   &.btn-outline {
     background: transparent;
-    color: #6b7280;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
+    color: var(--nexus-text-tertiary);
+    border: 1px solid var(--nexus-border);
+    border-radius: var(--nexus-radius-sm);
     padding: 8px 16px;
-    font-size: 13px;
+    font-size: var(--nexus-font-size-sm);
 
     &:hover {
-      border-color: #000;
-      color: #000;
+      border-color: var(--nexus-accent);
+      color: var(--nexus-accent);
     }
   }
 }
@@ -460,21 +460,21 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     padding: 12px 20px;
     background: transparent;
     border: none;
-    font-size: 15px;
+    font-size: var(--nexus-font-size-base);
     font-weight: 500;
-    color: #6b7280;
+    color: var(--nexus-text-tertiary);
     cursor: pointer;
-    border-radius: 12px 12px 0 0;
-    transition: all 0.3s $ease-out-expo;
+    border-radius: var(--nexus-radius-md) var(--nexus-radius-md) 0 0;
+    transition: background-color 0.3s $ease-out-expo, color 0.3s $ease-out-expo;
     position: relative;
 
     &:hover {
-      color: #1f2937;
+      color: var(--nexus-gray-800);
       background: rgba(0, 0, 0, 0.03);
     }
 
     &.active {
-      color: #000;
+      color: var(--nexus-accent);
       font-weight: 600;
 
       &::after {
@@ -484,7 +484,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
         left: 0;
         right: 0;
         height: 2px;
-        background: #000;
+        background: var(--nexus-accent);
       }
     }
   }
@@ -511,8 +511,8 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   gap: 16px;
   padding: 20px;
   background: rgba(255, 255, 255, 0.5);
-  border-radius: 16px;
-  transition: all 0.3s $ease-out-expo;
+  border-radius: var(--nexus-radius-lg);
+  transition: background-color 0.3s $ease-out-expo, transform 0.3s $ease-out-expo, box-shadow 0.3s $ease-out-expo;
 
   &:hover {
     background: rgba(255, 255, 255, 0.8);
@@ -527,13 +527,13 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.03);
-    border-radius: 12px;
+    border-radius: var(--nexus-radius-md);
     flex-shrink: 0;
 
     .icon {
       width: 24px;
       height: 24px;
-      color: #6b7280;
+      color: var(--nexus-text-tertiary);
     }
   }
 
@@ -542,15 +542,15 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     min-width: 0;
 
     .item-title {
-      font-size: 15px;
+      font-size: var(--nexus-font-size-base);
       font-weight: 600;
-      color: #111827;
+      color: var(--nexus-text-primary);
       margin-bottom: 4px;
     }
 
     .item-desc {
-      font-size: 13px;
-      color: #6b7280;
+      font-size: var(--nexus-font-size-sm);
+      color: var(--nexus-text-tertiary);
     }
   }
 }
@@ -568,7 +568,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     height: 0;
 
     &:checked + .toggle-slider {
-      background: #000;
+      background: var(--nexus-accent);
     }
 
     &:checked + .toggle-slider:before {
@@ -584,8 +584,8 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   left: 0;
   right: 0;
   bottom: 0;
-  background: #e5e7eb;
-  border-radius: 26px;
+  background: var(--nexus-border);
+  border-radius: var(--nexus-radius-full);
   transition: 0.3s $ease-out-expo;
 
   &:before {
@@ -595,7 +595,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     width: 20px;
     left: 3px;
     bottom: 3px;
-    background: #fff;
+    background: var(--nexus-white);
     border-radius: 50%;
     transition: 0.3s $ease-out-expo;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -611,7 +611,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100;
+  z-index: var(--nexus-z-dropdown);
   animation: fadeIn 0.2s $ease-out-expo;
 }
 
@@ -630,9 +630,9 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   margin-bottom: 24px;
 
   .modal-title {
-    font-size: 18px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 700;
-    color: #111827;
+    color: var(--nexus-text-primary);
     margin: 0;
   }
 
@@ -644,14 +644,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     justify-content: center;
     background: transparent;
     border: none;
-    border-radius: 8px;
+    border-radius: var(--nexus-radius-sm);
     cursor: pointer;
-    color: #6b7280;
-    transition: all 0.3s $ease-out-expo;
+    color: var(--nexus-text-tertiary);
+    transition: background-color 0.3s $ease-out-expo, color 0.3s $ease-out-expo;
 
     &:hover {
       background: rgba(0, 0, 0, 0.05);
-      color: #111827;
+      color: var(--nexus-text-primary);
     }
 
     .icon {
@@ -685,9 +685,9 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 .form-label {
   display: block;
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
-  color: #374151;
+  color: var(--nexus-gray-700);
   margin-bottom: 8px;
 }
 
@@ -695,18 +695,18 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   width: 100%;
   padding: 12px 16px;
   background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  font-size: 14px;
-  color: #111827;
-  transition: all 0.3s $ease-out-expo;
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-md);
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-text-primary);
+  transition: border-color 0.3s $ease-out-expo;
 
   &::placeholder {
-    color: #9ca3af;
+    color: var(--nexus-text-quaternary);
   }
 
   &:focus {
-    border-color: #000;
+    border-color: var(--nexus-accent);
   }
 }
 

@@ -169,7 +169,7 @@ defineExpose({ getLogicFlow: () => lf })
   position: relative;
   width: 100%;
   height: 100%;
-  background: #fff;
+  background: var(--nexus-white);
 }
 
 .flow-canvas {
@@ -181,14 +181,14 @@ defineExpose({ getLogicFlow: () => lf })
   position: absolute;
   top: 12px;
   left: 12px;
-  z-index: 5;
+  z-index: var(--nexus-z-lift);
   display: flex;
   align-items: center;
   gap: 4px;
   padding: 4px;
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
+  background: var(--nexus-white);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-sm);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
@@ -196,23 +196,23 @@ defineExpose({ getLogicFlow: () => lf })
   width: 30px;
   height: 30px;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--nexus-radius-sm);
   background: transparent;
-  color: #374151;
-  font-size: 16px;
+  color: var(--nexus-gray-700);
+  font-size: var(--nexus-font-size-md);
   line-height: 1;
   cursor: pointer;
   transition: background 0.15s ease;
 
   &:hover {
-    background: #f3f4f6;
+    background: var(--nexus-divider);
   }
 }
 
 .ft-sep {
   width: 1px;
   height: 18px;
-  background: #e5e7eb;
+  background: var(--nexus-border);
   margin: 0 2px;
 }
 </style>

@@ -206,17 +206,17 @@ function handleSaveText() {
       align-items: flex-end;
       
       .bubble {
-        background: #000;
-        color: #fff;
-        border-radius: 16px 16px 4px 16px;
+        background: var(--nexus-accent);
+        color: var(--nexus-white);
+        border-radius: var(--nexus-radius-lg) var(--nexus-radius-lg) var(--nexus-radius-sm) var(--nexus-radius-lg);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         
         .text-content {
-          color: #fff;
+          color: var(--nexus-white);
           
           :deep(.inline-code) {
             background: rgba(255,255,255,0.25);
-            color: #fff;
+            color: var(--nexus-white);
           }
           
           :deep(a) {
@@ -225,7 +225,7 @@ function handleSaveText() {
           }
           
           :deep(strong) {
-            color: #fff;
+            color: var(--nexus-white);
           }
         }
       }
@@ -241,7 +241,7 @@ function handleSaveText() {
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.4);
-        border-radius: 4px 16px 16px 16px;
+        border-radius: var(--nexus-radius-sm) var(--nexus-radius-lg) var(--nexus-radius-lg) var(--nexus-radius-lg);
         box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
         
         .text-content {
@@ -251,8 +251,8 @@ function handleSaveText() {
             background: #f1f5f9;
             color: #0f172a;
             padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 13px;
+            border-radius: var(--nexus-radius-sm);
+            font-size: var(--nexus-font-size-sm);
             font-family: 'Menlo', 'Monaco', monospace;
           }
           
@@ -291,7 +291,7 @@ function handleSaveText() {
     min-width: 0;
     
     .sender-name {
-      font-size: 12px;
+      font-size: var(--nexus-font-size-xs);
       color: #94a3b8;
       margin-bottom: 4px;
       font-weight: 500;
@@ -299,11 +299,11 @@ function handleSaveText() {
     
     .bubble {
       padding: 10px 14px;
-      line-height: 1.6;
-      font-size: 14px;
+      line-height: var(--nexus-leading-normal);
+      font-size: var(--nexus-font-size-base);
       position: relative;
       overflow: hidden;
-      transition: all 0.2s ease;
+      transition: min-width 0.2s ease, min-height 0.2s ease;
       
       &.loading {
         min-width: 60px;
@@ -315,13 +315,13 @@ function handleSaveText() {
       .text-content {
         white-space: pre-wrap;
         word-break: break-word;
-        font-size: 14px;
-        line-height: 1.7;
+        font-size: var(--nexus-font-size-base);
+        line-height: var(--nexus-leading-prose);
       }
       
       .code-block-wrapper {
         margin: 10px 0;
-        border-radius: 10px;
+        border-radius: var(--nexus-radius-md);
         overflow: hidden;
         background: #0f172a;
         color: #e2e8f0;
@@ -333,7 +333,7 @@ function handleSaveText() {
           align-items: center;
           padding: 8px 12px;
           background: rgba(255,255,255,0.05);
-          font-size: 12px;
+          font-size: var(--nexus-font-size-xs);
           color: #94a3b8;
           border-bottom: 1px solid rgba(255,255,255,0.05);
 
@@ -356,8 +356,8 @@ function handleSaveText() {
           max-width: 100%;
           
           code {
-            font-size: 13px;
-            line-height: 1.5;
+            font-size: var(--nexus-font-size-sm);
+            line-height: var(--nexus-leading-compact);
             color: #e2e8f0;
           }
         }

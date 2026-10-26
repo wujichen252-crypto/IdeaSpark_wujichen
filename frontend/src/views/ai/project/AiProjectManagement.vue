@@ -337,9 +337,9 @@ const pendingTasksCount = computed(() => {
 }
 
 .management-sider {
-  background-color: #fff;
+  background-color: var(--nexus-white);
   box-shadow: 1px 0 5px rgba(0,0,0,0.05);
-  z-index: 10;
+  z-index: var(--nexus-z-sticky);
   
   .sider-content {
     padding: 24px 0;
@@ -353,7 +353,7 @@ const pendingTasksCount = computed(() => {
     margin-bottom: 24px;
     
     .back-btn {
-      color: #666;
+      color: var(--nexus-text-tertiary);
       &:hover {
         color: var(--nexus-success-text);
       }
@@ -366,9 +366,9 @@ const pendingTasksCount = computed(() => {
     
     .project-name {
       margin: 16px 0 8px;
-      font-size: 18px;
+      font-size: var(--nexus-font-size-md);
       font-weight: 600;
-      color: #333;
+      color: var(--nexus-gray-800);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -380,13 +380,13 @@ const pendingTasksCount = computed(() => {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #f9fafb;
+  background-color: var(--nexus-bg-subtle);
 }
 
 .content-header {
   padding: 24px 32px;
-  background-color: #fff;
-  border-bottom: 1px solid #eee;
+  background-color: var(--nexus-white);
+  border-bottom: 1px solid var(--nexus-gray-100);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -395,12 +395,12 @@ const pendingTasksCount = computed(() => {
   .header-title {
     h2 {
       margin: 0;
-      font-size: 20px;
-      color: #1f2937;
+      font-size: var(--nexus-font-size-lg);
+      color: var(--nexus-gray-800);
     }
     .subtitle {
-      font-size: 13px;
-      color: #9ca3af;
+      font-size: var(--nexus-font-size-sm);
+      color: var(--nexus-text-quaternary);
       margin-top: 4px;
       display: block;
     }
@@ -434,15 +434,15 @@ const pendingTasksCount = computed(() => {
     
     .stat-card {
       .stat-label {
-        color: #6b7280;
-        font-size: 13px;
+        color: var(--nexus-text-tertiary);
+        font-size: var(--nexus-font-size-sm);
         margin-bottom: 8px;
       }
       .stat-value {
         &.number {
-          font-size: 28px;
+          font-size: var(--nexus-font-size-xl);
           font-weight: bold;
-          color: #111827;
+          color: var(--nexus-text-primary);
         }
       }
     }
@@ -455,11 +455,11 @@ const pendingTasksCount = computed(() => {
   }
   
   .message-card {
-    background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+    background: linear-gradient(135deg, #f0fdf4 0%, var(--nexus-white) 100%);
     .message-text {
       font-style: italic;
-      color: #374151;
-      line-height: 1.6;
+      color: var(--nexus-gray-700);
+      line-height: var(--nexus-leading-normal);
     }
   }
 }
@@ -467,16 +467,16 @@ const pendingTasksCount = computed(() => {
 // 团队页样式
 .team-view {
   .team-list-container {
-    background: #fff;
-    border-radius: 8px;
+    background: var(--nexus-white);
+    border-radius: var(--nexus-radius-sm);
     padding: 24px;
-    border: 1px solid #eee;
+    border: 1px solid var(--nexus-gray-100);
     
     .member-info {
       margin-left: 12px;
       .name {
         font-weight: 500;
-        font-size: 16px;
+        font-size: var(--nexus-font-size-md);
       }
     }
   }

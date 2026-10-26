@@ -416,12 +416,10 @@ async function copyText(text: string): Promise<void> {
 </script>
 
 <style scoped lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap');
-
 $text-primary: #0f172a;
 $text-secondary: #475569;
-$border-color: #e5e7eb;
-$overlay-bg: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #2563eb 100%);
+$border-color: var(--nexus-border);
+$overlay-bg: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, var(--nexus-link) 100%);
 
 .login-page {
   display: flex;
@@ -429,7 +427,7 @@ $overlay-bg: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #2563eb 100%);
   align-items: center;
   min-height: 100dvh;
   padding: 20px;
-  font-family: 'Inter', 'HarmonyOS Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+  font-family: var(--nexus-font-ui);
   position: relative;
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
@@ -439,14 +437,10 @@ $overlay-bg: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #2563eb 100%);
   position: fixed;
   top: 15px;
   left: 40px;
-  z-index: 100;
+  z-index: var(--nexus-z-dropdown);
   cursor: pointer;
   opacity: 1;
   transition: transform 0.2s ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
 
   img {
     height: 55px;
@@ -471,7 +465,7 @@ $overlay-bg: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #2563eb 100%);
   position: absolute;
   inset: 0;
   overflow: hidden;
-  z-index: 0;
+  z-index: var(--nexus-z-base);
 }
 
 /* 背景图片层 - 使用 Unsplash 高质量抽象艺术图 */
@@ -533,10 +527,10 @@ $overlay-bg: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #2563eb 100%);
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 1000;
+  z-index: var(--nexus-z-overlay);
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   padding: 16px 20px;
   box-shadow: 
     0 10px 40px rgba(0, 0, 0, 0.2),
@@ -566,11 +560,11 @@ $overlay-bg: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #2563eb 100%);
 }
 
 .test-account-icon {
-  font-size: 18px;
+  font-size: var(--nexus-font-size-md);
 }
 
 .test-account-title {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 700;
   color: #1a1a2e;
 }
@@ -585,7 +579,7 @@ $overlay-bg: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #2563eb 100%);
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
 }
 
 .test-account-label {
@@ -600,7 +594,7 @@ $overlay-bg: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #2563eb 100%);
   font-family: 'Courier New', monospace;
   background: rgba(99, 102, 241, 0.08);
   padding: 4px 8px;
-  border-radius: 6px;
+  border-radius: var(--nexus-radius-sm);
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -616,16 +610,15 @@ $overlay-bg: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #2563eb 100%);
   border: none;
   background: rgba(99, 102, 241, 0.1);
   color: #6366f1;
-  border-radius: 6px;
+  border-radius: var(--nexus-radius-sm);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
   flex-shrink: 0;
 }
 
 .copy-btn:hover {
   background: #6366f1;
-  color: #fff;
-  transform: scale(1.05);
+  color: var(--nexus-white);
 }
 
 .copy-btn:active {
@@ -643,12 +636,12 @@ $overlay-bg: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #2563eb 100%);
   padding: 10px 16px;
   border: none;
   background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  color: #fff;
-  font-size: 13px;
+  color: var(--nexus-white);
+  font-size: var(--nexus-font-size-sm);
   font-weight: 600;
-  border-radius: 10px;
+  border-radius: var(--nexus-radius-md);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
 
@@ -688,23 +681,23 @@ $overlay-bg: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #2563eb 100%);
 h1 {
   font-weight: 800;
   margin: 0 0 12px;
-  font-size: 2rem;
+  font-size: var(--nexus-font-size-2xl);
   letter-spacing: 0.04em;
-  line-height: 1.2;
+  line-height: var(--nexus-leading-display);
   color: $text-primary;
 }
 
 p {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 400;
-  line-height: 1.7;
+  line-height: var(--nexus-leading-prose);
   margin: 0 0 24px;
   color: $text-secondary;
 }
 
 .divider-text {
   display: block;
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   margin: 16px 0;
   letter-spacing: 0.06em;
   color: $text-secondary;
@@ -719,7 +712,7 @@ p {
 
 .social-btn {
   border: 1px solid $border-color;
-  background: #fff;
+  background: var(--nexus-white);
   color: $text-secondary;
 
   &:hover:not(:disabled) {
@@ -753,7 +746,7 @@ p {
     background: transparent;
     color: $text-primary;
     transition: border-color 0.3s;
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
 
     &::placeholder {
       color: rgba(71, 85, 105, 0.5);
@@ -770,7 +763,7 @@ p {
     left: 0;
     width: 0;
     height: 2px;
-    background: #000;
+    background: var(--nexus-accent);
     transition: width 0.4s ease;
   }
 
@@ -782,7 +775,7 @@ p {
 .forgot-link {
   display: block;
   color: $text-secondary;
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   text-decoration: none;
   margin: 16px 0 8px;
   text-align: right;
@@ -790,19 +783,19 @@ p {
   transition: color 0.3s;
 
   &:hover {
-    color: #111111;
+    color: var(--nexus-text-primary);
   }
 }
 
 .action-btn {
-  --btn-color: #111111;
-  --btn-hover: #000000;
+  --btn-color: var(--nexus-text-primary);
+  --btn-hover: var(--nexus-accent);
 
-  border-radius: 14px;
+  border-radius: var(--nexus-radius-lg);
   border: 1px solid var(--btn-color);
   background-color: var(--btn-color);
-  color: #fff;
-  font-size: 14px;
+  color: var(--nexus-white);
+  font-size: var(--nexus-font-size-base);
   font-weight: 600;
   padding: 12px 45px;
   letter-spacing: 0.5px;
@@ -839,13 +832,13 @@ p {
 .ghost-btn {
   @extend .action-btn;
   background-color: transparent;
-  border-color: #fff;
-  color: #fff;
+  border-color: var(--nexus-white);
+  color: var(--nexus-white);
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.15);
     box-shadow: none;
-    color: #fff;
+    color: var(--nexus-white);
   }
 }
 
@@ -853,7 +846,7 @@ p {
 .desktop-card {
   display: none;
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 24px;
+  border-radius: var(--nexus-radius-xl);
   box-shadow: 
     0 25px 50px rgba(0, 0, 0, 0.25),
     0 0 0 1px rgba(255, 255, 255, 0.1) inset;
@@ -862,7 +855,7 @@ p {
   width: clamp(760px, 58vw, 1000px);
   min-height: 520px;
   max-height: 640px;
-  z-index: 10;
+  z-index: var(--nexus-z-sticky);
   backdrop-filter: blur(20px);
 }
 
@@ -876,7 +869,7 @@ p {
   position: absolute;
   top: 0;
   height: 100%;
-  transition: all 0.6s ease-in-out;
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
 }
 
 .panel-content {
@@ -892,7 +885,7 @@ p {
 .sign-in-panel {
   left: 0;
   width: 50%;
-  z-index: 2;
+  z-index: var(--nexus-z-raised-2);
   opacity: 1;
 }
 
@@ -905,13 +898,13 @@ p {
   left: 0;
   width: 50%;
   opacity: 0;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
 }
 
 .desktop-card.right-panel-active .sign-up-panel {
   transform: translateX(100%);
   opacity: 1;
-  z-index: 5;
+  z-index: var(--nexus-z-lift);
   animation: show 0.6s;
 }
 
@@ -919,12 +912,12 @@ p {
   0%,
   49.99% {
     opacity: 0;
-    z-index: 1;
+    z-index: var(--nexus-z-raised);
   }
   50%,
   100% {
     opacity: 1;
-    z-index: 5;
+    z-index: var(--nexus-z-lift);
   }
 }
 
@@ -936,7 +929,7 @@ p {
   height: 100%;
   overflow: hidden;
   transition: transform 0.6s ease-in-out;
-  z-index: 100;
+  z-index: var(--nexus-z-dropdown);
 }
 
 .desktop-card.right-panel-active .overlay-container {
@@ -945,7 +938,7 @@ p {
 
 .overlay {
   background: $overlay-bg;
-  color: #fff;
+  color: var(--nexus-white);
   position: relative;
   left: -100%;
   height: 100%;
@@ -987,7 +980,7 @@ p {
   transition: transform 0.6s ease-in-out;
 
   h1 {
-    color: #fff;
+    color: var(--nexus-white);
   }
 
   p {
@@ -1028,16 +1021,16 @@ p {
 
 /* action-btn：强制白字，hover/focus/pressed 都不变绿 */
 :deep(.n-button.action-btn) {
-  color: #fff !important;
+  color: var(--nexus-white) !important;
 
   &:hover,
   &:focus,
   &:active {
-    color: #fff !important;
+    color: var(--nexus-white) !important;
   }
 
   .n-button__content {
-    color: #fff !important;
+    color: var(--nexus-white) !important;
   }
 
   &:not(.n-button--disabled):focus,
@@ -1048,16 +1041,16 @@ p {
 
 /* ghost-btn：强制白字 */
 :deep(.n-button.ghost-btn) {
-  color: #fff !important;
+  color: var(--nexus-white) !important;
 
   &:hover,
   &:focus,
   &:active {
-    color: #fff !important;
+    color: var(--nexus-white) !important;
   }
 
   .n-button__content {
-    color: #fff !important;
+    color: var(--nexus-white) !important;
   }
 
   &:not(.n-button--disabled):focus,
@@ -1078,12 +1071,12 @@ p {
     width: 100%;
     max-width: 420px;
     background: rgba(255, 255, 255, 0.95);
-    border-radius: 24px;
+    border-radius: var(--nexus-radius-xl);
     padding: 32px 24px;
     box-shadow: 
       0 20px 40px rgba(0, 0, 0, 0.2),
       0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-    z-index: 10;
+    z-index: var(--nexus-z-sticky);
     backdrop-filter: blur(20px);
   }
 
@@ -1092,13 +1085,13 @@ p {
     margin-bottom: 8px;
 
     h1 {
-      font-size: 1.6rem;
+      font-size: var(--nexus-font-size-xl);
       margin-bottom: 6px;
     }
 
     p {
       margin-bottom: 0;
-      font-size: 13px;
+      font-size: var(--nexus-font-size-sm);
     }
   }
 
@@ -1119,7 +1112,7 @@ p {
   .mobile-footer {
     margin-top: 20px;
     text-align: center;
-    font-size: 13px;
+    font-size: var(--nexus-font-size-sm);
     color: $text-secondary;
 
     span {
@@ -1128,7 +1121,7 @@ p {
   }
 
   .mobile-toggle-link {
-    color: #111111;
+    color: var(--nexus-text-primary);
     font-weight: 500;
     cursor: pointer;
     text-decoration: none;
@@ -1137,36 +1130,5 @@ p {
       text-decoration: underline;
     }
   }
-}
-</style>
-
-<style>
-/* 强制覆盖 Naive UI 按钮 hover 时的绿色文字 */
-.login-page .n-button.action-btn,
-.login-page .n-button.action-btn:hover,
-.login-page .n-button.action-btn:focus,
-.login-page .n-button.action-btn:active {
-  color: #fff !important;
-}
-
-.login-page .n-button.action-btn .n-button__content,
-.login-page .n-button.action-btn:hover .n-button__content,
-.login-page .n-button.action-btn:focus .n-button__content,
-.login-page .n-button.action-btn:active .n-button__content {
-  color: #fff !important;
-}
-
-.login-page .n-button.ghost-btn,
-.login-page .n-button.ghost-btn:hover,
-.login-page .n-button.ghost-btn:focus,
-.login-page .n-button.ghost-btn:active {
-  color: #fff !important;
-}
-
-.login-page .n-button.ghost-btn .n-button__content,
-.login-page .n-button.ghost-btn:hover .n-button__content,
-.login-page .n-button.ghost-btn:focus .n-button__content,
-.login-page .n-button.ghost-btn:active .n-button__content {
-  color: #fff !important;
 }
 </style>

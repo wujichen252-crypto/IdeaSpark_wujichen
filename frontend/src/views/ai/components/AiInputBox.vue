@@ -122,7 +122,7 @@ function onSelectPrompt(val: string) {
     
     .input-container {
       padding: 8px 12px 8px 8px; /* 右侧留点空间给按钮 */
-      border-radius: 20px; /* 更圆润 */
+      border-radius: var(--nexus-radius-xl); /* 更圆润 */
       flex-direction: row; /* 改为水平排列 */
       align-items: flex-end; /* 底部对齐 */
       gap: 8px;
@@ -136,7 +136,7 @@ function onSelectPrompt(val: string) {
         padding-bottom: 2px;
         
         :deep(.n-input__textarea-el) {
-          font-size: 13px;
+          font-size: var(--nexus-font-size-sm);
           min-height: 24px !important; /* 允许更矮 */
           max-height: 120px;
         }
@@ -163,17 +163,17 @@ function onSelectPrompt(val: string) {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 1rem;
+    border-radius: var(--nexus-radius-lg);
     padding: 12px;
     box-sizing: border-box;
     box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     flex-direction: column;
     gap: 8px;
     
     &.focused {
-      border-color: #000;
+      border-color: var(--nexus-accent);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
     
@@ -185,8 +185,8 @@ function onSelectPrompt(val: string) {
     .custom-textarea {
       :deep(.n-input__textarea-el) {
         padding: 0;
-        font-size: 15px;
-        line-height: 1.6;
+        font-size: var(--nexus-font-size-base);
+        line-height: var(--nexus-leading-normal);
       }
       :deep(.n-input-wrapper) {
         padding: 0;
@@ -203,7 +203,7 @@ function onSelectPrompt(val: string) {
       justify-content: flex-end;
       
       .send-btn {
-        transition: all 0.2s;
+        transition: opacity 0.2s;
         &[disabled] {
           opacity: 0.5;
           cursor: not-allowed;
@@ -214,8 +214,8 @@ function onSelectPrompt(val: string) {
   
   .footer-tip {
     text-align: center;
-    font-size: 12px;
-    color: #9ca3af;
+    font-size: var(--nexus-font-size-xs);
+    color: var(--nexus-text-quaternary);
     margin-top: 12px;
   }
 }

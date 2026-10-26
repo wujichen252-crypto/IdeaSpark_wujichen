@@ -722,7 +722,7 @@ onMounted(() => {
 // ==================== 全局样式 ====================
 .project-detail-view {
   min-height: 100vh;
-  background: #fafafa;
+  background: var(--nexus-bg);
   position: relative;
   padding-bottom: 80px;
 }
@@ -735,7 +735,7 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
   opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
@@ -752,8 +752,8 @@ onMounted(() => {
   .loading-spinner {
     width: 40px;
     height: 40px;
-    border: 2px solid #e5e7eb;
-    border-top-color: #000000;
+    border: 2px solid var(--nexus-border);
+    border-top-color: var(--nexus-accent);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
 
@@ -765,8 +765,8 @@ onMounted(() => {
   }
 
   p {
-    font-size: 14px;
-    color: #9ca3af;
+    font-size: var(--nexus-font-size-base);
+    color: var(--nexus-text-quaternary);
   }
 }
 
@@ -792,36 +792,36 @@ onMounted(() => {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #d1d5db;
+    color: var(--nexus-border-strong);
     margin-bottom: 16px;
   }
 
   h3 {
-    font-size: 18px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 600;
-    color: #111827;
+    color: var(--nexus-text-primary);
     margin-bottom: 8px;
   }
 
   p {
-    font-size: 14px;
-    color: #9ca3af;
+    font-size: var(--nexus-font-size-base);
+    color: var(--nexus-text-quaternary);
     margin-bottom: 24px;
   }
 
   .back-btn {
     padding: 10px 24px;
-    background: #000000;
+    background: var(--nexus-accent);
     border: none;
     border-radius: var(--radius-full);
-    color: #ffffff;
-    font-size: 14px;
+    color: var(--nexus-white);
+    font-size: var(--nexus-font-size-base);
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 
     &:hover {
-      background: #333333;
+      background: var(--nexus-gray-800);
       transform: translateY(-2px);
     }
   }
@@ -831,7 +831,7 @@ onMounted(() => {
 .detail-header {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: var(--nexus-z-sticky);
   padding: 16px 32px;
   background: rgba(250, 250, 250, 0.85);
   backdrop-filter: blur(20px);
@@ -850,17 +850,17 @@ onMounted(() => {
     gap: 8px;
     padding: 8px 16px;
     background: transparent;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--nexus-border);
     border-radius: var(--radius-full);
-    color: #6b7280;
-    font-size: 14px;
+    color: var(--nexus-text-tertiary);
+    font-size: var(--nexus-font-size-base);
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s var(--ease-out-expo);
+    transition: border-color 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo);
 
     &:hover {
-      border-color: #111827;
-      color: #111827;
+      border-color: var(--nexus-text-primary);
+      color: var(--nexus-text-primary);
     }
 
     .back-icon {
@@ -874,7 +874,7 @@ onMounted(() => {
 .project-hero {
   padding: 48px 32px 32px;
   position: relative;
-  z-index: 2;
+  z-index: var(--nexus-z-raised-2);
   animation: slideUp 0.8s var(--ease-out-expo) forwards;
 
   .hero-inner {
@@ -889,27 +889,27 @@ onMounted(() => {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(229, 231, 235, 0.6);
     border-radius: var(--radius-full);
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     font-weight: 500;
-    color: #6b7280;
+    color: var(--nexus-text-tertiary);
     margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
   .project-title {
-    font-size: 42px;
+    font-size: var(--nexus-font-size-3xl);
     font-weight: 600;
-    line-height: 1.1;
-    color: #111827;
+    line-height: var(--nexus-leading-display);
+    color: var(--nexus-text-primary);
     margin-bottom: 16px;
     letter-spacing: -0.02em;
   }
 
   .project-summary {
-    font-size: 16px;
-    color: #6b7280;
-    line-height: 1.6;
+    font-size: var(--nexus-font-size-md);
+    color: var(--nexus-text-tertiary);
+    line-height: var(--nexus-leading-normal);
     max-width: 640px;
     margin-bottom: 32px;
   }
@@ -946,14 +946,14 @@ onMounted(() => {
       gap: 2px;
 
       .author-name {
-        font-size: 14px;
+        font-size: var(--nexus-font-size-base);
         font-weight: 600;
-        color: #111827;
+        color: var(--nexus-text-primary);
       }
 
       .publish-date {
-        font-size: 12px;
-        color: #9ca3af;
+        font-size: var(--nexus-font-size-xs);
+        color: var(--nexus-text-quaternary);
       }
     }
   }
@@ -966,28 +966,28 @@ onMounted(() => {
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 14px;
-      color: #6b7280;
+      font-size: var(--nexus-font-size-base);
+      color: var(--nexus-text-tertiary);
 
       .stat-icon {
         width: 18px;
         height: 18px;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: fill 0.3s ease, color 0.3s ease;
 
         &:hover {
-          color: #111827;
+          color: var(--nexus-text-primary);
         }
 
         &.liked {
-          fill: #ef4444;
-          color: #ef4444;
+          fill: var(--nexus-error);
+          color: var(--nexus-error);
           animation: heartBurst 0.3s ease;
         }
 
         &.favorited {
-          fill: #f59e0b;
-          color: #f59e0b;
+          fill: var(--nexus-warning);
+          color: var(--nexus-warning);
         }
       }
     }
@@ -1004,7 +1004,7 @@ onMounted(() => {
 .cover-section {
   padding: 0 32px 48px;
   position: relative;
-  z-index: 2;
+  z-index: var(--nexus-z-raised-2);
   animation: slideUp 0.8s var(--ease-out-expo) forwards;
   animation-delay: 0.1s;
 
@@ -1018,7 +1018,7 @@ onMounted(() => {
     aspect-ratio: 21 / 9;
     border-radius: var(--radius-2xl);
     overflow: hidden;
-    background: #f3f4f6;
+    background: var(--nexus-divider);
     box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
 
     .cover-image {
@@ -1038,7 +1038,7 @@ onMounted(() => {
 .main-content {
   padding: 0 32px;
   position: relative;
-  z-index: 2;
+  z-index: var(--nexus-z-raised-2);
   animation: slideUp 0.8s var(--ease-out-expo) forwards;
   animation-delay: 0.2s;
 
@@ -1072,9 +1072,9 @@ onMounted(() => {
   box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
 
   .section-title {
-    font-size: 20px;
+    font-size: var(--nexus-font-size-lg);
     font-weight: 600;
-    color: #111827;
+    color: var(--nexus-text-primary);
     margin-bottom: 20px;
     letter-spacing: -0.01em;
     display: flex;
@@ -1082,16 +1082,16 @@ onMounted(() => {
     gap: 8px;
 
     .comment-count {
-      font-size: 14px;
-      color: #9ca3af;
+      font-size: var(--nexus-font-size-base);
+      color: var(--nexus-text-quaternary);
       font-weight: 400;
     }
   }
 
   .description-content {
-    font-size: 15px;
-    line-height: 1.8;
-    color: #374151;
+    font-size: var(--nexus-font-size-base);
+    line-height: var(--nexus-leading-prose);
+    color: var(--nexus-gray-700);
   }
 
   .tech-tags {
@@ -1101,21 +1101,21 @@ onMounted(() => {
 
     .tech-tag {
       padding: 8px 16px;
-      background: #f3f4f6;
+      background: var(--nexus-divider);
       border-radius: var(--radius-full);
-      font-size: 13px;
-      color: #6b7280;
-      transition: all 0.3s ease;
+      font-size: var(--nexus-font-size-sm);
+      color: var(--nexus-text-tertiary);
+      transition: background-color 0.3s ease, color 0.3s ease;
 
       &:hover {
-        background: #e5e7eb;
-        color: #111827;
+        background: var(--nexus-border);
+        color: var(--nexus-text-primary);
       }
     }
 
     .empty-text {
-      font-size: 14px;
-      color: #9ca3af;
+      font-size: var(--nexus-font-size-base);
+      color: var(--nexus-text-quaternary);
       font-style: italic;
     }
   }
@@ -1142,21 +1142,21 @@ onMounted(() => {
       .comment-textarea {
         width: 100%;
         padding: 12px 16px;
-        background: #ffffff;
-        border: 1px solid #e5e7eb;
+        background: var(--nexus-white);
+        border: 1px solid var(--nexus-border);
         border-radius: var(--radius-xl);
-        font-size: 14px;
-        color: #111827;
+        font-size: var(--nexus-font-size-base);
+        color: var(--nexus-text-primary);
         resize: vertical;
         min-height: 80px;
         font-family: inherit;
 
         &:focus {
-          border-color: #000000;
+          border-color: var(--nexus-accent);
         }
 
         &::placeholder {
-          color: #9ca3af;
+          color: var(--nexus-text-quaternary);
         }
       }
 
@@ -1167,17 +1167,17 @@ onMounted(() => {
 
         .submit-btn {
           padding: 10px 24px;
-          background: #000000;
+          background: var(--nexus-accent);
           border: none;
           border-radius: var(--radius-full);
-          color: #ffffff;
-          font-size: 14px;
+          color: var(--nexus-white);
+          font-size: var(--nexus-font-size-base);
           font-weight: 500;
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
 
           &:hover:not(:disabled) {
-            background: #333333;
+            background: var(--nexus-gray-800);
             transform: translateY(-2px);
           }
 
@@ -1188,7 +1188,7 @@ onMounted(() => {
 
           &.small {
             padding: 8px 16px;
-            font-size: 13px;
+            font-size: var(--nexus-font-size-sm);
           }
         }
       }
@@ -1201,8 +1201,8 @@ onMounted(() => {
     justify-content: center;
     gap: 8px;
     padding: 40px;
-    color: #9ca3af;
-    font-size: 14px;
+    color: var(--nexus-text-quaternary);
+    font-size: var(--nexus-font-size-base);
   }
 
   .comments-empty {
@@ -1211,7 +1211,7 @@ onMounted(() => {
     align-items: center;
     justify-content: center;
     padding: 48px;
-    color: #9ca3af;
+    color: var(--nexus-text-quaternary);
 
     .empty-icon {
       width: 48px;
@@ -1220,7 +1220,7 @@ onMounted(() => {
     }
 
     p {
-      font-size: 14px;
+      font-size: var(--nexus-font-size-base);
     }
   }
 
@@ -1257,9 +1257,9 @@ onMounted(() => {
           margin-bottom: 6px;
 
           .comment-author {
-            font-size: 14px;
+            font-size: var(--nexus-font-size-base);
             font-weight: 600;
-            color: #111827;
+            color: var(--nexus-text-primary);
             cursor: pointer;
 
             &:hover {
@@ -1268,15 +1268,15 @@ onMounted(() => {
           }
 
           .comment-date {
-            font-size: 12px;
-            color: #9ca3af;
+            font-size: var(--nexus-font-size-xs);
+            color: var(--nexus-text-quaternary);
           }
         }
 
         .comment-text {
-          font-size: 14px;
-          line-height: 1.6;
-          color: #374151;
+          font-size: var(--nexus-font-size-base);
+          line-height: var(--nexus-leading-normal);
+          color: var(--nexus-gray-700);
           margin-bottom: 8px;
         }
 
@@ -1291,19 +1291,19 @@ onMounted(() => {
             padding: 4px 8px;
             background: transparent;
             border: none;
-            font-size: 13px;
-            color: #9ca3af;
+            font-size: var(--nexus-font-size-sm);
+            color: var(--nexus-text-quaternary);
             cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 4px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: var(--nexus-radius-sm);
 
             &:hover {
-              color: #111827;
-              background: #f3f4f6;
+              color: var(--nexus-text-primary);
+              background: var(--nexus-divider);
             }
 
             &.delete:hover {
-              color: #ef4444;
+              color: var(--nexus-error);
             }
 
             .action-icon {
@@ -1311,8 +1311,8 @@ onMounted(() => {
               height: 14px;
 
               &.liked {
-                fill: #ef4444;
-                color: #ef4444;
+                fill: var(--nexus-error);
+                color: var(--nexus-error);
               }
             }
           }
@@ -1322,23 +1322,23 @@ onMounted(() => {
         .reply-input-area {
           margin-top: 12px;
           padding: 12px;
-          background: #f9fafb;
+          background: var(--nexus-bg-subtle);
           border-radius: var(--radius-xl);
 
           .reply-textarea {
             width: 100%;
             padding: 10px 12px;
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
+            background: var(--nexus-white);
+            border: 1px solid var(--nexus-border);
             border-radius: var(--radius-xl);
-            font-size: 13px;
-            color: #111827;
+            font-size: var(--nexus-font-size-sm);
+            color: var(--nexus-text-primary);
             resize: vertical;
             min-height: 60px;
             font-family: inherit;
 
             &:focus {
-              border-color: #000000;
+              border-color: var(--nexus-accent);
             }
           }
 
@@ -1351,16 +1351,16 @@ onMounted(() => {
             .cancel-btn {
               padding: 6px 14px;
               background: transparent;
-              border: 1px solid #e5e7eb;
+              border: 1px solid var(--nexus-border);
               border-radius: var(--radius-full);
-              font-size: 13px;
-              color: #6b7280;
+              font-size: var(--nexus-font-size-sm);
+              color: var(--nexus-text-tertiary);
               cursor: pointer;
-              transition: all 0.3s ease;
+              transition: border-color 0.3s ease, color 0.3s ease;
 
               &:hover {
-                border-color: #111827;
-                color: #111827;
+                border-color: var(--nexus-text-primary);
+                color: var(--nexus-text-primary);
               }
             }
           }
@@ -1370,7 +1370,7 @@ onMounted(() => {
         .replies-list {
           margin-top: 16px;
           padding-left: 16px;
-          border-left: 2px solid #e5e7eb;
+          border-left: 2px solid var(--nexus-border);
 
           .reply-item {
             display: flex;
@@ -1403,9 +1403,9 @@ onMounted(() => {
                 margin-bottom: 4px;
 
                 .reply-author {
-                  font-size: 13px;
+                  font-size: var(--nexus-font-size-sm);
                   font-weight: 600;
-                  color: #111827;
+                  color: var(--nexus-text-primary);
                   cursor: pointer;
 
                   &:hover {
@@ -1414,15 +1414,15 @@ onMounted(() => {
                 }
 
                 .reply-date {
-                  font-size: 11px;
-                  color: #9ca3af;
+                  font-size: var(--nexus-font-size-xs);
+                  color: var(--nexus-text-quaternary);
                 }
               }
 
               .reply-text {
-                font-size: 13px;
-                line-height: 1.5;
-                color: #374151;
+                font-size: var(--nexus-font-size-sm);
+                line-height: var(--nexus-leading-compact);
+                color: var(--nexus-gray-700);
               }
             }
           }
@@ -1449,12 +1449,12 @@ onMounted(() => {
   box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
 
   .sidebar-title {
-    font-size: 16px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 600;
-    color: #111827;
+    color: var(--nexus-text-primary);
     margin-bottom: 20px;
     padding-bottom: 12px;
-    border-bottom: 1px solid #f3f4f6;
+    border-bottom: 1px solid var(--nexus-divider);
   }
 
   .info-list {
@@ -1466,14 +1466,14 @@ onMounted(() => {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 14px;
+      font-size: var(--nexus-font-size-base);
 
       .info-label {
-        color: #9ca3af;
+        color: var(--nexus-text-quaternary);
       }
 
       .info-value {
-        color: #111827;
+        color: var(--nexus-text-primary);
         font-weight: 500;
         max-width: 60%;
         text-align: right;
@@ -1510,14 +1510,14 @@ onMounted(() => {
         gap: 2px;
 
         .author-name-large {
-          font-size: 16px;
+          font-size: var(--nexus-font-size-md);
           font-weight: 600;
-          color: #111827;
+          color: var(--nexus-text-primary);
         }
 
         .author-role {
-          font-size: 13px;
-          color: #9ca3af;
+          font-size: var(--nexus-font-size-sm);
+          color: var(--nexus-text-quaternary);
         }
       }
     }
@@ -1538,10 +1538,10 @@ onMounted(() => {
     width: 100%;
     padding: 14px 24px;
     border-radius: var(--radius-full);
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s var(--ease-out-expo);
+    transition: background-color 0.3s var(--ease-out-expo), border-color 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo), transform 0.3s var(--ease-out-expo), box-shadow 0.3s var(--ease-out-expo);
     border: none;
 
     .btn-icon {
@@ -1550,11 +1550,11 @@ onMounted(() => {
     }
 
     &.primary {
-      background: #000000;
-      color: #ffffff;
+      background: var(--nexus-accent);
+      color: var(--nexus-white);
 
       &:hover {
-        background: #333333;
+        background: var(--nexus-gray-800);
         transform: translateY(-2px);
         box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.2);
       }
@@ -1562,12 +1562,12 @@ onMounted(() => {
 
     &.secondary {
       background: transparent;
-      border: 1px solid #e5e7eb;
-      color: #6b7280;
+      border: 1px solid var(--nexus-border);
+      color: var(--nexus-text-tertiary);
 
       &:hover {
-        border-color: #111827;
-        color: #111827;
+        border-color: var(--nexus-text-primary);
+        color: var(--nexus-text-primary);
         background: rgba(0, 0, 0, 0.02);
       }
     }
@@ -1601,11 +1601,11 @@ onMounted(() => {
     padding: 32px 20px 24px;
 
     .project-title {
-      font-size: 28px;
+      font-size: var(--nexus-font-size-xl);
     }
 
     .project-summary {
-      font-size: 14px;
+      font-size: var(--nexus-font-size-base);
     }
 
     .hero-meta {

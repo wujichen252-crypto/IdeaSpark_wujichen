@@ -73,11 +73,11 @@ function leaveTeam(team: any) {
 </script>
 
 <style scoped lang="scss">
-$color-gray-900: #111827;
-$color-gray-600: #6b7280;
-$color-gray-400: #9ca3af;
-$color-gray-200: #e5e7eb;
-$color-gray-100: #f3f4f6;
+$color-gray-900: var(--nexus-text-primary);
+$color-gray-600: var(--nexus-text-tertiary);
+$color-gray-400: var(--nexus-text-quaternary);
+$color-gray-200: var(--nexus-border);
+$color-gray-100: var(--nexus-divider);
 
 .my-teams-view {
   min-height: 100vh;
@@ -86,7 +86,7 @@ $color-gray-100: #f3f4f6;
 .page-header {
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: var(--nexus-z-header);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -103,14 +103,14 @@ $color-gray-100: #f3f4f6;
 }
 
 .page-title {
-  font-size: 20px;
+  font-size: var(--nexus-font-size-lg);
   font-weight: 600;
   color: $color-gray-900;
   margin: 0;
 }
 
 .page-subtitle {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-400;
 }
 
@@ -119,11 +119,11 @@ $color-gray-100: #f3f4f6;
   align-items: center;
   gap: 8px;
   padding: 10px 20px;
-  background: #000;
+  background: var(--nexus-accent);
   border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  color: #fff;
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-white);
   cursor: pointer;
 
   .btn-icon {
@@ -148,7 +148,7 @@ $color-gray-100: #f3f4f6;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   padding: 24px;
 }
 
@@ -162,7 +162,7 @@ $color-gray-100: #f3f4f6;
 .team-avatar {
   width: 56px;
   height: 56px;
-  border-radius: 12px;
+  border-radius: var(--nexus-radius-md);
   object-fit: cover;
 }
 
@@ -171,22 +171,22 @@ $color-gray-100: #f3f4f6;
 }
 
 .team-name {
-  font-size: 16px;
+  font-size: var(--nexus-font-size-md);
   font-weight: 600;
   color: $color-gray-900;
   margin-bottom: 4px;
 }
 
 .team-desc {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-600;
 }
 
 .team-badge {
   padding: 4px 10px;
   background: $color-gray-100;
-  border-radius: 9999px;
-  font-size: 11px;
+  border-radius: var(--nexus-radius-full);
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-600;
 }
 
@@ -206,13 +206,13 @@ $color-gray-100: #f3f4f6;
 }
 
 .stat-value {
-  font-size: 20px;
+  font-size: var(--nexus-font-size-lg);
   font-weight: 600;
   color: $color-gray-900;
 }
 
 .stat-label {
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   color: $color-gray-400;
 }
 
@@ -223,15 +223,15 @@ $color-gray-100: #f3f4f6;
 
 .action-btn {
   padding: 8px 16px;
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-base);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 
   &.primary {
-    background: #000;
+    background: var(--nexus-accent);
     border: none;
-    color: #fff;
+    color: var(--nexus-white);
 
     &:hover {
       background: $color-gray-900;

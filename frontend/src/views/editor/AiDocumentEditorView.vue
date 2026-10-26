@@ -417,7 +417,7 @@ function handleAiCode(payload: { code: string; lang: string }) {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: var(--nexus-z-dropdown);
 }
 
 .editor-body {

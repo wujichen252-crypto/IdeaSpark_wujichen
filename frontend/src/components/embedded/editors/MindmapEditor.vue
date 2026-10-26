@@ -103,7 +103,7 @@ defineExpose({ getInstance: () => instance })
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #fff;
+  background: var(--nexus-white);
 
   :deep(.smm-mind-map-container) {
     width: 100%;

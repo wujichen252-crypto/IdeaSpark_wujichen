@@ -18,7 +18,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
   overflow: hidden;
   visibility: visible !important;
   opacity: 1 !important;

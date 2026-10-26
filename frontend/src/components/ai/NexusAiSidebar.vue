@@ -429,7 +429,7 @@ defineExpose({
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 600;
   color: var(--nexus-text-primary);
 }
@@ -438,7 +438,7 @@ defineExpose({
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 11px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 400;
   color: var(--nexus-success);
 
@@ -469,7 +469,7 @@ defineExpose({
 }
 
 .ai-section-label {
-  font-size: 11px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 600;
   color: var(--nexus-text-tertiary);
   text-transform: uppercase;
@@ -490,7 +490,7 @@ defineExpose({
 .ai-smart-generate {
   padding: 16px;
   border-bottom: 1px solid var(--nexus-border);
-  background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+  background: linear-gradient(135deg, #f0fdf4 0%, var(--nexus-white) 100%);
 }
 
 .smart-gen-input-wrap {
@@ -504,7 +504,7 @@ defineExpose({
   padding: 8px 12px;
   border: 1px solid var(--nexus-border);
   border-radius: var(--nexus-radius-lg);
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   font-family: var(--nexus-font-ui);
   background: var(--nexus-bg);
   color: var(--nexus-text-primary);
@@ -529,11 +529,11 @@ defineExpose({
   border: none;
   background: var(--nexus-success);
   color: white;
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   font-weight: 500;
   font-family: var(--nexus-font-ui);
   cursor: pointer;
-  transition: all 200ms var(--nexus-ease);
+  transition: background-color 200ms var(--nexus-ease);
   flex-shrink: 0;
 
   &:disabled {
@@ -559,9 +559,9 @@ defineExpose({
   border-radius: var(--nexus-radius-full);
   background: var(--nexus-divider);
   color: var(--nexus-text-secondary);
-  font-size: 11px;
+  font-size: var(--nexus-font-size-xs);
   cursor: pointer;
-  transition: all 200ms var(--nexus-ease);
+  transition: background-color 200ms var(--nexus-ease), color 200ms var(--nexus-ease);
 
   &:hover {
     background: var(--nexus-text-primary);
@@ -573,12 +573,12 @@ defineExpose({
   padding: 6px 14px;
   background: var(--nexus-divider);
   color: var(--nexus-text-secondary);
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
-  border-radius: 9999px;
+  border-radius: var(--nexus-radius-full);
   border: none;
   cursor: pointer;
-  transition: all 200ms var(--nexus-ease);
+  transition: background-color 200ms var(--nexus-ease), color 200ms var(--nexus-ease);
   font-family: var(--nexus-font-ui);
 
   &:hover {
@@ -608,14 +608,14 @@ defineExpose({
 }
 
 .ai-empty-title {
-  font-size: 15px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 600;
   color: var(--nexus-text-primary);
   margin-bottom: 4px;
 }
 
 .ai-empty-desc {
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   color: var(--nexus-text-tertiary);
 }
 
@@ -641,9 +641,9 @@ defineExpose({
 
 .ai-message-bubble {
   padding: 10px 14px;
-  border-radius: 14px;
-  font-size: 13px;
-  line-height: 1.6;
+  border-radius: var(--nexus-radius-lg);
+  font-size: var(--nexus-font-size-sm);
+  line-height: var(--nexus-leading-normal);
   word-break: break-word;
 
   &.user {
@@ -669,7 +669,7 @@ defineExpose({
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     font-weight: 600;
     color: #16a34a;
     margin-bottom: 8px;
@@ -678,16 +678,16 @@ defineExpose({
   }
 
   .thinking-content {
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     color: #166534;
-    line-height: 1.8;
+    line-height: var(--nexus-leading-prose);
     white-space: pre-line;
   }
 }
 
 .ai-message-text {
   :deep(h1), :deep(h2), :deep(h3) {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     font-weight: 600;
     margin: 8px 0 4px;
   }
@@ -710,11 +710,11 @@ defineExpose({
   padding: 3px 10px;
   background: transparent;
   color: var(--nexus-text-tertiary);
-  font-size: 11px;
-  border-radius: 9999px;
+  font-size: var(--nexus-font-size-xs);
+  border-radius: var(--nexus-radius-full);
   border: 1px solid var(--nexus-border);
   cursor: pointer;
-  transition: all 200ms var(--nexus-ease);
+  transition: border-color 200ms var(--nexus-ease), color 200ms var(--nexus-ease);
   font-family: var(--nexus-font-ui);
 
   &:hover {
@@ -758,7 +758,7 @@ defineExpose({
   align-items: flex-end;
   background: var(--nexus-bg);
   border: 1px solid var(--nexus-border);
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   padding: 8px 12px;
   transition: border-color 200ms var(--nexus-ease);
 
@@ -772,10 +772,10 @@ defineExpose({
   background: transparent;
   border: none;
   font-family: var(--nexus-font-ui);
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   color: var(--nexus-text-primary);
   resize: none;
-  line-height: 1.5;
+  line-height: var(--nexus-leading-compact);
   max-height: 120px;
 
   &::placeholder {
@@ -795,11 +795,7 @@ defineExpose({
   border: none;
   cursor: pointer;
   flex-shrink: 0;
-  transition: all 200ms var(--nexus-ease);
-
-  &:hover {
-    transform: scale(1.05);
-  }
+  transition: transform 200ms var(--nexus-ease);
 
   &:active {
     transform: scale(0.95);

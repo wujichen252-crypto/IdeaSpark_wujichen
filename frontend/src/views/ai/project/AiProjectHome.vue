@@ -302,13 +302,13 @@ function formatDate(ts: number | undefined) {
 
 <style scoped lang="scss">
 // Nexus Design System Variables
-$bg-primary: #fafafa;
-$bg-white: #ffffff;
-$text-primary: #111827;
-$text-secondary: #6b7280;
-$text-muted: #9ca3af;
-$border-color: #e5e7eb;
-$success-color: #10b981;
+$bg-primary: var(--nexus-bg);
+$bg-white: var(--nexus-white);
+$text-primary: var(--nexus-text-primary);
+$text-secondary: var(--nexus-text-tertiary);
+$text-muted: var(--nexus-text-quaternary);
+$border-color: var(--nexus-border);
+$success-color: var(--nexus-success);
 $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 .ai-project-home {
@@ -323,7 +323,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
   opacity: 0.02;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -339,11 +339,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   background: $text-primary;
   color: $bg-white;
   border: none;
-  border-radius: 10px;
-  font-size: 14px;
+  border-radius: var(--nexus-radius-md);
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s $ease-out-expo;
+  transition: transform 0.3s $ease-out-expo, box-shadow 0.3s $ease-out-expo;
   margin-top: 16px;
   
   &:hover {
@@ -362,13 +362,13 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   margin: 0 auto;
   padding: 24px;
   position: relative;
-  z-index: 2;
+  z-index: var(--nexus-z-raised-2);
 }
 
 // Hero Section
 .hero-section {
   position: relative;
-  border-radius: 24px;
+  border-radius: var(--nexus-radius-xl);
   overflow: hidden;
   margin-bottom: 24px;
   min-height: 280px;
@@ -398,7 +398,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
   padding: 32px;
   width: 100%;
   color: $bg-white;
@@ -416,15 +416,15 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  font-size: 12px;
+  border-radius: var(--nexus-radius-xl);
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
 }
 
 .status-badge {
   padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 12px;
+  border-radius: var(--nexus-radius-xl);
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
   
   &.active {
@@ -434,7 +434,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   
   &.draft {
     background: rgba(156, 163, 175, 0.2);
-    color: #d1d5db;
+    color: var(--nexus-border-strong);
   }
   
   &.completed {
@@ -444,7 +444,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero-title {
-  font-size: 36px;
+  font-size: var(--nexus-font-size-2xl);
   font-weight: 600;
   margin-bottom: 12px;
   letter-spacing: -0.02em;
@@ -452,7 +452,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero-subtitle {
-  font-size: 16px;
+  font-size: var(--nexus-font-size-md);
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 24px;
   max-width: 600px;
@@ -467,7 +467,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 13px;
+    font-size: var(--nexus-font-size-sm);
     color: rgba(255, 255, 255, 0.8);
   }
   
@@ -496,10 +496,10 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 20px;
+  border-radius: var(--nexus-radius-xl);
   padding: 24px;
   box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
-  transition: all 0.4s $ease-out-expo;
+  transition: transform 0.4s $ease-out-expo, box-shadow 0.4s $ease-out-expo;
   
   &:hover {
     transform: translateY(-2px);
@@ -531,12 +531,12 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.04);
-    border-radius: 10px;
+    border-radius: var(--nexus-radius-md);
     color: $text-secondary;
   }
   
   h3 {
-    font-size: 16px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 600;
     color: $text-primary;
     letter-spacing: -0.01em;
@@ -547,11 +547,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   font-weight: 500;
   color: $text-secondary;
   text-decoration: none;
-  transition: all 0.2s;
+  transition: color 0.2s, gap 0.2s;
   
   &:hover {
     color: $text-primary;
@@ -575,15 +575,15 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
   
   .info-label {
-    font-size: 13px;
+    font-size: var(--nexus-font-size-sm);
     color: $text-muted;
     padding-top: 2px;
   }
   
   .info-value {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     color: $text-primary;
-    line-height: 1.5;
+    line-height: var(--nexus-leading-compact);
     
     &.muted {
       color: $text-muted;
@@ -593,8 +593,8 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
       display: inline-flex;
       padding: 4px 10px;
       background: rgba(0, 0, 0, 0.04);
-      border-radius: 16px;
-      font-size: 12px;
+      border-radius: var(--nexus-radius-lg);
+      font-size: var(--nexus-font-size-xs);
       font-weight: 500;
       margin-right: 6px;
       margin-bottom: 4px;
@@ -620,8 +620,8 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   text-align: center;
   padding: 16px 8px;
   background: rgba(0, 0, 0, 0.02);
-  border-radius: 12px;
-  transition: all 0.2s;
+  border-radius: var(--nexus-radius-md);
+  transition: background-color 0.2s;
   
   &:hover {
     background: rgba(0, 0, 0, 0.04);
@@ -629,7 +629,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   
   .stat-number {
     display: block;
-    font-size: 28px;
+    font-size: var(--nexus-font-size-xl);
     font-weight: 600;
     color: $text-primary;
     margin-bottom: 4px;
@@ -638,13 +638,13 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
   
   .stat-label {
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     color: $text-muted;
   }
 }
 
 .section-subtitle {
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   font-weight: 600;
   color: $text-primary;
   margin-bottom: 16px;
@@ -662,7 +662,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
   
   p {
-    font-size: 13px;
+    font-size: var(--nexus-font-size-sm);
     color: $text-muted;
   }
 }
@@ -676,9 +676,9 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   padding: 16px;
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid transparent;
-  border-radius: 12px;
+  border-radius: var(--nexus-radius-md);
   cursor: pointer;
-  transition: all 0.3s $ease-out-expo;
+  transition: background-color 0.3s $ease-out-expo, border-color 0.3s $ease-out-expo;
   text-align: left;
   
   &:hover {
@@ -697,7 +697,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     align-items: center;
     justify-content: center;
     background: $bg-white;
-    border-radius: 12px;
+    border-radius: var(--nexus-radius-md);
     color: $text-secondary;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   }
@@ -710,13 +710,13 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
   
   .quick-title {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     font-weight: 600;
     color: $text-primary;
   }
   
   .quick-desc {
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     color: $text-muted;
   }
   
@@ -736,12 +736,12 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
   
   .progress-label {
-    font-size: 13px;
+    font-size: var(--nexus-font-size-sm);
     color: $text-muted;
   }
   
   .progress-value {
-    font-size: 24px;
+    font-size: var(--nexus-font-size-xl);
     font-weight: 600;
     color: $text-primary;
     font-feature-settings: 'tnum';
@@ -750,22 +750,22 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   .progress-track {
     height: 6px;
     background: rgba(0, 0, 0, 0.06);
-    border-radius: 3px;
+    border-radius: var(--nexus-radius-sm);
     overflow: hidden;
     margin-bottom: 20px;
   }
   
   .progress-bar {
     height: 100%;
-    background: linear-gradient(90deg, $text-primary, #374151);
-    border-radius: 3px;
+    background: linear-gradient(90deg, $text-primary, var(--nexus-gray-700));
+    border-radius: var(--nexus-radius-sm);
     transition: width 0.6s $ease-out-expo;
   }
   
   .stage-info {
     padding: 16px;
     background: rgba(0, 0, 0, 0.02);
-    border-radius: 12px;
+    border-radius: var(--nexus-radius-md);
   }
   
   .stage-badge {
@@ -784,22 +784,22 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
   
   .stage-name {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     font-weight: 600;
     color: $text-primary;
   }
   
   .stage-desc {
-    font-size: 13px;
+    font-size: var(--nexus-font-size-sm);
     color: $text-secondary;
     margin: 0;
-    line-height: 1.5;
+    line-height: var(--nexus-leading-compact);
   }
 }
 
 // Team Card
 .member-count {
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: $text-muted;
   font-weight: 500;
 }
@@ -815,8 +815,8 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   align-items: center;
   gap: 12px;
   padding: 10px;
-  border-radius: 10px;
-  transition: all 0.2s;
+  border-radius: var(--nexus-radius-md);
+  transition: background-color 0.2s;
   
   &:hover {
     background: rgba(0, 0, 0, 0.02);
@@ -827,11 +827,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+  background: linear-gradient(135deg, var(--nexus-border), var(--nexus-border-strong));
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 600;
   color: $text-primary;
   background-size: cover;
@@ -847,21 +847,21 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .member-name {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   color: $text-primary;
 }
 
 .member-role {
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: $text-muted;
 }
 
 .owner-badge {
   padding: 3px 8px;
   background: rgba(0, 0, 0, 0.06);
-  border-radius: 12px;
-  font-size: 11px;
+  border-radius: var(--nexus-radius-md);
+  font-size: var(--nexus-font-size-xs);
   font-weight: 600;
   color: $text-secondary;
 }
@@ -899,7 +899,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   background: $border-color;
   border: 2px solid $bg-white;
   border-radius: 50%;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
   
   &.active {
     background: $text-primary;
@@ -912,14 +912,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .timeline-title {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   color: $text-primary;
   margin-bottom: 3px;
 }
 
 .timeline-time {
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: $text-muted;
 }
 

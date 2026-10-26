@@ -168,14 +168,14 @@ function nameById(id: string) {
 }
 
 .selected-area {
-  border: 1px dashed #e5e7eb;
-  border-radius: 8px;
+  border: 1px dashed var(--nexus-border);
+  border-radius: var(--nexus-radius-sm);
   padding: 12px;
-  background: #fafafa;
+  background: var(--nexus-bg);
   
   .selected-title {
-    font-size: 13px;
-    color: #6b7280;
+    font-size: var(--nexus-font-size-sm);
+    color: var(--nexus-text-tertiary);
     margin-bottom: 8px;
   }
   
@@ -190,13 +190,13 @@ function nameById(id: string) {
     align-items: center;
     gap: 8px;
     padding: 6px 8px;
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 6px;
+    background: var(--nexus-white);
+    border: 1px solid var(--nexus-border);
+    border-radius: var(--nexus-radius-sm);
     
     .chip-name {
-      font-size: 12px;
-      color: #374151;
+      font-size: var(--nexus-font-size-xs);
+      color: var(--nexus-gray-700);
     }
     
     .chip-actions {
@@ -214,7 +214,7 @@ function nameById(id: string) {
 
 .plugin-card {
   cursor: pointer;
-  transition: all .2s ease;
+  transition: border-color .2s ease, box-shadow .2s ease;
   
   &.active {
     border-color: var(--nexus-success);
@@ -226,8 +226,8 @@ function nameById(id: string) {
   }
   
   .desc {
-    color: #6b7280;
-    font-size: 13px;
+    color: var(--nexus-text-tertiary);
+    font-size: var(--nexus-font-size-sm);
     margin: 0;
     min-height: 40px;
   }

@@ -13,7 +13,7 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 9999;
+  z-index: var(--nexus-z-toast);
   opacity: 0.02;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
@@ -44,6 +44,12 @@
   border-radius: var(--nexus-radius-lg);
   padding: var(--nexus-space-6);
   box-shadow: var(--nexus-shadow-sm);
+}
+
+/* 玻璃浮层面板：仅用于"浮在内容之上"的场景（预览面板 / 悬浮工具条），
+   普通内容卡片请用 .nexus-card / .nexus-card-flat。 */
+.nexus-glass-panel {
+  @include nexus-glass;
 }
 
 /* ── Buttons ── */
@@ -190,7 +196,7 @@
   display: flex;
   align-items: center;
   gap: var(--nexus-space-2);
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 600;
   color: var(--nexus-text-primary);
 }
@@ -199,7 +205,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: var(--nexus-success);
 
   &::before {
@@ -270,10 +276,14 @@ a {
 }
 
 /* ── Accessibility: 统一焦点环 ── */
-/* 全站唯一的焦点可见性来源，替代散落的 outline: none */
+/* 全站唯一的焦点可见性来源，替代散落的 outline: none。
+   此处使用 !important 属刻意的设计系统级例外：Naive UI 通过运行时注入 CSS 给
+   .n-button / .n-input / .n-base-selection 等组件根节点统一设置了 `outline: none`，
+   其优先级与本规则相同但注入位置在文档更后方，会静默覆盖它，导致键盘焦点不可见。
+   提高优先级是保证键盘可达性的最小改动方案。 */
 :focus-visible {
-  outline: 2px solid var(--nexus-accent);
-  outline-offset: 2px;
+  outline: 2px solid var(--nexus-accent) !important;
+  outline-offset: 2px !important;
 }
 
 /* ── Accessibility: 尊重系统"减弱动效"设置 ── */
@@ -286,4 +296,43 @@ a {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ── Base: 文档级滚动条 ── */
+/* 与 @mixin nexus-scrollbar 同源；此处作用于文档根节点，全站生效（原位于 App.vue 的未 scoped 样式块） */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.12) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: var(--nexus-radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* ── Layout Skeleton ── */
+/* 各 layout 渲染的共享内容容器（<main class="app-main">）。
+   该样式横跨多个 layout 组件，必须保持全局生效，不得下沉到任一组件内。 */
+.app-main {
+  min-height: 100vh;
+  position: relative;
+  isolation: isolate;
+}
+
+.app-main--with-header {
+  /* 与 AppHeader 实际高度统一为同一令牌，避免顶部死区 */
+  padding-top: var(--header-height);
 }

@@ -34,14 +34,14 @@
 }
 
 .title {
-  font-size: 24px;
-  color: #333;
+  font-size: var(--nexus-font-size-xl);
+  color: var(--nexus-gray-800);
   margin-bottom: 8px;
 }
 
 .description {
-  font-size: 14px;
-  color: #999;
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-text-quaternary);
   margin-bottom: 24px;
 }
 
@@ -49,10 +49,10 @@
   display: inline-block;
   padding: 8px 24px;
   background-color: var(--nexus-success);
-  color: #fff;
-  border-radius: 4px;
+  color: var(--nexus-white);
+  border-radius: var(--nexus-radius-sm);
   text-decoration: none;
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
 }
 
 .home-link:hover {

@@ -236,7 +236,7 @@ onBeforeUnmount(() => {
   width: 100%; /* 适配 style.css 中的全局流式布局，100% 即 100vw */
   overflow: hidden;
   padding: 80px 0;
-  background-color: #000; /* 深色背景 */
+  background-color: var(--nexus-accent); /* 深色背景 */
   display: flex;
   flex-direction: column;
   gap: 40px; /* 两行之间的间距 */
@@ -249,16 +249,16 @@ onBeforeUnmount(() => {
 }
 
 .section-title {
-  font-size: 2.5rem;
-  color: #fff;
+  font-size: var(--nexus-font-size-3xl);
+  color: var(--nexus-white);
   margin: 0 0 16px;
   font-weight: 600;
   letter-spacing: 1px;
 }
 
 .section-subtitle {
-  font-size: 1.1rem;
-  color: #999;
+  font-size: var(--nexus-font-size-md);
+  color: var(--nexus-text-quaternary);
   margin: 0;
   font-weight: 400;
 }
@@ -282,18 +282,18 @@ onBeforeUnmount(() => {
     top: 0;
     width: 100px;
     height: 100%;
-    z-index: 2;
+    z-index: var(--nexus-z-raised-2);
     pointer-events: none;
   }
   
   &::before {
     left: 0;
-    background: linear-gradient(to right, #000, transparent);
+    background: linear-gradient(to right, var(--nexus-accent), transparent);
   }
   
   &::after {
     right: 0;
-    background: linear-gradient(to left, #000, transparent);
+    background: linear-gradient(to left, var(--nexus-accent), transparent);
   }
 }
 
@@ -326,9 +326,9 @@ onBeforeUnmount(() => {
   height: 180px;
   border-radius: 0; /* 长方形，无圆角 */
   background-color: #1a1a1a; /* 深灰卡片背景 */
-  border: 1px solid #333; /* 轻微边框 */
+  border: 1px solid var(--nexus-gray-800); /* 轻微边框 */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: default;
   display: flex;
   align-items: center;
@@ -350,7 +350,7 @@ onBeforeUnmount(() => {
     transform: translateY(-4px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
     /* 边框变亮 */
-    border-color: var(--n-color-target, #fff); 
+    border-color: var(--n-color-target, var(--nexus-white)); 
   }
 }
 
@@ -363,9 +363,9 @@ onBeforeUnmount(() => {
 }
 
 .card-quote {
-  font-size: 1.1rem;
-  color: #fff; /* 白色字体 */
-  line-height: 1.6;
+  font-size: var(--nexus-font-size-md);
+  color: var(--nexus-white); /* 白色字体 */
+  line-height: var(--nexus-leading-normal);
   font-style: normal; /* 可选：取消斜体，看喜好，这里先保持正常 */
   margin: 0;
   display: -webkit-box;
@@ -390,11 +390,11 @@ onBeforeUnmount(() => {
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid #333;
+  border: 1px solid var(--nexus-gray-800);
 }
 
 .card-author {
-  font-size: 0.9rem;
+  font-size: var(--nexus-font-size-base);
   color: #ccc; /* 浅灰作者名 */
   font-weight: 500;
   margin: 0;

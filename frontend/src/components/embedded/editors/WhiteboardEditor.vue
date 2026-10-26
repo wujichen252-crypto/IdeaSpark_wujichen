@@ -147,6 +147,6 @@ defineExpose({ getApi: () => api })
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #fff;
+  background: var(--nexus-white);
 }
 </style>

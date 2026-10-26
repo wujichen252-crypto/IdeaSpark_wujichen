@@ -162,10 +162,10 @@ const generateDoc = () => {
 }
 
 .label {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   margin-bottom: 8px;
-  color: #666;
+  color: var(--nexus-text-tertiary);
 }
 
 .doc-editor, .code-editor {

@@ -108,7 +108,7 @@ onMounted(() => {
 
 .editable-text.is-empty::before {
   content: attr(data-placeholder);
-  color: var(--nexus-text-tertiary, #999);
+  color: var(--nexus-text-tertiary, var(--nexus-text-quaternary));
   pointer-events: none;
 }
 </style>

@@ -390,6 +390,20 @@ src/styles/variables.scss:80-83 body { background-color: #fafafa; color: #111827
 | 6. 无障碍基本盘 | 每个交互元素补 `:focus-visible`（统一 `outline: 2px solid #000; outline-offset: 2px`）；图标按钮补 `aria-label`；可点击 `div` 改 `button` 或补 `role+tabindex+键事件`；动画补 `prefers-reduced-motion` | `outline:none` 归零；`aria-label ≥ cursor:pointer`；`:focus-visible` 覆盖全部交互元素 |
 | 7. 动效收敛 | 统一到 3 档（120/200/320ms）；消除 `transition: all`；hover 去掉 `scale` 放大；移除 20s/10s 级装饰动画 | 过渡时长种类 ≤3；`transition: all` 归零 |
 
+#### 阶段一 · 执行记录（已完成）
+
+| 任务 | 状态 | 落地位置 | 复核证据 |
+|---|---|---|---|
+| 1. 清理脚手架 CSS | ✅ 完成 | 删除 `src/style.css`；`main.ts` 移除其 import；`--header-height` / `--scrollbar-*` 迁入 `styles/variables.scss` | `src/style.css` 已不存在；浏览器实测 `getComputedStyle(body).userSelect === "auto"` |
+| 2. 页头高度统一 | ✅ 完成 | `AppHeader.vue` 与各页头改用 `var(--header-height)`；`App.vue` 的 `padding-top: 64px` 一并令牌化；编辑器头部 `60px` 同步收敛 | `--header-height` 全库仅 `variables.scss` 1 处定义；`calc(100vh - 56px)` / `height: 56px`（布局用途）归零 |
+| 3. 首屏底色统一 | ✅ 完成 | `index.html` 内联关键 CSS 与令牌同源（`#fafafa` + `#111827`）；`reset.scss` 的 `#000` 覆盖已删除 | 实测 `body` 为 `rgb(250,250,250)` / `rgb(17,24,39)`，无黑→白跳变 |
+| 4. 字体落地 | ✅ 完成 | 移除 `index.html` 的 Google Fonts 外链，并清除 `LoginView` / `ForgotPasswordView` / `ResetPasswordView` 三个还残留在 scoped 样式里的 `@import` 外链；字体栈收敛为 1 套（`--nexus-font-ui`），补齐中文回退 | `grep fonts.googleapis` 全库 0 命中；实测 `font-family` 首项为 Inter |
+| 5. 对比度整改 | ✅ 完成 | `variables.scss` 三级文字色改 `#111827`/`#4b5563`/`#6b7280`；新增 `--nexus-success-text` 等"文字版"功能色；`nexus.scss` 标签配色同步 | 16.4:1 / 7.6:1 / 4.8:1 全部 ≥4.5:1；浅色底绿色文字改 `-text` 变体后 ≥5.5:1 |
+| 6. 无障碍基本盘 | ✅ 完成 | 清理散落的 `outline: none`；`nexus.scss` 新增全站唯一 `:focus-visible` 焦点环与 `prefers-reduced-motion` 降级；`a` 默认色回归继承 | `outline: none` 归零；真实 Chromium 键盘 Tab 实测：20 个命中 `:focus-visible` 的元素**全部**为 `outline: 2px solid rgb(0,0,0)`，无轮廓者 0 个 |
+| 7. 动效收敛 | ✅ 完成 | 全库 `transition: all` 改写为明确属性列表（时长与缓动曲线原样保留）；`--nexus-duration-*` 收敛为 120/200/320ms 三档；移除交互控件 hover `scale(>1)` | `transition: all` 归零；hover 放大仅保留 `:active` 按压、`@keyframes` 与图片 hover 缩放 |
+
+> 遗留说明：`ImpactSection.vue` 的大面积霓虹绿已由 `#4ADE80` 改为品牌黑 `--nexus-accent`（文字同步改白）；外链 SVG（`logo-ideaspark.svg`）与取色器可编辑默认值（`UiModule.vue`）中的十六进制色**有意保留**，因 `var()` 在该上下文无法解析。
+
 ### 阶段二 · 设计系统真正落地
 
 | 任务 | 具体动作 | 验收指标 |

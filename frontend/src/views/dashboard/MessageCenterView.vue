@@ -239,16 +239,16 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-$color-gray-900: #111827;
-$color-gray-700: #374151;
-$color-gray-600: #6b7280;
-$color-gray-400: #9ca3af;
-$color-gray-200: #e5e7eb;
-$color-gray-100: #f3f4f6;
-$color-gray-50: #f9fafb;
+$color-gray-900: var(--nexus-text-primary);
+$color-gray-700: var(--nexus-gray-700);
+$color-gray-600: var(--nexus-text-tertiary);
+$color-gray-400: var(--nexus-text-quaternary);
+$color-gray-200: var(--nexus-border);
+$color-gray-100: var(--nexus-divider);
+$color-gray-50: var(--nexus-bg-subtle);
 $color-blue: var(--nexus-link);
-$color-green: #10b981;
-$color-red: #ef4444;
+$color-green: var(--nexus-success);
+$color-red: var(--nexus-error);
 $color-purple: #a855f7;
 
 .message-center-view {
@@ -258,7 +258,7 @@ $color-purple: #a855f7;
 .page-header {
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: var(--nexus-z-header);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -275,14 +275,14 @@ $color-purple: #a855f7;
 }
 
 .page-title {
-  font-size: 20px;
+  font-size: var(--nexus-font-size-lg);
   font-weight: 600;
   color: $color-gray-900;
   margin: 0;
 }
 
 .page-subtitle {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-400;
 }
 
@@ -290,8 +290,8 @@ $color-purple: #a855f7;
   padding: 2px 8px;
   background: $color-red;
   color: white;
-  font-size: 12px;
-  border-radius: 9999px;
+  font-size: var(--nexus-font-size-xs);
+  border-radius: var(--nexus-radius-full);
 }
 
 .header-actions {
@@ -304,8 +304,8 @@ $color-purple: #a855f7;
   background: $color-gray-900;
   color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 13px;
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-sm);
   cursor: pointer;
   transition: opacity 0.2s;
 
@@ -368,14 +368,14 @@ $color-purple: #a855f7;
   }
 
   h3 {
-    font-size: 18px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 600;
     color: $color-gray-900;
     margin-bottom: 8px;
   }
 
   p {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     color: $color-gray-400;
   }
 }
@@ -393,9 +393,9 @@ $color-purple: #a855f7;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 12px;
+  border-radius: var(--nexus-radius-md);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background-color 0.2s, box-shadow 0.2s, border-color 0.2s;
 
   &:hover {
     background: rgba(255, 255, 255, 0.9);
@@ -462,14 +462,14 @@ $color-purple: #a855f7;
 }
 
 .message-title {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 600;
   color: $color-gray-900;
   margin-bottom: 4px;
 }
 
 .message-text {
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   color: $color-gray-600;
   margin-bottom: 8px;
   white-space: nowrap;
@@ -478,7 +478,7 @@ $color-purple: #a855f7;
 }
 
 .message-time {
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-400;
 }
 
@@ -493,8 +493,8 @@ $color-purple: #a855f7;
   padding: 6px 12px;
   background: transparent;
   border: 1px solid $color-gray-200;
-  border-radius: 6px;
-  font-size: 12px;
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-600;
   cursor: pointer;
 
@@ -512,7 +512,7 @@ $color-purple: #a855f7;
   justify-content: center;
   background: transparent;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--nexus-radius-sm);
   color: $color-gray-400;
   cursor: pointer;
 
@@ -542,7 +542,7 @@ $color-purple: #a855f7;
     justify-content: center;
     background: white;
     border: 1px solid $color-gray-200;
-    border-radius: 8px;
+    border-radius: var(--nexus-radius-sm);
     color: $color-gray-600;
     cursor: pointer;
 
@@ -558,7 +558,7 @@ $color-purple: #a855f7;
   }
 
   .page-info {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     color: $color-gray-600;
   }
 }

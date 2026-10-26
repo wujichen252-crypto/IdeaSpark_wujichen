@@ -1218,7 +1218,7 @@ function formatUpdateTime(updatedAt: number): string {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: var(--nexus-white);
   padding: 32px 48px;
   padding-top: calc(56px + 32px);
   width: 100%;
@@ -1229,14 +1229,14 @@ function formatUpdateTime(updatedAt: number): string {
   margin-bottom: 32px; /* 增加底部间距 */
 
   .create-btn {
-    background-color: #000;
-    border-color: #000;
+    background-color: var(--nexus-accent);
+    border-color: var(--nexus-accent);
     padding: 0 20px;
     font-weight: 500;
 
     &:hover {
-      background-color: #111827;
-      border-color: #111827;
+      background-color: var(--nexus-text-primary);
+      border-color: var(--nexus-text-primary);
     }
   }
 
@@ -1255,10 +1255,10 @@ function formatUpdateTime(updatedAt: number): string {
 
   .profile-info {
     .profile-name {
-      font-size: 24px; /* 加大名字字体 */
+      font-size: var(--nexus-font-size-xl); /* 加大名字字体 */
       font-weight: 700;
       margin: 0 0 6px 0;
-      color: #111827;
+      color: var(--nexus-text-primary);
       letter-spacing: -0.025em;
     }
 
@@ -1266,17 +1266,17 @@ function formatUpdateTime(updatedAt: number): string {
       display: flex;
       align-items: center;
       gap: 6px;
-      color: #6b7280;
-      font-size: 14px;
+      color: var(--nexus-text-tertiary);
+      font-size: var(--nexus-font-size-base);
       cursor: pointer;
       transition: color 0.2s;
 
       &:hover {
-        color: #111827;
+        color: var(--nexus-text-primary);
       }
 
       .edit-icon {
-        font-size: 14px;
+        font-size: var(--nexus-font-size-base);
       }
     }
   }
@@ -1295,10 +1295,10 @@ function formatUpdateTime(updatedAt: number): string {
   padding: 0 4px;
 
   .sort-trigger {
-    color: #6b7280;
+    color: var(--nexus-text-tertiary);
     font-weight: 500;
     &:hover {
-      color: #111827;
+      color: var(--nexus-text-primary);
     }
   }
 }
@@ -1312,9 +1312,9 @@ function formatUpdateTime(updatedAt: number): string {
 
 /* 列表视图样式 - Modified for Grid Layout with Gray Container */
 .team-group {
-  background-color: #f9fafb; /* 灰色背景框 */
-  border: 1px solid #f3f4f6; /* 灰色边框 */
-  border-radius: 12px;
+  background-color: var(--nexus-bg-subtle); /* 灰色背景框 */
+  border: 1px solid var(--nexus-divider); /* 灰色边框 */
+  border-radius: var(--nexus-radius-md);
   padding: 24px;
   margin-bottom: 32px;
 }
@@ -1339,11 +1339,11 @@ function formatUpdateTime(updatedAt: number): string {
   align-items: center;
   justify-content: center;
   padding: 24px 16px;
-  background: #fff;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  background: var(--nexus-white);
+  border-radius: var(--nexus-radius-sm);
+  border: 1px solid var(--nexus-border);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   position: relative;
   height: 200px; /* Fixed height for uniformity */
 
@@ -1352,25 +1352,25 @@ function formatUpdateTime(updatedAt: number): string {
     box-shadow:
       0 4px 6px -1px rgba(0, 0, 0, 0.1),
       0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    border-color: #d1d5db;
+    border-color: var(--nexus-border-strong);
   }
 }
 
 .recent-project-card {
-  border-left: 4px solid #000; /* Highlight recent */
+  border-left: 4px solid var(--nexus-accent); /* Highlight recent */
 }
 
 .create-new-card {
-  border: 2px dashed #e5e7eb;
+  border: 2px dashed var(--nexus-border);
   background: transparent;
 
   &:hover {
-    border-color: #000;
-    background: #f9fafb;
+    border-color: var(--nexus-accent);
+    background: var(--nexus-bg-subtle);
   }
 
   .text-gray {
-    color: #9ca3af;
+    color: var(--nexus-text-quaternary);
   }
 }
 
@@ -1381,8 +1381,8 @@ function formatUpdateTime(updatedAt: number): string {
   align-items: center;
   height: 60px;
   width: 60px;
-  background: #f3f4f6;
-  border-radius: 12px;
+  background: var(--nexus-divider);
+  border-radius: var(--nexus-radius-md);
 }
 
 .card-info {
@@ -1391,8 +1391,8 @@ function formatUpdateTime(updatedAt: number): string {
 
   .card-title {
     font-weight: 600;
-    color: #1f2937;
-    font-size: 16px;
+    color: var(--nexus-gray-800);
+    font-size: var(--nexus-font-size-md);
     margin-bottom: 4px;
     display: block;
     white-space: nowrap;
@@ -1401,8 +1401,8 @@ function formatUpdateTime(updatedAt: number): string {
   }
 
   .card-desc-row {
-    font-size: 12px;
-    color: #6b7280;
+    font-size: var(--nexus-font-size-xs);
+    color: var(--nexus-text-tertiary);
     margin-bottom: 8px;
     height: 36px; /* 2 lines */
     overflow: hidden;
@@ -1413,8 +1413,8 @@ function formatUpdateTime(updatedAt: number): string {
   }
 
   .card-meta {
-    font-size: 12px;
-    color: #9ca3af;
+    font-size: var(--nexus-font-size-xs);
+    color: var(--nexus-text-quaternary);
   }
 }
 
@@ -1431,18 +1431,18 @@ function formatUpdateTime(updatedAt: number): string {
 }
 
 .project-card {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  transition: all 0.2s ease;
+  background: var(--nexus-white);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-md);
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   cursor: pointer;
   height: 100%;
   box-sizing: border-box;
   position: relative;
 
   &:hover {
-    background-color: #fff;
-    border-color: #d1d5db;
+    background-color: var(--nexus-white);
+    border-color: var(--nexus-border-strong);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     transform: translateY(-2px);
   }
@@ -1450,11 +1450,11 @@ function formatUpdateTime(updatedAt: number): string {
   .card-preview {
     width: 64px;
     height: 64px;
-    border-radius: 8px;
+    border-radius: var(--nexus-radius-sm);
     overflow: hidden;
     margin-right: 0;
     margin-bottom: 16px;
-    background-color: #f3f4f6;
+    background-color: var(--nexus-divider);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1489,11 +1489,11 @@ function formatUpdateTime(updatedAt: number): string {
       gap: 0;
 
       .card-title {
-        font-size: 14px;
+        font-size: var(--nexus-font-size-base);
         font-weight: 500;
-        color: #374151;
+        color: var(--nexus-gray-700);
         text-align: center;
-        line-height: 1.4;
+        line-height: var(--nexus-leading-compact);
       }
     }
   }
@@ -1507,7 +1507,7 @@ function formatUpdateTime(updatedAt: number): string {
     opacity: 0;
     transition: opacity 0.2s;
     background: rgba(255, 255, 255, 0.9);
-    border-radius: 4px;
+    border-radius: var(--nexus-radius-sm);
     padding: 2px;
   }
 
@@ -1527,11 +1527,11 @@ function formatUpdateTime(updatedAt: number): string {
       justify-content: center;
       width: 64px;
       height: 64px;
-      background-color: #f3f4f6; /* Light gray background for icon area */
-      border-radius: 12px;
+      background-color: var(--nexus-divider); /* Light gray background for icon area */
+      border-radius: var(--nexus-radius-md);
 
       .n-icon {
-        font-size: 32px !important; /* Larger icon */
+        font-size: var(--nexus-font-size-2xl) !important; /* Larger icon */
       }
     }
 
@@ -1550,14 +1550,14 @@ function formatUpdateTime(updatedAt: number): string {
   height: 6px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #e5e7eb;
-  border-radius: 3px;
+  background: var(--nexus-border);
+  border-radius: var(--nexus-radius-sm);
 }
 .custom-scrollbar::-webkit-scrollbar-track {
   background: transparent;
 }
 .custom-scrollbar:hover::-webkit-scrollbar-thumb {
-  background: #d1d5db;
+  background: var(--nexus-border-strong);
 }
 
 .team-group {
@@ -1576,9 +1576,9 @@ function formatUpdateTime(updatedAt: number): string {
     }
 
     .group-title {
-      font-size: 16px;
+      font-size: var(--nexus-font-size-md);
       font-weight: 600;
-      color: #374151;
+      color: var(--nexus-gray-700);
     }
   }
 }
@@ -1590,11 +1590,11 @@ function formatUpdateTime(updatedAt: number): string {
 }
 
 .project-card {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  background: var(--nexus-white);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-md);
   overflow: hidden;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -1604,7 +1604,7 @@ function formatUpdateTime(updatedAt: number): string {
     box-shadow:
       0 10px 15px -3px rgba(0, 0, 0, 0.1),
       0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    border-color: #d1d5db;
+    border-color: var(--nexus-border-strong);
 
     .card-preview .card-overlay {
       opacity: 1;
@@ -1615,9 +1615,9 @@ function formatUpdateTime(updatedAt: number): string {
     position: relative;
     width: 100%;
     aspect-ratio: 16/9;
-    background-color: #f3f4f6;
+    background-color: var(--nexus-divider);
     overflow: hidden;
-    border-bottom: 1px solid #f3f4f6;
+    border-bottom: 1px solid var(--nexus-divider);
 
     .card-overlay {
       position: absolute;
@@ -1635,12 +1635,12 @@ function formatUpdateTime(updatedAt: number): string {
       transition: opacity 0.2s;
 
       .overlay-btn {
-        background: #fff;
+        background: var(--nexus-white);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        color: #4b5563;
+        color: var(--nexus-text-secondary);
 
         &:hover {
-          color: #111827;
+          color: var(--nexus-text-primary);
         }
       }
     }
@@ -1656,27 +1656,27 @@ function formatUpdateTime(updatedAt: number): string {
     &.preview-1 {
       flex-direction: column;
       gap: 8px;
-      background-color: #f9fafb;
+      background-color: var(--nexus-bg-subtle);
 
       .mindmap-node {
-        background: #fff;
-        border: 1px solid #e5e7eb;
-        border-radius: 6px;
+        background: var(--nexus-white);
+        border: 1px solid var(--nexus-border);
+        border-radius: var(--nexus-radius-sm);
         padding: 4px 12px;
-        font-size: 12px;
-        color: #6b7280;
+        font-size: var(--nexus-font-size-xs);
+        color: var(--nexus-text-tertiary);
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
       }
       .root {
-        border-color: #000;
-        color: #000;
+        border-color: var(--nexus-accent);
+        color: var(--nexus-accent);
         font-weight: 600;
-        font-size: 13px;
+        font-size: var(--nexus-font-size-sm);
       }
     }
 
     &.preview-2 {
-      background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+      background: linear-gradient(135deg, var(--nexus-divider) 0%, var(--nexus-border) 100%);
     }
   }
 
@@ -1692,8 +1692,8 @@ function formatUpdateTime(updatedAt: number): string {
 
       .card-title {
         font-weight: 600;
-        font-size: 15px;
-        color: #1f2937;
+        font-size: var(--nexus-font-size-base);
+        color: var(--nexus-gray-800);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -1701,8 +1701,8 @@ function formatUpdateTime(updatedAt: number): string {
     }
 
     .card-meta {
-      font-size: 12px;
-      color: #9ca3af;
+      font-size: var(--nexus-font-size-xs);
+      color: var(--nexus-text-quaternary);
       margin-left: 24px; /* Align with title text (icon width approx) */
     }
   }
@@ -1718,9 +1718,9 @@ function formatUpdateTime(updatedAt: number): string {
       gap: 4px;
 
       .n-button {
-        color: #9ca3af;
+        color: var(--nexus-text-quaternary);
         &:hover {
-          color: #4b5563;
+          color: var(--nexus-text-secondary);
         }
       }
     }
@@ -1754,20 +1754,20 @@ function formatUpdateTime(updatedAt: number): string {
   gap: 12px;
   align-items: center;
   padding: 10px 12px;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  background: #f9fafb;
-  color: #6b7280;
-  font-size: 12px;
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-md);
+  background: var(--nexus-bg-subtle);
+  color: var(--nexus-text-tertiary);
+  font-size: var(--nexus-font-size-xs);
   font-weight: 600;
 }
 
 .members-list {
   margin-top: 12px;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-md);
   overflow: hidden;
-  background: #fff;
+  background: var(--nexus-white);
 }
 
 .member-row {
@@ -1776,7 +1776,7 @@ function formatUpdateTime(updatedAt: number): string {
   gap: 12px;
   align-items: center;
   padding: 12px;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid var(--nexus-divider);
 }
 
 .member-row:last-child {
@@ -1812,22 +1812,22 @@ function formatUpdateTime(updatedAt: number): string {
 
 .member-name {
   font-weight: 600;
-  color: #111827;
+  color: var(--nexus-text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .member-sub {
-  font-size: 12px;
-  color: #9ca3af;
+  font-size: var(--nexus-font-size-xs);
+  color: var(--nexus-text-quaternary);
   margin-top: 2px;
 }
 
 .col-role {
   display: flex;
   align-items: center;
-  color: #374151;
+  color: var(--nexus-gray-700);
 }
 
 .col-actions {
@@ -1837,15 +1837,15 @@ function formatUpdateTime(updatedAt: number): string {
 }
 
 .action-placeholder {
-  color: #d1d5db;
+  color: var(--nexus-border-strong);
 }
 
 .members-empty {
   margin-top: 16px;
   padding: 32px 0;
-  border: 1px dashed #e5e7eb;
-  border-radius: 12px;
-  background: #fafafa;
+  border: 1px dashed var(--nexus-border);
+  border-radius: var(--nexus-radius-md);
+  background: var(--nexus-bg);
 }
 
 .resources-container {
@@ -1870,10 +1870,10 @@ function formatUpdateTime(updatedAt: number): string {
 }
 
 .resources-list {
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-md);
   overflow: hidden;
-  background: #fff;
+  background: var(--nexus-white);
 }
 
 .resource-row {
@@ -1881,7 +1881,7 @@ function formatUpdateTime(updatedAt: number): string {
   justify-content: space-between;
   align-items: center;
   padding: 12px;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid var(--nexus-divider);
 }
 
 .resource-row:last-child {
@@ -1901,8 +1901,8 @@ function formatUpdateTime(updatedAt: number): string {
   justify-content: center;
   width: 36px;
   height: 36px;
-  border-radius: 10px;
-  background: #f3f4f6;
+  border-radius: var(--nexus-radius-md);
+  background: var(--nexus-divider);
   flex: 0 0 auto;
 }
 
@@ -1912,7 +1912,7 @@ function formatUpdateTime(updatedAt: number): string {
 
 .resource-title {
   font-weight: 600;
-  color: #111827;
+  color: var(--nexus-text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1920,22 +1920,22 @@ function formatUpdateTime(updatedAt: number): string {
 
 .resource-meta {
   margin-top: 2px;
-  font-size: 12px;
-  color: #9ca3af;
+  font-size: var(--nexus-font-size-xs);
+  color: var(--nexus-text-quaternary);
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
 .meta-dot {
-  color: #d1d5db;
+  color: var(--nexus-border-strong);
 }
 
 .resources-empty {
   padding: 32px 0;
-  border: 1px dashed #e5e7eb;
-  border-radius: 12px;
-  background: #fafafa;
+  border: 1px dashed var(--nexus-border);
+  border-radius: var(--nexus-radius-md);
+  background: var(--nexus-bg);
 }
 
 // 团队头像上传相关样式
@@ -1945,7 +1945,7 @@ function formatUpdateTime(updatedAt: number): string {
   gap: 20px;
 
   .team-avatar-img {
-    border: 2px solid #e5e7eb;
+    border: 2px solid var(--nexus-border);
   }
 
   .avatar-upload-info {
@@ -1960,19 +1960,19 @@ function formatUpdateTime(updatedAt: number): string {
     justify-content: center;
     padding: 8px 16px;
     background: transparent;
-    color: #374151;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    font-size: 14px;
+    color: var(--nexus-gray-700);
+    border: 1px solid var(--nexus-border);
+    border-radius: var(--nexus-radius-sm);
+    font-size: var(--nexus-font-size-base);
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
     width: fit-content;
 
     &:hover:not(.is-loading) {
-      background: #f9fafb;
-      border-color: #d1d5db;
-      color: #111827;
+      background: var(--nexus-bg-subtle);
+      border-color: var(--nexus-border-strong);
+      color: var(--nexus-text-primary);
     }
 
     &.is-loading {
@@ -2006,14 +2006,14 @@ function formatUpdateTime(updatedAt: number): string {
 
 /* 覆盖 Tabs 样式以匹配设计 */
 :deep(.n-tabs-nav-scroll-content) {
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--nexus-border);
 }
 :deep(.n-tabs-tab-wrapper .n-tabs-tab.n-tabs-tab--active) {
-  color: #000;
+  color: var(--nexus-accent);
   font-weight: 600;
 }
 :deep(.n-tabs-bar) {
-  background-color: #000;
+  background-color: var(--nexus-accent);
 }
 :deep(.n-tabs-tab) {
   padding-bottom: 12px;

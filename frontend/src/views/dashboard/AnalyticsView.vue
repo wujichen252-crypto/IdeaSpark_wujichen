@@ -360,17 +360,17 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-$color-bg: #fafafa;
-$color-white: #ffffff;
-$color-black: #000000;
-$color-gray-900: #111827;
-$color-gray-600: #6b7280;
-$color-gray-400: #9ca3af;
-$color-gray-200: #e5e7eb;
-$color-gray-100: #f3f4f6;
-$color-gray-50: #f9fafb;
-$color-success: #10b981;
-$color-danger: #ef4444;
+$color-bg: var(--nexus-bg);
+$color-white: var(--nexus-white);
+$color-black: var(--nexus-accent);
+$color-gray-900: var(--nexus-text-primary);
+$color-gray-600: var(--nexus-text-tertiary);
+$color-gray-400: var(--nexus-text-quaternary);
+$color-gray-200: var(--nexus-border);
+$color-gray-100: var(--nexus-divider);
+$color-gray-50: var(--nexus-bg-subtle);
+$color-success: var(--nexus-success);
+$color-danger: var(--nexus-error);
 
 $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
@@ -381,7 +381,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 .page-header {
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: var(--nexus-z-header);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -398,14 +398,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .page-title {
-  font-size: 20px;
+  font-size: var(--nexus-font-size-lg);
   font-weight: 600;
   color: $color-gray-900;
   margin: 0;
 }
 
 .page-subtitle {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-400;
 }
 
@@ -421,18 +421,18 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   padding: 4px;
   background: $color-white;
   border: 1px solid $color-gray-200;
-  border-radius: 8px;
+  border-radius: var(--nexus-radius-sm);
 }
 
 .range-btn {
   padding: 6px 12px;
   background: transparent;
   border: none;
-  border-radius: 6px;
-  font-size: 13px;
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-sm);
   color: $color-gray-600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 
   &:hover {
     color: $color-gray-900;
@@ -451,11 +451,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   padding: 8px 16px;
   background: $color-white;
   border: 1px solid $color-gray-200;
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease, color 0.3s ease;
 
   .btn-icon {
     width: 16px;
@@ -490,7 +490,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   padding: 24px;
   animation: slideUp 0.6s $ease-out-expo forwards;
   opacity: 0;
@@ -504,7 +504,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .metric-label {
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   color: $color-gray-400;
 }
 
@@ -512,7 +512,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
 
   &.up {
@@ -530,7 +530,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .metric-value {
-  font-size: 28px;
+  font-size: var(--nexus-font-size-xl);
   font-weight: 600;
   color: $color-gray-900;
   margin-bottom: 16px;
@@ -554,7 +554,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   padding: 24px;
   margin-bottom: 24px;
   animation: slideUp 0.6s $ease-out-expo forwards;
@@ -575,14 +575,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .chart-title {
-  font-size: 16px;
+  font-size: var(--nexus-font-size-md);
   font-weight: 600;
   color: $color-gray-900;
   margin-bottom: 4px;
 }
 
 .chart-desc {
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   color: $color-gray-400;
 }
 
@@ -595,7 +595,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   color: $color-gray-600;
 
   .legend-dot {
@@ -633,7 +633,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   padding: 24px;
   animation: slideUp 0.6s $ease-out-expo forwards;
   opacity: 0;
@@ -647,7 +647,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .section-title {
-  font-size: 16px;
+  font-size: var(--nexus-font-size-md);
   font-weight: 600;
   color: $color-gray-900;
 }
@@ -665,7 +665,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   justify-content: center;
   background: transparent;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--nexus-radius-sm);
   cursor: pointer;
   transition: background 0.3s ease;
 
@@ -690,7 +690,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
   th {
     padding: 12px 16px;
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     font-weight: 500;
     color: $color-gray-400;
     text-transform: uppercase;
@@ -702,7 +702,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   td {
     padding: 16px;
     border-bottom: 1px solid $color-gray-50;
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     color: $color-gray-600;
   }
 }
@@ -715,7 +715,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   height: 28px;
   background: $color-gray-100;
   border-radius: 50%;
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   font-weight: 600;
   color: $color-gray-600;
 
@@ -734,7 +734,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 .project-thumb {
   width: 40px;
   height: 40px;
-  border-radius: 8px;
+  border-radius: var(--nexus-radius-sm);
   object-fit: cover;
 }
 
@@ -747,8 +747,8 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-block;
   padding: 4px 12px;
   background: $color-gray-100;
-  border-radius: 9999px;
-  font-size: 12px;
+  border-radius: var(--nexus-radius-full);
+  font-size: var(--nexus-font-size-xs);
   color: $color-gray-600;
 }
 
@@ -762,19 +762,19 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   width: 80px;
   height: 6px;
   background: $color-gray-100;
-  border-radius: 3px;
+  border-radius: var(--nexus-radius-sm);
   overflow: hidden;
 }
 
 .rate-fill {
   height: 100%;
   background: $color-black;
-  border-radius: 3px;
+  border-radius: var(--nexus-radius-sm);
   transition: width 0.3s ease;
 }
 
 .rate-value {
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   font-weight: 500;
   color: $color-gray-900;
   min-width: 40px;

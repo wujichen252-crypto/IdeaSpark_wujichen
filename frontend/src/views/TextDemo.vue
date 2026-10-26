@@ -152,7 +152,7 @@ function changeTag(name, checked) {
   background: rgba(255, 255, 255, 0.6);
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: var(--nexus-z-overlay);
 }
 .nav-content {
   width: 1200px;
@@ -162,7 +162,7 @@ function changeTag(name, checked) {
   align-items: center;
 }
 .logo {
-  font-size: 20px;
+  font-size: var(--nexus-font-size-lg);
   font-weight: bold;
 }
 
@@ -192,12 +192,12 @@ function changeTag(name, checked) {
   width: 100%;
   height: 160px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: var(--nexus-radius-sm);
 }
 
 .desc {
   color: #888;
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   margin-bottom: 8px;
 }
 

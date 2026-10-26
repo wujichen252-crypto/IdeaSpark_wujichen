@@ -47,12 +47,12 @@ const transactions = ref([
 </script>
 
 <style scoped lang="scss">
-$color-gray-900: #111827;
-$color-gray-600: #6b7280;
-$color-gray-400: #9ca3af;
-$color-gray-100: #f3f4f6;
-$color-success: #10b981;
-$color-warning: #f59e0b;
+$color-gray-900: var(--nexus-text-primary);
+$color-gray-600: var(--nexus-text-tertiary);
+$color-gray-400: var(--nexus-text-quaternary);
+$color-gray-100: var(--nexus-divider);
+$color-success: var(--nexus-success);
+$color-warning: var(--nexus-warning);
 
 .transaction-view {
   min-height: 100vh;
@@ -61,7 +61,7 @@ $color-warning: #f59e0b;
 .page-header {
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: var(--nexus-z-header);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -78,14 +78,14 @@ $color-warning: #f59e0b;
 }
 
 .page-title {
-  font-size: 20px;
+  font-size: var(--nexus-font-size-lg);
   font-weight: 600;
   color: $color-gray-900;
   margin: 0;
 }
 
 .page-subtitle {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-400;
 }
 
@@ -99,7 +99,7 @@ $color-warning: #f59e0b;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   padding: 24px;
 }
 
@@ -114,14 +114,14 @@ $color-warning: #f59e0b;
   }
 
   th {
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     font-weight: 500;
     color: $color-gray-400;
     text-transform: uppercase;
   }
 
   td {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     color: $color-gray-600;
   }
 
@@ -134,8 +134,8 @@ $color-warning: #f59e0b;
 .status-badge {
   display: inline-block;
   padding: 4px 12px;
-  border-radius: 9999px;
-  font-size: 12px;
+  border-radius: var(--nexus-radius-full);
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
 
   &.success {

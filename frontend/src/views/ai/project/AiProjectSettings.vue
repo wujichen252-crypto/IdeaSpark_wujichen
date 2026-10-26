@@ -493,7 +493,7 @@ const handleDelete = () => {
 }
 
 .settings-header-bar {
-  background: #fff;
+  background: var(--nexus-white);
   border-bottom: 1px solid #eef0f5;
   padding: 12px 24px;
   flex-shrink: 0;
@@ -514,18 +514,18 @@ const handleDelete = () => {
 .settings-sidebar {
   width: 240px;
   flex-shrink: 0;
-  background: #fff;
-  border-radius: 8px;
+  background: var(--nexus-white);
+  border-radius: var(--nexus-radius-sm);
   padding: 16px 0;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   height: fit-content;
   
   .sidebar-title {
     padding: 0 20px 12px;
-    font-size: 16px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 600;
-    color: #1f2937;
-    border-bottom: 1px solid #f3f4f6;
+    color: var(--nexus-gray-800);
+    border-bottom: 1px solid var(--nexus-divider);
     margin-bottom: 8px;
   }
 }
@@ -543,10 +543,10 @@ const handleDelete = () => {
   margin-bottom: 24px;
   
   .section-title {
-    font-size: 18px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 600;
     margin-bottom: 16px;
-    color: #111827;
+    color: var(--nexus-text-primary);
     
     &.text-error {
       color: #d03050;
@@ -555,8 +555,8 @@ const handleDelete = () => {
 }
 
 .settings-card {
-  background: #fff;
-  border-radius: 8px;
+  background: var(--nexus-white);
+  border-radius: var(--nexus-radius-sm);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   
   &.danger-zone {
@@ -573,12 +573,12 @@ const handleDelete = () => {
   max-width: 400px;
   min-height: 180px;
   border: 2px dashed #d9d9d9;
-  border-radius: 8px;
+  border-radius: var(--nexus-radius-sm);
   overflow: hidden;
   position: relative;
   cursor: pointer;
-  transition: all 0.3s ease;
-  background: #fafafa;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  background: var(--nexus-bg);
 
   &:hover {
     border-color: #40a9ff;
@@ -639,14 +639,14 @@ const handleDelete = () => {
 
       .upload-title {
         display: block;
-        font-size: 14px;
+        font-size: var(--nexus-font-size-base);
         color: #262626;
         margin-bottom: 4px;
       }
 
       .upload-desc {
         display: block;
-        font-size: 12px;
+        font-size: var(--nexus-font-size-xs);
         color: #8c8c8c;
       }
     }
@@ -657,7 +657,7 @@ const handleDelete = () => {
   margin-top: 12px;
   width: 100%;
   max-width: 400px;
-  border-radius: 8px;
+  border-radius: var(--nexus-radius-sm);
   overflow: hidden;
   border: 1px solid #efeff5;
   position: relative;
@@ -686,7 +686,7 @@ const handleDelete = () => {
   display: flex;
   justify-content: flex-end;
   padding-top: 16px;
-  border-top: 1px solid #f3f4f6;
+  border-top: 1px solid var(--nexus-divider);
 }
 
 .danger-item {
@@ -695,15 +695,15 @@ const handleDelete = () => {
   align-items: center;
   
   .danger-title {
-    font-size: 15px;
+    font-size: var(--nexus-font-size-base);
     font-weight: 600;
-    color: #1f2937;
+    color: var(--nexus-gray-800);
     margin-bottom: 4px;
   }
   
   .danger-desc {
-    font-size: 13px;
-    color: #6b7280;
+    font-size: var(--nexus-font-size-sm);
+    color: var(--nexus-text-tertiary);
   }
 }
 
@@ -712,13 +712,13 @@ const handleDelete = () => {
   width: 6px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 3px;
+  background: var(--nexus-border-strong);
+  border-radius: var(--nexus-radius-sm);
 }
 
 .visibility-card {
   margin-bottom: 16px;
-  border-radius: 8px;
+  border-radius: var(--nexus-radius-sm);
 }
 
 .radio-content {
@@ -728,13 +728,13 @@ const handleDelete = () => {
 
 .radio-title {
   font-weight: 500;
-  font-size: 14px;
-  color: #333;
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-gray-800);
 }
 
 .radio-desc {
-  font-size: 12px;
-  color: #666;
+  font-size: var(--nexus-font-size-xs);
+  color: var(--nexus-text-tertiary);
   margin-top: 2px;
 }
 
@@ -744,7 +744,7 @@ const handleDelete = () => {
   align-items: center;
   padding: 12px;
   border: 1px solid #efeff5;
-  border-radius: 8px;
+  border-radius: var(--nexus-radius-sm);
   background-color: #fafafc;
 }
 
@@ -754,13 +754,13 @@ const handleDelete = () => {
 
 .setting-label {
   font-weight: 500;
-  font-size: 14px;
-  color: #333;
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-gray-800);
 }
 
 .setting-desc {
-  font-size: 12px;
-  color: #999;
+  font-size: var(--nexus-font-size-xs);
+  color: var(--nexus-text-quaternary);
   margin-top: 4px;
 }
 
@@ -787,7 +787,7 @@ const handleDelete = () => {
   
   .settings-card {
     box-shadow: none;
-    border: 1px solid #eee;
+    border: 1px solid var(--nexus-gray-100);
   }
 }
 

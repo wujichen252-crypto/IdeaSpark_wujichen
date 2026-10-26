@@ -352,16 +352,16 @@ const formatTime = (timestamp: number) => {
   margin-right: auto;
   
   .tab-item {
-    font-size: 18px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 600;
-    color: #666;
+    color: var(--nexus-text-tertiary);
     cursor: pointer;
     padding-bottom: 8px;
     position: relative;
-    transition: all 0.3s;
+    transition: color 0.3s;
     
     &.active {
-      color: var(--nexus-success);
+      color: var(--nexus-success-text);
       
       &::after {
         content: '';
@@ -371,12 +371,12 @@ const formatTime = (timestamp: number) => {
         width: 100%;
         height: 3px;
         background: var(--nexus-success);
-        border-radius: 2px;
+        border-radius: var(--nexus-radius-sm);
       }
     }
     
     &:hover {
-      color: var(--nexus-success);
+      color: var(--nexus-success-text);
     }
   }
 }
@@ -390,15 +390,15 @@ const formatTime = (timestamp: number) => {
   .header-text {
     h1 {
       margin: 0 0 8px 0;
-      font-size: 28px;
+      font-size: var(--nexus-font-size-xl);
       font-weight: 700;
       color: #1f2225;
     }
     
     p {
       margin: 0;
-      color: #666;
-      font-size: 16px;
+      color: var(--nexus-text-tertiary);
+      font-size: var(--nexus-font-size-md);
     }
   }
 }
@@ -410,9 +410,9 @@ const formatTime = (timestamp: number) => {
   margin-bottom: 40px;
   
   .stat-card {
-    background: #fff;
+    background: var(--nexus-white);
     padding: 24px;
-    border-radius: 12px;
+    border-radius: var(--nexus-radius-md);
     display: flex;
     align-items: center;
     gap: 16px;
@@ -426,11 +426,11 @@ const formatTime = (timestamp: number) => {
     .icon-box {
       width: 48px;
       height: 48px;
-      border-radius: 12px;
+      border-radius: var(--nexus-radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: var(--nexus-font-size-xl);
       
       &.purple { background: #f3e8ff; color: #9333ea; }
       &.blue { background: #e0f2fe; color: #0284c7; }
@@ -439,14 +439,14 @@ const formatTime = (timestamp: number) => {
     
     .info {
       .value {
-        font-size: 24px;
+        font-size: var(--nexus-font-size-xl);
         font-weight: 700;
         color: #1f2225;
-        line-height: 1.2;
+        line-height: var(--nexus-leading-display);
       }
       .label {
-        font-size: 14px;
-        color: #666;
+        font-size: var(--nexus-font-size-base);
+        color: var(--nexus-text-tertiary);
         margin-top: 4px;
       }
     }
@@ -482,7 +482,7 @@ const formatTime = (timestamp: number) => {
     
     h2 {
       margin: 0;
-      font-size: 20px;
+      font-size: var(--nexus-font-size-lg);
       font-weight: 600;
     }
   }
@@ -494,12 +494,12 @@ const formatTime = (timestamp: number) => {
   gap: 24px;
   
   .project-card {
-    background: #fff;
-    border-radius: 12px;
+    background: var(--nexus-white);
+    border-radius: var(--nexus-radius-md);
     padding: 24px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     position: relative;
     border: 1px solid transparent;
     
@@ -521,14 +521,14 @@ const formatTime = (timestamp: number) => {
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.2s;
-      z-index: 10;
+      z-index: var(--nexus-z-sticky);
       
       .action-btn {
         padding: 4px;
-        color: #999;
+        color: var(--nexus-text-quaternary);
         
         &:hover {
-          color: #333;
+          color: var(--nexus-gray-800);
           background-color: rgba(0,0,0,0.05);
         }
       }
@@ -543,11 +543,11 @@ const formatTime = (timestamp: number) => {
     }
 
     .badge {
-      font-size: 12px;
+      font-size: var(--nexus-font-size-xs);
       padding: 4px 8px;
-      border-radius: 4px;
+      border-radius: var(--nexus-radius-sm);
       background: #f5f7fa;
-      color: #666;
+      color: var(--nexus-text-tertiary);
       
       &.status.execute {
         background: #e0f2fe;
@@ -560,8 +560,8 @@ const formatTime = (timestamp: number) => {
           color: #059669;
         }
         &.private {
-          background: #f3f4f6;
-          color: #6b7280;
+          background: var(--nexus-divider);
+          color: var(--nexus-text-tertiary);
         }
       }
     }
@@ -569,14 +569,14 @@ const formatTime = (timestamp: number) => {
     .card-icon {
       width: 48px;
       height: 48px;
-      border-radius: 10px;
+      border-radius: var(--nexus-radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: var(--nexus-font-size-xl);
       margin-bottom: 16px;
       background: #f5f7fa;
-      color: #666;
+      color: var(--nexus-text-tertiary);
       
       &.coding { background: #e0f2fe; color: #0284c7; }
       &.design { background: #fce7f3; color: #db2777; }
@@ -585,16 +585,16 @@ const formatTime = (timestamp: number) => {
     
     .card-title {
       margin: 0 0 8px 0;
-      font-size: 18px;
+      font-size: var(--nexus-font-size-md);
       font-weight: 600;
       color: #1f2225;
     }
     
     .card-desc {
       margin: 0 0 20px 0;
-      font-size: 14px;
-      color: #666;
-      line-height: 1.5;
+      font-size: var(--nexus-font-size-base);
+      color: var(--nexus-text-tertiary);
+      line-height: var(--nexus-leading-compact);
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -607,8 +607,8 @@ const formatTime = (timestamp: number) => {
       align-items: center;
       
       .time {
-        font-size: 12px;
-        color: #999;
+        font-size: var(--nexus-font-size-xs);
+        color: var(--nexus-text-quaternary);
       }
       
       .progress-dots {
@@ -619,7 +619,7 @@ const formatTime = (timestamp: number) => {
           width: 8px;
           height: 8px;
           border-radius: 50%;
-          background: #eee;
+          background: var(--nexus-gray-100);
           
           &.active {
             background: var(--nexus-success);

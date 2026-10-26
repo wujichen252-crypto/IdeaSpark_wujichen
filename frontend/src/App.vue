@@ -17,109 +17,128 @@ const route = useRoute()
 const userStore = useUserStore()
 
 /**
+ * 读取 :root 上的 Nexus 设计令牌
+ * @description 设计令牌的唯一事实来源是 `styles/variables.scss`。此处运行时读取，
+ * 避免在 TS 侧再抄写一份色值 / 圆角，消除"令牌与主题双轨"。
+ * @param name 令牌名（不含 `--nexus-` 前缀）
+ * @returns 令牌值字符串；令牌缺失时返回空串并在开发环境告警
+ */
+function token(name: string): string {
+  const value = getComputedStyle(document.documentElement)
+    .getPropertyValue(`--nexus-${name}`)
+    .trim()
+  if (!value && import.meta.env.DEV) {
+    console.warn(`[nexus] 未找到设计令牌 --nexus-${name}`)
+  }
+  return value
+}
+
+/**
  * Nexus Design System Theme Overrides for Naive UI
- * Transforms Naive UI's default green theme into a minimalist black/white/grey system
+ * Transforms Naive UI's default green theme into a minimalist black/white/grey system.
+ * 与 `styles/variables.scss` 同源：色值 / 圆角 / 字体栈均从令牌读取，
+ * 仅 Naive UI 内部的派生色阶（hover / pressed / suppl）与控件尺寸保留字面量。
  */
 const themeOverrides: GlobalThemeOverrides = {
   common: {
-    primaryColor: '#000000',
-    primaryColorHover: '#374151',
-    primaryColorPressed: '#111827',
-    primaryColorSuppl: '#000000',
-    infoColor: '#6b7280',
-    infoColorHover: '#4b5563',
-    infoColorPressed: '#374151',
-    infoColorSuppl: '#6b7280',
-    successColor: '#10b981',
+    primaryColor: token('accent'),
+    primaryColorHover: token('accent-hover'),
+    primaryColorPressed: token('gray-900'),
+    primaryColorSuppl: token('accent'),
+    infoColor: token('text-tertiary'),
+    infoColorHover: token('text-secondary'),
+    infoColorPressed: token('gray-700'),
+    infoColorSuppl: token('text-tertiary'),
+    successColor: token('success'),
     successColorHover: '#34d399',
     successColorPressed: '#059669',
-    successColorSuppl: '#10b981',
-    warningColor: '#f59e0b',
+    successColorSuppl: token('success'),
+    warningColor: token('warning'),
     warningColorHover: '#fbbf24',
     warningColorPressed: '#d97706',
-    warningColorSuppl: '#f59e0b',
-    errorColor: '#ef4444',
+    warningColorSuppl: token('warning'),
+    errorColor: token('error'),
     errorColorHover: '#f87171',
     errorColorPressed: '#dc2626',
-    errorColorSuppl: '#ef4444',
-    bodyColor: '#fafafa',
-    cardColor: '#ffffff',
-    modalColor: '#ffffff',
+    errorColorSuppl: token('error'),
+    bodyColor: token('bg'),
+    cardColor: token('bg-elevated'),
+    modalColor: token('bg-elevated'),
     popoverColor: 'rgba(255, 255, 255, 0.92)',
-    borderColor: '#e5e7eb',
-    dividerColor: '#f3f4f6',
+    borderColor: token('border'),
+    dividerColor: token('divider'),
     hoverColor: 'rgba(0, 0, 0, 0.04)',
-    tableHeaderColor: '#fafafa',
-    inputColor: '#ffffff',
-    inputColorDisabled: '#f9fafb',
-    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'HarmonyOS Sans SC', 'Source Han Sans SC', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif",
-    fontFamilyMono: "'SF Mono', Monaco, 'Cascadia Code', monospace",
+    tableHeaderColor: token('bg'),
+    inputColor: token('bg-elevated'),
+    inputColorDisabled: token('bg-subtle'),
+    fontFamily: token('font-ui'),
+    fontFamilyMono: token('font-mono'),
     fontWeight: '400',
     fontWeightStrong: '600',
-    borderRadius: '12px',
-    borderRadiusSmall: '8px',
+    borderRadius: token('radius-md'),
+    borderRadiusSmall: token('radius-sm'),
     heightSmall: '32px',
     heightMedium: '40px',
     heightLarge: '48px'
   },
   Button: {
-    borderRadiusSmall: '9999px',
-    borderRadiusMedium: '9999px',
-    borderRadiusLarge: '9999px',
+    borderRadiusSmall: token('radius-full'),
+    borderRadiusMedium: token('radius-full'),
+    borderRadiusLarge: token('radius-full'),
     fontWeight: '500'
   },
   Input: {
-    borderRadius: '9999px',
-    caretColor: '#000000',
-    borderHover: '1px solid #9ca3af',
-    borderFocus: '1px solid #000000'
+    borderRadius: token('radius-full'),
+    caretColor: token('accent'),
+    borderHover: `1px solid ${token('text-quaternary')}`,
+    borderFocus: `1px solid ${token('accent')}`
   },
   Card: {
-    borderRadius: '16px',
-    color: '#ffffff',
-    colorModal: '#ffffff',
-    boxShadow: '0 4px 24px -4px rgba(0, 0, 0, 0.04)'
+    borderRadius: token('radius-lg'),
+    color: token('bg-elevated'),
+    colorModal: token('bg-elevated'),
+    boxShadow: token('shadow-md')
   },
   Tag: {
-    borderRadius: '9999px',
-    fontSizeTiny: '12px',
-    fontSizeSmall: '12px',
-    fontSizeMedium: '13px',
-    fontSizeLarge: '14px'
+    borderRadius: token('radius-full'),
+    fontSizeTiny: token('font-size-xs'),
+    fontSizeSmall: token('font-size-xs'),
+    fontSizeMedium: token('font-size-sm'),
+    fontSizeLarge: token('font-size-base')
   },
   Badge: {
-    borderRadius: '9999px'
+    borderRadius: token('radius-full')
   },
   Avatar: {
-    borderRadius: '9999px'
+    borderRadius: token('radius-full')
   },
   Tooltip: {
-    borderRadius: '8px',
-    color: '#111827',
-    textColor: '#ffffff'
+    borderRadius: token('radius-sm'),
+    color: token('text-primary'),
+    textColor: token('text-inverse')
   },
   Dropdown: {
-    borderRadius: '12px',
+    borderRadius: token('radius-md'),
     optionHeightSmall: '32px',
     optionHeightMedium: '40px',
     optionHeightLarge: '48px'
   },
   Menu: {
-    borderRadius: '12px'
+    borderRadius: token('radius-md')
   },
   Slider: {
-    fillColor: '#000000',
-    fillColorHover: '#374151'
+    fillColor: token('accent'),
+    fillColorHover: token('accent-hover')
   },
   Switch: {
-    railColorActive: '#000000'
+    railColorActive: token('accent')
   },
   Tabs: {
-    tabBorderRadius: '9999px',
+    tabBorderRadius: token('radius-full'),
     tabFontWeightActive: '600'
   },
   Drawer: {
-    borderRadius: '24px 0 0 24px'
+    borderRadius: `${token('radius-xl')} 0 0 ${token('radius-xl')}`
   }
 }
 
@@ -154,46 +173,3 @@ onMounted(() => {
     </n-message-provider>
   </n-config-provider>
 </template>
-
-<style>
-/* Global scrollbar override */
-html {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.12) transparent;
-}
-
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.12);
-  border-radius: 9999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-::selection {
-  background-color: #000000;
-  color: #ffffff;
-}
-
-/* 布局骨架共享的内容容器（各 layout 渲染 <main class="app-main">） */
-.app-main {
-  min-height: 100vh;
-  position: relative;
-  isolation: isolate;
-}
-
-.app-main--with-header {
-  /* 与 AppHeader 实际高度统一为同一令牌，避免顶部 8px 死区 */
-  padding-top: var(--header-height);
-}
-</style>

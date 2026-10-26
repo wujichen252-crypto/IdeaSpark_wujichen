@@ -433,7 +433,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 50;
+  z-index: var(--nexus-z-nav);
   opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
@@ -444,7 +444,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 24px;
+  border-radius: var(--nexus-radius-xl);
   box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
   animation: slideUp 0.7s $ease-out-expo forwards;
   opacity: 0;
@@ -471,9 +471,9 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .page-title {
-    font-size: 1.5rem;
+    font-size: var(--nexus-font-size-xl);
     font-weight: 700;
-    color: #111827;
+    color: var(--nexus-text-primary);
     margin: 0;
     letter-spacing: -0.01em;
   }
@@ -481,10 +481,10 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   .unsaved-badge {
     padding: 4px 12px;
     background: rgba(245, 158, 11, 0.1);
-    color: #f59e0b;
-    font-size: 12px;
+    color: var(--nexus-warning);
+    font-size: var(--nexus-font-size-xs);
     font-weight: 500;
-    border-radius: 20px;
+    border-radius: var(--nexus-radius-xl);
   }
 }
 
@@ -496,11 +496,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   gap: 8px;
   padding: 10px 20px;
   border: none;
-  border-radius: 12px;
-  font-size: 14px;
+  border-radius: var(--nexus-radius-md);
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s $ease-out-expo;
+  transition: background-color 0.3s $ease-out-expo, color 0.3s $ease-out-expo, transform 0.3s $ease-out-expo, opacity 0.3s $ease-out-expo;
 
   .btn-icon {
     width: 16px;
@@ -508,12 +508,12 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   &.btn-primary {
-    background: #000000;
+    background: var(--nexus-accent);
     color: white;
-    border-radius: 9999px;
+    border-radius: var(--nexus-radius-full);
 
     &:hover:not(:disabled) {
-      background: #374151;
+      background: var(--nexus-gray-700);
       transform: translateY(-2px);
     }
 
@@ -525,13 +525,13 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
   &.btn-secondary {
     background: transparent;
-    color: #6b7280;
-    border: 1px solid #e5e7eb;
-    border-radius: 9999px;
+    color: var(--nexus-text-tertiary);
+    border: 1px solid var(--nexus-border);
+    border-radius: var(--nexus-radius-full);
 
     &:hover {
       background: rgba(0, 0, 0, 0.03);
-      color: #1f2937;
+      color: var(--nexus-gray-800);
     }
   }
 }
@@ -563,14 +563,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 .form-label {
   display: block;
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
-  color: #374151;
+  color: var(--nexus-gray-700);
   margin-bottom: 8px;
   letter-spacing: -0.01em;
 
   .required {
-    color: #ef4444;
+    color: var(--nexus-error);
     margin-left: 4px;
   }
 }
@@ -580,18 +580,18 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   width: 100%;
   padding: 12px 16px;
   background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  font-size: 14px;
-  color: #111827;
-  transition: all 0.3s $ease-out-expo;
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-md);
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-text-primary);
+  transition: border-color 0.3s $ease-out-expo;
 
   &::placeholder {
-    color: #9ca3af;
+    color: var(--nexus-text-quaternary);
   }
 
   &:focus {
-    border-color: #000000;
+    border-color: var(--nexus-accent);
   }
 }
 
@@ -613,7 +613,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   height: 100px;
   border-radius: 50%;
   overflow: hidden;
-  background: #f3f4f6;
+  background: var(--nexus-divider);
   border: 3px solid white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
@@ -628,18 +628,18 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   padding: 10px 20px;
   background: transparent;
-  color: #6b7280;
-  border: 1px solid #e5e7eb;
-  border-radius: 9999px;
-  font-size: 14px;
+  color: var(--nexus-text-tertiary);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-full);
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s $ease-out-expo;
+  transition: background-color 0.3s $ease-out-expo, color 0.3s $ease-out-expo, border-color 0.3s $ease-out-expo, opacity 0.3s $ease-out-expo;
 
   &:hover:not(.is-loading) {
     background: rgba(0, 0, 0, 0.03);
-    color: #1f2937;
-    border-color: #d1d5db;
+    color: var(--nexus-gray-800);
+    border-color: var(--nexus-border-strong);
   }
 
   &.is-loading {
@@ -665,11 +665,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 .cover-preview {
   width: 100%;
   height: 160px;
-  border-radius: 12px;
+  border-radius: var(--nexus-radius-md);
   background-size: cover;
   background-position: center;
-  background-color: #f3f4f6;
-  border: 2px dashed #d1d5db;
+  background-color: var(--nexus-divider);
+  border: 2px dashed var(--nexus-border-strong);
   position: relative;
   overflow: hidden;
 
@@ -695,12 +695,12 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 .btn-text {
   background: transparent;
   border: none;
-  color: #ef4444;
-  font-size: 14px;
+  color: var(--nexus-error);
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   cursor: pointer;
   padding: 10px 20px;
-  transition: all 0.3s $ease-out-expo;
+  transition: color 0.3s $ease-out-expo;
 
   &:hover {
     color: #dc2626;
@@ -732,9 +732,9 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .preview-title {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 600;
-  color: #6b7280;
+  color: var(--nexus-text-tertiary);
   margin-bottom: 16px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -762,22 +762,22 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 .preview-info {
   .preview-name {
-    font-size: 18px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 700;
-    color: #111827;
+    color: var(--nexus-text-primary);
     margin-bottom: 4px;
     letter-spacing: -0.01em;
   }
 
   .preview-role {
-    font-size: 14px;
-    color: #6b7280;
+    font-size: var(--nexus-font-size-base);
+    color: var(--nexus-text-tertiary);
   }
 }
 
 .preview-bio {
-  color: #4b5563;
-  line-height: 1.6;
+  color: var(--nexus-text-secondary);
+  line-height: var(--nexus-leading-normal);
   margin-bottom: 16px;
   padding-bottom: 16px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -787,8 +787,8 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
-  color: #6b7280;
+  font-size: var(--nexus-font-size-sm);
+  color: var(--nexus-text-tertiary);
   margin-bottom: 8px;
 
   &:last-child {

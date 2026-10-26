@@ -490,7 +490,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 50;
+  z-index: var(--nexus-z-nav);
   opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
@@ -511,7 +511,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     position: absolute;
     bottom: 16px;
     right: 16px;
-    z-index: 10;
+    z-index: var(--nexus-z-sticky);
   }
 
   .cover-upload-btn {
@@ -521,11 +521,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     padding: 8px 16px;
     background: rgba(0, 0, 0, 0.5);
     color: white;
-    border-radius: 8px;
-    font-size: 14px;
+    border-radius: var(--nexus-radius-sm);
+    font-size: var(--nexus-font-size-base);
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
     backdrop-filter: blur(4px);
 
     &:hover:not(.is-loading) {
@@ -553,7 +553,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 24px;
+  border-radius: var(--nexus-radius-xl);
   box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
   animation: slideUp 0.7s $ease-out-expo forwards;
   opacity: 0;
@@ -564,7 +564,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   margin: 0 auto;
   padding: 0 24px 60px;
   position: relative;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
   margin-top: -80px;
 }
 
@@ -576,7 +576,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   margin-bottom: 24px;
 
   .user-avatar-wrapper {
-    background: #fff;
+    background: var(--nexus-white);
     padding: 4px;
     border-radius: 50%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -602,25 +602,25 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
       .username {
         margin: 0;
-        font-size: 2.2rem;
+        font-size: var(--nexus-font-size-2xl);
         font-weight: 800;
-        color: #1f2937;
+        color: var(--nexus-gray-800);
       }
 
       .role-tag {
         padding: 4px 12px;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
-        font-size: 12px;
+        font-size: var(--nexus-font-size-xs);
         font-weight: 500;
-        border-radius: 20px;
+        border-radius: var(--nexus-radius-xl);
       }
     }
 
     .bio {
-      color: #4b5563;
+      color: var(--nexus-text-secondary);
       margin-bottom: 16px;
-      font-size: 16px;
+      font-size: var(--nexus-font-size-md);
       max-width: 600px;
     }
 
@@ -634,14 +634,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
         align-items: flex-start;
 
         .count {
-          font-size: 1.4rem;
+          font-size: var(--nexus-font-size-lg);
           font-weight: 700;
-          color: #1f2937;
+          color: var(--nexus-gray-800);
         }
 
         .label {
-          font-size: 13px;
-          color: #6b7280;
+          font-size: var(--nexus-font-size-sm);
+          color: var(--nexus-text-tertiary);
         }
 
         &.clickable {
@@ -670,11 +670,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   gap: 8px;
   padding: 10px 20px;
   border: none;
-  border-radius: 12px;
-  font-size: 14px;
+  border-radius: var(--nexus-radius-md);
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s $ease-out-expo;
+  transition: background-color 0.3s $ease-out-expo, color 0.3s $ease-out-expo, transform 0.3s $ease-out-expo, box-shadow 0.3s $ease-out-expo;
 
   .btn-icon {
     width: 16px;
@@ -698,11 +698,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     padding: 0;
     background: rgba(255, 255, 255, 0.5);
     border: 1px solid rgba(0, 0, 0, 0.1);
-    color: #4b5563;
+    color: var(--nexus-text-secondary);
 
     &:hover {
       background: rgba(255, 255, 255, 0.8);
-      color: #1f2937;
+      color: var(--nexus-gray-800);
     }
   }
 }
@@ -723,16 +723,16 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
       padding: 10px 20px;
       background: transparent;
       border: none;
-      font-size: 15px;
+      font-size: var(--nexus-font-size-base);
       font-weight: 500;
-      color: #6b7280;
+      color: var(--nexus-text-tertiary);
       cursor: pointer;
-      border-radius: 12px;
-      transition: all 0.3s $ease-out-expo;
+      border-radius: var(--nexus-radius-md);
+      transition: background-color 0.3s $ease-out-expo, color 0.3s $ease-out-expo;
       position: relative;
 
       &:hover {
-        color: #1f2937;
+        color: var(--nexus-gray-800);
         background: rgba(0, 0, 0, 0.03);
       }
 
@@ -749,7 +749,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
           width: 20px;
           height: 3px;
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          border-radius: 2px;
+          border-radius: var(--nexus-radius-sm);
         }
       }
     }
@@ -764,11 +764,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 .project-card {
   background: rgba(255, 255, 255, 0.5);
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.5);
   cursor: pointer;
-  transition: all 0.3s $ease-out-expo;
+  transition: background-color 0.3s $ease-out-expo, transform 0.3s $ease-out-expo, box-shadow 0.3s $ease-out-expo;
 
   &:hover {
     transform: translateY(-4px);
@@ -793,17 +793,17 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     padding: 20px;
 
     .card-title {
-      font-size: 16px;
+      font-size: var(--nexus-font-size-md);
       font-weight: 600;
       margin-bottom: 8px;
-      color: #1f2937;
+      color: var(--nexus-gray-800);
     }
 
     .card-desc {
-      font-size: 13px;
-      color: #6b7280;
+      font-size: var(--nexus-font-size-sm);
+      color: var(--nexus-text-tertiary);
       margin-bottom: 16px;
-      line-height: 1.5;
+      line-height: var(--nexus-leading-compact);
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -813,8 +813,8 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     .card-meta {
       display: flex;
       gap: 16px;
-      font-size: 12px;
-      color: #9ca3af;
+      font-size: var(--nexus-font-size-xs);
+      color: var(--nexus-text-quaternary);
 
       .meta-item {
         display: flex;
@@ -832,11 +832,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 .meta-badge {
   padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 11px;
+  border-radius: var(--nexus-radius-md);
+  font-size: var(--nexus-font-size-xs);
   text-transform: uppercase;
-  background: #f3f4f6;
-  color: #6b7280;
+  background: var(--nexus-divider);
+  color: var(--nexus-text-tertiary);
 
   &.active {
     background: #dcfce7;
@@ -847,22 +847,22 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     color: #92400e;
   }
   &.archived {
-    background: #e5e7eb;
-    color: #374151;
+    background: var(--nexus-border);
+    color: var(--nexus-gray-700);
   }
 }
 
 .add-project-card {
   background: rgba(255, 255, 255, 0.3);
   border: 2px dashed rgba(0, 0, 0, 0.1);
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 280px;
   cursor: pointer;
-  transition: all 0.3s $ease-out-expo;
+  transition: background-color 0.3s $ease-out-expo, border-color 0.3s $ease-out-expo;
   gap: 12px;
 
   &:hover {
@@ -881,14 +881,14 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   .add-icon {
     width: 48px;
     height: 48px;
-    color: #9ca3af;
+    color: var(--nexus-text-quaternary);
     transition: color 0.3s ease;
   }
 
   .add-text {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     font-weight: 600;
-    color: #6b7280;
+    color: var(--nexus-text-tertiary);
     transition: color 0.3s ease;
   }
 }
@@ -903,12 +903,12 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   .empty-icon {
     width: 64px;
     height: 64px;
-    color: #d1d5db;
+    color: var(--nexus-border-strong);
   }
 
   .empty-text {
-    font-size: 16px;
-    color: #9ca3af;
+    font-size: var(--nexus-font-size-md);
+    color: var(--nexus-text-quaternary);
   }
 }
 
@@ -919,17 +919,17 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     margin-bottom: 32px;
 
     .info-title {
-      font-size: 18px;
+      font-size: var(--nexus-font-size-md);
       font-weight: 600;
-      color: #1f2937;
+      color: var(--nexus-gray-800);
       margin-bottom: 12px;
       padding-bottom: 8px;
       border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     .info-text {
-      color: #4b5563;
-      line-height: 1.6;
+      color: var(--nexus-text-secondary);
+      line-height: var(--nexus-leading-normal);
     }
   }
 }
@@ -942,11 +942,11 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 .post-card {
   background: rgba(255, 255, 255, 0.6);
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   padding: 20px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   cursor: pointer;
-  transition: all 0.3s $ease-out-expo;
+  transition: background-color 0.3s $ease-out-expo, transform 0.3s $ease-out-expo, box-shadow 0.3s $ease-out-expo;
 
   &:hover {
     transform: translateY(-2px);
@@ -976,13 +976,13 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
 .post-author-name {
   font-weight: 600;
-  font-size: 14px;
-  color: #1f2937;
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-gray-800);
 }
 
 .post-time {
-  font-size: 12px;
-  color: #9ca3af;
+  font-size: var(--nexus-font-size-xs);
+  color: var(--nexus-text-quaternary);
 }
 
 .post-body-mini {
@@ -990,9 +990,9 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .post-text {
-  font-size: 14px;
-  color: #374151;
-  line-height: 1.6;
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-gray-700);
+  line-height: var(--nexus-leading-normal);
   margin-bottom: 12px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -1010,7 +1010,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   width: 100px;
   height: 100px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: var(--nexus-radius-sm);
 }
 
 .img-more {
@@ -1019,18 +1019,18 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #e5e7eb;
-  border-radius: 8px;
-  font-size: 14px;
-  color: #6b7280;
+  background: var(--nexus-border);
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-text-tertiary);
   font-weight: 500;
 }
 
 .post-footer-mini {
   display: flex;
   gap: 16px;
-  font-size: 13px;
-  color: #9ca3af;
+  font-size: var(--nexus-font-size-sm);
+  color: var(--nexus-text-quaternary);
 }
 
 .post-stat {

@@ -292,18 +292,18 @@ function toggleSelectAll() {
 </script>
 
 <style scoped lang="scss">
-$color-bg: #fafafa;
-$color-white: #ffffff;
-$color-black: #000000;
-$color-gray-900: #111827;
-$color-gray-600: #6b7280;
-$color-gray-400: #9ca3af;
-$color-gray-200: #e5e7eb;
-$color-gray-100: #f3f4f6;
-$color-gray-50: #f9fafb;
-$color-success: #10b981;
-$color-warning: #f59e0b;
-$color-danger: #ef4444;
+$color-bg: var(--nexus-bg);
+$color-white: var(--nexus-white);
+$color-black: var(--nexus-accent);
+$color-gray-900: var(--nexus-text-primary);
+$color-gray-600: var(--nexus-text-tertiary);
+$color-gray-400: var(--nexus-text-quaternary);
+$color-gray-200: var(--nexus-border);
+$color-gray-100: var(--nexus-divider);
+$color-gray-50: var(--nexus-bg-subtle);
+$color-success: var(--nexus-success);
+$color-warning: var(--nexus-warning);
+$color-danger: var(--nexus-error);
 
 .user-management-view {
   min-height: 100vh;
@@ -312,7 +312,7 @@ $color-danger: #ef4444;
 .page-header {
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: var(--nexus-z-header);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -329,14 +329,14 @@ $color-danger: #ef4444;
 }
 
 .page-title {
-  font-size: 20px;
+  font-size: var(--nexus-font-size-lg);
   font-weight: 600;
   color: $color-gray-900;
   margin: 0;
 }
 
 .page-subtitle {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-400;
 }
 
@@ -364,8 +364,8 @@ $color-danger: #ef4444;
     padding: 8px 16px 8px 40px;
     background: $color-white;
     border: 1px solid $color-gray-200;
-    border-radius: 8px;
-    font-size: 14px;
+    border-radius: var(--nexus-radius-sm);
+    font-size: var(--nexus-font-size-base);
     color: $color-gray-900;
 
     &::placeholder {
@@ -385,8 +385,8 @@ $color-danger: #ef4444;
   padding: 8px 16px;
   background: $color-white;
   border: 1px solid $color-gray-200;
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-600;
   cursor: pointer;
 
@@ -410,7 +410,7 @@ $color-danger: #ef4444;
   gap: 8px;
 
   label {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     color: $color-gray-600;
   }
 }
@@ -419,8 +419,8 @@ $color-danger: #ef4444;
   padding: 6px 12px;
   background: $color-white;
   border: 1px solid $color-gray-200;
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-900;
 }
 
@@ -444,13 +444,13 @@ $color-danger: #ef4444;
 }
 
 .stat-value {
-  font-size: 24px;
+  font-size: var(--nexus-font-size-xl);
   font-weight: 600;
   color: $color-gray-900;
 }
 
 .stat-label {
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   color: $color-gray-400;
 }
 
@@ -459,7 +459,7 @@ $color-danger: #ef4444;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   padding: 24px;
 }
 
@@ -471,7 +471,7 @@ $color-danger: #ef4444;
 }
 
 .table-title {
-  font-size: 16px;
+  font-size: var(--nexus-font-size-md);
   font-weight: 600;
   color: $color-gray-900;
 }
@@ -489,7 +489,7 @@ $color-danger: #ef4444;
   justify-content: center;
   background: transparent;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--nexus-radius-sm);
   cursor: pointer;
 
   &:hover {
@@ -518,7 +518,7 @@ $color-danger: #ef4444;
   }
 
   th {
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     font-weight: 500;
     color: $color-gray-400;
     text-transform: uppercase;
@@ -526,7 +526,7 @@ $color-danger: #ef4444;
   }
 
   td {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     color: $color-gray-600;
   }
 }
@@ -552,8 +552,8 @@ $color-danger: #ef4444;
 .status-badge {
   display: inline-block;
   padding: 4px 12px;
-  border-radius: 9999px;
-  font-size: 12px;
+  border-radius: var(--nexus-radius-full);
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
 
   &.active {
@@ -585,7 +585,7 @@ $color-danger: #ef4444;
   justify-content: center;
   background: transparent;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--nexus-radius-sm);
   cursor: pointer;
 
   &:hover {
@@ -624,7 +624,7 @@ $color-danger: #ef4444;
   justify-content: center;
   background: $color-white;
   border: 1px solid $color-gray-200;
-  border-radius: 8px;
+  border-radius: var(--nexus-radius-sm);
   cursor: pointer;
 
   &:disabled {
@@ -640,7 +640,7 @@ $color-danger: #ef4444;
 }
 
 .page-info {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-600;
 }
 </style>

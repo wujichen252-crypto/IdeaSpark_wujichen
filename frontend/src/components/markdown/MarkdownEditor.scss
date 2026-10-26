@@ -30,7 +30,7 @@ flex: 1;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
 }
 
@@ -44,8 +44,8 @@ flex: 1;
 .nexus-tool-btn {
   width: 34px;
   height: 34px;
-  border-radius: 9999px;
-  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: var(--nexus-radius-full);
+  transition: background-color 200ms cubic-bezier(0.16, 1, 0.3, 1), color 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nexus-tool-btn:hover {
@@ -53,15 +53,15 @@ flex: 1;
 }
 
 .nexus-tool-active {
-  background: #111827 !important;
-  color: #fff !important;
+  background: var(--nexus-text-primary) !important;
+  color: var(--nexus-white) !important;
 }
 
 .nexus-tool-text {
   font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
   font-weight: 700;
   letter-spacing: 0.5px;
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
 }
 
 .nexus-bold {
@@ -116,11 +116,11 @@ flex: 1;
   height: 100%;
   position: relative;
   overflow: hidden;
-  background: #ffffff;
+  background: var(--nexus-white);
   border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   box-shadow: 0 2px 12px -2px rgba(0, 0, 0, 0.04);
-  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .md-wysiwyg:hover {
@@ -132,15 +132,15 @@ flex: 1;
   padding: 20px;
   overflow: auto;
   font-family: 'Inter', sans-serif;
-  font-size: 15px;
-  line-height: 1.7;
-  color: #111827;
+  font-size: var(--nexus-font-size-base);
+  line-height: var(--nexus-leading-prose);
+  color: var(--nexus-text-primary);
 }
 
 .md-typora-editor:empty::before {
   content: '开始编辑 Markdown...';
-  color: #9ca3af;
-  font-size: 15px;
+  color: var(--nexus-text-quaternary);
+  font-size: var(--nexus-font-size-base);
 }
 
 /* Glass 预览面板 */
@@ -150,24 +150,18 @@ flex: 1;
   height: 100%;
 }
 
-.nexus-glass-panel {
+.md-preview-panel {
   height: 100%;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 16px;
-  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
-  overflow: hidden;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .md-preview-header {
   padding: 12px 16px;
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   font-weight: 600;
-  color: #6b7280;
+  color: var(--nexus-text-tertiary);
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
   flex-shrink: 0;
   font-family: 'Inter', sans-serif;
@@ -177,35 +171,35 @@ flex: 1;
   flex: 1;
   overflow: auto;
   padding: 16px;
-  color: #111827;
+  color: var(--nexus-text-primary);
   font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: var(--nexus-font-size-base);
+  line-height: var(--nexus-leading-prose);
 }
 
 .md-preview-content h1 {
-  font-size: 24px;
+  font-size: var(--nexus-font-size-xl);
   font-weight: 600;
   margin: 16px 0 12px;
   letter-spacing: -0.01em;
 }
 
 .md-preview-content h2 {
-  font-size: 18px;
+  font-size: var(--nexus-font-size-md);
   font-weight: 600;
   margin: 16px 0 8px;
   letter-spacing: -0.01em;
 }
 
 .md-preview-content h3 {
-  font-size: 16px;
+  font-size: var(--nexus-font-size-md);
   font-weight: 600;
   margin: 12px 0 8px;
 }
 
 .md-preview-content p {
   margin: 8px 0;
-  line-height: 1.7;
+  line-height: var(--nexus-leading-prose);
 }
 
 .md-preview-content ul {
@@ -215,22 +209,22 @@ flex: 1;
 
 .md-preview-content li {
   margin: 6px 0;
-  line-height: 1.6;
+  line-height: var(--nexus-leading-normal);
 }
 
 .md-preview-content code {
   font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-  background: #f3f4f6;
+  background: var(--nexus-divider);
   padding: 2px 6px;
-  border-radius: 6px;
-  font-size: 13px;
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-sm);
 }
 
 .md-preview-content .md-code {
-  background: #111827;
-  color: #e5e7eb;
+  background: var(--nexus-text-primary);
+  color: var(--nexus-border);
   padding: 14px;
-  border-radius: 12px;
+  border-radius: var(--nexus-radius-md);
   overflow: auto;
 }
 
@@ -246,7 +240,7 @@ flex: 1;
   height: auto;
   display: block;
   margin: 10px 0;
-  border-radius: 12px;
+  border-radius: var(--nexus-radius-md);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
@@ -255,7 +249,7 @@ flex: 1;
 }
 
 .md-preview-content .md-placeholder {
-  color: #9ca3af;
+  color: var(--nexus-text-quaternary);
 }
 
 .md-hidden-file {
@@ -274,14 +268,14 @@ flex: 1;
 }
 
 .nexus-mono-input {
-  background: #ffffff !important;
-  border-radius: 16px !important;
+  background: var(--nexus-white) !important;
+  border-radius: var(--nexus-radius-lg) !important;
   border: 1px solid rgba(0, 0, 0, 0.06) !important;
   box-shadow: 0 2px 12px -2px rgba(0, 0, 0, 0.04) !important;
   padding: 20px !important;
-  font-size: 14px;
-  line-height: 1.7;
-  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  font-size: var(--nexus-font-size-base);
+  line-height: var(--nexus-leading-prose);
+  transition: border-color 200ms cubic-bezier(0.16, 1, 0.3, 1) !important, box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .nexus-mono-input:hover {
@@ -296,7 +290,7 @@ flex: 1;
 /* 浮动 AI 工具栏 */
 .nexus-floating-ai {
   position: fixed;
-  z-index: 1000;
+  z-index: var(--nexus-z-overlay);
   transform: translateX(-50%);
   pointer-events: auto;
 }
@@ -305,8 +299,8 @@ flex: 1;
   display: flex;
   gap: 6px;
   padding: 6px;
-  background: #111827;
-  border-radius: 9999px;
+  background: var(--nexus-text-primary);
+  border-radius: var(--nexus-radius-full);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   animation: nexus-float-in 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -314,13 +308,13 @@ flex: 1;
 .nexus-floating-ai-btn {
   padding: 5px 12px;
   background: transparent;
-  color: #e5e7eb;
-  font-size: 12px;
+  color: var(--nexus-border);
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
-  border-radius: 9999px;
+  border-radius: var(--nexus-radius-full);
   border: 1px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
-  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 200ms cubic-bezier(0.16, 1, 0.3, 1), border-color 200ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms cubic-bezier(0.16, 1, 0.3, 1);
   font-family: 'Inter', sans-serif;
   white-space: nowrap;
 }
@@ -336,13 +330,13 @@ flex: 1;
 }
 
 .nexus-floating-ai-more {
-  color: #9ca3af;
+  color: var(--nexus-text-quaternary);
   border-color: rgba(255, 255, 255, 0.1);
 }
 
 .nexus-float-enter-active,
 .nexus-float-leave-active {
-  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 200ms cubic-bezier(0.16, 1, 0.3, 1), transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nexus-float-enter-from,

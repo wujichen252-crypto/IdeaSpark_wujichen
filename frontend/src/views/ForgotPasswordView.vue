@@ -87,20 +87,19 @@ async function handleResetPassword(): Promise<void> {
 
 <style scoped lang="scss">
 @use 'sass:color';
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap');
 
 /* 全局变量 - 白色 + 浅蓝 + 黑色引导 */
 $text-color: #0f172a;
 $text-secondary: #475569;
-$bg-root: #ffffff;
-$bg-surface: #ffffff;
+$bg-root: var(--nexus-white);
+$bg-surface: var(--nexus-white);
 $bg-soft-blue: #f2f6ff;
 $bg-soft-blue-2: #eef3ff;
 $bg-soft-blue-3: #eaf0ff;
 $action-primary: #3e5be6;
 $action-hover: #4a6cf7;
 $action-active: #3248c2;
-$border-color: #e5e7eb;
+$border-color: var(--nexus-border);
 
 /* 全局样式 */
 * {
@@ -117,20 +116,8 @@ $border-color: #e5e7eb;
   background:
     radial-gradient(1200px circle at 20% -10%, rgba(62, 91, 230, 0.08), transparent 60%),
     radial-gradient(800px circle at 80% 110%, rgba(62, 91, 230, 0.06), transparent 60%),
-    linear-gradient(180deg, #ffffff 0%, #f3f7ff 60%, #e4edff 100%);
-  font-family:
-    'Inter',
-    'HarmonyOS Sans SC',
-    'HarmonyOS Sans',
-    'PingFang SC',
-    'Microsoft YaHei',
-    'Noto Sans SC',
-    system-ui,
-    -apple-system,
-    'Segoe UI',
-    Roboto,
-    Arial,
-    sans-serif;
+    linear-gradient(180deg, var(--nexus-white) 0%, #f3f7ff 60%, #e4edff 100%);
+  font-family: var(--nexus-font-ui);
   overflow: hidden;
   position: relative;
   -webkit-font-smoothing: antialiased;
@@ -143,7 +130,7 @@ $border-color: #e5e7eb;
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
   opacity: 0.06;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%'><filter id='noise'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='table' tableValues='0 0 0 0 0 0 0 0 0 0.08'/></feComponentTransfer></filter><rect width='100%' height='100%' filter='url(%23noise)'/></svg>");
@@ -154,8 +141,8 @@ $border-color: #e5e7eb;
   position: absolute;
   inset: 0;
   overflow: hidden;
-  z-index: 0;
-  background: #ffffff;
+  z-index: var(--nexus-z-base);
+  background: var(--nexus-white);
 }
 
 .aurora-blob {
@@ -210,14 +197,14 @@ $border-color: #e5e7eb;
 /* --- 主容器 --- */
 .container {
   background: $bg-surface;
-  border-radius: 20px;
+  border-radius: var(--nexus-radius-xl);
   box-shadow: 0 18px 44px rgba(15, 23, 42, 0.08);
   position: relative;
   overflow: hidden;
   width: 400px;
   max-width: 90%;
   min-height: 400px;
-  z-index: 10;
+  z-index: var(--nexus-z-sticky);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -237,15 +224,15 @@ $border-color: #e5e7eb;
 h1 {
   font-weight: 800;
   margin: 0 0 12px 0;
-  font-size: 1.8rem;
+  font-size: var(--nexus-font-size-xl);
   letter-spacing: 0.06em;
   color: $text-color;
 }
 
 .description {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 400;
-  line-height: 1.6;
+  line-height: var(--nexus-leading-normal);
   margin: 0 0 30px;
   color: $text-secondary;
 }
@@ -272,7 +259,7 @@ h1 {
     box-sizing: border-box;
     border-radius: 0;
     color: $text-color;
-    transition: all 0.3s;
+    transition: background-color 0.3s, border-bottom-color 0.3s, box-shadow 0.3s;
 
     &::placeholder {
       color: rgba(71, 85, 105, 0.6);
@@ -291,7 +278,7 @@ h1 {
     left: 0;
     width: 0;
     height: 2px;
-    background: #000000;
+    background: var(--nexus-accent);
     transition: width 0.4s ease;
     display: block;
   }
@@ -302,11 +289,11 @@ h1 {
 }
 
 .action-btn {
-  border-radius: 14px;
-  border: 1px solid #111111;
-  background-color: #111111;
-  color: #fff;
-  font-size: 14px;
+  border-radius: var(--nexus-radius-lg);
+  border: 1px solid var(--nexus-text-primary);
+  background-color: var(--nexus-text-primary);
+  color: var(--nexus-white);
+  font-size: var(--nexus-font-size-base);
   font-weight: 600;
   padding: 12px 45px;
   letter-spacing: 0.5px;
@@ -328,22 +315,22 @@ h1 {
   }
 
   &:hover {
-    background-color: #000000;
-    border-color: #000000;
+    background-color: var(--nexus-accent);
+    border-color: var(--nexus-accent);
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
   }
 
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
-    background-color: #111111;
-    border-color: #111111;
+    background-color: var(--nexus-text-primary);
+    border-color: var(--nexus-text-primary);
   }
 }
 
 .back-link {
   margin-top: 20px;
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $text-secondary;
   cursor: pointer;
   text-decoration: none;
@@ -361,7 +348,7 @@ h1 {
   height: 14px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
-  border-top-color: #fff;
+  border-top-color: var(--nexus-white);
   animation: spin 0.8s linear infinite;
 }
 

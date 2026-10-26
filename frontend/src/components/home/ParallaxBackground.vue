@@ -39,7 +39,7 @@ defineExpose({ setMousePosition })
   inset: 0;
   background: #050505;
   overflow: hidden;
-  z-index: 0;
+  z-index: var(--nexus-z-base);
 }
 
 .stars-layer {

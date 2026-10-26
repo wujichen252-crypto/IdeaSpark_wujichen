@@ -262,7 +262,7 @@ onBeforeUnmount(() => {
   width: 32px;
   height: 32px;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--nexus-radius-sm);
   background: transparent;
   color: var(--nexus-text-primary);
   cursor: pointer;
@@ -282,7 +282,7 @@ onBeforeUnmount(() => {
 .ee-doc-title {
   border: none;
   background: transparent;
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   font-weight: 500;
   color: var(--nexus-text-primary);
   width: 200px;
@@ -296,7 +296,7 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   color: var(--nexus-text-muted, #888);
 
   .ee-status-dot {
@@ -312,11 +312,11 @@ onBeforeUnmount(() => {
 
   &.saving .ee-status-dot,
   &.unsaved .ee-status-dot {
-    background: #f59e0b;
+    background: var(--nexus-warning);
   }
 
   &.conflict .ee-status-dot {
-    background: #ef4444;
+    background: var(--nexus-error);
   }
 }
 
@@ -325,13 +325,13 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 6px;
   padding: 6px 14px;
-  border-radius: 999px;
+  border-radius: var(--nexus-radius-full);
   border: 1px solid var(--nexus-border);
   background: transparent;
   color: var(--nexus-text-primary);
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 
   &:hover {
     background: var(--nexus-surface-hover, rgba(0, 0, 0, 0.05));
@@ -354,10 +354,10 @@ onBeforeUnmount(() => {
 .ee-export-item {
   padding: 6px 12px;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--nexus-radius-sm);
   background: transparent;
   text-align: left;
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   cursor: pointer;
 
   &:hover {
@@ -382,7 +382,7 @@ onBeforeUnmount(() => {
 }
 
 .ee-state-text {
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   color: var(--nexus-text-muted, #888);
 }
 
@@ -391,8 +391,8 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  font-size: 13px;
-  color: #ef4444;
+  font-size: var(--nexus-font-size-sm);
+  color: var(--nexus-error);
   border-top: 1px solid var(--nexus-border);
   background: rgba(239, 68, 68, 0.06);
 

@@ -579,15 +579,15 @@ function getCategoryLabel(value: string): string {
 <style scoped lang="scss">
 // ==================== 设计令牌 ====================
 :root {
-  --color-bg: #fafafa;
-  --color-white: #ffffff;
-  --color-black: #000000;
-  --color-gray-900: #111827;
-  --color-gray-700: #374151;
-  --color-gray-600: #6b7280;
-  --color-gray-400: #9ca3af;
-  --color-gray-200: #e5e7eb;
-  --color-gray-100: #f3f4f6;
+  --color-bg: var(--nexus-bg);
+  --color-white: var(--nexus-white);
+  --color-black: var(--nexus-accent);
+  --color-gray-900: var(--nexus-text-primary);
+  --color-gray-700: var(--nexus-gray-700);
+  --color-gray-600: var(--nexus-text-tertiary);
+  --color-gray-400: var(--nexus-text-quaternary);
+  --color-gray-200: var(--nexus-border);
+  --color-gray-100: var(--nexus-divider);
   --shadow-sm: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
   --shadow-md: 0 12px 40px -12px rgba(0, 0, 0, 0.08);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -612,7 +612,7 @@ function getCategoryLabel(value: string): string {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
   opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
@@ -623,7 +623,7 @@ function getCategoryLabel(value: string): string {
   margin: 0 auto;
   padding: 32px 24px;
   position: relative;
-  z-index: 2;
+  z-index: var(--nexus-z-raised-2);
 }
 
 // ==================== 页头 ====================
@@ -640,10 +640,10 @@ function getCategoryLabel(value: string): string {
     border: 1px solid var(--color-gray-200);
     border-radius: var(--radius-full);
     color: var(--color-gray-700);
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease, color 0.3s ease;
     margin-bottom: 24px;
 
     .icon {
@@ -659,7 +659,7 @@ function getCategoryLabel(value: string): string {
 
   .header-content {
     .header-subtitle {
-      font-size: 12px;
+      font-size: var(--nexus-font-size-xs);
       font-weight: 500;
       color: var(--color-gray-400);
       text-transform: uppercase;
@@ -668,18 +668,18 @@ function getCategoryLabel(value: string): string {
     }
 
     .header-title {
-      font-size: 36px;
+      font-size: var(--nexus-font-size-2xl);
       font-weight: 600;
-      line-height: 1.2;
+      line-height: var(--nexus-leading-display);
       color: var(--color-gray-900);
       margin-bottom: 12px;
       letter-spacing: -0.02em;
     }
 
     .header-desc {
-      font-size: 16px;
+      font-size: var(--nexus-font-size-md);
       color: var(--color-gray-600);
-      line-height: 1.6;
+      line-height: var(--nexus-leading-normal);
     }
   }
 }
@@ -711,7 +711,7 @@ function getCategoryLabel(value: string): string {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 16px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 600;
     color: var(--color-gray-900);
     margin-bottom: 24px;
@@ -744,23 +744,23 @@ function getCategoryLabel(value: string): string {
   gap: 8px;
 
   .form-label {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     font-weight: 500;
     color: var(--color-gray-700);
 
     .required {
-      color: #ef4444;
+      color: var(--nexus-error);
     }
   }
 
   .input-hint {
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     color: var(--color-gray-400);
     text-align: right;
   }
 
   .field-hint {
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     color: var(--color-gray-400);
     margin-top: 4px;
   }
@@ -774,9 +774,9 @@ function getCategoryLabel(value: string): string {
   background: var(--color-white);
   border: 1px solid var(--color-gray-200);
   border-radius: var(--radius-lg);
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: var(--color-gray-900);
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
   font-family: inherit;
 
   &::placeholder {
@@ -792,7 +792,7 @@ function getCategoryLabel(value: string): string {
 .form-textarea {
   resize: vertical;
   min-height: 100px;
-  line-height: 1.6;
+  line-height: var(--nexus-leading-normal);
 }
 
 .form-select {
@@ -819,11 +819,11 @@ function getCategoryLabel(value: string): string {
     background: var(--color-white);
     border: 1px solid var(--color-gray-200);
     border-radius: var(--radius-lg);
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     font-weight: 500;
     color: var(--color-gray-600);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 
     .type-icon {
       width: 18px;
@@ -854,7 +854,7 @@ function getCategoryLabel(value: string): string {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
   overflow: hidden;
   position: relative;
 
@@ -892,14 +892,14 @@ function getCategoryLabel(value: string): string {
   }
 
   .upload-text {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     color: var(--color-gray-600);
     font-weight: 500;
     margin-bottom: 4px;
   }
 
   .upload-hint {
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     color: var(--color-gray-400);
   }
 
@@ -919,9 +919,9 @@ function getCategoryLabel(value: string): string {
       background: var(--color-white);
       border: 1px solid var(--color-gray-200);
       border-radius: var(--radius-lg);
-      font-size: 14px;
+      font-size: var(--nexus-font-size-base);
       color: var(--color-gray-900);
-      transition: all 0.3s ease;
+      transition: border-color 0.3s ease;
 
       &::placeholder {
         color: var(--color-gray-400);
@@ -946,7 +946,7 @@ function getCategoryLabel(value: string): string {
       padding: 6px 12px;
       background: var(--color-gray-100);
       border-radius: var(--radius-full);
-      font-size: 13px;
+      font-size: var(--nexus-font-size-sm);
       color: var(--color-gray-700);
 
       .tag-remove {
@@ -960,7 +960,7 @@ function getCategoryLabel(value: string): string {
         border-radius: 50%;
         color: var(--color-gray-400);
         cursor: pointer;
-        transition: all 0.2s ease;
+        transition: background-color 0.2s ease, color 0.2s ease;
         padding: 0;
 
         .x-icon {
@@ -977,7 +977,7 @@ function getCategoryLabel(value: string): string {
   }
 
   .tags-hint {
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     color: var(--color-gray-400);
     margin-top: 8px;
   }
@@ -998,7 +998,7 @@ function getCategoryLabel(value: string): string {
     border: 1px solid var(--color-gray-200);
     border-radius: var(--radius-lg);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 
     .vis-icon {
       width: 20px;
@@ -1013,13 +1013,13 @@ function getCategoryLabel(value: string): string {
       gap: 2px;
 
       .vis-label {
-        font-size: 14px;
+        font-size: var(--nexus-font-size-base);
         font-weight: 500;
         color: var(--color-gray-700);
       }
 
       .vis-desc {
-        font-size: 12px;
+        font-size: var(--nexus-font-size-xs);
         color: var(--color-gray-400);
       }
     }
@@ -1058,10 +1058,10 @@ function getCategoryLabel(value: string): string {
     gap: 8px;
     padding: 14px 28px;
     border-radius: var(--radius-lg);
-    font-size: 15px;
+    font-size: var(--nexus-font-size-base);
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s var(--ease-out-expo);
+    transition: border-color 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo), transform 0.3s var(--ease-out-expo), box-shadow 0.3s var(--ease-out-expo), opacity 0.3s var(--ease-out-expo);
     border: none;
 
     .btn-icon {
@@ -1100,7 +1100,7 @@ function getCategoryLabel(value: string): string {
       width: 16px;
       height: 16px;
       border: 2px solid rgba(255, 255, 255, 0.3);
-      border-top-color: #fff;
+      border-top-color: var(--nexus-white);
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
     }
@@ -1133,7 +1133,7 @@ function getCategoryLabel(value: string): string {
 
   .page-header {
     .header-title {
-      font-size: 28px;
+      font-size: var(--nexus-font-size-xl);
     }
   }
 

@@ -368,8 +368,8 @@ const saveDraft = async () => {
   height: calc(100vh - 40px);
   min-height: 600px;
   max-height: 900px;
-  background: #fff;
-  border-radius: 16px;
+  background: var(--nexus-white);
+  border-radius: var(--nexus-radius-lg);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   margin: auto;
@@ -379,13 +379,13 @@ const saveDraft = async () => {
   flex: 1;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #eee;
+  border-right: 1px solid var(--nexus-gray-100);
   background-color: #fafafc;
 
   .panel-header {
     padding: 20px 24px;
-    border-bottom: 1px solid #eee;
-    background: #fff;
+    border-bottom: 1px solid var(--nexus-gray-100);
+    background: var(--nexus-white);
     
     .header-nav {
       margin-bottom: 12px;
@@ -393,13 +393,13 @@ const saveDraft = async () => {
 
     h3 {
       margin: 0 0 4px 0;
-      font-size: 18px;
+      font-size: var(--nexus-font-size-md);
     }
     
     p {
       margin: 0;
-      color: #666;
-      font-size: 14px;
+      color: var(--nexus-text-tertiary);
+      font-size: var(--nexus-font-size-base);
     }
   }
 
@@ -422,8 +422,8 @@ const saveDraft = async () => {
         
         .bubble {
           background-color: #e7f5ee;
-          color: #333;
-          border-radius: 12px 0 12px 12px;
+          color: var(--nexus-gray-800);
+          border-radius: var(--nexus-radius-md) 0 var(--nexus-radius-md) var(--nexus-radius-md);
         }
       }
       
@@ -431,17 +431,17 @@ const saveDraft = async () => {
         align-self: flex-start;
         
         .bubble {
-          background-color: #fff;
-          border: 1px solid #eee;
-          border-radius: 0 12px 12px 12px;
+          background-color: var(--nexus-white);
+          border: 1px solid var(--nexus-gray-100);
+          border-radius: 0 var(--nexus-radius-md) var(--nexus-radius-md) var(--nexus-radius-md);
           box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
       }
 
       .bubble {
         padding: 12px 16px;
-        line-height: 1.5;
-        font-size: 15px;
+        line-height: var(--nexus-leading-compact);
+        font-size: var(--nexus-font-size-base);
         
         &.loading {
           padding: 8px 16px;
@@ -452,8 +452,8 @@ const saveDraft = async () => {
 
   .input-area {
     padding: 20px 24px;
-    background: #fff;
-    border-top: 1px solid #eee;
+    background: var(--nexus-white);
+    border-top: 1px solid var(--nexus-gray-100);
     display: flex;
     gap: 12px;
     align-items: flex-end;
@@ -464,21 +464,21 @@ const saveDraft = async () => {
   width: 400px;
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: var(--nexus-white);
 
   .panel-header {
     padding: 20px 24px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--nexus-gray-100);
     
     h3 {
       margin: 0 0 4px 0;
-      font-size: 18px;
+      font-size: var(--nexus-font-size-md);
     }
     
     p {
       margin: 0;
-      color: #666;
-      font-size: 14px;
+      color: var(--nexus-text-tertiary);
+      font-size: var(--nexus-font-size-base);
     }
   }
 
@@ -512,7 +512,7 @@ const saveDraft = async () => {
   .chat-panel {
     height: 60vh;
     border-right: none;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--nexus-gray-100);
 
     .messages-container {
       padding: 16px;

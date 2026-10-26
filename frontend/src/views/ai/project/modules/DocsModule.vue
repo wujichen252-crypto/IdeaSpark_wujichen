@@ -13,7 +13,7 @@
           <n-list hoverable clickable>
             <n-list-item v-for="doc in docs" :key="doc.id" @click="currentDoc = doc">
               <template #prefix>
-                <n-icon :component="DocumentTextOutline" color="var(--nexus-success)" />
+                <n-icon :component="DocumentTextOutline" color="var(--nexus-success-text)" />
               </template>
               <div class="flex justify-between items-center w-full">
                 <span>{{ doc.title }}</span>

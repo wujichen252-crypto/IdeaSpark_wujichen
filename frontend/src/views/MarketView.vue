@@ -656,15 +656,15 @@ watch(() => route.path, (newPath) => {
 <style scoped lang="scss">
 // ==================== 设计令牌 ====================
 :root {
-  --color-bg: #fafafa;
-  --color-white: #ffffff;
-  --color-black: #000000;
-  --color-gray-900: #111827;
-  --color-gray-600: #6b7280;
-  --color-gray-400: #9ca3af;
-  --color-gray-200: #e5e7eb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-50: #f9fafb;
+  --color-bg: var(--nexus-bg);
+  --color-white: var(--nexus-white);
+  --color-black: var(--nexus-accent);
+  --color-gray-900: var(--nexus-text-primary);
+  --color-gray-600: var(--nexus-text-tertiary);
+  --color-gray-400: var(--nexus-text-quaternary);
+  --color-gray-200: var(--nexus-border);
+  --color-gray-100: var(--nexus-divider);
+  --color-gray-50: var(--nexus-bg-subtle);
   --shadow-sm: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
   --shadow-md: 0 12px 40px -12px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
@@ -677,7 +677,7 @@ watch(() => route.path, (newPath) => {
 // ==================== 全局样式 ====================
 .market-view {
   min-height: 100vh;
-  background: #fafafa;
+  background: var(--nexus-bg);
   position: relative;
   padding-bottom: 80px;
 }
@@ -690,7 +690,7 @@ watch(() => route.path, (newPath) => {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 1;
+  z-index: var(--nexus-z-raised);
   opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
@@ -699,7 +699,7 @@ watch(() => route.path, (newPath) => {
 .page-hero {
   padding: 80px 32px 48px;
   position: relative;
-  z-index: 2;
+  z-index: var(--nexus-z-raised-2);
 
   .hero-inner {
     max-width: 1200px;
@@ -708,34 +708,34 @@ watch(() => route.path, (newPath) => {
   }
 
   .hero-subtitle {
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     font-weight: 500;
-    color: #9ca3af;
+    color: var(--nexus-text-quaternary);
     text-transform: uppercase;
     letter-spacing: 0.15em;
     margin-bottom: 16px;
   }
 
   .hero-title {
-    font-size: 48px;
+    font-size: var(--nexus-font-size-3xl);
     font-weight: 600;
-    line-height: 1.1;
-    color: #111827;
+    line-height: var(--nexus-leading-display);
+    color: var(--nexus-text-primary);
     margin-bottom: 20px;
     letter-spacing: -0.02em;
 
     .hero-title-accent {
       font-style: italic;
       font-weight: 400;
-      color: #9ca3af;
+      color: var(--nexus-text-quaternary);
       font-family: 'Playfair Display', serif;
     }
   }
 
   .hero-description {
-    font-size: 16px;
-    color: #6b7280;
-    line-height: 1.6;
+    font-size: var(--nexus-font-size-md);
+    color: var(--nexus-text-tertiary);
+    line-height: var(--nexus-leading-normal);
     max-width: 480px;
   }
 }
@@ -744,7 +744,7 @@ watch(() => route.path, (newPath) => {
 .filter-bar {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: var(--nexus-z-sticky);
   padding: 16px 32px;
   background: rgba(250, 250, 250, 0.85);
   backdrop-filter: blur(20px);
@@ -773,23 +773,23 @@ watch(() => route.path, (newPath) => {
   .pill-btn {
     padding: 8px 20px;
     background: transparent;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--nexus-border);
     border-radius: var(--radius-full);
-    color: #6b7280;
-    font-size: 14px;
+    color: var(--nexus-text-tertiary);
+    font-size: var(--nexus-font-size-base);
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s var(--ease-out-expo);
+    transition: background-color 0.3s var(--ease-out-expo), border-color 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo);
 
     &:hover {
-      border-color: #111827;
-      color: #111827;
+      border-color: var(--nexus-text-primary);
+      color: var(--nexus-text-primary);
     }
 
     &.active {
-      background: #000000;
-      border-color: #000000;
-      color: #ffffff;
+      background: var(--nexus-accent);
+      border-color: var(--nexus-accent);
+      color: var(--nexus-white);
     }
   }
 }
@@ -811,26 +811,26 @@ watch(() => route.path, (newPath) => {
     left: 16px;
     width: 16px;
     height: 16px;
-    color: #9ca3af;
+    color: var(--nexus-text-quaternary);
     pointer-events: none;
   }
 
   input {
     width: 240px;
     padding: 10px 16px 10px 44px;
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
+    background: var(--nexus-white);
+    border: 1px solid var(--nexus-border);
     border-radius: var(--radius-full);
-    font-size: 14px;
-    color: #111827;
-    transition: all 0.3s ease;
+    font-size: var(--nexus-font-size-base);
+    color: var(--nexus-text-primary);
+    transition: border-color 0.3s ease;
 
     &::placeholder {
-      color: #9ca3af;
+      color: var(--nexus-text-quaternary);
     }
 
     &:focus {
-      border-color: #000000;
+      border-color: var(--nexus-accent);
     }
   }
 }
@@ -845,20 +845,20 @@ watch(() => route.path, (newPath) => {
   align-items: center;
   gap: 8px;
   padding: 10px 16px 10px 20px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: var(--nexus-white);
+  border: 1px solid var(--nexus-border);
   border-radius: var(--radius-full);
-  font-size: 14px;
-  color: #111827;
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-text-primary);
   cursor: pointer;
-  transition: all 0.3s var(--ease-out-expo);
+  transition: border-color 0.3s var(--ease-out-expo);
 
   &:hover {
-    border-color: #111827;
+    border-color: var(--nexus-text-primary);
   }
 
   &.is-open {
-    border-color: #000000;
+    border-color: var(--nexus-accent);
   }
 }
 
@@ -870,7 +870,7 @@ watch(() => route.path, (newPath) => {
 .sort-arrow {
   width: 16px;
   height: 16px;
-  color: #9ca3af;
+  color: var(--nexus-text-quaternary);
   transition: transform 0.3s var(--ease-out-expo);
 
   &.is-open {
@@ -887,10 +887,10 @@ watch(() => route.path, (newPath) => {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 1rem;
+  border-radius: var(--nexus-radius-lg);
   box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
   padding: 8px;
-  z-index: 100;
+  z-index: var(--nexus-z-dropdown);
   transform-origin: top right;
 }
 
@@ -899,23 +899,23 @@ watch(() => route.path, (newPath) => {
   align-items: center;
   justify-content: space-between;
   padding: 10px 14px;
-  border-radius: 0.75rem;
-  font-size: 14px;
-  color: #6b7280;
+  border-radius: var(--nexus-radius-md);
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-text-tertiary);
   cursor: pointer;
-  transition: all 0.2s var(--ease-out-expo);
+  transition: background-color 0.2s var(--ease-out-expo), color 0.2s var(--ease-out-expo);
 
   &:hover {
-    background: #f3f4f6;
-    color: #111827;
+    background: var(--nexus-divider);
+    color: var(--nexus-text-primary);
   }
 
   &.active {
-    background: #000000;
-    color: #ffffff;
+    background: var(--nexus-accent);
+    color: var(--nexus-white);
 
     &:hover {
-      background: #111827;
+      background: var(--nexus-text-primary);
     }
   }
 }
@@ -932,7 +932,7 @@ watch(() => route.path, (newPath) => {
 // 下拉菜单动画
 .dropdown-enter-active,
 .dropdown-leave-active {
-  transition: all 0.3s var(--ease-out-expo);
+  transition: opacity 0.3s var(--ease-out-expo), transform 0.3s var(--ease-out-expo);
 }
 
 .dropdown-enter-from,
@@ -953,7 +953,7 @@ watch(() => route.path, (newPath) => {
   margin: 0 auto;
   padding: 32px;
   position: relative;
-  z-index: 2;
+  z-index: var(--nexus-z-raised-2);
 }
 
 .content-header {
@@ -963,8 +963,8 @@ watch(() => route.path, (newPath) => {
   opacity: 0;
 
   .total-count {
-    font-size: 14px;
-    color: #6b7280;
+    font-size: var(--nexus-font-size-base);
+    color: var(--nexus-text-tertiary);
   }
 }
 
@@ -980,15 +980,15 @@ watch(() => route.path, (newPath) => {
   .loading-spinner {
     width: 40px;
     height: 40px;
-    border: 2px solid #e5e7eb;
-    border-top-color: #000000;
+    border: 2px solid var(--nexus-border);
+    border-top-color: var(--nexus-accent);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
   }
 
   p {
-    font-size: 14px;
-    color: #9ca3af;
+    font-size: var(--nexus-font-size-base);
+    color: var(--nexus-text-quaternary);
   }
 }
 
@@ -1007,46 +1007,46 @@ watch(() => route.path, (newPath) => {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #d1d5db;
+    color: var(--nexus-border-strong);
     margin-bottom: 16px;
   }
 
   h3 {
-    font-size: 18px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 600;
-    color: #111827;
+    color: var(--nexus-text-primary);
     margin-bottom: 8px;
   }
 
   p {
-    font-size: 14px;
-    color: #9ca3af;
+    font-size: var(--nexus-font-size-base);
+    color: var(--nexus-text-quaternary);
   }
 
   .retry-btn {
     padding: 10px 24px;
-    background: #000000;
+    background: var(--nexus-accent);
     border: none;
     border-radius: var(--radius-full);
-    color: #ffffff;
-    font-size: 14px;
+    color: var(--nexus-white);
+    font-size: var(--nexus-font-size-base);
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 
     &:hover {
-      background: #333333;
+      background: var(--nexus-gray-800);
       transform: translateY(-2px);
     }
 
     &.secondary {
       background: transparent;
-      border: 1px solid #e5e7eb;
-      color: #6b7280;
+      border: 1px solid var(--nexus-border);
+      color: var(--nexus-text-tertiary);
 
       &:hover {
-        border-color: #111827;
-        color: #111827;
+        border-color: var(--nexus-text-primary);
+        color: var(--nexus-text-primary);
         background: transparent;
       }
     }
@@ -1054,11 +1054,11 @@ watch(() => route.path, (newPath) => {
 
   &.error-state {
     .empty-icon {
-      color: #ef4444;
+      color: var(--nexus-error);
     }
 
     h3 {
-      color: #ef4444;
+      color: var(--nexus-error);
     }
   }
 }
@@ -1080,7 +1080,7 @@ watch(() => route.path, (newPath) => {
   overflow: hidden;
   cursor: pointer;
   box-shadow: var(--shadow-sm);
-  transition: all 0.4s var(--ease-out-expo);
+  transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo);
   animation: slideUp 0.6s var(--ease-out-expo) forwards;
 
   &:hover {
@@ -1102,7 +1102,7 @@ watch(() => route.path, (newPath) => {
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: #f3f4f6;
+  background: var(--nexus-divider);
 
   .card-image {
     width: 100%;
@@ -1127,8 +1127,8 @@ watch(() => route.path, (newPath) => {
     display: flex;
     align-items: center;
     gap: 6px;
-    color: #ffffff;
-    font-size: 14px;
+    color: var(--nexus-white);
+    font-size: var(--nexus-font-size-base);
     font-weight: 500;
 
     .view-icon {
@@ -1145,9 +1145,9 @@ watch(() => route.path, (newPath) => {
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     border-radius: var(--radius-full);
-    font-size: 12px;
+    font-size: var(--nexus-font-size-xs);
     font-weight: 500;
-    color: #111827;
+    color: var(--nexus-text-primary);
   }
 }
 
@@ -1156,20 +1156,20 @@ watch(() => route.path, (newPath) => {
   padding: 24px;
 
   .card-title {
-    font-size: 18px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 600;
-    color: #111827;
+    color: var(--nexus-text-primary);
     margin-bottom: 8px;
-    line-height: 1.4;
+    line-height: var(--nexus-leading-compact);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
   .card-desc {
-    font-size: 14px;
-    color: #6b7280;
-    line-height: 1.6;
+    font-size: var(--nexus-font-size-base);
+    color: var(--nexus-text-tertiary);
+    line-height: var(--nexus-leading-normal);
     margin-bottom: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1187,7 +1187,7 @@ watch(() => route.path, (newPath) => {
   margin-bottom: 16px;
   padding-bottom: 16px;
   cursor: pointer;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid var(--nexus-divider);
 
   .author-avatar {
     width: 28px;
@@ -1197,8 +1197,8 @@ watch(() => route.path, (newPath) => {
   }
 
   .author-name {
-    font-size: 13px;
-    color: #6b7280;
+    font-size: var(--nexus-font-size-sm);
+    color: var(--nexus-text-tertiary);
   }
 }
 
@@ -1211,18 +1211,18 @@ watch(() => route.path, (newPath) => {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 13px;
-    color: #9ca3af;
+    font-size: var(--nexus-font-size-sm);
+    color: var(--nexus-text-quaternary);
 
     .stat-icon {
       width: 16px;
       height: 16px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: fill 0.3s ease, color 0.3s ease;
 
       &.liked {
-        fill: #ef4444;
-        color: #ef4444;
+        fill: var(--nexus-error);
+        color: var(--nexus-error);
       }
     }
   }
@@ -1245,16 +1245,16 @@ watch(() => route.path, (newPath) => {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
+    background: var(--nexus-white);
+    border: 1px solid var(--nexus-border);
     border-radius: 50%;
-    color: #6b7280;
+    color: var(--nexus-text-tertiary);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
 
     &:hover:not(:disabled) {
-      border-color: #111827;
-      color: #111827;
+      border-color: var(--nexus-text-primary);
+      color: var(--nexus-text-primary);
     }
 
     &:disabled {
@@ -1280,23 +1280,23 @@ watch(() => route.path, (newPath) => {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
+    background: var(--nexus-white);
+    border: 1px solid var(--nexus-border);
     border-radius: var(--radius-full);
-    font-size: 14px;
-    color: #6b7280;
+    font-size: var(--nexus-font-size-base);
+    color: var(--nexus-text-tertiary);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 
     &:hover {
-      border-color: #111827;
-      color: #111827;
+      border-color: var(--nexus-text-primary);
+      color: var(--nexus-text-primary);
     }
 
     &.active {
-      background: #000000;
-      border-color: #000000;
-      color: #ffffff;
+      background: var(--nexus-accent);
+      border-color: var(--nexus-accent);
+      color: var(--nexus-white);
     }
   }
 }
@@ -1340,7 +1340,7 @@ watch(() => route.path, (newPath) => {
     padding: 60px 20px 32px;
 
     .hero-title {
-      font-size: 36px;
+      font-size: var(--nexus-font-size-2xl);
     }
   }
 

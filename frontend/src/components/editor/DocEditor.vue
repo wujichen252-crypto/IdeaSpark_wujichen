@@ -598,8 +598,8 @@ onUnmounted(() => {
   flex: 1;
   padding: 48px 64px;
   overflow-y: auto;
-  font-size: 15px;
-  line-height: 1.8;
+  font-size: var(--nexus-font-size-base);
+  line-height: var(--nexus-leading-prose);
   font-family: var(--nexus-font-body);
   color: var(--nexus-text-primary);
 

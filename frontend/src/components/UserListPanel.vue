@@ -230,14 +230,14 @@ watch(() => props.list, () => {
   align-items: center;
   gap: 16px;
   padding: 16px;
-  background: #fafafa;
-  border-radius: 12px;
-  border: 1px solid #f3f4f6;
+  background: var(--nexus-bg);
+  border-radius: var(--nexus-radius-md);
+  border: 1px solid var(--nexus-divider);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    background: #fff;
+    background: var(--nexus-white);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   }
 
@@ -250,15 +250,15 @@ watch(() => props.list, () => {
     min-width: 0;
 
     .user-name {
-      font-size: 16px;
+      font-size: var(--nexus-font-size-md);
       font-weight: 600;
-      color: #1f2937;
+      color: var(--nexus-gray-800);
       margin-bottom: 4px;
     }
 
     .user-bio {
-      font-size: 13px;
-      color: #6b7280;
+      font-size: var(--nexus-font-size-sm);
+      color: var(--nexus-text-tertiary);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;

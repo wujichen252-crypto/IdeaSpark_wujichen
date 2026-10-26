@@ -134,13 +134,13 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-$color-gray-900: #111827;
-$color-gray-700: #374151;
-$color-gray-600: #6b7280;
-$color-gray-400: #9ca3af;
-$color-gray-200: #e5e7eb;
-$color-gray-100: #f3f4f6;
-$color-success: #10b981;
+$color-gray-900: var(--nexus-text-primary);
+$color-gray-700: var(--nexus-gray-700);
+$color-gray-600: var(--nexus-text-tertiary);
+$color-gray-400: var(--nexus-text-quaternary);
+$color-gray-200: var(--nexus-border);
+$color-gray-100: var(--nexus-divider);
+$color-success: var(--nexus-success);
 
 .my-projects-view {
   min-height: 100vh;
@@ -149,7 +149,7 @@ $color-success: #10b981;
 .page-header {
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: var(--nexus-z-header);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -166,14 +166,14 @@ $color-success: #10b981;
 }
 
 .page-title {
-  font-size: 20px;
+  font-size: var(--nexus-font-size-lg);
   font-weight: 600;
   color: $color-gray-900;
   margin: 0;
 }
 
 .page-subtitle {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-400;
 }
 
@@ -182,11 +182,11 @@ $color-success: #10b981;
   align-items: center;
   gap: 8px;
   padding: 10px 20px;
-  background: #000;
+  background: var(--nexus-accent);
   border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  color: #fff;
+  border-radius: var(--nexus-radius-sm);
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-white);
   cursor: pointer;
 
   .btn-icon {
@@ -211,7 +211,7 @@ $color-success: #10b981;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 16px;
+  border-radius: var(--nexus-radius-lg);
   overflow: hidden;
   transition: transform 0.3s ease;
 
@@ -261,11 +261,10 @@ $color-success: #10b981;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease;
 
   &:hover {
-    background: #fff;
-    transform: scale(1.1);
+    background: var(--nexus-white);
   }
 
   .icon {
@@ -280,17 +279,17 @@ $color-success: #10b981;
 }
 
 .project-name {
-  font-size: 16px;
+  font-size: var(--nexus-font-size-md);
   font-weight: 600;
   color: $color-gray-900;
   margin-bottom: 8px;
 }
 
 .project-desc {
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
   color: $color-gray-600;
   margin-bottom: 16px;
-  line-height: 1.5;
+  line-height: var(--nexus-leading-compact);
 }
 
 .project-meta {
@@ -303,7 +302,7 @@ $color-success: #10b981;
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
   color: $color-gray-400;
 
   .meta-icon {
@@ -314,8 +313,8 @@ $color-success: #10b981;
 
 .status-badge {
   padding: 4px 10px;
-  border-radius: 9999px;
-  font-size: 11px;
+  border-radius: var(--nexus-radius-full);
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
 
   &.active, &.ACTIVE {
@@ -376,9 +375,9 @@ $color-success: #10b981;
     background: $color-gray-900;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: var(--nexus-radius-sm);
     cursor: pointer;
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
 
     &:hover {
       background: $color-gray-700;
@@ -403,14 +402,14 @@ $color-success: #10b981;
   }
 
   h3 {
-    font-size: 18px;
+    font-size: var(--nexus-font-size-md);
     font-weight: 600;
     color: $color-gray-900;
     margin-bottom: 8px;
   }
 
   p {
-    font-size: 14px;
+    font-size: var(--nexus-font-size-base);
     color: $color-gray-400;
     margin-bottom: 24px;
   }
@@ -420,11 +419,11 @@ $color-success: #10b981;
     align-items: center;
     gap: 8px;
     padding: 10px 20px;
-    background: #000;
+    background: var(--nexus-accent);
     border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    color: #fff;
+    border-radius: var(--nexus-radius-sm);
+    font-size: var(--nexus-font-size-base);
+    color: var(--nexus-white);
     cursor: pointer;
 
     .btn-icon {

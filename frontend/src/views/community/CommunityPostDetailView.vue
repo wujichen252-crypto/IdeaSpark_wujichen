@@ -530,7 +530,7 @@ onMounted(() => {
 }
 
 .detail-card {
-  border-radius: 12px;
+  border-radius: var(--nexus-radius-md);
 }
 
 .loading-wrapper {
@@ -543,8 +543,8 @@ onMounted(() => {
 
 .loading-text {
   margin-top: 16px;
-  color: #6b7280;
-  font-size: 14px;
+  color: var(--nexus-text-tertiary);
+  font-size: var(--nexus-font-size-base);
 }
 
 .detail-header-main {
@@ -561,27 +561,27 @@ onMounted(() => {
 
 .detail-header-main .username {
   font-weight: 600;
-  font-size: 16px;
-  color: #111827;
+  font-size: var(--nexus-font-size-md);
+  color: var(--nexus-text-primary);
 }
 
 .detail-header-main .time {
-  font-size: 12px;
-  color: #9ca3af;
+  font-size: var(--nexus-font-size-xs);
+  color: var(--nexus-text-quaternary);
 }
 
 .detail-content .post-title {
-  font-size: 20px;
+  font-size: var(--nexus-font-size-lg);
   font-weight: 600;
-  color: #111827;
+  color: var(--nexus-text-primary);
   margin-bottom: 12px;
-  line-height: 1.4;
+  line-height: var(--nexus-leading-compact);
 }
 
 .detail-content .text {
-  font-size: 15px;
-  line-height: 1.8;
-  color: #374151;
+  font-size: var(--nexus-font-size-base);
+  line-height: var(--nexus-leading-prose);
+  color: var(--nexus-gray-700);
   margin-bottom: 16px;
   white-space: pre-wrap;
 }
@@ -590,7 +590,7 @@ onMounted(() => {
   display: grid;
   gap: 8px;
   margin-bottom: 16px;
-  border-radius: 8px;
+  border-radius: var(--nexus-radius-sm);
   overflow: hidden;
 }
 
@@ -610,7 +610,7 @@ onMounted(() => {
   aspect-ratio: 16 / 9;
   background-size: cover;
   background-position: center;
-  background-color: #f3f4f6;
+  background-color: var(--nexus-divider);
 }
 
 .tags {
@@ -623,8 +623,8 @@ onMounted(() => {
   margin-top: 16px;
   display: flex;
   gap: 24px;
-  color: #6b7280;
-  font-size: 14px;
+  color: var(--nexus-text-tertiary);
+  font-size: var(--nexus-font-size-base);
 }
 
 .detail-footer .stat {
@@ -636,7 +636,7 @@ onMounted(() => {
 }
 
 .detail-footer .stat:hover {
-  color: #374151;
+  color: var(--nexus-gray-700);
 }
 
 .detail-footer .stat.active {
@@ -648,10 +648,10 @@ onMounted(() => {
 }
 
 .section-title {
-  font-size: 16px;
+  font-size: var(--nexus-font-size-md);
   font-weight: 600;
   margin-bottom: 24px;
-  color: #111827;
+  color: var(--nexus-text-primary);
 }
 
 .comment-input-area {
@@ -694,20 +694,20 @@ onMounted(() => {
 
 .comment-header .username {
   font-weight: 600;
-  font-size: 14px;
-  color: #374151;
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-gray-700);
 }
 
 .comment-header .time {
-  font-size: 12px;
-  color: #9ca3af;
+  font-size: var(--nexus-font-size-xs);
+  color: var(--nexus-text-quaternary);
 }
 
 .comment-content .text {
-  font-size: 14px;
-  color: #4b5563;
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-text-secondary);
   margin-bottom: 8px;
-  line-height: 1.6;
+  line-height: var(--nexus-leading-normal);
 }
 
 .comment-actions {
@@ -717,10 +717,10 @@ onMounted(() => {
 
 /* 回复输入框样式 */
 .reply-input-area {
-  background-color: #f9fafb;
-  border-radius: 8px;
+  background-color: var(--nexus-bg-subtle);
+  border-radius: var(--nexus-radius-sm);
   padding: 12px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--nexus-border);
 }
 
 .reply-actions {
@@ -735,7 +735,7 @@ onMounted(() => {
   flex-direction: column;
   gap: 12px;
   padding-left: 12px;
-  border-left: 2px solid #e5e7eb;
+  border-left: 2px solid var(--nexus-border);
 }
 
 .reply-item {
@@ -756,20 +756,20 @@ onMounted(() => {
 
 .reply-header .username {
   font-weight: 600;
-  font-size: 13px;
-  color: #374151;
+  font-size: var(--nexus-font-size-sm);
+  color: var(--nexus-gray-700);
 }
 
 .reply-header .time {
-  font-size: 11px;
-  color: #9ca3af;
+  font-size: var(--nexus-font-size-xs);
+  color: var(--nexus-text-quaternary);
 }
 
 .reply-content .text {
-  font-size: 13px;
-  color: #4b5563;
+  font-size: var(--nexus-font-size-sm);
+  color: var(--nexus-text-secondary);
   margin-bottom: 4px;
-  line-height: 1.5;
+  line-height: var(--nexus-leading-compact);
 }
 
 .reply-actions {

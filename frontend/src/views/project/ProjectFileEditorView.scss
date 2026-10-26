@@ -25,7 +25,7 @@
   flex-shrink: 0;
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: var(--nexus-z-nav);
 }
 
 .header-left {
@@ -39,7 +39,7 @@
   width: 36px;
   height: 36px;
   border-radius: var(--nexus-radius-full);
-  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 200ms cubic-bezier(0.16, 1, 0.3, 1), color 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nexus-header-btn:hover {
@@ -48,7 +48,7 @@
 
 .nexus-header-btn-active {
   background: var(--nexus-text-primary) !important;
-  color: #fff !important;
+  color: var(--nexus-white) !important;
 }
 
 .nexus-divider-v {
@@ -64,7 +64,7 @@
   white-space: nowrap;
   font-weight: 600;
   color: var(--nexus-text-primary);
-  font-size: 15px;
+  font-size: var(--nexus-font-size-base);
   letter-spacing: -0.01em;
 }
 
@@ -72,15 +72,15 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: var(--nexus-font-size-xs);
   font-weight: 500;
   padding: 4px 10px;
   border-radius: var(--nexus-radius-full);
-  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .save-status.saved {
-  color: #6b7280;
+  color: var(--nexus-text-tertiary);
   background: rgba(0, 0, 0, 0.04);
 }
 
@@ -121,12 +121,12 @@
   padding: 0 18px;
   border-radius: var(--nexus-radius-full);
   background: var(--nexus-text-primary);
-  color: #fff;
-  font-size: 13px;
+  color: var(--nexus-white);
+  font-size: var(--nexus-font-size-sm);
   font-weight: 600;
   border: none;
   cursor: pointer;
-  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 200ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms cubic-bezier(0.16, 1, 0.3, 1);
   font-family: var(--nexus-font-ui);
 }
 
@@ -155,33 +155,24 @@
   flex: 1;
 }
 
-/* Nexus Glass Panel */
-.nexus-glass-panel {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 16px;
-  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
-  overflow: hidden;
-}
+/* Nexus Glass Panel 的玻璃表面由全局类 .nexus-glass-panel 提供（styles/nexus.scss），此处不再重复实现 */
 
 .text-editor-wrapper {
   height: 100%;
-  padding: 16px;
+  padding: var(--nexus-space-4);
 }
 
 .mono-editor {
   height: 100%;
-  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-family: var(--nexus-font-mono);
 }
 
 .nexus-mono-input {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: var(--nexus-font-size-base);
+  line-height: var(--nexus-leading-prose);
   padding: 0 !important;
 }
 
@@ -190,7 +181,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--nexus-space-4);
   min-width: 0;
   overflow: hidden;
 }
@@ -200,30 +191,26 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--nexus-space-4);
 }
 
 .csv-toolbar {
+  /* 与全局类 .nexus-glass-panel 同源，避免第二份玻璃态实现 */
+  @include nexus-glass;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 16px;
-  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.04);
+  padding: 10px var(--nexus-space-4);
 }
 
 .csv-preview-panel {
   flex: 1;
-  padding: 16px;
+  padding: var(--nexus-space-4);
 }
 
 .csv-source-panel {
   flex: 1;
-  padding: 16px;
+  padding: var(--nexus-space-4);
 }
 
 /* Slides 编辑器 */
@@ -250,7 +237,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  font-size: 14px;
+  font-size: var(--nexus-font-size-base);
 }
 
 .slides-sider-title {
@@ -273,11 +260,11 @@
 
 .slide-item {
   padding: 10px;
-  border-radius: 12px;
+  border-radius: var(--nexus-radius-md);
   border: 1px solid var(--nexus-border-light);
   background: rgba(255, 255, 255, 0.5);
   cursor: pointer;
-  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 200ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .slide-item:hover {
@@ -293,13 +280,13 @@
 .slide-item-title {
   font-weight: 600;
   color: var(--nexus-text-primary);
-  font-size: 13px;
+  font-size: var(--nexus-font-size-sm);
 }
 
 .slide-item-sub {
   margin-top: 4px;
-  font-size: 12px;
-  color: #6b7280;
+  font-size: var(--nexus-font-size-xs);
+  color: var(--nexus-text-tertiary);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

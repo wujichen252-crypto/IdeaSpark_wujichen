@@ -88,10 +88,10 @@ function formatDate(timestamp: number) {
     
     .new-chat-btn {
       height: 44px;
-      font-size: 15px;
+      font-size: var(--nexus-font-size-base);
       font-weight: 500;
-      border-radius: 12px;
-      transition: all 0.3s ease;
+      border-radius: var(--nexus-radius-md);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       
       &:hover {
         transform: translateY(-1px);
@@ -106,8 +106,8 @@ function formatDate(timestamp: number) {
     padding: 0 12px;
 
     .list-title {
-      font-size: 12px;
-      color: #9ca3af;
+      font-size: var(--nexus-font-size-xs);
+      color: var(--nexus-text-quaternary);
       margin-bottom: 8px;
       padding-left: 8px;
     }
@@ -117,14 +117,14 @@ function formatDate(timestamp: number) {
       align-items: center;
       padding: 12px;
       margin-bottom: 4px;
-      border-radius: 10px;
+      border-radius: var(--nexus-radius-md);
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
       position: relative;
       border: 1px solid transparent;
 
       &:hover {
-        background-color: #ffffff;
+        background-color: var(--nexus-white);
         box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         
         .item-actions {
@@ -133,23 +133,23 @@ function formatDate(timestamp: number) {
       }
 
       &.active {
-        background-color: #fff;
+        background-color: var(--nexus-white);
         border-color: rgba(74, 222, 128, 0.3);
         box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         
         .item-icon {
-          color: var(--nexus-success);
+          color: var(--nexus-success-text);
         }
         
         .item-title {
           font-weight: 600;
-          color: #111827;
+          color: var(--nexus-text-primary);
         }
       }
 
       .item-icon {
-        font-size: 18px;
-        color: #9ca3af;
+        font-size: var(--nexus-font-size-md);
+        color: var(--nexus-text-quaternary);
         margin-right: 12px;
       }
 
@@ -158,8 +158,8 @@ function formatDate(timestamp: number) {
         overflow: hidden;
         
         .item-title {
-          font-size: 14px;
-          color: #374151;
+          font-size: var(--nexus-font-size-base);
+          color: var(--nexus-gray-700);
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -167,8 +167,8 @@ function formatDate(timestamp: number) {
         }
         
         .item-date {
-          font-size: 11px;
-          color: #9ca3af;
+          font-size: var(--nexus-font-size-xs);
+          color: var(--nexus-text-quaternary);
         }
       }
 
@@ -177,7 +177,7 @@ function formatDate(timestamp: number) {
         transition: opacity 0.2s;
         
         .delete-btn {
-          color: #ef4444;
+          color: var(--nexus-error);
           &:hover {
             background-color: rgba(239, 68, 68, 0.1);
           }
@@ -196,9 +196,9 @@ function formatDate(timestamp: number) {
       gap: 12px;
       
       .username {
-        font-size: 14px;
+        font-size: var(--nexus-font-size-base);
         font-weight: 500;
-        color: #374151;
+        color: var(--nexus-gray-700);
       }
     }
   }
