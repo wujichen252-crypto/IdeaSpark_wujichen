@@ -686,7 +686,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   background: rgba(250, 250, 250, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(229, 231, 235, 0.6);
+  border-bottom: 1px solid rgba(230, 230, 230, 0.6);
 }
 
 .header-left {

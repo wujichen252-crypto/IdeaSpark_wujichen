@@ -4,6 +4,7 @@ import { useMessage } from 'naive-ui'
 import { useAiWorkshopStore } from '@/store/modules/aiWorkshop'
 import { useSlideAi } from '@/composables/useSlideAi'
 import { getProjectDetail, updateProject } from '@/api/project'
+import { copyToClipboard } from '@/utils/clipboard'
 
 // ==================== 类型定义 ====================
 
@@ -252,9 +253,10 @@ export function createSlideEditor() {
     }
   }
 
-  function copyResult() {
-    navigator.clipboard.writeText(aiResult.value)
-    message.success('已复制到剪贴板')
+  async function copyResult() {
+    const ok = await copyToClipboard(aiResult.value)
+    if (ok) message.success('已复制到剪贴板')
+    else message.error('复制失败，请手动选择复制')
   }
 
   function applyResult() {

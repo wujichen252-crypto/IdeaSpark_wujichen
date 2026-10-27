@@ -500,6 +500,7 @@ import { getTeamProjects, getTeamDetail, updateTeam, dissolveTeam, getTeamMember
 import { createProject } from '@/api/project'
 import { uploadFile } from '@/api/file'
 import { getTeamAvatar, getOtherUserAvatar } from '@/utils/avatar'
+import { copyToClipboard } from '@/utils/clipboard'
 import type { TeamDetail } from '@/api/types'
 import {
   NEmpty,
@@ -607,18 +608,19 @@ const handleAvatarChange = async (event: Event) => {
 /**
  * 复制团队ID到剪贴板
  */
-function copyTeamId() {
+async function copyTeamId() {
   const teamId = currentTeam.value?.uuid
   if (!teamId) {
     message.warning('团队ID不存在')
     return
   }
-  
-  navigator.clipboard.writeText(teamId).then(() => {
+
+  const ok = await copyToClipboard(teamId)
+  if (ok) {
     message.success('团队ID已复制到剪贴板')
-  }).catch(() => {
+  } else {
     message.error('复制失败，请手动复制')
-  })
+  }
 }
 
 /**

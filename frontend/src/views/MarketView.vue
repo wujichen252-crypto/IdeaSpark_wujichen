@@ -749,7 +749,7 @@ watch(() => route.path, (newPath) => {
   background: rgba(250, 250, 250, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(229, 231, 235, 0.6);
+  border-bottom: 1px solid rgba(230, 230, 230, 0.6);
   animation: fadeIn 0.6s ease forwards;
   animation-delay: 0.2s;
   opacity: 0;

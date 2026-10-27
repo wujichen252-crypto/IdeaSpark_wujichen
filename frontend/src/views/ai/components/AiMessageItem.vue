@@ -84,6 +84,7 @@ import { computed } from 'vue'
 import { useUserStore } from '@/store'
 import { CopyOutline, SaveOutline, Sparkles, PersonOutline } from '@vicons/ionicons5'
 import { useMessage } from 'naive-ui'
+import { copyToClipboard } from '@/utils/clipboard'
 
 const props = defineProps<{
   message: {
@@ -166,14 +167,16 @@ const segments = computed(() => {
 
 const hasCodeBlocks = computed(() => segments.value.some(s => s.type === 'code'))
 
-function copyCode(code: string) {
-  navigator.clipboard.writeText(code)
-  nMessage.success('代码已复制')
+async function copyCode(code: string) {
+  const ok = await copyToClipboard(code)
+  if (ok) nMessage.success('代码已复制')
+  else nMessage.error('复制失败，请手动选择复制')
 }
 
-function copyMessage() {
-  navigator.clipboard.writeText(props.message.content)
-  nMessage.success('内容已复制')
+async function copyMessage() {
+  const ok = await copyToClipboard(props.message.content)
+  if (ok) nMessage.success('内容已复制')
+  else nMessage.error('复制失败，请手动选择复制')
 }
 
 function handleSaveCode(code: string, lang: string) {

@@ -836,7 +836,7 @@ onMounted(() => {
   background: rgba(250, 250, 250, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(229, 231, 235, 0.6);
+  border-bottom: 1px solid rgba(230, 230, 230, 0.6);
   animation: fadeIn 0.6s ease forwards;
 
   .header-inner {
@@ -887,7 +887,7 @@ onMounted(() => {
     padding: 6px 14px;
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(229, 231, 235, 0.6);
+    border: 1px solid rgba(230, 230, 230, 0.6);
     border-radius: var(--radius-full);
     font-size: var(--nexus-font-size-xs);
     font-weight: 500;

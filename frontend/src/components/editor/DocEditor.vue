@@ -61,6 +61,7 @@ import { useMessage } from 'naive-ui'
 import { useDocAi } from '../../composables/useDocAi'
 import WordRibbonToolbar from './WordRibbonToolbar.vue'
 import NexusAiPanel from './NexusAiPanel.vue'
+import { readClipboard } from '@/utils/clipboard'
 
 /**
  * DocEditor 组件 Props 定义
@@ -298,8 +299,8 @@ function handleFormat(type: string, value?: any) {
       break
     }
     case 'paste':
-      navigator.clipboard.readText().then((text) => {
-        document.execCommand('insertText', false, text)
+      void readClipboard().then((text) => {
+        if (text) document.execCommand('insertText', false, text)
       })
       break
     case 'cut':
@@ -585,6 +586,7 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  height: 100dvh;
   background: var(--nexus-bg);
 }
 
@@ -592,6 +594,17 @@ onUnmounted(() => {
   display: flex;
   flex: 1;
   overflow: hidden;
+}
+
+/* 窄屏：正文与 AI 面板纵向堆叠，避免 320px 固定侧栏挤压正文 */
+@media (max-width: 900px) {
+  .editor-body {
+    flex-direction: column;
+  }
+
+  .doc-editor-content {
+    padding: 24px 20px;
+  }
 }
 
 .doc-editor-content {

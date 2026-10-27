@@ -373,13 +373,20 @@ class="login-btn"
 }
 
 .brand-logo-icon {
-  height: 36px;
+  height: 30px;
+  width: 30px;
+  flex: 0 0 30px;
   display: block;
   border-radius: var(--nexus-radius-sm);
 }
 
 .brand-logo-image {
-  height: 45px;
+  height: 20px;
+  width: auto;
+  min-width: 0;
+  flex: 0 1 auto;
+  object-fit: contain;
+  object-position: left center;
   display: block;
 }
 

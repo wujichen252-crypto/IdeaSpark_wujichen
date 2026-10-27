@@ -356,4 +356,21 @@ flex: 1;
   }
 }
 
+/* 窄屏：分栏放不下，编辑器与 AI 面板纵向堆叠，AI 打开时暂不展示预览 */
+@media (max-width: 900px) {
+  .md-body.ai-open.preview-open {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .md-body.ai-open.preview-open .md-preview {
+    display: none;
+  }
+
+  .md-body.ai-open:not(.preview-open) {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
 }

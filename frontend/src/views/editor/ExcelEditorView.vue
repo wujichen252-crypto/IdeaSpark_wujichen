@@ -354,6 +354,7 @@ import NexusAiSidebar from '@/components/ai/NexusAiSidebar.vue'
 import type { QuickAction } from '@/components/ai/NexusAiSidebar.vue'
 import { useExcelAi, AI_QUICK_ACTIONS, type ExcelContext, type AiResult } from '@/composables/useExcelAi'
 import { createProjectFile, updateProjectFile, getProjectFileDetail } from '@/api/projectFile'
+import { copyToClipboard, readClipboard } from '@/utils/clipboard'
 import {
   ArrowLeft,
   Grid3X3,
@@ -1028,13 +1029,18 @@ async function copySelection() {
     rows.push(cols.join('\t'))
   }
 
-  await navigator.clipboard.writeText(rows.join('\n'))
-  message.success('已复制')
+  const ok = await copyToClipboard(rows.join('\n'))
+  if (ok) message.success('已复制')
+  else message.error('复制失败，请手动复制')
 }
 
 async function pasteSelection() {
   try {
-    const text = await navigator.clipboard.readText()
+    const text = await readClipboard()
+    if (!text) {
+      message.warning('无法读取剪贴板，请手动输入内容')
+      return
+    }
     const rows = text.split('\n')
     const start = parseCellRef(selectedRef.value)
 
@@ -2014,6 +2020,17 @@ onUnmounted(() => {
   flex: 1;
   overflow: auto;
   background: var(--nexus-bg);
+}
+
+/* 窄屏：表格与 AI 面板纵向堆叠，避免 380px 固定侧栏把表格挤成 0 宽 */
+@media (max-width: 900px) {
+  .editor-body {
+    flex-direction: column;
+  }
+
+  .excel-main {
+    min-height: 0;
+  }
 }
 
 .spreadsheet-container {

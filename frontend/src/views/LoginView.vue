@@ -1,302 +1,170 @@
 <template>
-  <div class="login-page">
-    <!-- 返回首页 Logo -->
-    <div class="back-home" @click="router.push('/')">
-      <img src="@/assets/logo-ideaspark.svg" alt="IdeaSpark" />
-    </div>
+  <div class="auth-page">
+    <!-- 左栏：品牌陈述（桌面）／紧凑页头（移动） -->
+    <section class="auth-brand">
+      <RouterLink to="/" class="brand-mark" aria-label="返回 IdeaSpark 首页">
+        <img :src="logoIcon" alt="" class="brand-mark__icon" width="28" height="28" />
+        <span class="brand-mark__word">IDEASPARK</span>
+      </RouterLink>
 
-    <!-- 高级感背景层 -->
-    <div class="luxury-bg">
-      <div class="bg-image"></div>
-      <div class="bg-overlay"></div>
-      <div class="bg-gradient"></div>
-    </div>
+      <div class="brand-body">
+        <p class="brand-eyebrow">创意孵化平台</p>
+        <h1 class="brand-headline">从灵感到落地，<br />只需一句话。</h1>
 
-    <!-- ========== 桌面端：双面板滑动卡片 ========== -->
-    <div class="auth-card desktop-card" :class="{ 'right-panel-active': isSignUp }">
-      <!-- 注册面板 -->
-      <div class="form-panel sign-up-panel">
-        <div class="panel-content">
-          <h1>创建账号</h1>
-          <div class="social-container">
-            <n-tooltip trigger="hover">
-              <template #trigger>
-                <n-button
-circle
-size="large"
-class="social-btn"
-disabled>
-                  <template #icon><n-icon><GoogleIcon /></n-icon></template>
-                </n-button>
-              </template>
-              即将上线
-            </n-tooltip>
-            <n-tooltip trigger="hover">
-              <template #trigger>
-                <n-button
-circle
-size="large"
-class="social-btn"
-disabled>
-                  <template #icon><n-icon><GithubIcon /></n-icon></template>
-                </n-button>
-              </template>
-              即将上线
-            </n-tooltip>
-            <n-tooltip trigger="hover">
-              <template #trigger>
-                <n-button
-circle
-size="large"
-class="social-btn"
-disabled>
-                  <template #icon><n-icon><LinkedinIcon /></n-icon></template>
-                </n-button>
-              </template>
-              即将上线
-            </n-tooltip>
-          </div>
-          <span class="divider-text">或使用邮箱注册</span>
+        <ol class="brand-steps">
+          <li v-for="step in STEPS" :key="step.no" class="brand-step">
+            <span class="brand-step__no">{{ step.no }}</span>
+            <span class="brand-step__title">{{ step.title }}</span>
+            <span class="brand-step__desc">{{ step.desc }}</span>
+          </li>
+        </ol>
+      </div>
 
-          <div class="input-group">
-            <div class="custom-input-wrapper">
-              <input
-v-model="signUpModel.username"
-type="text"
-placeholder="用户名"
-class="custom-input"/>
-              <span class="input-border"></span>
-            </div>
-            <div class="custom-input-wrapper">
-              <input
-v-model="signUpModel.email"
-type="email"
-placeholder="邮箱"
-class="custom-input"/>
-              <span class="input-border"></span>
-            </div>
-            <div class="custom-input-wrapper">
-              <input
-v-model="signUpModel.password"
-type="password"
-placeholder="密码"
-class="custom-input"/>
-              <span class="input-border"></span>
-            </div>
-          </div>
+      <p class="brand-foot">© 2026 IdeaSpark</p>
+    </section>
 
-          <n-button
-class="action-btn"
-color="#111111"
-text-color="#fff"
-:loading="loading"
-@click="handleRegister">
-注册
-</n-button>
+    <!-- 右栏：登录 / 注册共用同一套表单视图 -->
+    <section class="auth-form" aria-labelledby="auth-title">
+      <div class="auth-form__inner">
+        <div class="mode-switch" role="group" aria-label="切换登录或注册">
+          <button
+            type="button"
+            class="mode-switch__btn"
+            :aria-pressed="!isSignUp"
+            :disabled="loading"
+            @click="setMode(false)">
+            登录
+          </button>
+          <button
+            type="button"
+            class="mode-switch__btn"
+            :aria-pressed="isSignUp"
+            :disabled="loading"
+            @click="setMode(true)">
+            注册
+          </button>
         </div>
-      </div>
 
-      <!-- 登录面板 -->
-      <div class="form-panel sign-in-panel">
-        <div class="panel-content">
-          <h1>登录</h1>
-          <div class="social-container">
-            <n-tooltip v-for="(icon, idx) in socialIcons" :key="idx" trigger="hover">
-              <template #trigger>
-                <n-button
-circle
-size="large"
-class="social-btn"
-disabled>
-                  <template #icon><n-icon><component :is="icon" /></n-icon></template>
-                </n-button>
-              </template>
-              即将上线
-            </n-tooltip>
-          </div>
-          <span class="divider-text">或使用您的账号</span>
+        <header class="form-head">
+          <h2 id="auth-title" class="form-head__title">{{ modeCopy.title }}</h2>
+          <p class="form-head__desc">{{ modeCopy.desc }}</p>
+        </header>
 
-          <div class="input-group">
-            <div class="custom-input-wrapper">
+        <form class="form" novalidate @submit.prevent="handleSubmit">
+          <!-- 注册专有：用户名 -->
+          <div v-if="isSignUp" class="field" :class="{ 'field--invalid': errors.username }">
+            <label class="field__label" for="signup-username">用户名</label>
+            <div class="field__control">
               <input
-v-model="signInModel.email"
-type="email"
-placeholder="邮箱"
-class="custom-input"/>
-              <span class="input-border"></span>
+                id="signup-username"
+                v-model="signUpModel.username"
+                class="field__input"
+                type="text"
+                autocomplete="username"
+                placeholder="用于展示的名字"
+                :disabled="loading"
+                :aria-invalid="Boolean(errors.username)"
+                :aria-describedby="errors.username ? 'signup-username-error' : undefined"
+                @input="clearError('username')" />
             </div>
-            <div class="custom-input-wrapper">
+            <p v-if="errors.username" id="signup-username-error" class="field__error" role="alert">
+              {{ errors.username }}
+            </p>
+          </div>
+
+          <!-- 邮箱 -->
+          <div class="field" :class="{ 'field--invalid': errors.email }">
+            <label class="field__label" :for="isSignUp ? 'signup-email' : 'login-email'">邮箱</label>
+            <div class="field__control">
               <input
-v-model="signInModel.password"
-type="password"
-placeholder="密码"
-class="custom-input"/>
-              <span class="input-border"></span>
+                :id="isSignUp ? 'signup-email' : 'login-email'"
+                v-model="emailModel"
+                class="field__input"
+                type="email"
+                autocomplete="email"
+                placeholder="name@example.com"
+                :disabled="loading"
+                :aria-invalid="Boolean(errors.email)"
+                :aria-describedby="errors.email ? 'auth-email-error' : undefined"
+                @input="clearError('email')" />
             </div>
+            <p v-if="errors.email" id="auth-email-error" class="field__error" role="alert">
+              {{ errors.email }}
+            </p>
           </div>
 
-          <a class="forgot-link" @click.prevent="$router.push('/forgot-password')">忘记密码?</a>
-
-          <n-button
-class="action-btn"
-color="#111111"
-text-color="#fff"
-:loading="loading"
-@click="handleLogin">
-登录
-</n-button>
-        </div>
-      </div>
-
-      <!-- 覆盖层 -->
-      <div class="overlay-container">
-        <div class="overlay">
-          <div class="overlay-panel overlay-left">
-            <h1>欢迎回来!</h1>
-            <p>保持联系，请使用您的个人信息登录，继续您的创意之旅。</p>
-            <n-button
-class="ghost-btn"
-color="#111111"
-text-color="#fff"
-@click="isSignUp = false">
-登录
-</n-button>
+          <!-- 密码 -->
+          <div class="field" :class="{ 'field--invalid': errors.password }">
+            <label class="field__label" :for="isSignUp ? 'signup-password' : 'login-password'">密码</label>
+            <div class="field__control">
+              <input
+                :id="isSignUp ? 'signup-password' : 'login-password'"
+                v-model="passwordModel"
+                class="field__input field__input--with-action"
+                :type="showPassword ? 'text' : 'password'"
+                :autocomplete="isSignUp ? 'new-password' : 'current-password'"
+                placeholder="输入密码"
+                :disabled="loading"
+                :aria-invalid="Boolean(errors.password)"
+                :aria-describedby="errors.password ? 'auth-password-error' : undefined"
+                @input="clearError('password')" />
+              <button
+                type="button"
+                class="field__action"
+                :aria-label="showPassword ? '隐藏密码' : '显示密码'"
+                :aria-pressed="showPassword"
+                @click="showPassword = !showPassword">
+                {{ showPassword ? '隐藏' : '显示' }}
+              </button>
+            </div>
+            <p v-if="errors.password" id="auth-password-error" class="field__error" role="alert">
+              {{ errors.password }}
+            </p>
           </div>
-          <div class="overlay-panel overlay-right">
-            <h1>你好，朋友!</h1>
-            <p>输入您的个人信息，开始与 IdeaSpark 一起的创造旅程。</p>
-            <n-button
-class="ghost-btn"
-color="#111111"
-text-color="#fff"
-@click="isSignUp = true">
-注册
-</n-button>
+
+          <div v-if="!isSignUp" class="form-aside">
+            <button type="button" class="link-btn" @click="router.push('/forgot-password')">
+              忘记密码？
+            </button>
           </div>
-        </div>
+
+          <button type="submit" class="submit" :disabled="loading" :aria-busy="loading">
+            {{ loading ? '处理中…' : modeCopy.submit }}
+          </button>
+        </form>
       </div>
-    </div>
-
-    <!-- ========== 移动端：单卡片切换 ========== -->
-    <div class="auth-card mobile-card">
-      <div class="mobile-header">
-        <h1>{{ isSignUp ? '创建账号' : '欢迎回来' }}</h1>
-        <p>{{ isSignUp ? '输入您的个人信息，开启创意之旅' : '请使用您的账号登录，继续创作' }}</p>
-      </div>
-
-      <div class="mobile-form">
-        <!-- 社交登录 -->
-        <div class="social-container">
-          <n-tooltip trigger="hover">
-            <template #trigger>
-              <n-button
-circle
-size="large"
-class="social-btn"
-disabled>
-                <template #icon><n-icon><GoogleIcon /></n-icon></template>
-              </n-button>
-            </template>
-            即将上线
-          </n-tooltip>
-          <n-tooltip trigger="hover">
-            <template #trigger>
-              <n-button
-circle
-size="large"
-class="social-btn"
-disabled>
-                <template #icon><n-icon><GithubIcon /></n-icon></template>
-              </n-button>
-            </template>
-            即将上线
-          </n-tooltip>
-          <n-tooltip trigger="hover">
-            <template #trigger>
-              <n-button
-circle
-size="large"
-class="social-btn"
-disabled>
-                <template #icon><n-icon><LinkedinIcon /></n-icon></template>
-              </n-button>
-            </template>
-            即将上线
-          </n-tooltip>
-        </div>
-        <span class="divider-text">{{ isSignUp ? '或使用邮箱注册' : '或使用您的账号' }}</span>
-
-        <!-- 注册 -->
-        <template v-if="isSignUp">
-          <div class="input-group">
-            <n-input v-model:value="signUpModel.username" placeholder="用户名" size="large" />
-            <n-input v-model:value="signUpModel.email" placeholder="邮箱" size="large" />
-            <n-input
-              v-model:value="signUpModel.password"
-              type="password"
-              placeholder="密码"
-              size="large"
-              show-password-on="mousedown"
-            />
-          </div>
-          <n-button
-class="action-btn"
-color="#111111"
-text-color="#fff"
-block
-:loading="loading"
-@click="handleRegister">
-注册
-</n-button>
-        </template>
-
-        <!-- 登录 -->
-        <template v-else>
-          <div class="input-group">
-            <n-input v-model:value="signInModel.email" placeholder="邮箱" size="large" />
-            <n-input
-              v-model:value="signInModel.password"
-              type="password"
-              placeholder="密码"
-              size="large"
-              show-password-on="mousedown"
-            />
-          </div>
-          <a class="forgot-link" @click.prevent="$router.push('/forgot-password')">忘记密码?</a>
-          <n-button
-class="action-btn"
-color="#111111"
-text-color="#fff"
-block
-:loading="loading"
-@click="handleLogin">
-登录
-</n-button>
-        </template>
-      </div>
-
-      <div class="mobile-footer">
-        <span>{{ isSignUp ? '已有账号？' : '还没有账号？' }}</span>
-        <a class="mobile-toggle-link" @click="isSignUp = !isSignUp">{{ isSignUp ? '去登录' : '去注册' }}</a>
-      </div>
-    </div>
+    </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useMessage } from 'naive-ui'
 import { useUserStore } from '@/store'
-import { LogoGoogle, LogoGithub, LogoLinkedin } from '@vicons/ionicons5'
 import { login as apiLogin, register as apiRegister } from '@/api/user'
+import logoIcon from '@/assets/logo-icon.svg'
 
-const GoogleIcon = LogoGoogle
-const GithubIcon = LogoGithub
-const LinkedinIcon = LogoLinkedin
+interface SignInModel {
+  email: string
+  password: string
+}
 
-// 社交图标数组，用于桌面端登录面板的循环渲染
-const socialIcons = [LogoGoogle, LogoGithub, LogoLinkedin]
+interface SignUpModel {
+  username: string
+  email: string
+  password: string
+}
+
+/** 品牌陈述的编号条目：与首页「产品理念」同源，保持页面间叙事一致 */
+const STEPS = [
+  { no: '01', title: '捕捉灵感', desc: '把碎片化想法快速沉淀为可执行方向。' },
+  { no: '02', title: '拆解需求', desc: '补全用户、场景、痛点与价值主张。' },
+  { no: '03', title: '交付成果', desc: '产出 PRD、原型与可执行计划。' }
+] as const
+
+/** 邮箱格式预检：仅拦截明显无效输入，最终以服务端校验为准 */
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const router = useRouter()
 const message = useMessage()
@@ -304,35 +172,110 @@ const userStore = useUserStore()
 
 const isSignUp = ref(false)
 const loading = ref(false)
-
-// 登录表单数据模型
-interface SignInModel {
-  email: string
-  password: string
-}
-
-// 注册表单数据模型
-interface SignUpModel {
-  username: string
-  email: string
-  password: string
-}
+const showPassword = ref(false)
 
 const signInModel = reactive<SignInModel>({ email: '', password: '' })
 const signUpModel = reactive<SignUpModel>({ username: '', email: '', password: '' })
+
+/** 字段级校验信息：空串表示通过 */
+const errors = reactive<Record<'username' | 'email' | 'password', string>>({
+  username: '',
+  email: '',
+  password: ''
+})
+
+/**
+ * 邮箱双向绑定：登录与注册各有一份数据模型，视图只绑定一份
+ * @description 避免登录 / 注册两套表单标记重复，切换模式时字段值各自保留。
+ */
+const emailModel = computed({
+  get: (): string => (isSignUp.value ? signUpModel.email : signInModel.email),
+  set: (value: string) => {
+    if (isSignUp.value) signUpModel.email = value
+    else signInModel.email = value
+  }
+})
+
+/** 密码双向绑定：同上，登录/注册共用同一输入控件 */
+const passwordModel = computed({
+  get: (): string => (isSignUp.value ? signUpModel.password : signInModel.password),
+  set: (value: string) => {
+    if (isSignUp.value) signUpModel.password = value
+    else signInModel.password = value
+  }
+})
+
+/** 当前模式下的标题文案 */
+const modeCopy = computed(() =>
+  isSignUp.value
+    ? { title: '创建账号', desc: '填写基础信息，立即开始你的第一个项目。', submit: '创建账号' }
+    : { title: '登录', desc: '使用注册邮箱进入你的工作台。', submit: '登录' }
+)
+
+/**
+ * 清空单个字段的错误提示
+ * @param field - 字段名
+ */
+function clearError(field: keyof typeof errors): void {
+  errors[field] = ''
+}
+
+/**
+ * 切换登录 / 注册模式
+ * @param next - true 表示注册模式
+ */
+function setMode(next: boolean): void {
+  if (isSignUp.value === next || loading.value) return
+  isSignUp.value = next
+  showPassword.value = false
+  errors.username = ''
+  errors.email = ''
+  errors.password = ''
+}
+
+/**
+ * 校验当前表单
+ * @returns 全部字段通过时返回 true
+ */
+function validate(): boolean {
+  const email = emailModel.value.trim()
+  const password = passwordModel.value
+
+  errors.username = ''
+  errors.email = ''
+  errors.password = ''
+
+  if (isSignUp.value && !signUpModel.username.trim()) {
+    errors.username = '请输入用户名'
+  }
+  if (!email) {
+    errors.email = '请输入邮箱'
+  } else if (!EMAIL_PATTERN.test(email)) {
+    errors.email = '邮箱格式不正确，请检查后重试'
+  }
+  if (!password) {
+    errors.password = '请输入密码'
+  }
+
+  return !errors.username && !errors.email && !errors.password
+}
+
+/**
+ * 提交表单：按当前模式分发到登录或注册
+ */
+async function handleSubmit(): Promise<void> {
+  if (loading.value || !validate()) return
+  if (isSignUp.value) await handleRegister()
+  else await handleLogin()
+}
 
 /**
  * 执行登录流程
  */
 async function handleLogin(): Promise<void> {
-  if (!signInModel.email || !signInModel.password) {
-    message.warning('请填写完整信息')
-    return
-  }
-
   loading.value = true
   try {
-    const res = await apiLogin({ email: signInModel.email, password: signInModel.password })
+    const res = await apiLogin({ email: signInModel.email.trim(), password: signInModel.password })
     const responseData = res.data.data
     const authToken = responseData.token
     const refreshToken = responseData.refreshToken
@@ -366,769 +309,408 @@ async function handleLogin(): Promise<void> {
 
 /**
  * 执行注册流程
+ * @description 注册成功后带回邮箱与密码，直接切到登录模式减少一次输入
  */
 async function handleRegister(): Promise<void> {
-  if (!signUpModel.username || !signUpModel.email || !signUpModel.password) {
-    message.warning('请填写完整信息')
-    return
-  }
-
   loading.value = true
   try {
     await apiRegister({
-      username: signUpModel.username,
-      email: signUpModel.email,
+      username: signUpModel.username.trim(),
+      email: signUpModel.email.trim(),
       password: signUpModel.password
     })
     message.success('注册成功，请登录')
-    signInModel.email = signUpModel.email
+    signInModel.email = signUpModel.email.trim()
     signInModel.password = signUpModel.password
-    isSignUp.value = false
+    setMode(false)
   } catch {
     // 错误已由 request 拦截器统一提示
   } finally {
     loading.value = false
   }
 }
-
-/**
- * 复制文本到剪贴板
- * @param text - 要复制的文本
- */
-async function copyText(text: string): Promise<void> {
-  try {
-    await navigator.clipboard.writeText(text)
-    message.success('已复制到剪贴板')
-  } catch {
-    // 降级方案
-    const textarea = document.createElement('textarea')
-    textarea.value = text
-    textarea.style.position = 'fixed'
-    textarea.style.opacity = '0'
-    document.body.appendChild(textarea)
-    textarea.select()
-    document.execCommand('copy')
-    document.body.removeChild(textarea)
-    message.success('已复制到剪贴板')
-  }
-}
-
 </script>
 
 <style scoped lang="scss">
-$text-primary: #0f172a;
-$text-secondary: #475569;
-$border-color: var(--nexus-border);
-$overlay-bg: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, var(--nexus-link) 100%);
-
-.login-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* 认证页：编辑式双栏。左栏承载品牌叙事（浅底），右栏承载单一任务（白底），
+   两者以 1px 发丝线分隔；不使用卡片、渐变球或外部背景图。 */
+.auth-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
   min-height: 100dvh;
-  padding: 20px;
+  background: var(--nexus-bg-elevated);
+  color: var(--nexus-text-primary);
   font-family: var(--nexus-font-ui);
-  position: relative;
-  overflow: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-.back-home {
-  position: fixed;
-  top: 15px;
-  left: 40px;
-  z-index: var(--nexus-z-dropdown);
-  cursor: pointer;
-  opacity: 1;
-  transition: transform 0.2s ease;
-
-  img {
-    height: 55px;
-    display: block;
-    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.25));
-  }
-}
-
-@media (max-width: 768px) {
-  .back-home {
-    top: 20px;
-    left: 20px;
-
-    img {
-      height: 90px;
-    }
-  }
-}
-
-/* 高级感背景 */
-.luxury-bg {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  z-index: var(--nexus-z-base);
-}
-
-/* 背景图片层 - 使用 Unsplash 高质量抽象艺术图 */
-.bg-image {
-  position: absolute;
-  inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transform: scale(1.1);
-  animation: subtleZoom 20s infinite alternate ease-in-out;
-}
-
-/* 深色遮罩层 - 增强文字可读性 */
-.bg-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(15, 23, 42, 0.75) 0%,
-    rgba(30, 41, 59, 0.65) 50%,
-    rgba(15, 23, 42, 0.8) 100%
-  );
-  backdrop-filter: blur(2px);
-}
-
-/* 渐变光效层 - 增加高级感 */
-.bg-gradient {
-  position: absolute;
-  inset: 0;
-  background: 
-    radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
-  animation: gradientShift 15s infinite alternate ease-in-out;
-}
-
-@keyframes subtleZoom {
-  0% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1.2);
-  }
-}
-
-@keyframes gradientShift {
-  0% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-/* ========== 测试账号卡片样式 ========== */
-.test-account-card {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: var(--nexus-z-overlay);
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border-radius: var(--nexus-radius-lg);
-  padding: 16px 20px;
-  box-shadow: 
-    0 10px 40px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.3) inset;
-  min-width: 240px;
-  animation: slideInRight 0.5s ease-out;
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.test-account-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.test-account-icon {
-  font-size: var(--nexus-font-size-md);
-}
-
-.test-account-title {
-  font-size: var(--nexus-font-size-base);
-  font-weight: 700;
-  color: #1a1a2e;
-}
-
-.test-account-content {
+/* ── 左栏 ── */
+.auth-brand {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: space-between;
+  gap: var(--nexus-space-12);
+  padding: clamp(32px, 4vw, 56px) clamp(32px, 5vw, 72px);
+  background: var(--nexus-bg);
+  border-right: 1px solid var(--nexus-border);
 }
 
-.test-account-item {
-  display: flex;
+.brand-mark {
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: var(--nexus-font-size-sm);
-}
-
-.test-account-label {
-  color: #64748b;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.test-account-value {
-  color: #1e293b;
-  font-weight: 600;
-  font-family: 'Courier New', monospace;
-  background: rgba(99, 102, 241, 0.08);
-  padding: 4px 8px;
-  border-radius: var(--nexus-radius-sm);
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.copy-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  border: none;
-  background: rgba(99, 102, 241, 0.1);
-  color: #6366f1;
-  border-radius: var(--nexus-radius-sm);
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
-  flex-shrink: 0;
-}
-
-.copy-btn:hover {
-  background: #6366f1;
-  color: var(--nexus-white);
-}
-
-.copy-btn:active {
-  transform: scale(0.95);
-}
-
-.test-account-footer {
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.auto-fill-btn {
-  width: 100%;
-  padding: 10px 16px;
-  border: none;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  color: var(--nexus-white);
-  font-size: var(--nexus-font-size-sm);
-  font-weight: 600;
-  border-radius: var(--nexus-radius-md);
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-}
-
-.auto-fill-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
-}
-
-.auto-fill-btn:active {
-  transform: translateY(0);
-}
-
-/* 移动端适配 */
-@media (max-width: 768px) {
-  .test-account-card {
-    top: auto;
-    bottom: 20px;
-    right: 20px;
-    left: 20px;
-    min-width: auto;
-    animation: slideInUp 0.5s ease-out;
-  }
-
-  @keyframes slideInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
-
-/* ========== 公共元素样式 ========== */
-h1 {
-  font-weight: 800;
-  margin: 0 0 12px;
-  font-size: var(--nexus-font-size-2xl);
-  letter-spacing: 0.04em;
-  line-height: var(--nexus-leading-display);
-  color: $text-primary;
-}
-
-p {
-  font-size: var(--nexus-font-size-base);
-  font-weight: 400;
-  line-height: var(--nexus-leading-prose);
-  margin: 0 0 24px;
-  color: $text-secondary;
-}
-
-.divider-text {
-  display: block;
-  font-size: var(--nexus-font-size-xs);
-  margin: 16px 0;
-  letter-spacing: 0.06em;
-  color: $text-secondary;
-}
-
-.social-container {
-  margin: 8px 0;
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-
-.social-btn {
-  border: 1px solid $border-color;
-  background: var(--nexus-white);
-  color: $text-secondary;
-
-  &:hover:not(:disabled) {
-    background: #f2f6ff;
-    border-color: rgba(74, 108, 247, 0.3);
-    color: $text-primary;
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-}
-
-.input-group {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.custom-input-wrapper {
-  position: relative;
-  width: 100%;
-
-  .custom-input {
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid $border-color;
-    padding: 12px 4px;
-    background: transparent;
-    color: $text-primary;
-    transition: border-color 0.3s;
-    font-size: var(--nexus-font-size-base);
-
-    &::placeholder {
-      color: rgba(71, 85, 105, 0.5);
-    }
-
-    &:focus {
-      border-bottom-color: transparent;
-    }
-  }
-
-  .input-border {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--nexus-accent);
-    transition: width 0.4s ease;
-  }
-
-  .custom-input:focus + .input-border {
-    width: 100%;
-  }
-}
-
-.forgot-link {
-  display: block;
-  color: $text-secondary;
-  font-size: var(--nexus-font-size-sm);
+  gap: var(--nexus-space-3);
+  width: fit-content;
+  color: var(--nexus-text-primary);
   text-decoration: none;
-  margin: 16px 0 8px;
-  text-align: right;
-  cursor: pointer;
-  transition: color 0.3s;
-
-  &:hover {
-    color: var(--nexus-text-primary);
-  }
 }
 
-.action-btn {
-  --btn-color: var(--nexus-text-primary);
-  --btn-hover: var(--nexus-accent);
+.brand-mark__icon {
+  display: block;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--nexus-radius-sm);
+}
 
-  border-radius: var(--nexus-radius-lg);
-  border: 1px solid var(--btn-color);
-  background-color: var(--btn-color);
-  color: var(--nexus-white);
+.brand-mark__word {
   font-size: var(--nexus-font-size-base);
   font-weight: 600;
-  padding: 12px 45px;
-  letter-spacing: 0.5px;
-  transition:
-    transform 80ms ease-in,
-    background 0.3s,
-    box-shadow 0.3s,
-    border-color 0.3s;
-  margin-top: 20px;
+  letter-spacing: 0.18em;
+  transition: color var(--nexus-duration-fast) var(--nexus-ease);
+}
+
+.brand-mark:hover .brand-mark__word {
+  color: var(--nexus-text-secondary);
+}
+
+.brand-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nexus-space-8);
+  max-width: 520px;
+}
+
+.brand-eyebrow {
+  margin: 0;
+  font-size: var(--nexus-font-size-xs);
+  letter-spacing: 0.2em;
+  color: var(--nexus-text-tertiary);
+}
+
+.brand-headline {
+  margin: 0;
+  font-size: clamp(32px, 3.4vw, 40px);
+  font-weight: 600;
+  line-height: var(--nexus-leading-display);
+  letter-spacing: -0.02em;
+}
+
+.brand-steps {
+  max-width: 440px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--nexus-border);
+}
+
+.brand-step {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  column-gap: var(--nexus-space-4);
+  row-gap: 2px;
+  padding: var(--nexus-space-4) 0;
+  border-bottom: 1px solid var(--nexus-border);
+}
+
+.brand-step__no {
+  font-size: var(--nexus-font-size-xs);
+  line-height: var(--nexus-leading-compact);
+  font-variant-numeric: tabular-nums;
+  color: var(--nexus-text-tertiary);
+}
+
+.brand-step__title {
+  font-size: var(--nexus-font-size-base);
+  font-weight: 500;
+  line-height: var(--nexus-leading-compact);
+}
+
+.brand-step__desc {
+  grid-column: 2;
+  font-size: var(--nexus-font-size-sm);
+  line-height: var(--nexus-leading-normal);
+  color: var(--nexus-text-tertiary);
+}
+
+.brand-foot {
+  margin: 0;
+  font-size: var(--nexus-font-size-xs);
+  color: var(--nexus-text-tertiary);
+}
+
+/* ── 右栏 ── */
+.auth-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(32px, 6vw, 64px) clamp(24px, 5vw, 64px);
+  background: var(--nexus-bg-elevated);
+}
+
+.auth-form__inner {
+  width: 100%;
+  max-width: 368px;
+}
+
+.mode-switch {
+  display: inline-flex;
+  gap: 2px;
+  margin-bottom: var(--nexus-space-8);
+  padding: 3px;
+  background: var(--nexus-bg-sunken);
+  border-radius: var(--nexus-radius-md);
+}
+
+.mode-switch__btn {
+  padding: 7px 20px;
+  border: 0;
+  border-radius: calc(var(--nexus-radius-md) - 3px);
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--nexus-font-size-sm);
+  font-weight: 500;
+  color: var(--nexus-text-tertiary);
   cursor: pointer;
-
-  &:active {
-    transform: scale(0.98);
-  }
-
-  &:hover {
-    background-color: var(--btn-hover);
-    border-color: var(--btn-hover);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
-  }
-
-  &:focus {
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    background-color: var(--btn-color);
-    border-color: var(--btn-color);
-  }
+  transition:
+    color var(--nexus-duration-fast) var(--nexus-ease),
+    background-color var(--nexus-duration-fast) var(--nexus-ease);
 }
 
-.ghost-btn {
-  @extend .action-btn;
-  background-color: transparent;
-  border-color: var(--nexus-white);
-  color: var(--nexus-white);
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    box-shadow: none;
-    color: var(--nexus-white);
-  }
+.mode-switch__btn:hover:not(:disabled) {
+  color: var(--nexus-text-primary);
 }
 
-/* ========== 桌面端双面板卡片 ========== */
-.desktop-card {
-  display: none;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: var(--nexus-radius-xl);
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-  position: relative;
-  overflow: hidden;
-  width: clamp(760px, 58vw, 1000px);
-  min-height: 520px;
-  max-height: 640px;
-  z-index: var(--nexus-z-sticky);
-  backdrop-filter: blur(20px);
+.mode-switch__btn[aria-pressed='true'] {
+  background: var(--nexus-bg-elevated);
+  color: var(--nexus-text-primary);
+  box-shadow: var(--nexus-shadow-sm);
 }
 
-@media (min-width: 769px) {
-  .desktop-card {
-    display: block;
-  }
+.mode-switch__btn:disabled {
+  cursor: progress;
 }
 
-.form-panel {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+.form-head {
+  margin-bottom: var(--nexus-space-6);
 }
 
-.panel-content {
+.form-head__title {
+  margin: 0 0 6px;
+  font-size: var(--nexus-font-size-xl);
+  font-weight: 600;
+  line-height: var(--nexus-leading-display);
+  letter-spacing: -0.01em;
+}
+
+.form-head__desc {
+  margin: 0;
+  font-size: var(--nexus-font-size-sm);
+  line-height: var(--nexus-leading-normal);
+  color: var(--nexus-text-tertiary);
+}
+
+/* ── 字段 ── */
+.field {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0 clamp(28px, 3.5vw, 56px);
-  height: 100%;
-  text-align: center;
+  gap: 6px;
+  margin-bottom: var(--nexus-space-4);
 }
 
-.sign-in-panel {
-  left: 0;
-  width: 50%;
-  z-index: var(--nexus-z-raised-2);
-  opacity: 1;
+.field__label {
+  font-size: var(--nexus-font-size-xs);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--nexus-text-secondary);
 }
 
-.desktop-card.right-panel-active .sign-in-panel {
-  transform: translateX(100%);
-  opacity: 0;
-}
-
-.sign-up-panel {
-  left: 0;
-  width: 50%;
-  opacity: 0;
-  z-index: var(--nexus-z-raised);
-}
-
-.desktop-card.right-panel-active .sign-up-panel {
-  transform: translateX(100%);
-  opacity: 1;
-  z-index: var(--nexus-z-lift);
-  animation: show 0.6s;
-}
-
-@keyframes show {
-  0%,
-  49.99% {
-    opacity: 0;
-    z-index: var(--nexus-z-raised);
-  }
-  50%,
-  100% {
-    opacity: 1;
-    z-index: var(--nexus-z-lift);
-  }
-}
-
-.overlay-container {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
-  transition: transform 0.6s ease-in-out;
-  z-index: var(--nexus-z-dropdown);
-}
-
-.desktop-card.right-panel-active .overlay-container {
-  transform: translateX(-100%);
-}
-
-.overlay {
-  background: $overlay-bg;
-  color: var(--nexus-white);
+.field__control {
   position: relative;
-  left: -100%;
-  height: 100%;
-  width: 200%;
-  transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
-  background-size: 200% 200%;
-  animation: gradientMove 8s ease infinite;
 }
 
-@keyframes gradientMove {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.field__input {
+  width: 100%;
+  height: 44px;
+  padding: 0 var(--nexus-space-4);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-md);
+  background: var(--nexus-bg-elevated);
+  font-family: inherit;
+  font-size: var(--nexus-font-size-base);
+  color: var(--nexus-text-primary);
+  transition: border-color var(--nexus-duration-fast) var(--nexus-ease);
 }
 
-.desktop-card.right-panel-active .overlay {
-  transform: translateX(50%);
+.field__input::placeholder {
+  color: var(--nexus-text-quaternary);
 }
 
-.overlay-panel {
+.field__input:hover:not(:disabled) {
+  border-color: var(--nexus-border-strong);
+}
+
+/* 焦点环绘制在边框内侧（offset 为负），避免与输入框边框叠成"双环"显得笨重 */
+.field__input:focus-visible {
+  outline: 2px solid var(--nexus-text-primary);
+  outline-offset: -2px;
+}
+
+.field__input:disabled {
+  background: var(--nexus-bg-subtle);
+  color: var(--nexus-text-tertiary);
+  cursor: not-allowed;
+}
+
+.field__input--with-action {
+  padding-right: 56px;
+}
+
+.field--invalid .field__input {
+  border-color: var(--nexus-error);
+}
+
+.field--invalid .field__input:focus-visible {
+  outline-color: var(--nexus-error);
+}
+
+.field__action {
   position: absolute;
+  top: 50%;
+  right: 6px;
+  height: 30px;
+  padding: 0 var(--nexus-space-2);
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: var(--nexus-radius-sm);
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--nexus-font-size-xs);
+  color: var(--nexus-text-tertiary);
+  cursor: pointer;
+  transition: color var(--nexus-duration-fast) var(--nexus-ease);
+}
+
+.field__action:hover {
+  color: var(--nexus-text-primary);
+}
+
+.field__error {
+  margin: 2px 0 0;
+  font-size: var(--nexus-font-size-xs);
+  line-height: var(--nexus-leading-compact);
+  color: var(--nexus-error-text);
+}
+
+.form-aside {
   display: flex;
-  flex-direction: column;
+  justify-content: flex-end;
+  margin-bottom: var(--nexus-space-2);
+}
+
+.link-btn {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--nexus-font-size-xs);
+  color: var(--nexus-text-tertiary);
+  cursor: pointer;
+  transition: color var(--nexus-duration-fast) var(--nexus-ease);
+}
+
+.link-btn:hover {
+  color: var(--nexus-text-primary);
+  text-decoration: underline;
+}
+
+/* ── 主操作 ── */
+.submit {
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 clamp(28px, 3.5vw, 56px);
-  text-align: center;
-  top: 0;
-  height: 100%;
-  width: 50%;
-  transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
-
-  h1 {
-    color: var(--nexus-white);
-  }
-
-  p {
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 30px;
-  }
+  width: 100%;
+  height: 44px;
+  margin-top: var(--nexus-space-6);
+  border: 1px solid var(--nexus-accent);
+  border-radius: var(--nexus-radius-md);
+  background: var(--nexus-accent);
+  color: var(--nexus-text-inverse);
+  font-family: inherit;
+  font-size: var(--nexus-font-size-base);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition:
+    background-color var(--nexus-duration-fast) var(--nexus-ease),
+    border-color var(--nexus-duration-fast) var(--nexus-ease);
 }
 
-.overlay-left {
-  transform: translateX(-20%);
+.submit:hover:not(:disabled) {
+  border-color: var(--nexus-accent-hover);
+  background: var(--nexus-accent-hover);
 }
 
-.desktop-card.right-panel-active .overlay-left {
-  transform: translateX(0);
+.submit:disabled {
+  opacity: 0.5;
+  cursor: progress;
 }
 
-.overlay-right {
-  right: 0;
-  transform: translateX(0);
-}
-
-.desktop-card.right-panel-active .overlay-right {
-  transform: translateX(20%);
-}
-
-/* 覆盖 Naive UI 默认的绿色 focus / hover 光晕与文字颜色 */
-:deep(.n-button) {
-  &:not(.n-button--disabled):focus,
-  &:not(.n-button--disabled):focus-visible {
-    box-shadow: none !important;
+/* ── 响应式：低于 1024px 收成单列，品牌区退化为页头 ── */
+@media (max-width: 1023px) {
+  .auth-page {
+    /* 单列时品牌区按内容高度、表单占满剩余高度，避免两行均分把页头撑高 */
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
   }
 
-  &::before,
-  &::after {
-    display: none !important;
-  }
-}
-
-/* action-btn：强制白字，hover/focus/pressed 都不变绿 */
-:deep(.n-button.action-btn) {
-  color: var(--nexus-white) !important;
-
-  &:hover,
-  &:focus,
-  &:active {
-    color: var(--nexus-white) !important;
+  .auth-brand {
+    justify-content: flex-start;
+    gap: var(--nexus-space-6);
+    padding: var(--nexus-space-8) var(--nexus-space-6);
+    border-right: 0;
+    border-bottom: 1px solid var(--nexus-border);
   }
 
-  .n-button__content {
-    color: var(--nexus-white) !important;
+  .brand-body {
+    gap: var(--nexus-space-4);
   }
 
-  &:not(.n-button--disabled):focus,
-  &:not(.n-button--disabled):focus-visible {
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1) !important;
-  }
-}
-
-/* ghost-btn：强制白字 */
-:deep(.n-button.ghost-btn) {
-  color: var(--nexus-white) !important;
-
-  &:hover,
-  &:focus,
-  &:active {
-    color: var(--nexus-white) !important;
+  .brand-headline {
+    font-size: var(--nexus-font-size-xl);
   }
 
-  .n-button__content {
-    color: var(--nexus-white) !important;
+  .brand-steps,
+  .brand-foot {
+    display: none;
   }
 
-  &:not(.n-button--disabled):focus,
-  &:not(.n-button--disabled):focus-visible {
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2) !important;
+  .auth-form {
+    padding: var(--nexus-space-8) var(--nexus-space-6) var(--nexus-space-12);
   }
-}
 
-/* ========== 移动端单卡片 ========== */
-.mobile-card {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .mobile-card {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  .auth-form__inner {
     max-width: 420px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: var(--nexus-radius-xl);
-    padding: 32px 24px;
-    box-shadow: 
-      0 20px 40px rgba(0, 0, 0, 0.2),
-      0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-    z-index: var(--nexus-z-sticky);
-    backdrop-filter: blur(20px);
+    margin: 0 auto;
+  }
+}
+
+/* 小屏只留品牌标记，把首屏高度让给表单 */
+@media (max-width: 639px) {
+  .brand-body {
+    display: none;
   }
 
-  .mobile-header {
-    text-align: center;
-    margin-bottom: 8px;
-
-    h1 {
-      font-size: var(--nexus-font-size-xl);
-      margin-bottom: 6px;
-    }
-
-    p {
-      margin-bottom: 0;
-      font-size: var(--nexus-font-size-sm);
-    }
-  }
-
-  .mobile-form {
-    display: flex;
-    flex-direction: column;
-
-    .social-container {
-      margin-bottom: 4px;
-    }
-
-    .action-btn {
-      width: 100%;
-      margin-top: 16px;
-    }
-  }
-
-  .mobile-footer {
-    margin-top: 20px;
-    text-align: center;
-    font-size: var(--nexus-font-size-sm);
-    color: $text-secondary;
-
-    span {
-      margin-right: 4px;
-    }
-  }
-
-  .mobile-toggle-link {
-    color: var(--nexus-text-primary);
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
+  .auth-brand {
+    padding: var(--nexus-space-4) var(--nexus-space-5);
   }
 }
 </style>

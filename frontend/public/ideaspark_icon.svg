@@ -1,10 +1,6 @@
-<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <!-- 黑色背景圆角矩形 -->
-  <rect x="56" y="56" width="400" height="400" rx="96" fill="#000000"/>
-  
-  <!-- 白色六边形边框 -->
-  <path d="M256 130L356 187.6V324.4L256 382L156 324.4V187.6L256 130Z" 
-        stroke="#FFFFFF" 
-        stroke-width="8" 
-        fill="none"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="IdeaSpark">
+  <title>IdeaSpark 图标</title>
+  <rect x="40" y="40" width="432" height="432" rx="88" fill="#000000"/>
+  <path transform="translate(-932.85 -543.92) scale(3.09598)" fill="#FFFFFF" fill-rule="evenodd" d="M373.00 218.00L344.50 298.75L361.00 298.00L382.50 234.50L406.25 298.25L424.00 298.25L392.75 218.25L373.00 218.00Z"/>
 </svg>
