@@ -94,6 +94,7 @@ import { useMessage } from 'naive-ui'
 import { SparklesOutline, CloseOutline, CopyOutline, TextOutline, SendOutline, AddCircleOutline, PersonOutline } from '@vicons/ionicons5'
 import { NIcon } from 'naive-ui'
 import { useDocAi } from '@/composables/useDocAi'
+import { copyToClipboard } from '@/utils/clipboard'
 
 /**
  * 消息接口
@@ -218,10 +219,10 @@ async function handleSend() {
 /**
  * 复制消息内容
  */
-function copyMessage(content: string) {
-  navigator.clipboard.writeText(content).then(() => {
-    message.success('已复制到剪贴板')
-  })
+async function copyMessage(content: string) {
+  const ok = await copyToClipboard(content)
+  if (ok) message.success('已复制到剪贴板')
+  else message.error('复制失败，请手动选择复制')
 }
 
 /**
@@ -259,6 +260,15 @@ function addContext() {
   display: flex;
   flex-direction: column;
   font-family: var(--nexus-font-ui);
+}
+
+/* 窄屏：面板占满宽度并停靠正文下方 */
+@media (max-width: 900px) {
+  .nexus-ai-panel {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--nexus-border);
+  }
 }
 
 .ai-panel-header {

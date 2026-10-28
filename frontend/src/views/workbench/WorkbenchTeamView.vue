@@ -500,6 +500,7 @@ import { getTeamProjects, getTeamDetail, updateTeam, dissolveTeam, getTeamMember
 import { createProject } from '@/api/project'
 import { uploadFile } from '@/api/file'
 import { getTeamAvatar, getOtherUserAvatar } from '@/utils/avatar'
+import { copyToClipboard } from '@/utils/clipboard'
 import type { TeamDetail } from '@/api/types'
 import {
   NEmpty,
@@ -607,18 +608,19 @@ const handleAvatarChange = async (event: Event) => {
 /**
  * 复制团队ID到剪贴板
  */
-function copyTeamId() {
+async function copyTeamId() {
   const teamId = currentTeam.value?.uuid
   if (!teamId) {
     message.warning('团队ID不存在')
     return
   }
-  
-  navigator.clipboard.writeText(teamId).then(() => {
+
+  const ok = await copyToClipboard(teamId)
+  if (ok) {
     message.success('团队ID已复制到剪贴板')
-  }).catch(() => {
+  } else {
     message.error('复制失败，请手动复制')
-  })
+  }
 }
 
 /**
@@ -1215,12 +1217,11 @@ function formatUpdateTime(updatedAt: number): string {
 
 <style scoped lang="scss">
 .workbench-team-view {
-  height: 100%;
   display: flex;
   flex-direction: column;
   background-color: var(--nexus-white);
-  padding: 32px 48px;
-  padding-top: calc(56px + 32px);
+  padding: 40px 48px;
+  padding-top: calc(56px + 40px);
   width: 100%;
   box-sizing: border-box;
 }
@@ -1255,9 +1256,9 @@ function formatUpdateTime(updatedAt: number): string {
 
   .profile-info {
     .profile-name {
-      font-size: var(--nexus-font-size-xl); /* 加大名字字体 */
+      font-size: var(--nexus-font-size-2xl); /* 与工作台页面标题同档 */
       font-weight: 700;
-      margin: 0 0 6px 0;
+      margin: 0 0 8px 0;
       color: var(--nexus-text-primary);
       letter-spacing: -0.025em;
     }
@@ -1305,9 +1306,7 @@ function formatUpdateTime(updatedAt: number): string {
 
 .project-list-container {
   flex: 1;
-  overflow-y: auto;
   padding-bottom: 32px;
-  padding-right: 8px;
 }
 
 /* 列表视图样式 - Modified for Grid Layout with Gray Container */

@@ -496,7 +496,9 @@ class Evaluator {
     if (tok.type === 'LPAREN') {
       this.advance()
       const val = this.expression()
-      this.expect('OP', ')')
+      // 右括号的 token 类型是 RPAREN（不是 OP），此处曾误用 expect('OP', ')')
+      // 导致所有带括号的公式恒返回 #VALUE!
+      this.expect('RPAREN')
       return val
     }
 

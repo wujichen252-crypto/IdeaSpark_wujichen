@@ -17,7 +17,7 @@
       <div class="teams-list">
         <div v-for="team in teams" :key="team.uuid" class="team-card">
           <div class="team-header">
-            <img :src="team.avatarUrl || defaultAvatar" :alt="team.name" class="team-avatar" />
+            <img :src="team.avatarUrl || getTeamAvatar(team.uuid, team.name)" :alt="team.name" class="team-avatar" />
             <div class="team-info">
               <h3 class="team-name">{{ team.name }}</h3>
               <p class="team-desc">{{ team.description || '暂无描述' }}</p>
@@ -51,12 +51,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Plus } from 'lucide-vue-next'
-
-const defaultAvatar = 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80'
+import { getTeamAvatar } from '@/utils/avatar'
 
 const teams = ref([
-  { uuid: '001', name: '创新设计工作室', description: '专注于产品设计与创新', isPersonal: false, teamSize: 8, projectCount: 12, avatarUrl: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=100&q=80' },
-  { uuid: '002', name: '我的个人空间', description: '个人项目集合', isPersonal: true, teamSize: 1, projectCount: 5, avatarUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80' }
+  { uuid: '001', name: '创新设计工作室', description: '专注于产品设计与创新', isPersonal: false, teamSize: 8, projectCount: 12, avatarUrl: '' },
+  { uuid: '002', name: '我的个人空间', description: '个人项目集合', isPersonal: true, teamSize: 1, projectCount: 5, avatarUrl: '' }
 ])
 
 function createTeam() {
@@ -93,7 +92,7 @@ $color-gray-100: var(--nexus-divider);
   padding: 20px 32px;
   background: rgba(250, 250, 250, 0.95);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+  border-bottom: 1px solid rgba(230, 230, 230, 0.5);
 }
 
 .header-left {

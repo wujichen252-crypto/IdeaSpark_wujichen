@@ -1,0 +1,33 @@
+﻿Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+October 27, 2026 - 20:10:48
+Django version 4.2.16, using settings 'config.settings'
+Starting development server at http://127.0.0.1:8081/
+Quit the server with CTRL-BREAK.
+
+uv : 2026-10-28 10:43:57 [Thread-1 (process_request_thread)] INFO  common.middleware - [4077f0da] GET /media/uploads/3b
+2e5a06011743239484ecb8d1b3f556.jpg → 304 (46ms)
+所在位置 行:15 字符: 1985
++ ... t@trae.ai'; uv run python manage.py runserver 8081 --noreload 2>&1 |  ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-10-28 10:4...pg → 304 (46ms):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-10-28 10:43:57 [Thread-1 (process_request_thread)] INFO  django.server - "GET /media/uploads/3b2e5a06011743239484e
+cb8d1b3f556.jpg HTTP/1.1" 304 0
+2026-10-28 10:43:57 [Thread-3 (process_request_thread)] INFO  common.middleware - [99ecf9f7] GET /api/teams/my → 200 (2
+56ms)
+2026-10-28 10:43:57 [Thread-4 (process_request_thread)] INFO  common.middleware - [324249b5] GET /api/notifications/unr
+ead/count → 200 (224ms)
+2026-10-28 10:43:57 [Thread-4 (process_request_thread)] INFO  django.server - "GET /api/notifications/unread/count HTTP
+/1.1" 200 76
+2026-10-28 10:43:57 [Thread-3 (process_request_thread)] INFO  django.server - "GET /api/teams/my?page=1&size=20 HTTP/1.
+1" 200 197
+2026-10-28 10:43:57 [Thread-2 (process_request_thread)] INFO  common.middleware - [cc24de2e] GET /api/projects/my → 200
+ (325ms)
+2026-10-28 10:43:57 [Thread-2 (process_request_thread)] INFO  django.server - "GET /api/projects/my?page=1&size=50 HTTP
+/1.1" 200 503

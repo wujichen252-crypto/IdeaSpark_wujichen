@@ -73,7 +73,7 @@ $color-gray-100: var(--nexus-divider);
   padding: 20px 32px;
   background: rgba(250, 250, 250, 0.95);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+  border-bottom: 1px solid rgba(230, 230, 230, 0.5);
 }
 
 .header-left {

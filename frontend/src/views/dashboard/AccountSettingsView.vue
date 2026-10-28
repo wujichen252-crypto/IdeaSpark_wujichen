@@ -19,7 +19,7 @@
         <div class="settings-card">
           <h3 class="card-title">个人信息</h3>
           <div class="avatar-section">
-            <img :src="user.avatar || defaultAvatar" alt="头像" class="user-avatar" />
+            <img :src="displayAvatar" alt="头像" class="user-avatar" />
             <button class="change-avatar-btn" @click="handleAvatarChange">更换头像</button>
             <input
               ref="avatarInput"
@@ -135,15 +135,20 @@ placeholder="https://example.com" />
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useMessage } from 'naive-ui'
 import { getCurrentUser, updateUser } from '@/api/user'
 import { useUserStore } from '@/store'
+import { getCurrentUserAvatar } from '@/utils/avatar'
 import type { User } from '@/api/types'
 
 const userStore = useUserStore()
 const message = useMessage()
-const defaultAvatar = 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80'
+
+/** 本页头像：与顶栏 / 社区 / 个人主页共用同一套规则，避免同一账号在不同页显示不同头像 */
+const displayAvatar = computed(() =>
+  getCurrentUserAvatar(user.value?.avatar, user.value?.id, user.value?.username)
+)
 
 // 加载状态
 const isLoading = ref(true)
@@ -321,7 +326,7 @@ $color-gray-100: var(--nexus-divider);
   padding: 20px 32px;
   background: rgba(250, 250, 250, 0.95);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+  border-bottom: 1px solid rgba(230, 230, 230, 0.5);
 }
 
 .header-left {

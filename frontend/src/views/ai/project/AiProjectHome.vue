@@ -433,7 +433,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   }
   
   &.draft {
-    background: rgba(156, 163, 175, 0.2);
+    background: rgba(168, 168, 168, 0.2);
     color: var(--nexus-border-strong);
   }
   

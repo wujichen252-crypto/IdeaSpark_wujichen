@@ -1,9 +1,6 @@
-<svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-  <rect width="36" height="36" rx="8" fill="#000000"/>
-  <!-- 正六边形路径 -->
-  <path d="M18 6L28.392 12L28.392 24L18 30L7.608 24L7.608 12L18 6Z" 
-        stroke="#ffffff" 
-        stroke-width="2" 
-        fill="none"
-        stroke-linejoin="round"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="IdeaSpark">
+  <title>IdeaSpark 图标</title>
+  <rect x="40" y="40" width="432" height="432" rx="88" fill="#000000"/>
+  <path transform="translate(-932.85 -543.92) scale(3.09598)" fill="#FFFFFF" fill-rule="evenodd" d="M373.00 218.00L344.50 298.75L361.00 298.00L382.50 234.50L406.25 298.25L424.00 298.25L392.75 218.25L373.00 218.00Z"/>
 </svg>

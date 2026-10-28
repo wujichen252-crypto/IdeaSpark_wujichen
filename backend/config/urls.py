@@ -2,6 +2,8 @@
 IdeaSpark URL configuration.
 Django Ninja API router — maps all /api/ endpoints.
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.http import HttpResponse
 from django.urls import path
@@ -119,3 +121,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', api.urls),
 ]
+
+# 开发环境（OSS 未配置）由 Django 直接托管上传文件，否则上传成功的图片会 404。
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

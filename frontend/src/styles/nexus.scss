@@ -21,6 +21,8 @@
 /* ── Page Container ── */
 .nexus-page {
   min-height: 100vh;
+  /* 移动端浏览器地址栏收缩时 dvh 会动态跟随，避免出现底部空白 */
+  min-height: 100dvh;
   background-color: var(--nexus-bg);
   font-family: var(--nexus-font-ui);
   letter-spacing: var(--nexus-letter-spacing);
@@ -104,6 +106,8 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  /* 编辑器全屏壳：dvh 兜底移动端工具栏/地址栏导致的视口抖动 */
+  height: 100dvh;
   background-color: var(--nexus-bg);
   overflow: hidden;
 }
@@ -133,12 +137,26 @@
 
 .nexus-editor-sidebar {
   width: 380px;
-  min-width: 380px;
+  min-width: 0;
+  flex: 0 0 auto;
   background: var(--nexus-bg-elevated);
   border-left: 1px solid var(--nexus-border);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+
+/* 窄屏：侧栏改为整宽停靠，由 .nexus-editor-body 同步转为纵向布局 */
+@media (max-width: 900px) {
+  .nexus-editor-body {
+    flex-direction: column;
+  }
+
+  .nexus-editor-sidebar {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--nexus-border);
+  }
 }
 
 /* ── Toolbar (Nexus) ── */
@@ -275,6 +293,13 @@ a {
   text-decoration: inherit;
 }
 
+/* ── Naive UI 弹窗：窄屏下不超出视口 ── */
+/* 部分弹窗用内联 style 写死了 480/560/600px 宽度，移动端会横向溢出，
+   这里统一做视口约束，避免逐处修改内联样式 */
+.n-modal {
+  max-width: calc(100vw - 32px);
+}
+
 /* ── Accessibility: 统一焦点环 ── */
 /* 全站唯一的焦点可见性来源，替代散落的 outline: none。
    此处使用 !important 属刻意的设计系统级例外：Naive UI 通过运行时注入 CSS 给
@@ -335,4 +360,11 @@ html {
 .app-main--with-header {
   /* 与 AppHeader 实际高度统一为同一令牌，避免顶部死区 */
   padding-top: var(--header-height);
+}
+
+/* ── Naive UI 修补 ── */
+/* n-avatar 内部只给 img 设了 100% 宽高，没设 object-fit（默认 fill）。
+   上传的头像很少是正方形，塞进圆形里就被横向/纵向压扁。全站统一改为 cover。 */
+.n-avatar img {
+  object-fit: cover;
 }

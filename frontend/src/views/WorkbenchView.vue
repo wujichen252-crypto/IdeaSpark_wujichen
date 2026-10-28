@@ -8,7 +8,7 @@
       <aside class="sidebar">
         <!-- 用户信息卡片 -->
         <div class="user-card">
-          <img :src="userStore.userInfo?.avatar || defaultAvatar" :alt="userStore.userInfo?.username" class="user-avatar" />
+          <img :src="currentUserAvatar" :alt="userStore.userInfo?.username" class="user-avatar" />
           <div class="user-info">
             <h3 class="user-name">{{ userStore.userInfo?.username || '无迹尘' }}</h3>
             <p class="user-desc" @click="$router.push('/workbench/settings')">
@@ -43,7 +43,7 @@
               :to="`/workbench/team/${team.uuid}`"
               :class="['nav-item', { active: isTeamActive(team.uuid) }]"
             >
-              <img :src="team.avatarUrl || defaultTeamAvatar" :alt="team.name" class="team-avatar-sm" />
+              <img :src="team.avatarUrl || getTeamAvatar(team.uuid, team.name)" :alt="team.name" class="team-avatar-sm" />
               <span class="nav-label">{{ team.name }}</span>
             </router-link>
             <button class="nav-item create-team" @click="openCreateTeamModal">
@@ -123,6 +123,7 @@ style="width: 480px">
 import { ref, computed, onMounted, reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/store'
+import { getCurrentUserAvatar, getTeamAvatar } from '@/utils/avatar'
 import { getMyTeams, createCollaborationTeam } from '@/api/team'
 import { getUnreadCount } from '@/api/notification'
 import type { Team } from '@/api/types'
@@ -143,8 +144,14 @@ const router = useRouter()
 const userStore = useUserStore()
 const message = useMessage()
 
-const defaultAvatar = 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80'
-const defaultTeamAvatar = 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=100&q=80'
+/** 当前用户头像：与顶栏 / 社区 / 个人中心共用同一套生成规则 */
+const currentUserAvatar = computed(() =>
+  getCurrentUserAvatar(
+    userStore.userInfo?.avatar,
+    userStore.userInfo?.id,
+    userStore.userInfo?.username
+  )
+)
 
 // 创建团队弹窗相关
 const showCreateTeamModal = ref(false)
@@ -255,8 +262,8 @@ async function fetchMyTeams() {
       const teams = res.data.data?.teams || []
       teamList.value = teams.map(team => ({
         ...team,
-        // 确保有 avatarUrl 字段
-        avatarUrl: team.avatarUrl || defaultTeamAvatar
+        // 与团队导航、团队详情共用同一套兜底头像
+        avatarUrl: team.avatarUrl || getTeamAvatar(team.uuid, team.name)
       }))
     }
   } catch (error) {
@@ -307,15 +314,15 @@ $color-gray-600: var(--nexus-text-tertiary);
 $color-gray-500: var(--nexus-text-tertiary);
 $color-gray-400: var(--nexus-text-quaternary);
 $color-gray-200: var(--nexus-border);
-$color-gray-100: var(--nexus-divider);
 $color-gray-50: var(--nexus-bg-subtle);
 $color-danger: var(--nexus-error);
 
 .workbench-view {
-  height: 100vh;
+  /* 页面滚动模型：与市场 / 社区入口页保持一致，不再自建 100vh 内层滚动壳。
+     高度要扣掉全局顶栏，否则「顶栏内边距 + 100vh」会凭空多出 56px 空白滚动条。 */
+  min-height: calc(100vh - var(--header-height));
   background: $color-bg;
   position: relative;
-  overflow: hidden;
 }
 
   .grain-overlay {
@@ -332,20 +339,31 @@ $color-danger: var(--nexus-error);
 
 .workbench-layout {
   display: flex;
-  height: 100vh;
+  /* 工作台是「操作台」而非内容展示页：采用参考形态的铺满式布局，
+     侧栏固定贴左、内容区吃满剩余宽度，不再用居中定宽壳夹出大片空白。 */
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* 内层滚动移除后，改由页面滚动。部分子页（通知 / 设置 / 安全 / 用户管理）自带
+   position:sticky 的页头，其 top 需从 0 避让到顶栏高度，否则会滑到全局顶栏下面。
+   多带一层 .main-content 是为了压过子组件自身同权重的 .page-header 规则。 */
+:deep(.main-content .page-header) {
+  top: var(--header-height);
 }
 
 // ==================== 侧边栏 ====================
 .sidebar {
-  width: 240px;
+  width: 272px;
+  flex: 0 0 272px;
   background: $color-white;
-  border-right: 1px solid $color-gray-200;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - var(--header-height));
-  position: fixed;
-  left: 0;
+  /* 与社区左栏同一种做法：随页面滚动并吸附在顶栏下方，而非独立固定层 */
+  position: sticky;
   top: var(--header-height);
+  align-self: flex-start;
+  height: calc(100vh - var(--header-height));
   z-index: var(--nexus-z-sticky);
   overflow-y: auto;
 
@@ -361,16 +379,15 @@ $color-danger: var(--nexus-error);
 
 // 用户卡片
 .user-card {
-  padding: 20px 16px;
-  border-bottom: 1px solid $color-gray-100;
+  padding: 24px 20px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .user-avatar {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -380,17 +397,17 @@ $color-danger: var(--nexus-error);
   min-width: 0;
 
   .user-name {
-    font-size: var(--nexus-font-size-md);
+    font-size: var(--nexus-font-size-lg);
     font-weight: 600;
     color: $color-gray-900;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
 
   .user-desc {
     display: flex;
     align-items: center;
     gap: 4px;
-    font-size: var(--nexus-font-size-sm);
+    font-size: var(--nexus-font-size-base);
     color: $color-gray-400;
     cursor: pointer;
     transition: color 0.3s ease;
@@ -400,8 +417,8 @@ $color-danger: var(--nexus-error);
     }
 
     .edit-icon {
-      width: 12px;
-      height: 12px;
+      width: 14px;
+      height: 14px;
     }
   }
 }
@@ -409,11 +426,11 @@ $color-danger: var(--nexus-error);
 // 导航菜单
 .sidebar-nav {
   flex: 1;
-  padding: 16px 12px;
+  padding: 20px 16px;
 }
 
 .nav-group {
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 
   &:last-child {
     margin-bottom: 0;
@@ -421,9 +438,9 @@ $color-danger: var(--nexus-error);
 }
 
 .nav-group-title {
-  padding: 0 12px;
-  margin-bottom: 8px;
-  font-size: var(--nexus-font-size-xs);
+  padding: 0 16px;
+  margin-bottom: 10px;
+  font-size: var(--nexus-font-size-sm);
   font-weight: 500;
   color: $color-gray-400;
   text-transform: uppercase;
@@ -433,8 +450,8 @@ $color-danger: var(--nexus-error);
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 12px;
+  gap: 14px;
+  padding: 11px 16px;
   border-radius: var(--nexus-radius-sm);
   font-size: var(--nexus-font-size-base);
   color: $color-gray-600;
@@ -445,8 +462,8 @@ $color-danger: var(--nexus-error);
   cursor: pointer;
 
   .nav-icon {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     flex-shrink: 0;
   }
 
@@ -455,7 +472,7 @@ $color-danger: var(--nexus-error);
   }
 
   .nav-badge {
-    padding: 2px 8px;
+    padding: 3px 9px;
     border-radius: var(--nexus-radius-full);
     font-size: var(--nexus-font-size-xs);
     font-weight: 500;
@@ -467,8 +484,8 @@ $color-danger: var(--nexus-error);
   }
 
   .team-avatar-sm {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border-radius: var(--nexus-radius-sm);
     object-fit: cover;
     flex-shrink: 0;
@@ -502,18 +519,7 @@ $color-danger: var(--nexus-error);
 // ==================== 主内容区 ====================
 .main-content {
   flex: 1;
-  margin-left: 240px;
-  min-height: calc(100vh - var(--header-height));
-  overflow-y: auto;
+  min-width: 0;
   background: $color-bg;
-
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: $color-gray-200;
-    border-radius: var(--nexus-radius-sm);
-  }
 }
 </style>

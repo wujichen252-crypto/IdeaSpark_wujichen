@@ -45,7 +45,7 @@ class="new-chat-btn"
 
     <div class="sidebar-footer">
       <div v-if="userStore.userInfo" class="user-info">
-        <n-avatar round size="small" :src="userStore.userInfo.avatar" />
+        <n-avatar round size="small" :src="currentUserAvatar" />
         <span class="username">{{ userStore.userInfo.username }}</span>
       </div>
     </div>
@@ -53,12 +53,23 @@ class="new-chat-btn"
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useChatStore } from '@/store'
 import { useUserStore } from '@/store'
+import { getCurrentUserAvatar } from '@/utils/avatar'
 import { Add, ChatbubbleEllipsesOutline, TrashOutline } from '@vicons/ionicons5'
 
 const chatStore = useChatStore()
 const userStore = useUserStore()
+
+/** 侧栏当前用户头像：与顶栏 / 社区共用同一套生成规则 */
+const currentUserAvatar = computed(() =>
+  getCurrentUserAvatar(
+    userStore.userInfo?.avatar,
+    userStore.userInfo?.id,
+    userStore.userInfo?.username
+  )
+)
 
 function handleNewChat() {
   chatStore.createSession()

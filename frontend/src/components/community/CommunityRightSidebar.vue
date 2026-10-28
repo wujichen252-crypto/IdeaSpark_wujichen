@@ -61,7 +61,7 @@
       >
         <div class="suggest-user" @click="ctx.goToProfile(String(user.id))">
           <img
-            :src="user.avatar"
+            :src="getOtherUserAvatar(user.avatar, user.id, user.name)"
             :alt="user.name"
             class="suggest-avatar"
             @error="ctx.handleImageError"
@@ -93,6 +93,7 @@
 
 <script setup lang="ts">
 import { Users, Compass, UserPlus } from 'lucide-vue-next'
+import { getOtherUserAvatar } from '@/utils/avatar'
 import { useCommunityContext } from '@/composables/useCommunity'
 
 const ctx = useCommunityContext()

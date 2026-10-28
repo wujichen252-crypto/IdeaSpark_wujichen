@@ -158,6 +158,12 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# ── Media files ───────────────────────────────────────────
+# 仅在 OSS 未配置的开发环境下使用：上传文件落到本地，由 Django 直接托管。
+# 生产环境图片走 OSS，不经过这道兜底。
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # ── Disable migrations for unmanaged models ──────────────

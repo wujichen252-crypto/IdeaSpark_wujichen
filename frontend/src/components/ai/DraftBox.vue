@@ -75,7 +75,7 @@ function continueProject(id: string) {
   if (project && project.type === 'document') {
     router.push(`/project/doc/${id}`)
   } else {
-    router.push(`/project/${id}`)
+    router.push(`/market/projects/${id}`)
   }
 }
 

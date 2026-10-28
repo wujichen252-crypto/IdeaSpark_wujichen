@@ -160,6 +160,7 @@ import {
 import { useUserStore } from '@/store'
 import { sendChatMessage } from '@/api/ai'
 import type { ChatMessage } from '@/api/ai'
+import { copyToClipboard } from '@/utils/clipboard'
 
 export interface QuickAction {
   key: string
@@ -394,7 +395,7 @@ function handleQuickAction(action: QuickAction) {
 }
 
 function copyText(text: string) {
-  navigator.clipboard.writeText(text)
+  void copyToClipboard(text)
 }
 
 defineExpose({
@@ -407,13 +408,24 @@ defineExpose({
 
 .nexus-ai-sidebar {
   width: 380px;
-  min-width: 380px;
+  min-width: 0;
+  flex: 0 0 auto;
   background: var(--nexus-bg-elevated);
   border-left: 2px solid var(--nexus-border);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   box-shadow: -4px 0 16px rgba(0, 0, 0, 0.05);
+}
+
+/* 窄屏：AI 面板占满宽度并停靠内容下方（父容器需同时切换为纵向布局） */
+@media (max-width: 900px) {
+  .nexus-ai-sidebar {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--nexus-border);
+    box-shadow: none;
+  }
 }
 
 .nexus-ai-header {

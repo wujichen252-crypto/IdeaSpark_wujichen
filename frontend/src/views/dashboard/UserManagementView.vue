@@ -149,6 +149,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import { getUserAvatar } from '@/utils/avatar'
 import {
   Search,
   Filter,
@@ -186,14 +187,14 @@ const activeUsers = ref(892)
 const newUsersToday = ref(23)
 
 const users = ref([
-  { id: 1, username: '张三', email: 'zhangsan@example.com', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80', status: 'active', createdAt: '2024-01-15T08:30:00' },
-  { id: 2, username: '李四', email: 'lisi@example.com', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80', status: 'active', createdAt: '2024-01-14T14:20:00' },
-  { id: 3, username: '王五', email: 'wangwu@example.com', avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80', status: 'inactive', createdAt: '2024-01-13T09:15:00' },
-  { id: 4, username: '赵六', email: 'zhaoliu@example.com', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80', status: 'active', createdAt: '2024-01-12T16:45:00' },
-  { id: 5, username: '钱七', email: 'qianqi@example.com', avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80', status: 'banned', createdAt: '2024-01-11T11:30:00' },
-  { id: 6, username: '孙八', email: 'sunba@example.com', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80', status: 'active', createdAt: '2024-01-10T13:20:00' },
-  { id: 7, username: '周九', email: 'zhoujiu@example.com', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80', status: 'active', createdAt: '2024-01-09T10:10:00' },
-  { id: 8, username: '吴十', email: 'wushi@example.com', avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&q=80', status: 'inactive', createdAt: '2024-01-08T15:30:00' }
+  { id: 1, username: '张三', email: 'zhangsan@example.com', avatar: getUserAvatar(1, '张三'), status: 'active', createdAt: '2024-01-15T08:30:00' },
+  { id: 2, username: '李四', email: 'lisi@example.com', avatar: getUserAvatar(2, '李四'), status: 'active', createdAt: '2024-01-14T14:20:00' },
+  { id: 3, username: '王五', email: 'wangwu@example.com', avatar: getUserAvatar(3, '王五'), status: 'inactive', createdAt: '2024-01-13T09:15:00' },
+  { id: 4, username: '赵六', email: 'zhaoliu@example.com', avatar: getUserAvatar(4, '赵六'), status: 'active', createdAt: '2024-01-12T16:45:00' },
+  { id: 5, username: '钱七', email: 'qianqi@example.com', avatar: getUserAvatar(5, '钱七'), status: 'banned', createdAt: '2024-01-11T11:30:00' },
+  { id: 6, username: '孙八', email: 'sunba@example.com', avatar: getUserAvatar(6, '孙八'), status: 'active', createdAt: '2024-01-10T13:20:00' },
+  { id: 7, username: '周九', email: 'zhoujiu@example.com', avatar: getUserAvatar(7, '周九'), status: 'active', createdAt: '2024-01-09T10:10:00' },
+  { id: 8, username: '吴十', email: 'wushi@example.com', avatar: getUserAvatar(8, '吴十'), status: 'inactive', createdAt: '2024-01-08T15:30:00' }
 ])
 
 // ==================== 计算属性 ====================
@@ -319,7 +320,7 @@ $color-danger: var(--nexus-error);
   padding: 20px 32px;
   background: rgba(250, 250, 250, 0.95);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+  border-bottom: 1px solid rgba(230, 230, 230, 0.5);
 }
 
 .header-left {

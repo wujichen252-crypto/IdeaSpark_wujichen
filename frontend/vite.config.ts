@@ -91,6 +91,11 @@ export default defineConfig(({ mode }) => {
         '/api': {
           target: apiBaseUrl,
           changeOrigin: true
+        },
+        // 开发环境上传的图片（OSS 未配置时的本地兜底）由后端托管，需一并代理
+        '/media': {
+          target: apiBaseUrl,
+          changeOrigin: true
         }
       },
       // 优化开发服务器性能

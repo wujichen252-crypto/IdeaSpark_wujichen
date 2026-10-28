@@ -7,20 +7,20 @@
   --nexus-bg: #fafafa;
   --nexus-bg-elevated: #ffffff;
   --nexus-bg-glass: rgba(255, 255, 255, 0.72); /* 浅色玻璃底 */
-  --nexus-bg-glass-dark: rgba(17, 24, 39, 0.72); /* 深色玻璃底 */
+  --nexus-bg-glass-dark: rgba(23, 23, 23, 0.72); /* 深色玻璃底 */
 
-  /* 文字三级：全部通过 WCAG AA（正文 ≥4.5:1，白底） */
-  --nexus-text-primary: #111827; /* 16.4:1 */
-  --nexus-text-secondary: #4b5563; /* 7.6:1 */
-  --nexus-text-tertiary: #6b7280; /* 4.8:1 */
+  /* 文字四级：全部通过 WCAG AA（正文 ≥4.5:1，白底） */
+  --nexus-text-primary: #171717; /* 17.9:1 —— 近黑，不用纯黑 */
+  --nexus-text-secondary: #555555; /* 7.5:1 */
+  --nexus-text-tertiary: #6b6b6b; /* 5.3:1 */
   --nexus-text-inverse: #ffffff;
 
-  --nexus-border: #e5e7eb;
+  --nexus-border: #e6e6e6;
   --nexus-border-light: rgba(0, 0, 0, 0.06); /* 浅底可见的轻边框 */
-  --nexus-divider: #f3f4f6;
+  --nexus-divider: #f2f2f2;
 
-  --nexus-accent: #000000;
-  --nexus-accent-hover: #374151;
+  --nexus-accent: #171717;
+  --nexus-accent-hover: #333333;
 
   /* Functional colors — 填色（底色/图形，非正文文字） */
   --nexus-success: #10b981;
@@ -33,25 +33,29 @@
   --nexus-warning-text: #b45309; /* 5.0:1 */
   --nexus-error-text: #b91c1c; /* 6.5:1 */
 
-  /* ── Neutrals ── 中性灰原语：全站灰阶的唯一来源；业务样式请引用下方语义令牌 */
+  /* ── Neutrals ── 中性灰原语：全站灰阶的唯一来源；业务样式请引用下方语义令牌
+     参考色阶（单色方案）：#FFFFFF → #C8C8C8 → #8A8A8A → #555555 → #262626
+     全部为纯中性灰（R=G=B），不含蓝味，保证与任意强调色共存时不脏 */
   --nexus-white: #ffffff;
-  --nexus-gray-50: #f9fafb;
-  --nexus-gray-100: #f3f4f6;
-  --nexus-gray-200: #e5e7eb;
-  --nexus-gray-300: #d1d5db;
-  --nexus-gray-400: #9ca3af;
-  --nexus-gray-600: #6b7280;
-  --nexus-gray-700: #374151;
-  --nexus-gray-800: #1f2937;
-  --nexus-gray-900: #111827;
+  --nexus-gray-50: #fafafa;
+  --nexus-gray-100: #f2f2f2;
+  --nexus-gray-200: #e6e6e6;
+  --nexus-gray-300: #c8c8c8; /* 参考色阶第 2 档：克制分隔 / 强边框 */
+  --nexus-gray-400: #a8a8a8; /* 装饰性图标 / 禁用描边，禁止承载文字 */
+  --nexus-gray-500: #8a8a8a; /* 参考色阶第 3 档：可承载辅助文字（3.5:1） */
+  --nexus-gray-600: #6b6b6b;
+  --nexus-gray-700: #555555; /* 参考色阶第 4 档：次级正文（7.5:1） */
+  --nexus-gray-800: #333333;
+  --nexus-gray-900: #262626; /* 参考色阶第 5 档：主文字 / 深色区块底 */
+  --nexus-black: #171717; /* 最深一级：按钮与强调面（近黑，比纯黑更「成熟」） */
 
   /* ── Surfaces & Lines ── （语义层级） */
-  --nexus-bg-subtle: #f9fafb; /* 次级底色：分区背景 / 斑马纹 */
-  --nexus-bg-sunken: #f3f4f6; /* 凹陷底色：代码块 / 内嵌区域 */
-  --nexus-border-strong: #d1d5db; /* 强边框：需要明确分界的容器 */
+  --nexus-bg-subtle: #fafafa; /* 次级底色：分区背景 / 斑马纹 */
+  --nexus-bg-sunken: #f2f2f2; /* 凹陷底色：代码块 / 内嵌区域 */
+  --nexus-border-strong: #c8c8c8; /* 强边框：需要明确分界的容器 */
 
-  /* 第四级文字：仅用于占位符、禁用文字与纯装饰性图标；对比度不足，禁止承载正文 */
-  --nexus-text-quaternary: #9ca3af;
+  /* 第四级文字：仅用于占位符、禁用文字与纯装饰性图标；3.5:1，禁止承载正文 */
+  --nexus-text-quaternary: #8a8a8a;
 
   /* ── Typography ── */
   /* 单一字体栈：外链字体已移除，改用系统字体 + 中文字体回退，保证国内外/断网环境字面一致 */
@@ -127,7 +131,7 @@
   --nexus-duration-slow: 320ms;
 
   /* ─legacy overrides for Naive UI integration ── */
-  --primary-color: #000000;
+  --primary-color: #171717;
   /* 页头唯一高度来源：与 AppHeader 实际高度一致，全站不得另写其它页头高度 */
   --header-height: 56px;
   /* 由 main.ts 运行时写入实际滚动条宽度 */
@@ -149,6 +153,6 @@ body {
 
 /* Selection style */
 ::selection {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--nexus-black);
+  color: var(--nexus-text-inverse);
 }

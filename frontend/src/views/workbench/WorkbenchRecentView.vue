@@ -51,23 +51,23 @@
                   <n-icon
 v-if="project.category.includes('设计')"
 :component="ImageOutline"
-color="#f59e0b"
-size="32" />
+color="var(--nexus-text-quaternary)"
+size="40" />
                   <n-icon
 v-else-if="project.category.includes('代码')"
 :component="CodeSlashOutline"
 color="var(--nexus-link)"
-size="32" />
+size="40" />
                   <n-icon
 v-else
 :component="BulbOutline"
-color="#10b981"
-size="32" />
+color="var(--nexus-text-quaternary)"
+size="40" />
                 </div>
                 <div class="card-overlay">
                   <n-button
 ghost
-size="tiny"
+size="small"
 color="#fff"
 @click.stop="handleOpenProject(project.id)">
                     进入
@@ -269,33 +269,35 @@ const formatTime = (timestamp: number) => {
 
 <style scoped lang="scss">
 .workbench-recent-view {
-  height: 100%;
   display: flex;
   flex-direction: column;
   background-color: var(--nexus-bg-subtle);
-  padding: 24px 32px;
-  padding-top: calc(56px + 24px);
+  padding: 40px 48px;
+  padding-top: calc(56px + 40px);
   width: 100%;
   box-sizing: border-box;
 }
 
 .view-header {
-  margin-bottom: 24px; /* 减少头部间距 */
+  margin-bottom: 40px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   
   .header-left {
     .view-title {
-      font-size: var(--nexus-font-size-lg); /* 减小标题字体 */
-      font-weight: 700;
+      /* 页面级标题：与「我的项目」页同档位，避免各子页标题忽大忽小 */
+      font-size: var(--nexus-font-size-2xl);
+      font-weight: 600;
+      line-height: var(--nexus-leading-display);
+      letter-spacing: -0.02em;
       color: var(--nexus-text-primary);
-      margin: 0 0 4px 0;
+      margin: 0 0 10px 0;
     }
     
     .view-subtitle {
       color: var(--nexus-text-tertiary);
-      font-size: var(--nexus-font-size-sm);
+      font-size: var(--nexus-font-size-md);
     }
   }
 
@@ -312,7 +314,7 @@ const formatTime = (timestamp: number) => {
       }
 
       .search-input {
-        width: 240px;
+        width: 280px;
       }
     }
   }
@@ -320,43 +322,60 @@ const formatTime = (timestamp: number) => {
 
 .project-list-container {
   flex: 1;
-  overflow-y: auto;
-  padding-right: 6px;
 }
 
 .time-group {
-  margin-bottom: 24px; /* 减少组间距 */
+  margin-bottom: 44px;
   
   .group-title {
-    font-size: var(--nexus-font-size-sm);
+    font-size: var(--nexus-font-size-base);
     font-weight: 600;
     color: var(--nexus-text-quaternary);
-    margin-bottom: 12px;
+    letter-spacing: 0.04em;
+    margin-bottom: 18px;
     padding-left: 2px;
   }
 }
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* 减小卡片最小宽度 */
-  gap: 16px; /* 减少网格间距 */
+  /* 与「所有项目」页同一档：列数分档，卡片宽度始终落在 330~450 之间 */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+@media (min-width: 1700px) {
+  .project-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 2300px) {
+  .project-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1100px) {
+  .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .project-card {
+  /* 无边框：白面浮在灰画布上，靠底色层级分区，不再描 1px 边 */
   background: var(--nexus-white);
-  border-radius: var(--nexus-radius-sm); /* 减小圆角 */
-  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-lg);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 200px; /* 减小卡片高度 */
+  height: 300px;
   
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    border-color: var(--nexus-border-strong);
+    transform: translateY(-4px);
+    box-shadow: var(--nexus-shadow-md);
     
     .card-cover {
       .card-overlay {
@@ -366,7 +385,7 @@ const formatTime = (timestamp: number) => {
   }
   
   .card-cover {
-    height: 100px; /* 减小封面高度 */
+    height: 168px;
     background-color: var(--nexus-divider);
     background-size: cover;
     background-position: center;
@@ -395,7 +414,7 @@ const formatTime = (timestamp: number) => {
   }
   
   .card-content {
-    padding: 12px; /* 减少内容区内边距 */
+    padding: 18px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -409,7 +428,7 @@ const formatTime = (timestamp: number) => {
       .card-title {
         font-weight: 600;
         color: var(--nexus-gray-800);
-        font-size: var(--nexus-font-size-base); /* 减小标题字体 */
+        font-size: var(--nexus-font-size-md);
         line-height: var(--nexus-leading-display);
         white-space: nowrap;
         overflow: hidden;
@@ -430,7 +449,7 @@ const formatTime = (timestamp: number) => {
     }
     
     .card-desc {
-      font-size: var(--nexus-font-size-xs);
+      font-size: var(--nexus-font-size-sm);
       color: var(--nexus-text-tertiary);
       line-height: var(--nexus-leading-compact);
       margin: 0 0 auto 0;
@@ -439,11 +458,11 @@ const formatTime = (timestamp: number) => {
       line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      height: 34px;
+      height: 40px;
     }
     
     .card-footer {
-      margin-top: 10px;
+      margin-top: 12px;
       display: flex;
       justify-content: space-between;
       align-items: center;

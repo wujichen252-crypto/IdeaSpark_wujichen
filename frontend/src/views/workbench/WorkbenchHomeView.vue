@@ -332,6 +332,7 @@
 <script setup lang="ts">
 import { ref, computed, onUnmounted } from 'vue'
 import { useUserStore } from '@/store'
+import { getUserAvatar } from '@/utils/avatar'
 import {
   Zap,
   Bell,
@@ -454,7 +455,7 @@ interface Task {
 
 const tasks: Ref<Task[]> = ref([
   { id: '1', title: '完成项目市场页面设计评审', description: '与产品团队确认最终交互细节，准备开发交付', priority: 'high', time: '14:00 - 15:30', comments: 3, completed: false },
-  { id: '2', title: '更新设计系统文档', description: '补充新的组件使用规范与代码示例', priority: 'medium', time: '16:00 截止', assignee: { name: 'Alex', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&q=80' }, completed: false },
+  { id: '2', title: '更新设计系统文档', description: '补充新的组件使用规范与代码示例', priority: 'medium', time: '16:00 截止', assignee: { name: 'Alex', avatar: getUserAvatar(undefined, 'Alex') }, completed: false },
   { id: '3', title: '整理本周设计灵感', description: '收集并分类保存到 Notion 灵感库', priority: 'low', time: '本周内', completed: false },
   { id: '4', title: '晨会同步与站会', description: '已完成 · 09:00 - 09:30', priority: 'medium', time: '09:00 - 09:30', completed: true }
 ])
@@ -505,11 +506,11 @@ const milestoneProgress = computed(() => Math.round((milestones.value / totalMil
 
 /** 团队成员 */
 const teamMembers = [
-  { name: 'Sarah', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&q=80' },
-  { name: 'Alex', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&q=80' },
-  { name: 'Maria', avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&q=80' },
-  { name: 'David', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&q=80' },
-  { name: 'Emma', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=50&q=80' }
+  { name: 'Sarah', avatar: getUserAvatar(undefined, 'Sarah') },
+  { name: 'Alex', avatar: getUserAvatar(undefined, 'Alex') },
+  { name: 'Maria', avatar: getUserAvatar(undefined, 'Maria') },
+  { name: 'David', avatar: getUserAvatar(undefined, 'David') },
+  { name: 'Emma', avatar: getUserAvatar(undefined, 'Emma') }
 ]
 
 /** 日历月份 */
@@ -560,9 +561,9 @@ const recentFiles = [
 
 /** 团队动态 */
 const teamActivity = [
-  { id: '1', user: { name: 'Alex', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&q=80' }, action: '完成了', target: '首页原型', time: '10分钟前' },
-  { id: '2', user: { name: 'Maria', avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&q=80' }, action: '评论了你的设计稿', time: '1小时前' },
-  { id: '3', user: { name: 'David', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&q=80' }, action: '分享了', target: '灵感链接', time: '2小时前' }
+  { id: '1', user: { name: 'Alex', avatar: getUserAvatar(undefined, 'Alex') }, action: '完成了', target: '首页原型', time: '10分钟前' },
+  { id: '2', user: { name: 'Maria', avatar: getUserAvatar(undefined, 'Maria') }, action: '评论了你的设计稿', time: '1小时前' },
+  { id: '3', user: { name: 'David', avatar: getUserAvatar(undefined, 'David') }, action: '分享了', target: '灵感链接', time: '2小时前' }
 ]
 
 // ==================== 方法 ====================
@@ -686,7 +687,7 @@ $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   background: rgba(250, 250, 250, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(229, 231, 235, 0.6);
+  border-bottom: 1px solid rgba(230, 230, 230, 0.6);
 }
 
 .header-left {

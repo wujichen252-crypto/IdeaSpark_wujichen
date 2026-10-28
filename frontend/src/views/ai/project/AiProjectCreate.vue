@@ -22,7 +22,7 @@ class="message-item"
 :class="msg.role">
             <div class="avatar">
               <n-avatar
-:src="msg.role === 'ai' ? 'https://api.dicebear.com/7.x/bottts/svg?seed=ai' : undefined" 
+:src="msg.role === 'ai' ? AI_AVATAR : undefined" 
                        :color="msg.role === 'user' ? 'var(--nexus-success)' : undefined">
                 {{ msg.role === 'user' ? '我' : 'AI' }}
               </n-avatar>
@@ -39,7 +39,7 @@ class="message-item"
           </div>
           <div v-if="loading" class="message-item ai">
             <div class="avatar">
-              <n-avatar src="https://api.dicebear.com/7.x/bottts/svg?seed=ai" />
+              <n-avatar :src="AI_AVATAR" />
             </div>
             <div class="content">
               <div class="bubble loading">
@@ -158,6 +158,10 @@ import { PaperPlaneOutline, ArrowBack, SparklesOutline } from '@vicons/ionicons5
 import { useMessage } from 'naive-ui'
 import PluginSelector from '@/components/ai/PluginSelector.vue'
 import DraftBox from '@/components/ai/DraftBox.vue'
+import { getAIAvatar } from '@/utils/avatar'
+
+/** AI 助手头像：全站唯一，避免同一助手在不同页面长相不同 */
+const AI_AVATAR = getAIAvatar()
 
 const router = useRouter()
 const aiWorkshopStore = useAiWorkshopStore()
@@ -324,7 +328,7 @@ const createProject = async () => {
   message.success('项目创建成功，正在跳转工作台...')
   
   setTimeout(() => {
-    router.push(`/project/${newProject.id}`)
+    router.push(`/market/projects/${newProject.id}`)
   }, 1000)
 }
 
