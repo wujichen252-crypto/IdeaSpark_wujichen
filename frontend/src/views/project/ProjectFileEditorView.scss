@@ -62,31 +62,15 @@
 }
 
 /* CSV 编辑器 */
-.editor-csv {
+.editor-csv-host {
   flex: 1;
+  min-width: 0;
+  min-height: 0;
   display: flex;
-  flex-direction: column;
-  gap: var(--nexus-space-4);
 }
 
-.csv-toolbar {
-  /* 与全局类 .nexus-glass-panel 同源，避免第二份玻璃态实现 */
-  @include nexus-glass;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px var(--nexus-space-4);
-}
-
-.csv-preview-panel {
-  flex: 1;
-  padding: var(--nexus-space-4);
-}
-
-.csv-source-panel {
-  flex: 1;
-  padding: var(--nexus-space-4);
-}
+/* CSV 面板内部样式（.editor-csv / .csv-toolbar / .csv-preview-panel 等）
+   已随组件声明在 CsvPanel.vue 内 —— 原因同上：scoped 无法命中子组件内部节点。 */
 
 /* Slides 编辑器 */
 .editor-slides-host {
@@ -96,89 +80,8 @@
   display: flex;
 }
 
-.editor-slides {
-  flex: 1;
-  display: flex;
-  gap: 16px;
-  min-width: 0;
-}
-
-.slides-sider {
-  width: 220px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.slides-sider-header {
-  padding: 14px 16px;
-  font-weight: 600;
-  color: var(--nexus-text-primary);
-  border-bottom: 1px solid var(--nexus-border-light);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  font-size: var(--nexus-font-size-base);
-}
-
-.slides-sider-title {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.nexus-pill-btn {
-  border-radius: var(--nexus-radius-full) !important;
-}
-
-.slides-list {
-  padding: 12px;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.slide-item {
-  padding: 10px;
-  border-radius: var(--nexus-radius-md);
-  border: 1px solid var(--nexus-border-light);
-  background: rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-  transition: border-color 200ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.slide-item:hover {
-  border-color: rgba(0, 0, 0, 0.12);
-  background: rgba(0, 0, 0, 0.02);
-}
-
-.slide-item.active {
-  border-color: var(--nexus-text-primary);
-  background: rgba(0, 0, 0, 0.04);
-}
-
-.slide-item-title {
-  font-weight: 600;
-  color: var(--nexus-text-primary);
-  font-size: var(--nexus-font-size-sm);
-}
-
-.slide-item-sub {
-  margin-top: 4px;
-  font-size: var(--nexus-font-size-xs);
-  color: var(--nexus-text-tertiary);
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.slides-main {
-  flex: 1;
-  min-width: 0;
-  padding: 16px;
-}
+/* 幻灯片面板内部样式（.editor-slides / .slides-sider / .slides-list / .slides-main 等）
+   已随组件声明在 SlidesPanel.vue 内 —— 原因同头部：scoped 样式无法命中子组件内部节点。 */
 
 /* Word 文档编辑器样式 */
 .editor-doc {
@@ -198,35 +101,5 @@
 @media (max-width: 960px) {
   .editor-container {
     flex-direction: column;
-  }
-
-  /* 窄屏：幻灯片页列表由侧栏改为顶部横向条，编辑区独占整宽，
-     否则 220px 侧栏 + flex:1 编辑区会在 375px 屏上各自被压到不可用 */
-  .editor-slides {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .slides-sider {
-    width: 100%;
-    flex: 0 0 auto;
-    max-height: 148px;
-  }
-
-  .slides-list {
-    flex-direction: row;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 10px;
-  }
-
-  .slide-item {
-    flex: 0 0 132px;
-  }
-
-  .slides-main {
-    flex: 1 1 auto;
-    min-height: 0;
-    padding: 12px;
   }
 }

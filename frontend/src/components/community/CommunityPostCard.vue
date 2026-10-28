@@ -8,7 +8,7 @@
       <div class="author-info" @click="ctx.goToProfile(String(post.author?.id || ''))">
         <div class="story-ring-sm">
           <img
-            :src="post.author?.avatar || ctx.defaultAvatar.value"
+            :src="getOtherUserAvatar(post.author?.avatar, post.author?.id, post.author?.username)"
             :alt="post.author?.username"
             class="author-avatar"
             @error="ctx.handleImageError"
@@ -91,8 +91,30 @@
 <script setup lang="ts">
 import { MoreHorizontal, Heart, MessageCircle } from 'lucide-vue-next'
 import type { Post } from '@/api/types'
+import { getOtherUserAvatar } from '@/utils/avatar'
 import { useCommunityContext } from '@/composables/useCommunity'
 
 const props = defineProps<{ post: Post; index: number }>()
 const ctx = useCommunityContext()
 </script>
+
+<style scoped lang="scss">
+.comments-link {
+  margin-top: 16px;
+  text-align: right;
+
+  .view-comments-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--nexus-text-tertiary);
+    font-size: var(--nexus-font-size-base);
+    cursor: pointer;
+    transition: color 0.18s ease;
+
+    &:hover {
+      color: var(--nexus-text-primary);
+    }
+  }
+}
+</style>

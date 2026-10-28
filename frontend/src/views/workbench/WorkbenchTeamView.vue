@@ -1217,12 +1217,11 @@ function formatUpdateTime(updatedAt: number): string {
 
 <style scoped lang="scss">
 .workbench-team-view {
-  height: 100%;
   display: flex;
   flex-direction: column;
   background-color: var(--nexus-white);
-  padding: 32px 48px;
-  padding-top: calc(56px + 32px);
+  padding: 40px 48px;
+  padding-top: calc(56px + 40px);
   width: 100%;
   box-sizing: border-box;
 }
@@ -1257,9 +1256,9 @@ function formatUpdateTime(updatedAt: number): string {
 
   .profile-info {
     .profile-name {
-      font-size: var(--nexus-font-size-xl); /* 加大名字字体 */
+      font-size: var(--nexus-font-size-2xl); /* 与工作台页面标题同档 */
       font-weight: 700;
-      margin: 0 0 6px 0;
+      margin: 0 0 8px 0;
       color: var(--nexus-text-primary);
       letter-spacing: -0.025em;
     }
@@ -1307,9 +1306,7 @@ function formatUpdateTime(updatedAt: number): string {
 
 .project-list-container {
   flex: 1;
-  overflow-y: auto;
   padding-bottom: 32px;
-  padding-right: 8px;
 }
 
 /* 列表视图样式 - Modified for Grid Layout with Gray Container */

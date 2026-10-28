@@ -226,9 +226,9 @@ const searchQuery = ref<string>('')
 
 import { getTeamAvatar, handleAvatarError } from '@/utils/avatar'
 
-/** 默认头像（使用本地 SVG） */
-const defaultAvatar: string = getTeamAvatar(undefined, 'User', true, 2)
-const defaultGroupIcon: string = getTeamAvatar(undefined, 'Group', true, 2)
+/** 默认头像（与全站同一套本地生成规则） */
+const defaultAvatar: string = getTeamAvatar(undefined, 'User')
+const defaultGroupIcon: string = getTeamAvatar(undefined, 'Group')
 const defaultCover: string = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDEyMDAgMzAwIj48cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNlNWU3ZWIiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI0OCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmaWxsPSIjOWJhM2FkIj5Db3ZlciBJbWFnZTwvdGV4dD48L3N2Zz4='
 
 /**
@@ -253,7 +253,7 @@ function handleAvatarErrorEvent(e: Event, userId?: number | string, username?: s
   const target = e.target as HTMLImageElement
   if (!target.dataset.errorHandled) {
     target.dataset.errorHandled = 'true'
-    target.src = handleAvatarError(2, userId, username)
+    target.src = handleAvatarError(userId, username)
   }
 }
 

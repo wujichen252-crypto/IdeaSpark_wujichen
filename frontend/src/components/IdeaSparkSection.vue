@@ -18,9 +18,8 @@
         <!-- Left Column: Logo & Copyright -->
         <div class="footer-left">
           <div class="footer-logo">
-            <!-- Placeholder for Logo -->
-            <div class="logo-placeholder"></div>
-            <span class="logo-text">IDEASPARK</span>
+            <img :src="logoIcon" class="logo-mark" alt="" aria-hidden="true" />
+            <img :src="logoWordmark" class="logo-wordmark" alt="IdeaSpark" />
           </div>
           <p class="copyright">© 2025 IDEASPARK 版权所有</p>
         </div>
@@ -58,7 +57,12 @@
 </template>
 
 <script setup lang="ts">
-// Logic can be added here if needed in the future
+/**
+ * 首页底部品牌区
+ * @description 展示平台品牌标识、简介与站点链接
+ */
+import logoIcon from '@/assets/logo-icon.svg'
+import logoWordmark from '@/assets/logo-ideaspark.svg'
 </script>
 
 <style scoped lang="scss">
@@ -142,17 +146,21 @@
   margin-bottom: 24px;
 }
 
-.logo-placeholder {
+/* 品牌图标：源文件是「黑底白标」，本区块为深色底，反相后得到「白底黑标」，
+   与顶栏 / 登录页使用同一套 logo，不再用占位方块 */
+.logo-mark {
   width: 32px;
   height: 32px;
-  background-color: var(--nexus-white);
-  border-radius: var(--nexus-radius-sm); /* Simple placeholder shape */
+  display: block;
+  filter: invert(1);
 }
 
-.logo-text {
-  font-size: var(--nexus-font-size-lg);
-  font-weight: 700;
-  letter-spacing: 1px;
+/* 品牌字标：同样反相，保证深色底上可见 */
+.logo-wordmark {
+  height: 18px;
+  width: auto;
+  display: block;
+  filter: invert(1);
 }
 
 .copyright {

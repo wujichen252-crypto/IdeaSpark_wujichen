@@ -361,3 +361,10 @@ html {
   /* 与 AppHeader 实际高度统一为同一令牌，避免顶部死区 */
   padding-top: var(--header-height);
 }
+
+/* ── Naive UI 修补 ── */
+/* n-avatar 内部只给 img 设了 100% 宽高，没设 object-fit（默认 fill）。
+   上传的头像很少是正方形，塞进圆形里就被横向/纵向压扁。全站统一改为 cover。 */
+.n-avatar img {
+  object-fit: cover;
+}

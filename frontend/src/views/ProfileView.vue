@@ -394,7 +394,7 @@ const handleCoverChange = async (event: Event) => {
 }
 
 const goToProject = (id: string) => {
-  router.push(`/project/${id}`)
+  router.push(`/market/projects/${id}`)
 }
 
 const goToPost = (id: string) => {

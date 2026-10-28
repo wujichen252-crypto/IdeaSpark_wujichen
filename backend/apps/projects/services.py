@@ -613,12 +613,21 @@ def list_market_projects(keyword: Optional[str], category: Optional[str],
     return result
 
 
-def get_market_project_detail(project_id: str) -> dict:
-    """GET /api/market/projects/{projectId}"""
+def get_market_project_detail(project_id: str, user_id: int | None = None) -> dict:
+    """GET /api/market/projects/{projectId}
+
+    可见性规则：
+    - visibility='public'：任何人可查；
+    - visibility='private'：仅 owner 本人可查（其余用户拿不到，返回 NotFound 避免泄露存在性）。
+    """
     try:
-        project = Project.objects.get(id=project_id, visibility='public')
+        project = Project.objects.get(id=project_id)
     except Project.DoesNotExist:
         raise NotFoundException('项目不存在')
+
+    if project.visibility == 'private':
+        if not user_id or project.owner_id != user_id:
+            raise NotFoundException('项目不存在')
 
     like_count = _aggregate_like_counts([project_id]).get(project_id, 0)
     tags = _market_tags(project)

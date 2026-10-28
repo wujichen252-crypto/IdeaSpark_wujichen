@@ -1,15 +1,11 @@
 <template>
   <div class="ai-message" :class="message.role">
     <div class="avatar">
-      <n-avatar 
-        round 
-        :size="message.role === 'ai' ? 28 : 24" 
+      <n-avatar
+        round
+        :size="message.role === 'ai' ? 28 : 24"
         :src="avatarSrc"
-        :color="message.role === 'ai' ? '#dcfce7' : '#f1f5f9'"
-      >
-        <n-icon v-if="message.role === 'ai'" color="#22c55e" :size="14"><Sparkles /></n-icon>
-        <n-icon v-else color="#64748b" :size="14"><PersonOutline /></n-icon>
-      </n-avatar>
+      />
     </div>
     
     <div class="content-wrapper">
@@ -82,8 +78,9 @@ circle
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useUserStore } from '@/store'
-import { CopyOutline, SaveOutline, Sparkles, PersonOutline } from '@vicons/ionicons5'
+import { CopyOutline, SaveOutline } from '@vicons/ionicons5'
 import { useMessage } from 'naive-ui'
+import { getAIAvatar, getCurrentUserAvatar } from '@/utils/avatar'
 import { copyToClipboard } from '@/utils/clipboard'
 
 const props = defineProps<{
@@ -104,9 +101,14 @@ const nMessage = useMessage()
 
 const avatarSrc = computed(() => {
   if (props.message.role === 'user') {
-    return userStore.userInfo?.avatar || undefined
+    return getCurrentUserAvatar(
+      userStore.userInfo?.avatar,
+      userStore.userInfo?.id,
+      userStore.userInfo?.username
+    )
   }
-  return undefined
+  // AI 形象全站唯一：与 AI 侧栏、AI 创建页共用同一个头像
+  return getAIAvatar()
 })
 
 // Simple markdown renderer for chat bubbles

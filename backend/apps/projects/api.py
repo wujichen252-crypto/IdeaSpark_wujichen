@@ -266,10 +266,15 @@ def market_project_list(request: HttpRequest,
     })
 
 
-@router.get('/api/market/projects/{project_id}', auth=None)
+@router.get('/api/market/projects/{project_id}', auth=OptionalAuthBearer())
 def market_project_detail(request: HttpRequest, project_id: str):
-    """获取项目市场详情"""
-    detail = services.get_market_project_detail(project_id)
+    """获取项目市场详情。
+
+    公开项目：任何人可查；
+    私有项目：仅登录且为 owner 的用户可查，其余返回 NotFound（避免泄露存在性）。
+    """
+    user_id = getattr(request, 'user_id', None)
+    detail = services.get_market_project_detail(project_id, user_id)
     return ApiResponseData.ok(data=detail)
 
 

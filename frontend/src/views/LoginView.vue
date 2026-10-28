@@ -291,7 +291,10 @@ async function handleLogin(): Promise<void> {
         id: String(user.id),
         username: user.username,
         email: user.email,
-        avatar: user.avatar || `https://api.dicebear.com/7.x/adventurer/svg?seed=${user.username}`,
+        // 不得在此伪造头像：真实头像为空时必须保持空，
+        // 否则会把「临时兜底图」当成用户真实头像持久化，
+        // 导致社区等直接读后端 avatar 的页面显示成另一张脸。
+        avatar: user.avatar || '',
         role: user.role || '用户',
         stats: { likes: 0, followers: 0, following: 0 }
       },
@@ -333,7 +336,7 @@ async function handleRegister(): Promise<void> {
 
 <style scoped lang="scss">
 /* 认证页：编辑式双栏。左栏承载品牌叙事（浅底），右栏承载单一任务（白底），
-   两者以 1px 发丝线分隔；不使用卡片、渐变球或外部背景图。 */
+   两者只靠底色深浅分区，不使用描边、卡片、渐变球或外部背景图。 */
 .auth-page {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
@@ -351,8 +354,8 @@ async function handleRegister(): Promise<void> {
   justify-content: space-between;
   gap: var(--nexus-space-12);
   padding: clamp(32px, 4vw, 56px) clamp(32px, 5vw, 72px);
-  background: var(--nexus-bg);
-  border-right: 1px solid var(--nexus-border);
+  /* 深一档的底色代替竖向分隔线 */
+  background: var(--nexus-bg-sunken);
 }
 
 .brand-mark {
@@ -409,7 +412,6 @@ async function handleRegister(): Promise<void> {
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--nexus-border);
 }
 
 .brand-step {
@@ -418,7 +420,6 @@ async function handleRegister(): Promise<void> {
   column-gap: var(--nexus-space-4);
   row-gap: 2px;
   padding: var(--nexus-space-4) 0;
-  border-bottom: 1px solid var(--nexus-border);
 }
 
 .brand-step__no {
@@ -537,17 +538,18 @@ async function handleRegister(): Promise<void> {
   position: relative;
 }
 
+/* 无边框输入：靠底色区分可编辑区域，焦点才显形（填充式而非描边式） */
 .field__input {
   width: 100%;
   height: 44px;
   padding: 0 var(--nexus-space-4);
-  border: 1px solid var(--nexus-border);
+  border: 0;
   border-radius: var(--nexus-radius-md);
-  background: var(--nexus-bg-elevated);
+  background: var(--nexus-bg-sunken);
   font-family: inherit;
   font-size: var(--nexus-font-size-base);
   color: var(--nexus-text-primary);
-  transition: border-color var(--nexus-duration-fast) var(--nexus-ease);
+  transition: background-color var(--nexus-duration-fast) var(--nexus-ease);
 }
 
 .field__input::placeholder {
@@ -555,12 +557,13 @@ async function handleRegister(): Promise<void> {
 }
 
 .field__input:hover:not(:disabled) {
-  border-color: var(--nexus-border-strong);
+  background: var(--nexus-gray-200);
 }
 
-/* 焦点环绘制在边框内侧（offset 为负），避免与输入框边框叠成"双环"显得笨重 */
+/* 焦点环绘制在填充区内侧（offset 为负），显示为焦点态而不是常驻边框 */
 .field__input:focus-visible {
-  outline: 2px solid var(--nexus-text-primary);
+  background: var(--nexus-bg-elevated);
+  outline: 2px solid var(--nexus-gray-500);
   outline-offset: -2px;
 }
 
@@ -574,8 +577,9 @@ async function handleRegister(): Promise<void> {
   padding-right: 56px;
 }
 
+/* 错误态：左侧细红条，不额外套一圈红框 */
 .field--invalid .field__input {
-  border-color: var(--nexus-error);
+  box-shadow: inset 2px 0 0 var(--nexus-error);
 }
 
 .field--invalid .field__input:focus-visible {
@@ -640,7 +644,7 @@ async function handleRegister(): Promise<void> {
   width: 100%;
   height: 44px;
   margin-top: var(--nexus-space-6);
-  border: 1px solid var(--nexus-accent);
+  border: 0;
   border-radius: var(--nexus-radius-md);
   background: var(--nexus-accent);
   color: var(--nexus-text-inverse);
@@ -649,13 +653,10 @@ async function handleRegister(): Promise<void> {
   font-weight: 500;
   letter-spacing: 0.02em;
   cursor: pointer;
-  transition:
-    background-color var(--nexus-duration-fast) var(--nexus-ease),
-    border-color var(--nexus-duration-fast) var(--nexus-ease);
+  transition: background-color var(--nexus-duration-fast) var(--nexus-ease);
 }
 
 .submit:hover:not(:disabled) {
-  border-color: var(--nexus-accent-hover);
   background: var(--nexus-accent-hover);
 }
 
@@ -676,8 +677,6 @@ async function handleRegister(): Promise<void> {
     justify-content: flex-start;
     gap: var(--nexus-space-6);
     padding: var(--nexus-space-8) var(--nexus-space-6);
-    border-right: 0;
-    border-bottom: 1px solid var(--nexus-border);
   }
 
   .brand-body {

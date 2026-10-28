@@ -121,7 +121,7 @@
               <!-- 发表评论 -->
               <div class="comment-input-area">
                 <img
-                  :src="currentUserAvatar || getDefaultAvatar('User')"
+                  :src="currentUserAvatar"
                   alt="当前用户"
                   class="current-user-avatar"
                 />
@@ -306,7 +306,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getMarketProjectDetail } from '@/api/market'
 import { checkFavorite, favoriteProject, unfavoriteProject, checkLiked, likeProject, unlikeProject } from '@/api/project'
@@ -321,7 +321,7 @@ import {
 } from '@/api/market/comment'
 import { useUserStore } from '@/store'
 import { useAppDialog } from '@/composables/useAppDialog'
-import { getOtherUserAvatar } from '@/utils/avatar'
+import { getCurrentUserAvatar, getOtherUserAvatar } from '@/utils/avatar'
 import {
   ArrowLeft,
   Heart,
@@ -339,7 +339,16 @@ const route = useRoute()
 const router = useRouter()
 const userStore = useUserStore()
 const { confirm, showError, showWarning } = useAppDialog()
-const projectId = route.params.projectId as string
+
+/**
+ * 项目详情页被两条路由注册，param key 不一样：
+ *   /market/projects/:projectId ← market 模块（param key: projectId）
+ *   /project/:id                ← project 模块（param key: id）
+ * 统一取 projectId 这条；同时 watch route.params，确保同组件复用时能重新加载。
+ */
+const projectId = computed(
+  () => String(route.params.projectId || route.params.id || '')
+)
 
 // 状态
 const loading = ref(false)
@@ -356,7 +365,14 @@ const replyContent = ref('')
 
 // 当前用户信息
 const currentUserId = computed(() => userStore.userInfo?.id)
-const currentUserAvatar = computed(() => userStore.userInfo?.avatar)
+/** 当前用户头像：与顶栏 / 社区共用同一套规则，无头像时也回落到本人首字母而非固定 "U" */
+const currentUserAvatar = computed(() =>
+  getCurrentUserAvatar(
+    userStore.userInfo?.avatar,
+    userStore.userInfo?.id,
+    userStore.userInfo?.username
+  )
+)
 
 // 项目数据
 const projectData = ref({
@@ -444,7 +460,8 @@ function getDefaultAvatar(username: string | undefined): string {
 
 // 加载项目详情
 async function loadProjectDetail() {
-  if (!projectId) {
+  const id = projectId.value
+  if (!id) {
     loadError.value = '项目ID不能为空'
     return
   }
@@ -453,8 +470,8 @@ async function loadProjectDetail() {
   loadError.value = ''
 
   try {
-    console.log('[项目详情] 加载项目:', projectId)
-    const res = await getMarketProjectDetail(projectId)
+    console.log('[项目详情] 加载项目:', id)
+    const res = await getMarketProjectDetail(id)
     console.log('[项目详情] API响应:', res)
 
     const responseData: any = res.data
@@ -467,7 +484,7 @@ async function loadProjectDetail() {
 
     // 映射 API 数据到页面格式
     projectData.value = {
-      id: data.id || projectId,
+      id: data.id || id,
       title: data.name || '未命名项目',
       summary: data.description || '',
       cover: data.coverUrl || '',
@@ -492,7 +509,7 @@ async function loadProjectDetail() {
     // 检查是否已收藏
     if (userStore.isLoggedIn) {
       try {
-        const favRes = await checkFavorite(projectId)
+        const favRes = await checkFavorite(id)
         if (favRes.data.status === 200) {
           isFavorited.value = favRes.data.data?.favorited || false
         }
@@ -502,7 +519,7 @@ async function loadProjectDetail() {
 
       // 检查是否已点赞
       try {
-        const likeRes = await checkLiked(projectId)
+        const likeRes = await checkLiked(id)
         if (likeRes.data.status === 200) {
           isLiked.value = likeRes.data.data?.liked || false
         }
@@ -520,9 +537,10 @@ async function loadProjectDetail() {
 
 // 加载评论列表
 async function loadComments() {
+  const id = projectId.value
   commentsLoading.value = true
   try {
-    const res = await getProjectComments(projectId)
+    const res = await getProjectComments(id)
     const responseData: any = res.data
     const data = responseData.data || []
 
@@ -551,8 +569,9 @@ async function loadComments() {
 
 // 加载评论数量
 async function loadCommentCount() {
+  const id = projectId.value
   try {
-    const res = await getProjectCommentCount(projectId)
+    const res = await getProjectCommentCount(id)
     const responseData: any = res.data
     commentCount.value = responseData.data?.count || 0
   } catch (err) {
@@ -562,12 +581,13 @@ async function loadCommentCount() {
 
 // 提交评论
 async function submitComment() {
+  const id = projectId.value
   if (!newComment.value.trim()) return
 
   submitting.value = true
   try {
     await createProjectComment({
-      projectId,
+      projectId: id,
       content: newComment.value.trim()
     })
     newComment.value = ''
@@ -595,12 +615,13 @@ function cancelReply() {
 
 // 提交回复
 async function submitReply(parentId: string) {
+  const id = projectId.value
   if (!replyContent.value.trim()) return
 
   submitting.value = true
   try {
     await createProjectComment({
-      projectId,
+      projectId: id,
       content: replyContent.value.trim(),
       parentId
     })
@@ -663,12 +684,13 @@ async function toggleLike() {
     await showWarning('请先登录')
     return
   }
+  const id = projectId.value
   try {
     const newLiked = !isLiked.value
     if (newLiked) {
-      await likeProject(projectId)
+      await likeProject(id)
     } else {
-      await unlikeProject(projectId)
+      await unlikeProject(id)
     }
     isLiked.value = newLiked
     const newLikes = Math.max(0, projectData.value.likes + (newLiked ? 1 : -1))
@@ -683,12 +705,13 @@ async function toggleFavorite() {
     await showWarning('请先登录')
     return
   }
+  const id = projectId.value
   try {
     if (isFavorited.value) {
-      await unfavoriteProject(projectId)
+      await unfavoriteProject(id)
       isFavorited.value = false
     } else {
-      await favoriteProject(projectId)
+      await favoriteProject(id)
       isFavorited.value = true
     }
   } catch (error: any) {
@@ -703,10 +726,22 @@ function handleAction(type: 'demo' | 'source') {
   // TODO: 实现具体功能
 }
 
-onMounted(() => {
-  window.scrollTo(0, 0)
-  loadProjectDetail()
-})
+// 路由变化（组件复用）或首次挂载时重新加载，避免卡在旧项目数据上
+watch(
+  projectId,
+  (newId) => {
+    window.scrollTo(0, 0)
+    // 先清空上次可能留下的 loading/error 标记
+    loading.value = false
+    loadError.value = ''
+    if (!newId) {
+      loadError.value = '项目ID不能为空'
+      return
+    }
+    loadProjectDetail()
+  },
+  { immediate: true }
+)
 </script>
 
 <style scoped lang="scss">

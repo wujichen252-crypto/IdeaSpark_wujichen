@@ -22,7 +22,7 @@
             <n-avatar
 circle
 size="large"
-:src="post.author.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${post.author.id}`"
+:src="getOtherUserAvatar(post.author.avatar, post.author.id, post.author.username)"
 style="cursor: pointer;" />
             <div class="meta" style="cursor: pointer;">
               <div class="username">{{ post.author.name || post.author.username }}</div>
@@ -104,7 +104,7 @@ color="#000"
             <!-- 评论列表 -->
             <div class="comment-list">
               <div v-for="comment in comments" :key="comment.id" class="comment-item">
-                <n-avatar circle size="medium" :src="comment.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${comment.userId}`" />
+                <n-avatar circle size="medium" :src="getOtherUserAvatar(comment.avatar, comment.userId, comment.username)" />
                 <div class="comment-content">
                   <div class="comment-header">
                     <span class="username">{{ comment.username }}</span>
@@ -151,7 +151,7 @@ size="tiny"
                   <!-- 嵌套回复列表 -->
                   <div v-if="(comment as any).replies && (comment as any).replies.length > 0" class="replies-list mt-3">
                     <div v-for="reply in (comment as any).replies" :key="reply.id" class="reply-item">
-                      <n-avatar circle size="small" :src="reply.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${reply.userId}`" />
+                      <n-avatar circle size="small" :src="getOtherUserAvatar(reply.avatar, reply.userId, reply.username)" />
                       <div class="reply-content">
                         <div class="reply-header">
                           <span class="username">{{ reply.username }}</span>
@@ -205,6 +205,7 @@ import { getAllPostComments, createComment } from '@/api/community/comment'
 import { likePost, unlikePost, likeComment, unlikeComment } from '@/api/community/like'
 import type { PostDetail, Comment, CommentDetail } from '@/api/types'
 import { useUserStore } from '@/store'
+import { getCurrentUserAvatar, getOtherUserAvatar } from '@/utils/avatar'
 
 const route = useRoute()
 const router = useRouter()
@@ -224,7 +225,11 @@ const replyContent = ref('')                  // 回复内容
 const submittingReply = ref(false)            // 是否正在提交回复
 
 const currentUserAvatar = computed(() => {
-  return userStore.userInfo?.avatar || 'https://api.dicebear.com/7.x/avataaars/svg?seed=Guest'
+  return getCurrentUserAvatar(
+    userStore.userInfo?.avatar,
+    userStore.userInfo?.id,
+    userStore.userInfo?.username
+  )
 })
 
 /**

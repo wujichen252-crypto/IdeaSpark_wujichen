@@ -5,11 +5,21 @@ import { useRouter, useRoute } from 'vue-router'
 import { PersonOutline } from '@vicons/ionicons5'
 
 import { useUserStore } from '@/store'
+import { getCurrentUserAvatar } from '@/utils/avatar'
 import logoIcon from '@/assets/logo-icon.svg'
 
 const router = useRouter()
 const route = useRoute()
 const userStore = useUserStore()
+
+/** 顶栏用户头像：与全站共用同一套生成规则，避免各页面头像不一致 */
+const userAvatar = computed(() =>
+  getCurrentUserAvatar(
+    userStore.userInfo?.avatar,
+    userStore.userInfo?.id,
+    userStore.userInfo?.username
+  )
+)
 const activeKey = ref<string | null>('home')
 const isScrolled = ref(false)
 
@@ -111,6 +121,9 @@ watch(
 
 onMounted(() => {
   window.addEventListener('scroll', debouncedHandleScroll, { passive: true })
+  // 首次挂载立即评估一次，避免非首页 isScrolled 卡在初始值 false，
+  // 导致顶栏保持全透明背景，与下方白色内容无缝衔接、视觉上"消失"。
+  handleScroll()
 })
 
 onUnmounted(() => {
@@ -156,11 +169,13 @@ onUnmounted(() => {
             v-if="userStore.isLoggedIn"
             trigger="hover"
             :options="[
+              { label: '更换头像', key: 'avatar' },
               { label: '个人中心', key: 'profile' },
               { label: '退出登录', key: 'logout' }
             ]"
             @select="
               (key: string | number) => {
+                if (key === 'avatar') router.push('/profile/edit')
                 if (key === 'profile') router.push('/profile')
                 if (key === 'logout') {
                   userStore.logout()
@@ -173,7 +188,7 @@ onUnmounted(() => {
               <n-avatar
                 round
                 size="small"
-                :src="userStore.userInfo?.avatar"
+                :src="userAvatar"
                 style="cursor: pointer"
               />
               <span class="username ml-2">{{ userStore.userInfo?.username }}</span>
@@ -205,7 +220,7 @@ class="login-btn"
   top: 0;
   left: 0;
   right: 0;
-  z-index: var(--nexus-z-overlay);
+  z-index: var(--nexus-z-header); /* 顶栏属于页面级固定栏，不该抢占遮罩层级别；modal(2000)/overlay(1000) 会盖在它上面是正确的 */
   height: var(--header-height);
   display: flex;
   align-items: center;
@@ -213,19 +228,17 @@ class="login-btn"
   border-bottom: none;
   transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-bottom-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* 滚动状态 / 内部页面状态 */
-  &.is-scrolled {
-    height: var(--header-height); /* 保持高度，与页面 padding-top 对齐 */
-    background: transparent;
-    backdrop-filter: none;
-    border-bottom: none;
-    box-shadow: none; /* 移除阴影，避免与下方内容头部重叠产生视觉脏感 */
+  /* 非首页一律有可见背景，避免 isScrolled 状态错位时顶栏透明化（视觉上"消失"）。
+     顶栏的「是否可见」由 is-home 决定，而非 is-scrolled。 */
+  &:not(.is-home) {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
 
-    &:not(.is-home) {
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    }
+  /* 滚动状态：微调效果（logo 切换等），不再接管基础背景可见性 */
+  &.is-scrolled {
+    height: var(--header-height);
 
     /* CSS 状态控制作为 GSAP 的兜底 */
     .initial-logo-container {

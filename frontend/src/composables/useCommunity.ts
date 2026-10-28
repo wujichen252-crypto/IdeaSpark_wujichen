@@ -3,7 +3,7 @@ import { useRouter } from 'vue-router'
 import { useMessage } from 'naive-ui'
 import { useUserStore } from '@/store'
 import { useAppDialog } from '@/composables/useAppDialog'
-import { getCurrentUserAvatar } from '@/utils/avatar'
+import { getCurrentUserAvatar, getTeamAvatar } from '@/utils/avatar'
 import * as communityApi from '@/api/community'
 import {
   followUser,
@@ -90,9 +90,8 @@ export function createCommunity(): CommunityContext {
       userStore.userInfo?.username
     )
   })
-  /** 默认圈子图标 */
-  const defaultGroupIcon: string =
-    'https://api.dicebear.com/7.x/shapes/svg?seed=Group&backgroundColor=ffdfbf'
+  /** 默认圈子图标：与全站同一套本地生成规则，不再依赖境外图形服务 */
+  const defaultGroupIcon: string = getTeamAvatar(undefined, 'Group')
   /** 搜索关键词 */
   const searchQuery = ref('')
   /** 当前 Feed */
